@@ -17,6 +17,7 @@ public class App extends Application {
     
     
     //Holaa
+    //Sandia
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
