@@ -15,6 +15,7 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class Storify {
-	private String nombre;
+public class Administrador extends Cuenta{
+	private String idAdministrador;
+	
 }
