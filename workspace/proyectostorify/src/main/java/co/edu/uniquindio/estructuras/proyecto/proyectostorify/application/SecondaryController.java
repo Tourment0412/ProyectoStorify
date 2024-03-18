@@ -1,4 +1,4 @@
-package co.edu.uniquindio.estructuras.proyecto.proyectostorify;
+package co.edu.uniquindio.estructuras.proyecto.proyectostorify.application;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
