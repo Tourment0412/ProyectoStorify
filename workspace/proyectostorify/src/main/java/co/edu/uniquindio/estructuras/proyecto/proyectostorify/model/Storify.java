@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -16,5 +17,7 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Storify {
+	
+	@NonNull
 	private String nombre;
 }
