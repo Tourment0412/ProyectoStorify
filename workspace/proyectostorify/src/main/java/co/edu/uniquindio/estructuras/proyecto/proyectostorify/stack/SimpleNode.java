@@ -3,11 +3,13 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack;
 public class SimpleNode<E> {
 
 	private E value;
+	private String action;
 	private SimpleNode<E> next;
 
-	public SimpleNode(E valor) {
+	public SimpleNode(E valor, String action) {
 		this.value = valor;
 		this.next = null;
+		this.action = action;
 	}
 
 	public E getValue() {
@@ -24,6 +26,14 @@ public class SimpleNode<E> {
 
 	public void setNext(SimpleNode<E> next) {
 		this.next = next;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 	@Override
