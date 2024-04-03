@@ -1,4 +1,4 @@
-package co.edu.uniquindio.estructuras.proyecto.proyectorify.stack;
+package co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack;
 
 public class SimpleNode<E> {
 
