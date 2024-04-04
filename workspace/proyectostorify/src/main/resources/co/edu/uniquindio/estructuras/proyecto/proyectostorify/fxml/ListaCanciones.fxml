@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtNombreCancion" layoutX="238.0" layoutY="49.0" />
+      <TextField fx:id="txtNombreAlbum" layoutX="238.0" layoutY="81.0" />
+      <TextField fx:id="txtAnio" layoutX="238.0" layoutY="115.0" />
+      <TextField fx:id="txtDuracion" layoutX="239.0" layoutY="148.0" />
+      <Label fx:id="lblNombreDeLaCancion" layoutX="71.0" layoutY="54.0" text="Nombre de la cancion:" />
+      <Label fx:id="lblCodigoCancion" layoutX="559.0" layoutY="243.0" text="Codigo:" />
+      <Label fx:id="lblGeneroCancion" layoutX="557.0" layoutY="428.0" text="Genero:" />
+      <Label fx:id="lblUrlCancion" layoutX="581.0" layoutY="397.0" text="Url:" />
+      <Label fx:id="lblDuracionCancion" layoutX="550.0" layoutY="366.0" text="Duracion:" />
+      <Label fx:id="lblAnioCancion" layoutX="573.0" layoutY="337.0" text="Año:" />
+      <Label fx:id="lblAlbumCancion" layoutX="561.0" layoutY="305.0" text="Album:" />
+      <Label fx:id="lblNombreCancion" layoutX="555.0" layoutY="271.0" text="Cancion:" />
+      <Label fx:id="lblTitulo" layoutX="353.0" layoutY="14.0" text="Lista De Canciones" />
+      <Label fx:id="lblDuracionDeLaCancion" layoutX="140.0" layoutY="152.0" text="Duracion:" />
+      <Label fx:id="lblAnioDeLaCancion" layoutX="165.0" layoutY="119.0" text="Año:" />
+      <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" text="Nombre del album:" />
+      <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" text="Genero:" />
+      <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" />
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" text="Busqueda conjuntiva" />
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" text="Busqueda disyuntiva" />
+      <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="266.0" prefHeight="200.0" prefWidth="381.0">
+        <columns>
+          <TableColumn prefWidth="87.20001983642578" text="Nombre" />
+          <TableColumn prefWidth="103.20001220703125" text="Album" />
+            <TableColumn prefWidth="93.5999755859375" text="Duracion" />
+            <TableColumn prefWidth="96.79998779296875" text="Genero" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblCodigo" layoutX="643.0" layoutY="243.0" text="Label" />
+      <Label fx:id="lblGenero" layoutX="643.0" layoutY="428.0" text="Label" />
+      <Label fx:id="lblUrl" layoutX="643.0" layoutY="397.0" text="Label" />
+      <Label fx:id="lblDuracion" layoutX="643.0" layoutY="366.0" text="Label" />
+      <Label fx:id="lblAnio" layoutX="643.0" layoutY="337.0" text="Label" />
+      <Label fx:id="lblAlbum" layoutX="643.0" layoutY="305.0" text="Label" />
+      <Label fx:id="lblCancion" layoutX="643.0" layoutY="272.0" text="Label" />
+      <Button fx:id="btnDeshacer" layoutX="105.0" layoutY="477.0" mnemonicParsing="false" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="217.0" layoutY="477.0" mnemonicParsing="false" text="Rehacer" />
+      <Button fx:id="btnEliminar" layoutX="333.0" layoutY="477.0" mnemonicParsing="false" text="Eliminar" />
+      <Separator layoutX="488.0" layoutY="29.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
+      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtNombre" layoutX="239.0" layoutY="121.0" />
+      <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="158.0" />
+      <Label fx:id="lblNombre" layoutX="171.0" layoutY="121.0" text="Nombre:" />
+      <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="158.0" text="Contrasenia:" />
+      <Button fx:id="btnInicioSesion" layoutX="216.0" layoutY="214.0" mnemonicParsing="false" text="Iniciar Sesion" />
+      <Label fx:id="lblTitulo" layoutX="217.0" layoutY="43.0" text="Inicio de Sesion" />
+   </children>
+</AnchorPane>
