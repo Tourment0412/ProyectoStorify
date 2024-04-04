@@ -1,6 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree;
 
-public class TreeNode <E> {
+public class TreeNode <E extends Comparable<E>> {
 	
 	private E value;
 	private TreeNode <E>left;
