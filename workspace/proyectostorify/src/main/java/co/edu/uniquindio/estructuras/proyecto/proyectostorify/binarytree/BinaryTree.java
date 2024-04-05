@@ -60,17 +60,50 @@ public class BinaryTree<E extends Comparable<E>> {
 	public void preorder() {
 		preorderAux(this.root);
 	}
-	/*Aca se imprimira la raiz, luego todos los de la izquierda primero y luego todos los de la derecha
-	 * Incluso las subramas izquierdas se imprimeran y luego sus derechas y ya lueego pasara a la parte derecha
-	 * y de la parte derecha, todas las izquierdas y luego las derechas
-	*/
+
+	/*
+	 * Aca se imprimira la raiz, luego todos los de la izquierda primero y luego
+	 * todos los de la derecha Incluso las subramas izquierdas se imprimeran y luego
+	 * sus derechas y ya lueego pasara a la parte derecha y de la parte derecha,
+	 * todas las izquierdas y luego las derechas
+	 */
 	private void preorderAux(TreeNode<E> current) {
 		if (current == null) {
 			return;
 		}
-		System.out.println(current.getValue());
+		System.out.print(current.getValue()+", ");
 		preorderAux(current.getLeft());
 		preorderAux(current.getRight());
+	}
+
+	public void inorder() {
+		inorderAux(this.root);
+	}
+
+	private void inorderAux(TreeNode<E> current) {
+		if (current == null) {
+			return;
+
+		}
+		inorderAux(current.getLeft());
+		System.out.print(current.getValue()+", ");
+		inorderAux(current.getRight());
+
+	}
+	
+	public void postorder() {
+		postorderAux(this.root);
+	}
+
+	private void postorderAux(TreeNode<E> current) {
+		if (current == null) {
+			return;
+
+		}
+		postorderAux(current.getLeft());
+		postorderAux(current.getRight());
+		System.out.print(current.getValue()+", ");
+
 	}
 
 }
