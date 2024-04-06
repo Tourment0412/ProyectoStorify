@@ -143,6 +143,16 @@ public class CircularList<E> implements Iterable<E>{
 		msj+="]";
 		return msj;
 	}
+	
+	public CircularList<E> filter(Comparation<E> comparation) {
+		CircularList<E> listObtained=new CircularList<E>();
+		for (E actualValue : this) {
+			if (comparation.comparation(actualValue)) {
+				listObtained.add(actualValue);
+			}
+		}
+		return listObtained;
+	}
 
 	@Override
 	public Iterator<E> iterator() {
@@ -181,5 +191,9 @@ public class CircularList<E> implements Iterable<E>{
 		}
 	}
 	
+	@FunctionalInterface
+	public interface Comparation<E> {
+		boolean comparation(E value);
+	}
 
 }
