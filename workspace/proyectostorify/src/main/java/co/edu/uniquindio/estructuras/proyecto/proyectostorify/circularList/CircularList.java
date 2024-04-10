@@ -153,6 +153,56 @@ public class CircularList<E> implements Iterable<E>{
 		}
 		return listObtained;
 	}
+	
+	public void setUnion(CircularList<E> list) {
+		for (E element : list) {
+			if (!this.contains(element)) {
+				list.add(element);
+			}
+		}
+	}
+	
+	public void setIntersection(CircularList<E> list) {
+		CircularList<E> obtaindedList=new CircularList<E>();
+		for (E element : this) {
+			if (list.contains(element)) {
+				obtaindedList.add(element);
+			}
+		}
+		head=obtaindedList.getHead();
+		endNode=obtaindedList.getEndNode();
+	}
+	
+	public CircularList<E> getUnion(CircularList<E> list) {
+		CircularList<E> obtaindedList=new CircularList<E>();
+		for (E element : this) {
+			obtaindedList.add(element);
+		}
+		for (E element : list) {
+			if (!obtaindedList.contains(element)) {
+				obtaindedList.add(element);
+			}
+		}
+		return obtaindedList;
+	}
+	
+	public CircularList<E> getIntersection(CircularList<E> list) {
+		CircularList<E> obtaindedList=new CircularList<E>();
+		for (E element : this) {
+			if (list.contains(element)) {
+				obtaindedList.add(element);
+			}
+		}
+		return obtaindedList;
+	}
+	
+	public CircularList<E> clone() {
+		CircularList<E> obtaindedList=new CircularList<E>();
+		for (E element : this) {
+			obtaindedList.add(element);
+		}
+		return obtaindedList;
+	}
 
 	@Override
 	public Iterator<E> iterator() {
