@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.*;
 
 
 /**
@@ -54,17 +54,17 @@ public class App extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException{
-		co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ModelFactoryController mfm = co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ModelFactoryController.getInstance();
+		ModelFactoryController mfm = ModelFactoryController.getInstance();
 		mfm.setAplicacion(this);
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Storify");
-		mostrarLogin();
+		mostrarIniciarSesion();
 	}
 	
 	/**
 	 * Inicia la ventana principal
 	 */
-	public void mostrarLogin() {
+	public void mostrarIniciarSesion() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/IniciarSesion.fxml"));
@@ -73,7 +73,111 @@ public class App extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.centerOnScreen();
 			primaryStage.show();
-			co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.IniciarSesionController controlador = loader.getController();
+			IniciarSesionController controlador = loader.getController();
+			controlador.setVentana(primaryStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void mostrarAdministradorArtistas() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorArtistas.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			AdministradorArtistasController controlador = loader.getController();
+			controlador.setVentana(primaryStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void mostrarAdministradorCanciones() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorCanciones.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			AdministradorCancionesController controlador = loader.getController();
+			controlador.setVentana(primaryStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void mostrarArtistas() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/Artistas.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			ArtistasController controlador = loader.getController();
+			controlador.setVentana(primaryStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void mostrarListaCanciones() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/ListaCanciones.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			ListaCancionesController controlador = loader.getController();
+			controlador.setVentana(primaryStage);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void mostrarResgistrarse() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/Registrarse.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			RegistrarseController controlador = loader.getController();
 			controlador.setVentana(primaryStage);
 			
 		} catch (IOException e) {

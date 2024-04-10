@@ -105,5 +105,19 @@ public class BinaryTree<E extends Comparable<E>> {
 		System.out.print(current.getValue()+", ");
 
 	}
+	
+	public boolean search(E value) {
+	    return searchRecursive(root, value);
+	}
+
+	private boolean searchRecursive(TreeNode<E> current, E value) {
+	    if (current == null) {
+	        return false;
+	    }
+	    if (current.getValue().equals(value)) {
+	        return true;
+	    }
+	    return searchRecursive(current.getLeft(), value) || searchRecursive(current.getRight(), value);
+	}
 
 }

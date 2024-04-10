@@ -6,16 +6,31 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.stage.Stage;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
+@Getter
 public class ModelFactoryController {
 	
-
+	@NonNull
 	private App aplicacion;
+	@NonNull
 	private Stage ventana;
-	Storify tiendaMusica;
+	@NonNull
+	Storify tiendaMusica=new Storify("Stori");
+	@NonNull
 	Stack<Cancion> pilaCanciones;
+	@NonNull
 	Usuario usuarioSesion;
+	
+	
 	
 	private static class SingletonHolder { 
 		// El constructor de Singleton puede ser llamado desde aqu� al ser protected
@@ -34,21 +49,7 @@ public class ModelFactoryController {
 
 	}
 
-	public App getAplicacion() {
-		return aplicacion;
-	}
 
-	public void setAplicacion(App aplicacion) {
-		this.aplicacion = aplicacion;
-	}
-
-	public Stage getVentana() {
-		return ventana;
-	}
-
-	public void setVentana(Stage ventana) {
-		this.ventana = ventana;
-	}
 	
 	public Cuenta obtenerCuenta(String nombre) {
 		return tiendaMusica.obtenerCuenta(null);
@@ -94,10 +95,18 @@ public class ModelFactoryController {
 		return tiendaMusica.obtenerCancionesFiltradasInterseccion(lista, usuario, datos);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 * @param accion
+	 */
 	public void agregarCambioCancion(Cancion cancion,String accion) {
 		pilaCanciones.push(cancion, accion);
 	}
 	
+	/**
+	 * 
+	 */
 	public void deshacerCambioCancion() {
 		String accion=pilaCanciones.headAction();
 		Cancion cancion=pilaCanciones.pop();
@@ -106,4 +115,38 @@ public class ModelFactoryController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
+	public boolean existeUsuario(String nombre, String contrasenia) {
+		// TODO Auto-generated method stub
+		return tiendaMusica.existeUsuario(nombre, contrasenia);
+	}
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
+	public String obtenerTipoCuenta(String nombre, String contrasenia) {
+		// TODO Auto-generated method stub
+		return tiendaMusica.obtenerTipoCuenta(nombre, contrasenia);
+	}
+
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
+	public Cuenta obtenerCuentaDatos(String nombre, String contrasenia) {
+		// TODO Auto-generated method stub
+		return tiendaMusica.obtenerCuentaDatos(nombre, contrasenia);
+	}
+
+
 }

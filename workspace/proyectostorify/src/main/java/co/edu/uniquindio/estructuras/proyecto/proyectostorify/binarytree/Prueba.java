@@ -20,6 +20,7 @@ public class Prueba {
 		System.out.println();
 		System.out.println("Preorder: ");
 		arbol.preorder();
+		System.out.println(arbol.search(11));
 		
 		
 	}

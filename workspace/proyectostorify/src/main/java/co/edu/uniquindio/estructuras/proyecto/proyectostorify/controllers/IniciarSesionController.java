@@ -3,13 +3,19 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.*;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import lombok.*;
 
+@Setter
+@Getter
 public class IniciarSesionController {
 
 	@FXML
@@ -38,7 +44,7 @@ public class IniciarSesionController {
 
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
-	private co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App App = mfm.getAplicacion();
+	private App app = mfm.getAplicacion();
 
 	@FXML
 	void initialize() {
@@ -54,93 +60,51 @@ public class IniciarSesionController {
 
 	}
 
-	public ResourceBundle getResources() {
-		return resources;
+	/**
+	 * Inicia sesión para un usuario administrador.
+	 * 
+	 * @param admin
+	 */
+	public void iniciarSesionAdministrador(Administrador admin) {
+		ventana.close();
+		app.mostrarAdministradorArtistas();
 	}
 
-	public void setResources(ResourceBundle resources) {
-		this.resources = resources;
+	/**
+	 * Inicia sesión para un usuario comun
+	 * 
+	 * @param usuario
+	 */
+	public void iniciarSesionUsuario(Usuario usuario) {
+		ventana.close();
+		app.mostrarListaCanciones();
 	}
 
-	public URL getLocation() {
-		return location;
-	}
+	/**
+	 * Método que se ejecuta al presionar el botón "Iniciar Sesion".
+	 */
+	@FXML
+	private void ingresar() {
+		// Codigo para verificar el tipo de cuenta que va a ingresar (No borrar)
+		String tipoCuenra;
+		if (mfm.existeUsuario(txtNombre.getText(), txtContrasenia.getText())) {
+			tipoCuenra = mfm.obtenerTipoCuenta(txtNombre.getText(), txtContrasenia.getText());
+			System.out.println("Es " + tipoCuenra);
+			switch (tipoCuenra) {
+			case "Administrador":
+				iniciarSesionAdministrador(
+						(Administrador) mfm.obtenerCuentaDatos(txtNombre.getText(), txtContrasenia.getText()));
+				break;
+			case "Usuario":
+				iniciarSesionUsuario((Usuario) mfm.obtenerCuentaDatos(txtNombre.getText(), txtContrasenia.getText()));
+				break;
 
-	public void setLocation(URL location) {
-		this.location = location;
-	}
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cuenta no encontrada", "Cuenta no encontrada",
+					"No existe una cuenta con los datos ingresados", AlertType.WARNING);
+		}
 
-	public Button getBtnInicioSesion() {
-		return btnInicioSesion;
 	}
-
-	public void setBtnInicioSesion(Button btnInicioSesion) {
-		this.btnInicioSesion = btnInicioSesion;
-	}
-
-	public Label getLblContrasenia() {
-		return lblContrasenia;
-	}
-
-	public void setLblContrasenia(Label lblContrasenia) {
-		this.lblContrasenia = lblContrasenia;
-	}
-
-	public Label getLblNombre() {
-		return lblNombre;
-	}
-
-	public void setLblNombre(Label lblNombre) {
-		this.lblNombre = lblNombre;
-	}
-
-	public Label getLblTitulo() {
-		return lblTitulo;
-	}
-
-	public void setLblTitulo(Label lblTitulo) {
-		this.lblTitulo = lblTitulo;
-	}
-
-	public TextField getTxtContrasenia() {
-		return txtContrasenia;
-	}
-
-	public void setTxtContrasenia(TextField txtContrasenia) {
-		this.txtContrasenia = txtContrasenia;
-	}
-
-	public TextField getTxtNombre() {
-		return txtNombre;
-	}
-
-	public void setTxtNombre(TextField txtNombre) {
-		this.txtNombre = txtNombre;
-	}
-
-	public ModelFactoryController getMfm() {
-		return mfm;
-	}
-
-	public void setMfm(ModelFactoryController mfm) {
-		this.mfm = mfm;
-	}
-
-	public Stage getVentana() {
-		return ventana;
-	}
-
-	public void setVentana(Stage ventana) {
-		this.ventana = ventana;
-	}
-
-	public co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App getAplicacion() {
-		return App;
-	}
-
-	public void setAplicacion(co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App aplicacion) {
-		this.App = aplicacion;
-	}
-	
 
 }

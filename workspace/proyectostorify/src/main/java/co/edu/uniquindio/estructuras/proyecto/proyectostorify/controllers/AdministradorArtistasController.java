@@ -2,13 +2,23 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
+@Getter
 public class AdministradorArtistasController {
 
 	@FXML
@@ -52,6 +62,10 @@ public class AdministradorArtistasController {
 
 	@FXML
 	private TextField txtNombre;
+	
+	private ModelFactoryController mfm = ModelFactoryController.getInstance();
+	private Stage ventana = mfm.getVentana();
+	private App app = mfm.getAplicacion();
 
 	@FXML
 	void initialize() {

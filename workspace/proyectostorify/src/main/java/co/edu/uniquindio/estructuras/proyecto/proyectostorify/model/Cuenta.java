@@ -28,5 +28,16 @@ public class Cuenta {
 	public Cuenta() {
 
 	}
+	
+	
+	
+	
+	public boolean verificarDatos(String nombre, String contrasenia) {
+		boolean respuesta=false;
+		if (this.username.equals(nombre) && this.contrasenia.equals(contrasenia)) {
+			respuesta=true;
+		}
+		return respuesta;
+	}
 
 }
