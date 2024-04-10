@@ -17,84 +17,42 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-
 public class ModelFactoryController {
 	
-
-	Storify tiendaMusica;
-	Stack<Cancion> pilaCanciones;
-	Usuario usuarioSesion;
+	private App aplicacion;
+	private Stage ventana;
 	
-	// ------------------------------ Singleton
-	// ------------------------------------------------
-	// Clase estatica oculta. Tan solo se instanciara el singleton una vez
-	private static class SingletonHolder {
+	private static class SingletonHolder { 
+		// El constructor de Singleton puede ser llamado desde aqu� al ser protected
 		private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
 	}
 
-	// Método para obtener la instancia de nuestra clase
+	// M�todo para obtener la instancia de nuestra clase
 	public static ModelFactoryController getInstance() {
 		return SingletonHolder.eINSTANCE;
 	}
-
+	
+	/**
+	 * Metodo constructor
+	 */
 	public ModelFactoryController() {
-		tiendaMusica=new Storify("Storify");
+
 	}
-	
-	public Cuenta obtenerCuenta(String nombre) {
-		return tiendaMusica.obtenerCuenta(null);
+
+	public App getAplicacion() {
+		return aplicacion;
 	}
-	
-	public Cancion obtenerCancion(String codigo) {
-		return tiendaMusica.obtenerCancion(codigo);
+
+	public void setAplicacion(App aplicacion) {
+		this.aplicacion = aplicacion;
 	}
-	
-	public Artista obtenerArtista(String nombre) {
-		return tiendaMusica.obtenerArtista(nombre);
+
+	public Stage getVentana() {
+		return ventana;
 	}
-	
-	public void agregarUsuario(Usuario usuario) {
-		tiendaMusica.agregarUsuario(usuario);
-	}
-	
-	public void eliminarUsuario(String nombreUsuario) {
-		tiendaMusica.eliminarUsuario(nombreUsuario);
-	}
-	
-	public void agregarCancion(Cancion cancion,Artista artista) {
-		tiendaMusica.agregarCancion(cancion, artista);
-	}
-	
-	public void eliminarCancion(Cancion cancion) {
-		tiendaMusica.eliminarCancion(cancion);
-	}
-	
-	public void agregarArtista(Artista artista) {
-		tiendaMusica.agregarArtista(artista);
-	}
-	
-	public void eliminarArtista(Artista artista) {
-		tiendaMusica.eliminarArtista(artista);
-	}
-	
-	public CircularList<Cancion> obtenerCancionesFiltradasUnion(String lista,Usuario usuario,String[] datos) {
-		return tiendaMusica.obtenerCancionesFiltradasUnion(lista, usuario, datos);
-	}
-	
-	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista,Usuario usuario,String[] datos) {
-		return tiendaMusica.obtenerCancionesFiltradasInterseccion(lista, usuario, datos);
-	}
-	
-	public void agregarCambioCancion(Cancion cancion,String accion) {
-		pilaCanciones.push(cancion, accion);
-	}
-	
-	public void deshacerCambioCancion() {
-		String accion=pilaCanciones.headAction();
-		Cancion cancion=pilaCanciones.pop();
-		switch(accion) {
-		
-		}
+
+	public void setVentana(Stage ventana) {
+		this.ventana = ventana;
 	}
 	
 }
