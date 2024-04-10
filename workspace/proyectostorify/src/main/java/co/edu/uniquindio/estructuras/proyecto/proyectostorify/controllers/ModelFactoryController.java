@@ -1,24 +1,13 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
-import java.io.IOException;
 import java.util.List;
 
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
-
-import java.io.ByteArrayInputStream;
-import java.io.DataOutputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import javafx.stage.Stage;
 
 public class ModelFactoryController {
 	
+
 	private App aplicacion;
 	private Stage ventana;
 	
