@@ -34,24 +34,11 @@ public class Storify {
 	private HashMap<String, Cuenta> lstCuentas;
 
 	public Storify() {
-		lstArtistas = new BinaryTree<Artista>();
-		lstCanciones = new CircularList<Cancion>();
-		lstCuentas = new HashMap<String, Cuenta>();
-		Administrador admin = new Administrador("pepe", "123", "code1");
-		Usuario usuario = new Usuario("juan", "456", "@789");
-		lstCuentas.put(usuario.getUsername(), usuario);
-		lstCuentas.put(admin.getUsername(), admin);
+	
 	}
 
 	public Storify(String nombre) {
 		this.nombre = nombre;
-		this.lstArtistas = new BinaryTree<Artista>();
-		this.lstCanciones = new CircularList<Cancion>();
-		this.lstCuentas = new HashMap<String, Cuenta>();
-		Administrador admin = new Administrador("pepe", "123", "code1");
-		Usuario usuario = new Usuario("juan", "456", "@789");
-		lstCuentas.put(usuario.getUsername(), usuario);
-		lstCuentas.put(admin.getUsername(), admin);
 	}
 
 	public Cuenta obtenerCuenta(String nombre) {
@@ -221,6 +208,11 @@ public class Storify {
 		Usuario newUsuario = new Usuario(nombre, contrasenia, email);
 		agregarUsuario(newUsuario);
 		
+	}
+	
+	public CircularList<Artista> obtenerArtistas(String nombre) {
+		CircularList<Artista> listaArtisas=lstArtistas.toCircularList();
+		return listaArtisas;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,10 +29,26 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AdministradorArtistasController {
-	
 
-    @FXML
-    private Button btnCerrarSesion;
+
+	@FXML
+	private Button btnAdiministrarCanciones;
+
+
+	@FXML
+	private TableColumn<Artista, String> columnCodigo;
+
+	@FXML
+	private TableColumn<Artista, String> columnGrupo;
+
+	@FXML
+	private TableColumn<Artista, String> columnNacionalidad;
+
+	@FXML
+	private TableColumn<Artista, String> columnNombre;
+
+	@FXML
+	private Button btnCerrarSesion;
 
 	@FXML
 	private ResourceBundle resources;
@@ -51,7 +69,7 @@ public class AdministradorArtistasController {
 	private Button btnVolver;
 
 	@FXML
-	private ComboBox<?> cmbGrupo;
+	private ComboBox<String> cmbGrupo;
 
 	@FXML
 	private Label lblGrupo;
@@ -66,58 +84,66 @@ public class AdministradorArtistasController {
 	private Label lblTitulo;
 
 	@FXML
-	private TableView<?> tableArtistas;
+	private TableView<Artista> tableArtistas;
 
 	@FXML
 	private TextField txtNacionalidad;
 
 	@FXML
 	private TextField txtNombre;
-	
-	
-	
+
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
+	private CircularList<Artista> listaArtista = new CircularList<Artista>();
+
 	@FXML
 	void initialize() {
+		actualizarTablaArtistas();
+	}
+
+	private void actualizarTablaArtistas() {
 		
-		
-		
-		assert btnActualizar != null
-				: "fx:id=\"btnActualizar\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert btnCrear != null
-				: "fx:id=\"btnCrear\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert btnEliminar != null
-				: "fx:id=\"btnEliminar\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert btnVolver != null
-				: "fx:id=\"btnVolver\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert cmbGrupo != null
-				: "fx:id=\"cmbGrupo\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert lblGrupo != null
-				: "fx:id=\"lblGrupo\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert lblNacionalidad != null
-				: "fx:id=\"lblNacionalidad\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert lblNombre != null
-				: "fx:id=\"lblNombre\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert lblTitulo != null
-				: "fx:id=\"lblTitulo\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert tableArtistas != null
-				: "fx:id=\"tableArtistas\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert txtNacionalidad != null
-				: "fx:id=\"txtNacionalidad\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
-		assert txtNombre != null
-				: "fx:id=\"txtNombre\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
+		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
+		for (Artista artista : listaArtista) {
+			listaArtistasProperty.add(artista);
+		}
+		System.out.println(listaArtista.size());
+		System.out.println(listaArtistasProperty.size());
+		tableArtistas.setItems(listaArtistasProperty);
+		columnNombre.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
+		columnCodigo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
+		columnGrupo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().isEsGrupo()));
+		columnNacionalidad
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 
 	}
-	
-	
+
 	@FXML
-    void cerrarSesion(ActionEvent event) {
-    	app.mostrarIniciarSesion();
+	void cerrarSesion(ActionEvent event) {
+		app.mostrarIniciarSesion();
 
-    }
+	}
 
+	@FXML
+	void actualizarArtista(ActionEvent event) {
+
+	}
+
+	@FXML
+	void administrarCanciones(ActionEvent event) {
+
+	}
+
+	@FXML
+	void crearArtista(ActionEvent event) {
+
+	}
+
+	@FXML
+	void eliminarArtista(ActionEvent event) {
+
+	}
 
 }

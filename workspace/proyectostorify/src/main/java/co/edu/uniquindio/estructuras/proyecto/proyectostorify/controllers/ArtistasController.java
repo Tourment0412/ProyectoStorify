@@ -1,9 +1,14 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -159,6 +164,11 @@ public class ArtistasController {
     void cerrarSesion(ActionEvent event) {
     	app.mostrarIniciarSesion();
 
+    }
+    
+    public CircularList<Artista> obtenerArtistasNombre (String nombre) {
+        CircularList<Artista> listaArtistas=mfm.obtenerArtistas(nombre);
+		return listaArtistas;
     }
 
 

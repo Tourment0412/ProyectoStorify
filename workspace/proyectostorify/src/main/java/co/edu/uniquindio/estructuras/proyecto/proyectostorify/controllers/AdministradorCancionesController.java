@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -24,37 +25,46 @@ import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
 @Setter
 @Getter
 public class AdministradorCancionesController {
-	
+
 	@FXML
-    private TableColumn<Cancion, String> columnAlbum;
+	private Button btnAdiministrarCanciones;
 
-    @FXML
-    private TableColumn<Cancion, String> columnCodigo;
+	@FXML
+	private Button btnGuardar;
 
-    @FXML 
-    private TableColumn<Cancion, String> columnDuracion;
+	@FXML
+	private Button btnSeleccionarCaratula;
 
-    @FXML
-    private TableColumn<Cancion, String> columnGenero;
+	@FXML
+	private TableColumn<Cancion, String> columnAlbum;
 
-    @FXML
-    private TableColumn<Cancion, String> columnGrupo;
+	@FXML
+	private TableColumn<Artista, String> columnCodigo;
 
-    @FXML
-    private TableColumn<Cancion, String> columnNacionalidad;
+	@FXML
+	private TableColumn<Cancion, String> columnDuracion;
 
-    @FXML
-    private TableColumn<Cancion, String> columnNombreArtista;
+	@FXML
+	private TableColumn<Cancion, String> columnGenero;
 
-    @FXML
-    private TableColumn<Cancion, String> columnNombreCancion;
+	@FXML
+	private TableColumn<Artista, String> columnGrupo;
 
+	@FXML
+	private TableColumn<Artista, String> columnNacionalidad;
+
+	@FXML
+	private TableColumn<Artista, String> columnNombreArtista;
+
+	@FXML
+	private TableColumn<Cancion, String> columnNombreCancion;
 
 	@FXML
 	private Button btnCerrarSesion;
@@ -75,8 +85,9 @@ public class AdministradorCancionesController {
 	private Button btnVolver;
 
 	@FXML
-	private ComboBox<?> cmbGenero;
+	private ComboBox<String> cmbGenero;
 
+	@NonNull
 	@FXML
 	private ImageView imageCaratula;
 
@@ -111,7 +122,7 @@ public class AdministradorCancionesController {
 	private Label lblUrlCancion;
 
 	@FXML
-	private TableView<?> tableArtistas;
+	private TableView<Artista> tableArtistas;
 
 	@FXML
 	private TableView<Cancion> tableCanciones;
@@ -143,8 +154,9 @@ public class AdministradorCancionesController {
 
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 
-	@FXML
-	void initialize() {
+	private
+
+	@FXML void initialize() {
 
 		listaCanciones = mfm.obtenerListaCaciones();
 		assert btnBuscarNombre != null
@@ -199,22 +211,50 @@ public class AdministradorCancionesController {
 	}
 
 	@FXML
+	void administrarCanciones(ActionEvent event) {
+		app.mostrarAdministradorCanciones();
+	}
+
+	@FXML
 	void cerrarSesion(ActionEvent event) {
 		app.mostrarIniciarSesion();
 
 	}
 
 	public void actualizarTablaCanciones() {
-		ObservableList<Cancion> listaCancionProperty=FXCollections.observableArrayList();
+		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
 			listaCancionProperty.add(cancion);
-			
+
 		}
 		tableCanciones.setItems(listaCancionProperty);
-		columnNombreCancion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getNombreCancion()));
-		columnAlbum.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getNombreAlbum()));
-		columnDuracion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getDuracion()));
-		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getGenero()));
+		columnNombreCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreCancion()));
+		columnAlbum
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
+		columnDuracion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
+		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+
+	}
+
+	@FXML
+	void guardarCancion(ActionEvent event) {
+		Cancion newCancion = new Cancion();
+		newCancion.setCodigo(TiendaUtil.generarCadenaAleatoria());
+		newCancion.setAnio(txtAnio.getText());
+		newCancion.setCaratula(imageCaratula.getImage().getUrl());
+		newCancion.setDuracion(txtDuracion.getText());
+		newCancion.setGenero(Genero.getEstadoByString(cmbGenero.getSelectionModel().getSelectedItem()));
+		newCancion.setNombreCancion(txtCancion.getText());
+		newCancion.setNombreAlbum(txtAlbum.getText());
+		newCancion.setUrl(txtUrl.getText());
+		mfm.agregarCancion(newCancion, tableArtistas.getSelectionModel().getSelectedItem());
+		actualizarTablaCanciones();
+	}
+
+	@FXML
+	void seleccionarCaratula(ActionEvent event) {
 
 	}
 

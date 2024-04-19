@@ -11,7 +11,6 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Setter
 @Getter
-@Builder
 @ToString
 public class Artista implements Comparable<Artista>{
 	
@@ -21,9 +20,12 @@ public class Artista implements Comparable<Artista>{
 	private boolean esGrupo;
 	private ListaDoble<Cancion> lstCanciones;
 	
+	
+	
 	@Override
 	public int compareTo(Artista o) {
 		return nombre.compareTo(o.getNombre());
+		
 	}
 
 	public void agregarCancion(Cancion cancion) {
@@ -33,5 +35,22 @@ public class Artista implements Comparable<Artista>{
 	public void eliminarCancion(Cancion cancion) {
 		lstCanciones.eliminar(cancion);
 	}
+
+	public Artista(String codigo, String nombre, String nacionalidad, boolean esGrupo,
+			ListaDoble<Cancion> lstCanciones) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.esGrupo = esGrupo;
+		this.lstCanciones = lstCanciones;
+	}
+
+	public Artista() {
+		super();
+	}
+	
+	
+
 
 }
