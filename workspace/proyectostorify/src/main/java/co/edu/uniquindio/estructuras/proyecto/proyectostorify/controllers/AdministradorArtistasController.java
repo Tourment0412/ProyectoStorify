@@ -1,9 +1,16 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,6 +27,10 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AdministradorArtistasController {
+	
+
+    @FXML
+    private Button btnCerrarSesion;
 
 	@FXML
 	private ResourceBundle resources;
@@ -63,12 +74,17 @@ public class AdministradorArtistasController {
 	@FXML
 	private TextField txtNombre;
 	
+	
+	
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
 	@FXML
 	void initialize() {
+		
+		
+		
 		assert btnActualizar != null
 				: "fx:id=\"btnActualizar\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
 		assert btnCrear != null
@@ -95,5 +111,13 @@ public class AdministradorArtistasController {
 				: "fx:id=\"txtNombre\" was not injected: check your FXML file 'AdministradorArtistas.fxml'.";
 
 	}
+	
+	
+	@FXML
+    void cerrarSesion(ActionEvent event) {
+    	app.mostrarIniciarSesion();
+
+    }
+
 
 }

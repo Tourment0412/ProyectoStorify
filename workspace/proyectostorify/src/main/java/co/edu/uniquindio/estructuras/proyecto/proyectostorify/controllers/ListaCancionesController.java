@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,10 +19,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Setter
 @Getter
 public class ListaCancionesController {
+
+	@FXML
+	private Button btnRegistrarse;
+
+	@FXML
+	private Button btnCerrarSesion;
 
 	@FXML
 	private ResourceBundle resources;
@@ -124,7 +130,7 @@ public class ListaCancionesController {
 
 	@FXML
 	private TextField txtNombreCancion;
-	
+
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
@@ -188,6 +194,17 @@ public class ListaCancionesController {
 		assert txtNombreCancion != null
 				: "fx:id=\"txtNombreCancion\" was not injected: check your FXML file 'ListaCanciones.fxml'.";
 
+	}
+
+	@FXML
+	void cerrarSesion(ActionEvent event) {
+		app.mostrarIniciarSesion();
+
+	}
+
+	@FXML
+	void registrarse(ActionEvent event) {
+		app.mostrarResgistrarse();
 	}
 
 }

@@ -1,13 +1,22 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -21,6 +30,34 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AdministradorCancionesController {
+	
+	@FXML
+    private TableColumn<Cancion, String> columnAlbum;
+
+    @FXML
+    private TableColumn<Cancion, String> columnCodigo;
+
+    @FXML 
+    private TableColumn<Cancion, String> columnDuracion;
+
+    @FXML
+    private TableColumn<Cancion, String> columnGenero;
+
+    @FXML
+    private TableColumn<Cancion, String> columnGrupo;
+
+    @FXML
+    private TableColumn<Cancion, String> columnNacionalidad;
+
+    @FXML
+    private TableColumn<Cancion, String> columnNombreArtista;
+
+    @FXML
+    private TableColumn<Cancion, String> columnNombreCancion;
+
+
+	@FXML
+	private Button btnCerrarSesion;
 
 	@FXML
 	private ResourceBundle resources;
@@ -77,7 +114,7 @@ public class AdministradorCancionesController {
 	private TableView<?> tableArtistas;
 
 	@FXML
-	private TableView<?> tableCanciones;
+	private TableView<Cancion> tableCanciones;
 
 	@FXML
 	private TextField txtAlbum;
@@ -99,13 +136,17 @@ public class AdministradorCancionesController {
 
 	@FXML
 	private TextField txtUrl;
-	
+
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
+	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
+
 	@FXML
 	void initialize() {
+
+		listaCanciones = mfm.obtenerListaCaciones();
 		assert btnBuscarNombre != null
 				: "fx:id=\"btnBuscarNombre\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
 		assert btnEliminar != null
@@ -154,6 +195,26 @@ public class AdministradorCancionesController {
 				: "fx:id=\"txtDuracion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
 		assert txtUrl != null
 				: "fx:id=\"txtUrl\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
+
+	}
+
+	@FXML
+	void cerrarSesion(ActionEvent event) {
+		app.mostrarIniciarSesion();
+
+	}
+
+	public void actualizarTablaCanciones() {
+		ObservableList<Cancion> listaCancionProperty=FXCollections.observableArrayList();
+		for (Cancion cancion : listaCanciones) {
+			listaCancionProperty.add(cancion);
+			
+		}
+		tableCanciones.setItems(listaCancionProperty);
+		columnNombreCancion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getNombreCancion()));
+		columnAlbum.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getNombreAlbum()));
+		columnDuracion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getDuracion()));
+		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().getGenero()));
 
 	}
 

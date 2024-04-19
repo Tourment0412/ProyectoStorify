@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.RegistrarseController">
    <children>
@@ -11,9 +12,14 @@
       <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="158.0" />
       <Label fx:id="lblNombre" layoutX="171.0" layoutY="76.0" text="Nombre:" />
       <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="158.0" text="Contrasenia:" />
-      <Button fx:id="btnInicioSesion" layoutX="216.0" layoutY="214.0" mnemonicParsing="false" text="Iniciar Sesion" />
-      <Label fx:id="lblTitulo" layoutX="250.0" layoutY="28.0" text="Registro" />
+      <Button fx:id="btnIniciarSesion" layoutX="431.0" layoutY="228.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar Sesion" />
+      <Label fx:id="lblTitulo" layoutX="244.0" layoutY="22.0" text="Registro">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
       <TextField fx:id="txtEmail" layoutX="239.0" layoutY="118.0" />
       <Label fx:id="lblEmail" layoutX="185.0" layoutY="120.0" text="Email:" />
+      <Button fx:id="btnRegistrarse" layoutX="221.0" layoutY="202.0" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" />
+      <Label layoutX="414.0" layoutY="206.0" text="¿Ya tienes una cuenta?" />
    </children>
 </AnchorPane>

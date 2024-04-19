@@ -4,14 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.IniciarSesionController">
    <children>
-      <TextField fx:id="txtNombre" layoutX="239.0" layoutY="121.0" />
-      <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="158.0" />
-      <Label fx:id="lblNombre" layoutX="171.0" layoutY="121.0" text="Nombre:" />
-      <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="158.0" text="Contrasenia:" />
-      <Button fx:id="btnInicioSesion" layoutX="216.0" layoutY="214.0" mnemonicParsing="false" onAction="#ingresar" text="Iniciar Sesion" />
-      <Label fx:id="lblTitulo" layoutX="217.0" layoutY="43.0" text="Inicio de Sesion" />
+      <TextField fx:id="txtNombre" layoutX="239.0" layoutY="77.0" />
+      <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="114.0" />
+      <Label fx:id="lblNombre" layoutX="171.0" layoutY="77.0" text="Nombre:" />
+      <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="114.0" text="Contraseña:" />
+      <Button fx:id="btnInicioSesion" layoutX="216.0" layoutY="150.0" mnemonicParsing="false" onAction="#ingresar" text="Iniciar Sesion" />
+      <Label fx:id="lblTitulo" layoutX="207.0" layoutY="21.0" text="Inicio de Sesion">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="199.0" layoutY="199.0" text="¿No tiene una cuenta?" />
+      <Button fx:id="btnRegistrarse" layoutX="220.0" layoutY="228.0" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" />
    </children>
 </AnchorPane>

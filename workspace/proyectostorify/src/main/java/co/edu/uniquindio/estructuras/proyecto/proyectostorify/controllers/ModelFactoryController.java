@@ -49,7 +49,9 @@ public class ModelFactoryController {
 
 	}
 
-
+	public CircularList<Cancion> obtenerListaCaciones (){
+		return tiendaMusica.getLstCanciones();
+	}
 	
 	public Cuenta obtenerCuenta(String nombre) {
 		return tiendaMusica.obtenerCuenta(null);
@@ -146,6 +148,13 @@ public class ModelFactoryController {
 	public Cuenta obtenerCuentaDatos(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
 		return tiendaMusica.obtenerCuentaDatos(nombre, contrasenia);
+	}
+	
+
+
+	public void agregarUsuario(String nombre, String email, String contrasenia) {
+		// TODO Auto-generated method stub
+		tiendaMusica.registrarUsuario(nombre, email, contrasenia);
 	}
 
 

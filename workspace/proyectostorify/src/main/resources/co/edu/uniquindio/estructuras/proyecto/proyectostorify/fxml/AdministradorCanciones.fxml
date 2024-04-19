@@ -16,18 +16,18 @@
       <Button fx:id="btnBuscarNombre" layoutX="289.0" layoutY="94.0" mnemonicParsing="false" text="Buscar" />
       <TableView fx:id="tableArtistas" layoutX="78.0" layoutY="124.0" prefHeight="147.0" prefWidth="372.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Codigo" />
-          <TableColumn prefWidth="94.4000244140625" text="Nombre" />
-            <TableColumn prefWidth="95.20001220703125" text="Nacionalidad" />
-            <TableColumn prefWidth="106.39999389648438" text="Grupo" />
+          <TableColumn fx:id="columnCodigo" prefWidth="75.0" text="Codigo" />
+          <TableColumn fx:id="columnNombreArtista" prefWidth="94.4000244140625" text="Nombre" />
+            <TableColumn fx:id="columnNacionalidad" prefWidth="95.20001220703125" text="Nacionalidad" />
+            <TableColumn fx:id="columnGrupo" prefWidth="106.39999389648438" text="Grupo" />
         </columns>
       </TableView>
       <TableView fx:id="tableCanciones" layoutX="78.0" layoutY="361.0" prefHeight="147.0" prefWidth="372.0">
         <columns>
-          <TableColumn prefWidth="95.99996185302734" text="Nombre" />
-          <TableColumn prefWidth="87.20001220703125" text="Album" />
-            <TableColumn prefWidth="93.60003662109375" text="Duracion" />
-            <TableColumn prefWidth="92.7999267578125" text="Genero" />
+          <TableColumn fx:id="columnNombreCancion" prefWidth="95.99996185302734" text="Nombre" />
+          <TableColumn fx:id="columnAlbum" prefWidth="87.20001220703125" text="Album" />
+            <TableColumn fx:id="columnDuracion" prefWidth="93.60003662109375" text="Duracion" />
+            <TableColumn fx:id="columnGenero" prefWidth="92.7999267578125" text="Genero" />
         </columns>
       </TableView>
       <Label fx:id="lblCanciones" layoutX="78.0" layoutY="336.0" text="Canciones" />
@@ -56,5 +56,6 @@
       <Button fx:id="btnVolver" layoutX="156.0" layoutY="519.0" mnemonicParsing="false" text="Volver" />
       <Button fx:id="btnEliminar" layoutX="263.0" layoutY="519.0" mnemonicParsing="false" text="Eliminar" />
       <Button layoutX="79.0" layoutY="280.0" mnemonicParsing="false" text="Seleccionar Artista" />
+      <Button fx:id="btnCerrarSesion" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
    </children>
 </AnchorPane>

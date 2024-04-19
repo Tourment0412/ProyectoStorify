@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +18,13 @@ import lombok.*;
 @Setter
 @Getter
 public class IniciarSesionController {
+	
+
+    @FXML
+    private Button btnCerrarSesion;
+    
+    @FXML
+    private Button btnRegistrarse;
 
 	@FXML
 	private ResourceBundle resources;
@@ -106,5 +114,12 @@ public class IniciarSesionController {
 		}
 
 	}
+	
+	@FXML
+    void registrarse(ActionEvent event) {
+    	app.mostrarResgistrarse();;
+
+    }
+
 
 }

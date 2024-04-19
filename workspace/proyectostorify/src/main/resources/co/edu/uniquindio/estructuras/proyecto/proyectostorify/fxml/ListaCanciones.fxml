@@ -52,5 +52,6 @@
       <Button fx:id="btnEliminar" layoutX="333.0" layoutY="477.0" mnemonicParsing="false" text="Eliminar" />
       <Separator layoutX="488.0" layoutY="29.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnCerrarSesion" layoutX="24.0" layoutY="17.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
    </children>
 </AnchorPane>

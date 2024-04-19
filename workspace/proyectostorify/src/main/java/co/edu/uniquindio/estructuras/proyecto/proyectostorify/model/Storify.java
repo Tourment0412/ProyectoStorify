@@ -216,4 +216,11 @@ public class Storify {
 		return cuentaObtenida;
 	}
 
+	public void registrarUsuario(String nombre, String email, String contrasenia) {
+		// TODO Auto-generated method stub
+		Usuario newUsuario = new Usuario(nombre, contrasenia, email);
+		agregarUsuario(newUsuario);
+		
+	}
+
 }

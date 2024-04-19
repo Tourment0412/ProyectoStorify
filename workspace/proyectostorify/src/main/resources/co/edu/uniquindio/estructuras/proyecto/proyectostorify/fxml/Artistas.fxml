@@ -53,5 +53,6 @@
       <Button fx:id="btnRehacer" layoutX="131.0" layoutY="519.0" mnemonicParsing="false" text="Rehacer" />
       <Button fx:id="btnGuardarPlaylist" layoutX="201.0" layoutY="519.0" mnemonicParsing="false" text="Guardar en PlayList" />
       <Button fx:id="btnGuardarFavoritos" layoutX="330.0" layoutY="518.0" mnemonicParsing="false" text="Guardar en Favoritos" />
+      <Button fx:id="btnCerrarSesion" layoutX="18.0" layoutY="22.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
    </children>
 </AnchorPane>

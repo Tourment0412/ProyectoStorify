@@ -29,5 +29,6 @@
             <TableColumn prefWidth="112.79995727539062" text="Grupo" />
         </columns>
       </TableView>
+      <Button fx:id="btnCerrarSesion" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
    </children>
 </AnchorPane>

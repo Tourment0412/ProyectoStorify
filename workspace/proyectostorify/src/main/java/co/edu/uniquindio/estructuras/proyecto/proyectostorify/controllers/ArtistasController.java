@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +21,11 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ArtistasController {
+	
 
+    @FXML
+    private Button btnCerrarSesion;
+    
 	@FXML
 	private ResourceBundle resources;
 
@@ -149,5 +154,12 @@ public class ArtistasController {
 				: "fx:id=\"txtBuscarNombre\" was not injected: check your FXML file 'Artistas.fxml'.";
 
 	}
+	
+	@FXML
+    void cerrarSesion(ActionEvent event) {
+    	app.mostrarIniciarSesion();
+
+    }
+
 
 }
