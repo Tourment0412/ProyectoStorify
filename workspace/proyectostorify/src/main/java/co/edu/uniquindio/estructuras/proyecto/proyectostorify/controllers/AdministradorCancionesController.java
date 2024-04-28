@@ -237,6 +237,8 @@ public class AdministradorCancionesController {
 		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 
 	}
+	
+
 
 	@FXML
 	void guardarCancion(ActionEvent event) {
@@ -250,6 +252,7 @@ public class AdministradorCancionesController {
 		newCancion.setNombreAlbum(txtAlbum.getText());
 		newCancion.setUrl(txtUrl.getText());
 		mfm.agregarCancion(newCancion, tableArtistas.getSelectionModel().getSelectedItem());
+		System.out.println(newCancion.getAnio());
 		actualizarTablaCanciones();
 	}
 

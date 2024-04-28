@@ -60,21 +60,24 @@ public class ModelFactoryController {
 		Usuario usuario = new Usuario("juan", "456", "@789");
 		tiendaMusica.getLstCuentas().put(usuario.getUsername(), usuario);
 		tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
-		Artista artis = new Artista("Pedro", "Pablo", "malo", false, new ListaDoble<Cancion>());
-		Artista artis1 = new Artista("Pedro", "Pablo", "odio", false, new ListaDoble<Cancion>());
-		Artista artis2 = new Artista("Pedro", "Pablo", "no", false, new ListaDoble<Cancion>());
-		Artista artis3 = new Artista("Pedro", "Pablo", "aviso", false, new ListaDoble<Cancion>());
-		Artista artis4 = new Artista("Pedro", "Pablo", "antes", false, new ListaDoble<Cancion>());
+		Artista artis = new Artista("Pedro1", "Pablo1", "malo", false, new ListaDoble<Cancion>());
+		Artista artis1 = new Artista("Pedro2", "Pablo2", "odio", false, new ListaDoble<Cancion>());
+		Artista artis2 = new Artista("Pedro3", "Pablo3", "no", false, new ListaDoble<Cancion>());
+
 		
-		tiendaMusica.getLstArtistas().add(artis);
-		tiendaMusica.getLstArtistas().add(artis1);
-		tiendaMusica.getLstArtistas().add(artis2);
-		tiendaMusica.getLstArtistas().add(artis3);
-		tiendaMusica.getLstArtistas().add(artis4);
+
+
+		
+		System.out.println(tiendaMusica.getLstArtistas().toCircularList());
+		System.out.println(obtenerArtistas());
 	}
 
 	public CircularList<Cancion> obtenerListaCaciones (){
 		return tiendaMusica.getLstCanciones();
+	}
+	
+	public BinaryTree<Artista> obtenerListaArtistas(){
+		return tiendaMusica.getLstArtistas();
 	}
 	
 	public Cuenta obtenerCuenta(String nombre) {
@@ -173,16 +176,14 @@ public class ModelFactoryController {
 		// TODO Auto-generated method stub
 		return tiendaMusica.obtenerCuentaDatos(nombre, contrasenia);
 	}
-	
-
 
 	public void agregarUsuario(String nombre, String email, String contrasenia) {
 		// TODO Auto-generated method stub
 		tiendaMusica.registrarUsuario(nombre, email, contrasenia);
 	}
 	
-	public CircularList<Artista> obtenerArtistas(String nombre) {
-		return tiendaMusica.obtenerArtistas(nombre);
+	public CircularList<Artista> obtenerArtistas() {
+		return tiendaMusica.obtenerArtistas();
 	}
 
 

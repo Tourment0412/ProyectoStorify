@@ -166,8 +166,8 @@ public class ArtistasController {
 
     }
     
-    public CircularList<Artista> obtenerArtistasNombre (String nombre) {
-        CircularList<Artista> listaArtistas=mfm.obtenerArtistas(nombre);
+    public CircularList<Artista> obtenerArtistasNombre () {
+        CircularList<Artista> listaArtistas=mfm.obtenerArtistas();
 		return listaArtistas;
     }
 

@@ -210,9 +210,8 @@ public class Storify {
 		
 	}
 	
-	public CircularList<Artista> obtenerArtistas(String nombre) {
-		CircularList<Artista> listaArtisas=lstArtistas.toCircularList();
-		return listaArtisas;
+	public CircularList<Artista> obtenerArtistas() {
+		return getLstArtistas().toCircularList();
 	}
 
 }
