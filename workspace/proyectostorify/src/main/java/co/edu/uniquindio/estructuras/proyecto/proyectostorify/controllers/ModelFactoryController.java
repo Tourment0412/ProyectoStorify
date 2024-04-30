@@ -54,32 +54,51 @@ public class ModelFactoryController {
 	}
 	
 	public void inicializarDatos() {
-		tiendaMusica.setLstArtistas(new BinaryTree<Artista>());
-		tiendaMusica.setLstCanciones(new CircularList<Cancion>());
-		tiendaMusica.setLstCuentas(new HashMap<String, Cuenta>());
-		Administrador admin = new Administrador("pepe", "123", "code1");
-		Usuario usuario = new Usuario("juan", "456", "@789");
-		tiendaMusica.getLstCuentas().put(usuario.getUsername(), usuario);
-		tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
-		Artista artis = new Artista("Pedro1", "Pablo1", "malo", false, new ListaDoble<Cancion>());
-		Artista artis1 = new Artista("Pedro2", "Pablo2", "odio", false, new ListaDoble<Cancion>());
-		Artista artis2 = new Artista("Pedro3", "Pablo3", "no", false, new ListaDoble<Cancion>());
-		CircularList<Artista> artistas = new CircularList<Artista>();
-		Cancion can = new Cancion("Si", "Si", "Si", "Si", "Si", "Si", "Si", Genero.ELECTRONICA, artistas);
-		Cancion can2 = new Cancion("No", "No", "No", "No", "No", "No", "No", Genero.POP, artistas);
-		System.out.println(artis.getLstCanciones().toString());
-		tiendaMusica.getLstArtistas().add(artis1);
-		tiendaMusica.getLstArtistas().add(artis2);
-		tiendaMusica.getLstArtistas().add(artis);
-		tiendaMusica.agregarCancion(can);
-		tiendaMusica.agregarCancion(can2);
-		establecerCancionesArtista(artis1);
-		establecerCancionesArtista(artis2);
-		establecerCancionesArtista(artis);
-		
-		System.out.println(tiendaMusica.getLstArtistas().toCircularList());
-		System.out.println(obtenerArtistas());
+	    // Inicialización de la tienda de música
+	    tiendaMusica.setLstArtistas(new BinaryTree<Artista>());
+	    tiendaMusica.setLstCanciones(new CircularList<Cancion>());
+	    tiendaMusica.setLstCuentas(new HashMap<String, Cuenta>());
+
+	    // Creación de cuentas de administrador y usuario
+	    Administrador admin = new Administrador("pepe", "123", "code1");
+	    Usuario usuario = new Usuario("juan", "456", "@789");
+	    tiendaMusica.getLstCuentas().put(usuario.getUsername(), usuario);
+	    tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
+
+	    // Creación de artistas y canciones
+	    Artista artista1 = new Artista("Pedro1", "Pablo1", "malo", false, new ListaDoble<Cancion>());
+	    Artista artista2 = new Artista("Pedro2", "Pablo2", "odio", false, new ListaDoble<Cancion>());
+	    Artista artista3 = new Artista("Pedro3", "Pablo3", "no", false, new ListaDoble<Cancion>());
+	    tiendaMusica.getLstArtistas().add(artista1);
+	    tiendaMusica.getLstArtistas().add(artista2);
+	    tiendaMusica.getLstArtistas().add(artista3);
+
+	    // Creación y adición de canciones para los artistas
+	    Cancion cancion1 = new Cancion("Si", "Si", "Si", "Si", "Si", "Si", "Si", Genero.ELECTRONICA, tiendaMusica.getLstArtistas().toCircularList());
+	    Cancion cancion2 = new Cancion("No", "No", "No", "No", "No", "No", "No", Genero.POP, tiendaMusica.getLstArtistas().toCircularList());
+	    tiendaMusica.agregarCancion(cancion1);
+	    tiendaMusica.agregarCancion(cancion2);
+	    
+//	    System.out.println("Canciones "+tiendaMusica.getLstCanciones().toString());
+//
+//	    
+//	    System.out.println("CancionesArtistas1 "+artista1.getLstCanciones().toString());
+//	    System.out.println("CancionesArtistas1 "+artista2.getLstCanciones().toString());
+//	    System.out.println("CancionesArtistas1 "+artista3.getLstCanciones().toString());
+
+	    // Establecimiento de canciones para cada artista
+	    establecerCancionesArtista(artista1);
+	    establecerCancionesArtista(artista2);
+	    establecerCancionesArtista(artista3);
+	    
+//	    System.out.println("CancionesArtistas1 "+artista1.getLstCanciones().toString());
+//	    System.out.println("CancionesArtistas1 "+artista2.getLstCanciones().toString());
+//	    System.out.println("CancionesArtistas1 "+artista3.getLstCanciones().toString());
+
+	    // Impresión de la lista de artistas y su información
+
 	}
+
 
 	public CircularList<Cancion> obtenerListaCaciones (){
 		return tiendaMusica.getLstCanciones();

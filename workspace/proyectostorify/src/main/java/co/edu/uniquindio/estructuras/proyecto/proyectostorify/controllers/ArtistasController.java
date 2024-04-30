@@ -158,14 +158,13 @@ public class ArtistasController {
 	
     @FXML
     void buscarNombreArtista(ActionEvent event) {
-    	Artista a = mfm.obtenerArtista(txtBuscarNombre.getText());
     	CircularList<Artista> listTemp = new CircularList<Artista>();
-    	if(a!=null) {
-    		listTemp.add(a);
-    		actualizarTablaArtistas(listTemp);
-    	}else {
-    		JOptionPane.showMessageDialog(null, "Artista No Encontrado");
+    	for (Artista artista : listaArtista) {
+    		if (artista.getNombre().equalsIgnoreCase(txtBuscarNombre.getText().trim())){
+    			listTemp.add(artista);
+    		}
     	}
+    	actualizarTablaArtistas(listTemp);
     	listTemp.clear();
     }
 
@@ -187,12 +186,16 @@ public class ArtistasController {
 
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
-
+		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
+		mfm.getUsuarioSesion().getLstCancionesFavoritas().add(c);
+		JOptionPane.showMessageDialog(null, "Cancion Guardada En Favoritos");
 	}
 
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
-
+		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
+		mfm.getUsuarioSesion().getLstCancionesGuardadas().add(c);
+		JOptionPane.showMessageDialog(null, "Cancion Guardada En PlayList");
 	}
 
 	@FXML
