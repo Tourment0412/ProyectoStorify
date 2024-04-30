@@ -4,15 +4,21 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
-
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -27,18 +33,17 @@ import lombok.ToString;
 @Getter
 public class ArtistasController {
 	
-
     @FXML
-    private Button btnCerrarSesion;
+    private Button btnCanciones;
     
-	@FXML
-	private ResourceBundle resources;
-
-	@FXML
-	private URL location;
+    @FXML
+    private Button btnDetalles;
 
 	@FXML
 	private Button btnBuscarNombre;
+
+	@FXML
+	private Button btnCerrarSesion;
 
 	@FXML
 	private Button btnDeshacer;
@@ -51,6 +56,30 @@ public class ArtistasController {
 
 	@FXML
 	private Button btnRehacer;
+
+	@FXML
+	private TableColumn<Cancion, String> columAlbumCancion;
+
+	@FXML
+	private TableColumn<Artista, String> columCodigoArtista;
+
+	@FXML
+	private TableColumn<Cancion, String> columDuracionCancion;
+
+	@FXML
+	private TableColumn<Cancion, String> columGeneroCancion;
+
+	@FXML
+	private TableColumn<Artista, String> columGrupoArtista;
+
+	@FXML
+	private TableColumn<Artista, String> columNacionalidadArtista;
+
+	@FXML
+	private TableColumn<Artista, String> columNombreArtista;
+
+	@FXML
+	private TableColumn<Cancion, String> columNombreCancion;
 
 	@FXML
 	private ImageView imageCaratula;
@@ -69,6 +98,9 @@ public class ArtistasController {
 
 	@FXML
 	private Label lblCanciones;
+	
+    @FXML
+    private Button btnRefrescar;
 
 	@FXML
 	private Label lblCodigo;
@@ -104,72 +136,120 @@ public class ArtistasController {
 	private Label lblUrlCancion;
 
 	@FXML
-	private TableView<?> tableArtistas;
+	private TableView<Artista> tableArtistas;
 
 	@FXML
-	private TableView<?> tableCanciones;
+	private TableView<Cancion> tableCanciones;
 
 	@FXML
 	private TextField txtBuscarNombre;
-	
+
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
+	private CircularList<Artista> listaArtista = mfm.obtenerArtistas();
+	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
+
 	@FXML
 	void initialize() {
-		assert btnBuscarNombre != null
-				: "fx:id=\"btnBuscarNombre\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert btnDeshacer != null : "fx:id=\"btnDeshacer\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert btnGuardarFavoritos != null
-				: "fx:id=\"btnGuardarFavoritos\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert btnGuardarPlaylist != null
-				: "fx:id=\"btnGuardarPlaylist\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert btnRehacer != null : "fx:id=\"btnRehacer\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert imageCaratula != null
-				: "fx:id=\"imageCaratula\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblAlbum != null : "fx:id=\"lblAlbum\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblAnio != null : "fx:id=\"lblAnio\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblAnioCancion != null
-				: "fx:id=\"lblAnioCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblCancion != null : "fx:id=\"lblCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblCanciones != null : "fx:id=\"lblCanciones\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblCodigo != null : "fx:id=\"lblCodigo\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblCodigoCancion != null
-				: "fx:id=\"lblCodigoCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblDuracion != null : "fx:id=\"lblDuracion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblDuracionCancion != null
-				: "fx:id=\"lblDuracionCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblGenero != null : "fx:id=\"lblGenero\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblGeneroCancion != null
-				: "fx:id=\"lblGeneroCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblNombreArtista != null
-				: "fx:id=\"lblNombreArtista\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblNombreCancion != null
-				: "fx:id=\"lblNombreCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblTitulo != null : "fx:id=\"lblTitulo\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblUrl != null : "fx:id=\"lblUrl\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert lblUrlCancion != null
-				: "fx:id=\"lblUrlCancion\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert tableArtistas != null
-				: "fx:id=\"tableArtistas\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert tableCanciones != null
-				: "fx:id=\"tableCanciones\" was not injected: check your FXML file 'Artistas.fxml'.";
-		assert txtBuscarNombre != null
-				: "fx:id=\"txtBuscarNombre\" was not injected: check your FXML file 'Artistas.fxml'.";
-
+		actualizarTablaArtistas(listaArtista);
 	}
 	
+    @FXML
+    void buscarNombreArtista(ActionEvent event) {
+    	Artista a = mfm.obtenerArtista(txtBuscarNombre.getText());
+    	CircularList<Artista> listTemp = new CircularList<Artista>();
+    	if(a!=null) {
+    		listTemp.add(a);
+    		actualizarTablaArtistas(listTemp);
+    	}else {
+    		JOptionPane.showMessageDialog(null, "Artista No Encontrado");
+    	}
+    	listTemp.clear();
+    }
+
 	@FXML
-    void cerrarSesion(ActionEvent event) {
-    	app.mostrarIniciarSesion();
+	void cerrarSesion(ActionEvent event) {
+		app.mostrarIniciarSesion();
 
-    }
-    
-    public CircularList<Artista> obtenerArtistasNombre () {
-        CircularList<Artista> listaArtistas=mfm.obtenerArtistas();
+	}
+
+	public CircularList<Artista> obtenerArtistasNombre() {
+		CircularList<Artista> listaArtistas = mfm.obtenerArtistas();
 		return listaArtistas;
+	}
+
+	@FXML
+	void deshacerSeleccion(ActionEvent event) {
+
+	}
+
+	@FXML
+	void guardarFavoritos(ActionEvent event) {
+
+	}
+
+	@FXML
+	void guardarPlaylist(ActionEvent event) {
+
+	}
+
+	@FXML
+	void rehacerSeleccion(ActionEvent event) {
+
+	}	
+	
+    @FXML
+    void mostrarCancionesArtista(ActionEvent event) {
+    	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
+    	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
+    	actualizarTablaCanciones(cancionesArtista);
     }
 
+    @FXML
+    void mostrarDetallesCanciones(ActionEvent event) {
+
+    }
+
+    @FXML
+    void refrescarTabla(ActionEvent event) {
+    	actualizarTablaArtistas(listaArtista);
+    	actualizarTablaCanciones(new ListaDoble<Cancion>());
+    }
+
+	private void actualizarTablaArtistas(CircularList<Artista> listaArtista) {
+		System.out.println(listaArtista.toString());
+		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
+		for (Artista artista : listaArtista) {
+			listaArtistasProperty.add(artista);
+		}
+		System.out.println(listaArtistasProperty.toString());
+
+		tableArtistas.setItems(listaArtistasProperty);
+		columNombreArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
+		columCodigoArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
+		columGrupoArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().isEsGrupo()));
+		columNacionalidadArtista
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
+		tableArtistas.refresh();
+	}
+	
+	public void actualizarTablaCanciones(ListaDoble<Cancion> listaCanciones) {
+		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
+		for (Cancion cancion : listaCanciones) {
+			listaCancionProperty.add(cancion);
+
+		}
+		tableCanciones.setItems(listaCancionProperty);
+		columNombreCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreCancion()));
+		columAlbumCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
+		columDuracionCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
+		columGeneroCancion.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+		tableCanciones.refresh();
+	}
 
 }

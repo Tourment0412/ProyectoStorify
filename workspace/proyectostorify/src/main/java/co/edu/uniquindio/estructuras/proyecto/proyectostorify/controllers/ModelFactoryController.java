@@ -1,6 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
@@ -63,10 +64,18 @@ public class ModelFactoryController {
 		Artista artis = new Artista("Pedro1", "Pablo1", "malo", false, new ListaDoble<Cancion>());
 		Artista artis1 = new Artista("Pedro2", "Pablo2", "odio", false, new ListaDoble<Cancion>());
 		Artista artis2 = new Artista("Pedro3", "Pablo3", "no", false, new ListaDoble<Cancion>());
-
-		
-
-
+		CircularList<Artista> artistas = new CircularList<Artista>();
+		Cancion can = new Cancion("Si", "Si", "Si", "Si", "Si", "Si", "Si", Genero.ELECTRONICA, artistas);
+		Cancion can2 = new Cancion("No", "No", "No", "No", "No", "No", "No", Genero.POP, artistas);
+		System.out.println(artis.getLstCanciones().toString());
+		tiendaMusica.getLstArtistas().add(artis1);
+		tiendaMusica.getLstArtistas().add(artis2);
+		tiendaMusica.getLstArtistas().add(artis);
+		tiendaMusica.agregarCancion(can);
+		tiendaMusica.agregarCancion(can2);
+		establecerCancionesArtista(artis1);
+		establecerCancionesArtista(artis2);
+		establecerCancionesArtista(artis);
 		
 		System.out.println(tiendaMusica.getLstArtistas().toCircularList());
 		System.out.println(obtenerArtistas());
@@ -100,8 +109,8 @@ public class ModelFactoryController {
 		tiendaMusica.eliminarUsuario(nombreUsuario);
 	}
 	
-	public void agregarCancion(Cancion cancion,Artista artista) {
-		tiendaMusica.agregarCancion(cancion, artista);
+	public void agregarCancion(Cancion cancion) {
+		tiendaMusica.agregarCancion(cancion);
 	}
 	
 	public void eliminarCancion(Cancion cancion) {
@@ -122,6 +131,10 @@ public class ModelFactoryController {
 	
 	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista,Usuario usuario,String[] datos) {
 		return tiendaMusica.obtenerCancionesFiltradasInterseccion(lista, usuario, datos);
+	}
+	
+	public Artista obtenerArtistaNombre(String nombre) {
+		return tiendaMusica.obtenerArtistaNombre(nombre);
 	}
 	
 	/**
@@ -185,6 +198,12 @@ public class ModelFactoryController {
 	public CircularList<Artista> obtenerArtistas() {
 		return tiendaMusica.obtenerArtistas();
 	}
+
+	public void establecerCancionesArtista(Artista newArtista) {
+		// TODO Auto-generated method stub
+		tiendaMusica.establecerCancionesArtista(newArtista);
+	}
+
 
 
  }

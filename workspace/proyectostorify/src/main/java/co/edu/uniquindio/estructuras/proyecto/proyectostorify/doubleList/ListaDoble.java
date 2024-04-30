@@ -53,6 +53,10 @@ public class ListaDoble<T> implements Iterable<T> {
 		}
 		tamanio++;
 	}
+	
+	public void agregar(T valor) {
+		agregarfinal(valor);
+	}
 
 	/**
 	 * Agrega un valor en la lista en una posici�n espec�fica

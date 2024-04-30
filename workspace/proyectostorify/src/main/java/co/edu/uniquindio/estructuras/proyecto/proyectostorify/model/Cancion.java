@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +10,11 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Setter
 @Getter
-@Builder
 @ToString
 public class Cancion {
 	@EqualsAndHashCode.Include
@@ -31,14 +32,22 @@ public class Cancion {
 	private String duracion;
 	@NonNull
 	private String url;
-	
+	@NonNull
 	private Genero genero;
+	@NonNull
+	private CircularList<Artista> lstArtistas;
 	
-	private ListaDoble<Artista> lstArtista;
+	
+	
+	public Cancion() {
+		super();
+	}
+
+
 
 	public Cancion(@NonNull String codigo, @NonNull String nombreCancion, @NonNull String nombreAlbum,
-			@NonNull String caratula, @NonNull String anio, @NonNull String duracion, @NonNull String url, Genero genero,
-			ListaDoble<Artista> lstArtista) {
+			@NonNull String caratula, @NonNull String anio, @NonNull String duracion, @NonNull String url,
+			@NonNull Genero genero, @NonNull CircularList<Artista> lstCircularList) {
 		super();
 		this.codigo = codigo;
 		this.nombreCancion = nombreCancion;
@@ -48,19 +57,13 @@ public class Cancion {
 		this.duracion = duracion;
 		this.url = url;
 		this.genero = genero;
-		this.lstArtista=lstArtista;
+		this.lstArtistas = lstCircularList;
 	}
 
-	public Cancion() {
-		lstArtista=new ListaDoble<Artista>();
-	}
+
+
+
 	
-	public void agregarArtista(Artista artista) {
-		lstArtista.agregarfinal(artista);
-	}
-	
-	public void eliminarArtista(Artista artista) {
-		lstArtista.eliminar(artista);
-	}
+
 
 }

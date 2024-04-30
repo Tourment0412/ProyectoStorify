@@ -1,7 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
 import java.util.HashMap;
-
+import java.util.Iterator;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.BinaryTree;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
@@ -46,7 +46,6 @@ public class Storify {
 	}
 
 	public Artista obtenerArtista(String nombre) {
-		// Organizar arboles
 		return null;
 	}
 
@@ -59,16 +58,14 @@ public class Storify {
 		return null;
 	}
 
-	public void agregarCancion(Cancion cancion, Artista artista) {
-		artista.agregarCancion(cancion);
-		cancion.getLstArtista().agregarfinal(artista);
+	public void agregarCancion(Cancion cancion) {
 		lstCanciones.add(cancion);
 	}
 
 	public void eliminarCancion(Cancion cancion) {
-		ListaDoble<Artista> artistas = cancion.getLstArtista();
-		for (Artista artista : artistas) {
-			artista.eliminarCancion(cancion);
+		CircularList<Artista> artistas = cancion.getLstArtistas();
+		for (Artista a : artistas) {
+			a.eliminarCancion(cancion);
 		}
 		lstCanciones.remove(cancion);
 	}
@@ -213,5 +210,30 @@ public class Storify {
 	public CircularList<Artista> obtenerArtistas() {
 		return getLstArtistas().toCircularList();
 	}
+	
+	public Artista obtenerArtistaNombre(String nombre) {
+		CircularList<Artista> listTemp = getLstArtistas().toCircularList();
+		for (Artista a : listTemp) {
+			if (a.getNombre().equalsIgnoreCase(nombre.trim())) {
+				return a;
+			}
+		}
+		return null;
+	}
+
+	public void establecerCancionesArtista(Artista newArtista) {
+		ListaDoble<Cancion> listC = new ListaDoble<Cancion>();
+		for (Cancion c : getLstCanciones()) {
+			if (c.getLstArtistas().contains(newArtista)) {
+				listC.agregar(c);
+			}
+		}
+		newArtista.setLstCanciones(listC);
+		
+	}
+
+
+	
+
 
 }

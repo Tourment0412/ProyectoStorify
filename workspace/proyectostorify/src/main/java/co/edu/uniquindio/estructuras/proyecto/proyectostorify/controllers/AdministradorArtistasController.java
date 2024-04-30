@@ -98,7 +98,7 @@ public class AdministradorArtistasController {
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
-	private CircularList<Artista> listaArtista;;
+	private CircularList<Artista> listaArtista = mfm.obtenerArtistas();;
 
 	@FXML
 	void initialize() {
@@ -116,7 +116,7 @@ public class AdministradorArtistasController {
 	}
 
 	private void actualizarTablaArtistas() {
-		listaArtista = mfm.obtenerArtistas();
+
 		System.out.println(listaArtista.toString());
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
 		for (Artista artista : listaArtista) {
@@ -161,7 +161,7 @@ public class AdministradorArtistasController {
 		newArtista.setNacionalidad(txtNacionalidad.getText());
 		newArtista.setNombre(txtNombre.getText());
 		mfm.agregarArtista(newArtista);
-		System.out.println(mfm.obtenerArtistas().size());
+		
 		actualizarTablaArtistas();
 	}
 

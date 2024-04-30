@@ -56,15 +56,6 @@ public class IniciarSesionController {
 
 	@FXML
 	void initialize() {
-		assert btnInicioSesion != null
-				: "fx:id=\"btnInicioSesion\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
-		assert lblContrasenia != null
-				: "fx:id=\"lblContrasenia\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
-		assert lblNombre != null : "fx:id=\"lblNombre\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
-		assert lblTitulo != null : "fx:id=\"lblTitulo\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
-		assert txtContrasenia != null
-				: "fx:id=\"txtContrasenia\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
-		assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'IniciarSesion.fxml'.";
 
 	}
 
@@ -85,7 +76,7 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		ventana.close();
-		app.mostrarListaCanciones();
+		app.mostrarArtistas();
 	}
 
 	/**

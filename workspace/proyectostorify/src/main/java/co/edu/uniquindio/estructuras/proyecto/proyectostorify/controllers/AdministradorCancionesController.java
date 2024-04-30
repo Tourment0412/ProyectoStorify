@@ -235,7 +235,7 @@ public class AdministradorCancionesController {
 		columnDuracion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
 		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
-
+		tableCanciones.refresh();
 	}
 	
 
@@ -251,7 +251,10 @@ public class AdministradorCancionesController {
 		newCancion.setNombreCancion(txtCancion.getText());
 		newCancion.setNombreAlbum(txtAlbum.getText());
 		newCancion.setUrl(txtUrl.getText());
-		mfm.agregarCancion(newCancion, tableArtistas.getSelectionModel().getSelectedItem());
+		newCancion.setLstArtistas(new CircularList<Artista>());
+		newCancion.getLstArtistas().add(tableArtistas.getSelectionModel().getSelectedItem());
+		mfm.agregarCancion(newCancion);
+		
 		System.out.println(newCancion.getAnio());
 		actualizarTablaCanciones();
 	}

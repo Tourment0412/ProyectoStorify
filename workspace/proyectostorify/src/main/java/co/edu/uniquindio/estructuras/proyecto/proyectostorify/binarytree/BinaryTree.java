@@ -109,18 +109,22 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	}
 	
-	public boolean search(E value) {
+	public E search(E value) {
 	    return searchRecursive(root, value);
 	}
 
-	private boolean searchRecursive(TreeNode<E> current, E value) {
+	private E searchRecursive(TreeNode<E> current, E value) {
 	    if (current == null) {
-	        return false;
+	        return null;
 	    }
 	    if (current.getValue().equals(value)) {
-	        return true;
+	        return current.getValue();
 	    }
-	    return searchRecursive(current.getLeft(), value) || searchRecursive(current.getRight(), value);
+	    E leftResult = searchRecursive(current.getLeft(), value);
+	    if (leftResult != null) {
+	        return leftResult;
+	    }
+	    return searchRecursive(current.getRight(), value);
 	}
 
 	public CircularList<E> toCircularList() {

@@ -2,6 +2,8 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 
 import java.util.Iterator;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
+
 public class CircularList<E> implements Iterable<E>{
 	
 	private Node<E> head; 
@@ -46,6 +48,21 @@ public class CircularList<E> implements Iterable<E>{
 		size++;
 	}
 	
+	public E get(int index) {
+		if (index>=size || 0<index) {
+			throw new IndexOutOfBoundsException("Index out of bounds");
+		}
+		Node<E> node=head;
+		int cont=0;
+		while (cont!=size) {
+			if (cont==index) {
+				break;
+			}
+			cont++;
+			node=node.getNext();
+		}
+		return node.getValue();
+	}
 	
 	public void remove(E value) {
 		Node<E> previusNode=endNode;
@@ -245,5 +262,7 @@ public class CircularList<E> implements Iterable<E>{
 	public interface Comparation<E> {
 		boolean comparation(E value);
 	}
+
+	
 
 }
