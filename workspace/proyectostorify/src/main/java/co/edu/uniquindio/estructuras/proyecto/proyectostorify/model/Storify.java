@@ -17,7 +17,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 //@NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Setter
 @Getter
 @Builder
@@ -75,7 +75,7 @@ public class Storify {
 	}
 
 	public void eliminarArtista(Artista artista) {
-		// Organizar arboles
+		lstArtistas.remove(artista);
 	}
 
 	public void agregarUsuario(Usuario usuario) {

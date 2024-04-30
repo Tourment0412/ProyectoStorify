@@ -35,6 +35,38 @@ public class App extends Application {
 		mostrarIniciarSesion();
 	}
 	
+	public void mostrarAdministrador() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/Administrador.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			AdministradorController controlador = loader.getController();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void mostrarUsuario() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/Usuario.fxml"));
+			rootLayout = (AnchorPane) loader.load();
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+			primaryStage.show();
+			UsuarioController controlador = loader.getController();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Inicia la ventana principal
 	 */

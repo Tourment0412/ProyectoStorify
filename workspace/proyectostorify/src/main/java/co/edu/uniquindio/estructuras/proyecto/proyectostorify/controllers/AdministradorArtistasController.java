@@ -9,6 +9,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.BinaryT
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -102,13 +103,7 @@ public class AdministradorArtistasController {
 
 	@FXML
 	void initialize() {
-		
-		tableArtistas.getItems().clear();
-		ObservableList<Artista> listaArtistasProperty=FXCollections.observableArrayList();
-		for (Artista artista : mfm.obtenerArtistas()) {
-			listaArtistasProperty.add(artista);
-		}
-		tableArtistas.setItems(listaArtistasProperty);
+		actualizarTablaArtistas();
 		ObservableList<String> lista = FXCollections.observableArrayList();
 		lista.add("Si");
 		lista.add("No");
@@ -117,17 +112,20 @@ public class AdministradorArtistasController {
 
 	private void actualizarTablaArtistas() {
 
-		System.out.println(listaArtista.toString());
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
 		for (Artista artista : listaArtista) {
 			listaArtistasProperty.add(artista);
 		}
-		System.out.println(listaArtistasProperty.toString());
-		
 		tableArtistas.setItems(listaArtistasProperty);
 		columnNombre.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
 		columnCodigo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
-		columnGrupo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().isEsGrupo()));
+		columnGrupo.setCellValueFactory(cellData -> {
+			if (cellData.getValue().isEsGrupo()) {
+				return new SimpleStringProperty("Grupo");
+			} else {
+				return new SimpleStringProperty("No grupo");
+			}
+		});
 		columnNacionalidad
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();
@@ -141,7 +139,20 @@ public class AdministradorArtistasController {
 
 	@FXML
 	void actualizarArtista(ActionEvent event) {
-
+		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
+			artistaElejido.setNombre(txtNombre.getText());
+			artistaElejido.setNacionalidad(txtNacionalidad.getText());
+			if (cmbGrupo.getSelectionModel().getSelectedItem() == "No") {
+				artistaElejido.setEsGrupo(false);
+			} else {
+				artistaElejido.setEsGrupo(true);
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a actualizar");
+		}
+		actualizarTablaArtistas();
 	}
 
 	@FXML
@@ -158,16 +169,38 @@ public class AdministradorArtistasController {
 		} else {
 			newArtista.setEsGrupo(true);
 		}
-		newArtista.setNacionalidad(txtNacionalidad.getText());
 		newArtista.setNombre(txtNombre.getText());
+		newArtista.setNacionalidad(txtNacionalidad.getText());
 		mfm.agregarArtista(newArtista);
 		
 		actualizarTablaArtistas();
 	}
+	
+	@FXML
+	void ponerDatos() {
+		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
+			txtNombre.setText(artistaElejido.getNombre());
+			txtNacionalidad.setText(artistaElejido.getNacionalidad());
+			if (artistaElejido.isEsGrupo()) {
+				cmbGrupo.setValue("Si");
+			} else {
+				cmbGrupo.setValue("No");
+			}
+		}
+	}
 
 	@FXML
 	void eliminarArtista(ActionEvent event) {
-
+		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
+			tableArtistas.getItems().remove(artistaElejido);
+			mfm.eliminarArtista(artistaElejido);
+		} else {
+			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a eliminar");
+		}
 	}
 
 }

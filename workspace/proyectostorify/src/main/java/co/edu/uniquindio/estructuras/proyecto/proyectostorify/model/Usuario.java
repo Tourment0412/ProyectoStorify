@@ -7,7 +7,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+//@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Setter
 @Getter
 @ToString

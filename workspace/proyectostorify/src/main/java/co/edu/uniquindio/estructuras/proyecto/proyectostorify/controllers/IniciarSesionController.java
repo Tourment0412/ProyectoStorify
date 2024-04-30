@@ -66,7 +66,7 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionAdministrador(Administrador admin) {
 		ventana.close();
-		app.mostrarAdministradorArtistas();
+		app.mostrarAdministrador();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		ventana.close();
-		app.mostrarArtistas();
+		app.mostrarUsuario();
 	}
 
 	/**

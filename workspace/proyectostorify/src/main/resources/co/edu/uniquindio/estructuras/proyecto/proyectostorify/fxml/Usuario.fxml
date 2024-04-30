@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.UsuarioController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancionesGuardadas" text="Canciones guardadas" />
+      <Button layoutX="184.0" layoutY="14.0" mnemonicParsing="false" onAction="#listaCanciones" text="Lista de canciones" />
+      <Button layoutX="339.0" layoutY="14.0" mnemonicParsing="false" onAction="#listaArtistas" text="Lista de artistas" />
+      <Button layoutX="476.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
+      <AnchorPane fx:id="panel" layoutX="38.0" layoutY="87.0" prefHeight="560.0" prefWidth="780.0" />
+   </children>
+</AnchorPane>

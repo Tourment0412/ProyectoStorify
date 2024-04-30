@@ -3,7 +3,6 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree;
 import java.util.NoSuchElementException;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 
 public class BinaryTree<E extends Comparable<E>> {
 
@@ -125,6 +124,20 @@ public class BinaryTree<E extends Comparable<E>> {
 	        return leftResult;
 	    }
 	    return searchRecursive(current.getRight(), value);
+	}
+	
+	public void remove(E value) {
+		if (root!=null && root.getValue().equals(value)) {
+			if (root.getLeft()!=null) {
+				
+			} else if (root.getRight()!=null) {
+				
+			} else {
+				root=null;
+			}
+		} else {
+			//remove(value,root,null);
+		}
 	}
 
 	public CircularList<E> toCircularList() {
