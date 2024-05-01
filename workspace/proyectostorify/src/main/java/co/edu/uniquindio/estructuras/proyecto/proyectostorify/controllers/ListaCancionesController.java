@@ -11,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -193,17 +194,17 @@ public class ListaCancionesController {
 		if (c != null) {
 			if (listaCanciones != null) {
 				if (listaCanciones.remove(c)) {
-					System.out.println("Lista" + listaCanciones.toString());
-					actualizarTablaCanciones(listaCanciones);
-					JOptionPane.showMessageDialog(null, "Canción removida exitosamente.");
+					tableCanciones.getItems().remove(c);
+					listaCanciones.remove(c);
+					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
 				} else {
-					JOptionPane.showMessageDialog(null, "La canción seleccionada no se encontraba en la lista.");
+					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "La lista de canciones guardadas del usuario está vacía.");
+				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Por favor, seleccione una canción de la lista.");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
 		}
 	}
 
@@ -258,8 +259,6 @@ public class ListaCancionesController {
 		}else {
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}
-		
-
 	}
 
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {

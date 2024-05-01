@@ -31,7 +31,6 @@ public class ModelFactoryController {
 	Storify tiendaMusica=new Storify("Stori");
 	@NonNull
 	Stack<Cancion> pilaCanciones;
-	@NonNull
 	Cuenta usuarioSesion;
 	
 	

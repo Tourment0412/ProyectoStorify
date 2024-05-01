@@ -50,7 +50,7 @@ public class InterfazFXUtil {
 	 * @param texto Texto principal del mensaje
 	 */
 	public static void mostrarMensaje(String titulo,String texto) {
-		Alert alert = new Alert(AlertType.NONE);
+		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(titulo);
 		alert.setHeaderText(titulo);
 		alert.setContentText(texto);
