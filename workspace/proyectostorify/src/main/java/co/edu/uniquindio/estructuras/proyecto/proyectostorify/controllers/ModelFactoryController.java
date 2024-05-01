@@ -32,7 +32,7 @@ public class ModelFactoryController {
 	@NonNull
 	Stack<Cancion> pilaCanciones;
 	@NonNull
-	Usuario usuarioSesion;
+	Cuenta usuarioSesion;
 	
 	
 	

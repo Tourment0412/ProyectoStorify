@@ -66,7 +66,9 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionAdministrador(Administrador admin) {
 		ventana.close();
+		mfm.setUsuarioSesion(admin);
 		app.mostrarAdministrador();
+
 	}
 
 	/**
@@ -76,7 +78,9 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		ventana.close();
+		mfm.setUsuarioSesion(usuario);
 		app.mostrarUsuario();
+
 	}
 
 	/**

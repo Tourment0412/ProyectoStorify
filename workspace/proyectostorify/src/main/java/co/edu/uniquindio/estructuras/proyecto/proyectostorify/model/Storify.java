@@ -34,7 +34,7 @@ public class Storify {
 	private HashMap<String, Cuenta> lstCuentas;
 
 	public Storify() {
-	
+
 	}
 
 	public Storify(String nombre) {
@@ -204,13 +204,13 @@ public class Storify {
 		// TODO Auto-generated method stub
 		Usuario newUsuario = new Usuario(nombre, contrasenia, email);
 		agregarUsuario(newUsuario);
-		
+
 	}
-	
+
 	public CircularList<Artista> obtenerArtistas() {
 		return getLstArtistas().toCircularList();
 	}
-	
+
 	public Artista obtenerArtistaNombre(String nombre) {
 		CircularList<Artista> listTemp = getLstArtistas().toCircularList();
 		for (Artista a : listTemp) {
@@ -222,21 +222,17 @@ public class Storify {
 	}
 
 	public ListaDoble<Cancion> establecerCancionesArtista(Artista newArtista) {
-	    ListaDoble<Cancion> cancionesArtista = new ListaDoble<Cancion>();
-	    for (Cancion c : getLstCanciones()) {
-//	    	System.out.println(c.toString());
-	        if (c.getLstArtistas().contains(newArtista)) {
-//	        	System.out.println(c.getLstArtistas().contains(newArtista));
-	            cancionesArtista.agregar(c);
-	        }
-	    }
-//	    System.out.println(cancionesArtista.getTamanio());
-	    newArtista.setLstCanciones(cancionesArtista);
-	    return cancionesArtista;
+		ListaDoble<Cancion> cancionesArtista = new ListaDoble<Cancion>();
+		for (Cancion c : getLstCanciones()) {
+
+			if (c.getLstArtistas().contains(newArtista)) {
+
+				cancionesArtista.agregar(c);
+			}
+		}
+
+		newArtista.setLstCanciones(cancionesArtista);
+		return cancionesArtista;
 	}
-
-
-	
-
 
 }

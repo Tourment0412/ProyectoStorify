@@ -5,6 +5,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class UsuarioController {
@@ -14,15 +15,19 @@ public class UsuarioController {
 
     @FXML
     private AnchorPane panel;
+    
+    @FXML
+    private Label lblUsuario;
 
     @FXML
 	void initialize() {
-    	cancionesGuardadas();
+    	listaCanciones();
+    	lblUsuario.setText(mfm.getUsuarioSesion().getUsername());
 	}
     
     @FXML
     void cancionesGuardadas() {
-    	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/ListaCanciones.fxml");
+    	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/ListaFavoritas.fxml");
     }
 
     @FXML
@@ -38,6 +43,7 @@ public class UsuarioController {
     @FXML
     void cerrarSesion() {
     	app.mostrarIniciarSesion();
+    	mfm.setUsuarioSesion(null);
     }
     
     public void cargarVentana(String ruta) {

@@ -2,6 +2,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.application;
 
 import javafx.application.Application;
 
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

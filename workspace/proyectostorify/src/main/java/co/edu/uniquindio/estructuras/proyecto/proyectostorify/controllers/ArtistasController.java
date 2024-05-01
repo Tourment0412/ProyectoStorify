@@ -11,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.Circu
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,15 +188,29 @@ public class ArtistasController {
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		mfm.getUsuarioSesion().getLstCancionesFavoritas().add(c);
-		JOptionPane.showMessageDialog(null, "Cancion Guardada En Favoritos");
+		CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+		if(!favoritas.contains(c)) {
+			favoritas.add(c);
+			JOptionPane.showMessageDialog(null, "Cancion Guardada En Favoritos");
+		}else {
+			JOptionPane.showMessageDialog(null, "La cancion ya se encuentra en su lista de Favotitos");
+		}
+		
+		
 	}
 
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		mfm.getUsuarioSesion().getLstCancionesGuardadas().add(c);
-		JOptionPane.showMessageDialog(null, "Cancion Guardada En PlayList");
+		CircularList<Cancion> playlist = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		if(!playlist.contains(c)) {
+			playlist.add(c);
+			System.out.println(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
+			JOptionPane.showMessageDialog(null, "Cancion Guardada En PlayList");
+		}else {
+			JOptionPane.showMessageDialog(null, "La cancion ya se encuentra en su PlayList");
+		}
+		
 	}
 
 	@FXML
@@ -206,8 +221,13 @@ public class ArtistasController {
     @FXML
     void mostrarCancionesArtista(ActionEvent event) {
     	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
-    	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
-    	actualizarTablaCanciones(cancionesArtista);
+    	if (artista!=null) {
+    		ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
+        	actualizarTablaCanciones(cancionesArtista);
+    	}else {
+    		JOptionPane.showMessageDialog(null, "Seleccione un artista");
+    	}
+    	
     }
 
     @FXML
@@ -222,12 +242,10 @@ public class ArtistasController {
     }
 
 	private void actualizarTablaArtistas(CircularList<Artista> listaArtista) {
-		System.out.println(listaArtista.toString());
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
 		for (Artista artista : listaArtista) {
 			listaArtistasProperty.add(artista);
 		}
-		System.out.println(listaArtistasProperty.toString());
 
 		tableArtistas.setItems(listaArtistasProperty);
 		columNombreArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));

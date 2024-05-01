@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Setter
 @Getter
-@ToString
+//@ToString
 public class Cancion {
 	@EqualsAndHashCode.Include
 	@NonNull

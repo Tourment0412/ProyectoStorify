@@ -154,60 +154,12 @@ public class AdministradorCancionesController {
 
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 
-	private
+
 
 	@FXML void initialize() {
 
 		listaCanciones = mfm.obtenerListaCaciones();
-		assert btnBuscarNombre != null
-				: "fx:id=\"btnBuscarNombre\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert btnEliminar != null
-				: "fx:id=\"btnEliminar\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert btnVolver != null
-				: "fx:id=\"btnVolver\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert cmbGenero != null
-				: "fx:id=\"cmbGenero\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert imageCaratula != null
-				: "fx:id=\"imageCaratula\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblAlbum != null
-				: "fx:id=\"lblAlbum\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblAnioCancion != null
-				: "fx:id=\"lblAnioCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblCanciones != null
-				: "fx:id=\"lblCanciones\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblCodigoCancion != null
-				: "fx:id=\"lblCodigoCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblDuracionCancion != null
-				: "fx:id=\"lblDuracionCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblGeneroCancion != null
-				: "fx:id=\"lblGeneroCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblNombreArtista != null
-				: "fx:id=\"lblNombreArtista\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblNombreCancion != null
-				: "fx:id=\"lblNombreCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblTitulo != null
-				: "fx:id=\"lblTitulo\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert lblUrlCancion != null
-				: "fx:id=\"lblUrlCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert tableArtistas != null
-				: "fx:id=\"tableArtistas\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert tableCanciones != null
-				: "fx:id=\"tableCanciones\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtAlbum != null
-				: "fx:id=\"txtAlbum\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtAnio != null
-				: "fx:id=\"txtAnio\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtBuscarNombre != null
-				: "fx:id=\"txtBuscarNombre\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtCancion != null
-				: "fx:id=\"txtCancion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtCodigo != null
-				: "fx:id=\"txtCodigo\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtDuracion != null
-				: "fx:id=\"txtDuracion\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-		assert txtUrl != null
-				: "fx:id=\"txtUrl\" was not injected: check your FXML file 'AdministradorCanciones.fxml'.";
-
+	
 	}
 
 	@FXML
@@ -255,7 +207,7 @@ public class AdministradorCancionesController {
 		newCancion.getLstArtistas().add(tableArtistas.getSelectionModel().getSelectedItem());
 		mfm.agregarCancion(newCancion);
 		
-		System.out.println(newCancion.getAnio());
+
 		actualizarTablaCanciones();
 	}
 

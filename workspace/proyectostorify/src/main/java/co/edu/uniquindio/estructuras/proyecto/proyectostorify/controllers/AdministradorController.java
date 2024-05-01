@@ -6,6 +6,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class AdministradorController {
@@ -15,10 +16,14 @@ public class AdministradorController {
 
     @FXML
     private AnchorPane panel;
+    
+    @FXML
+    private Label lblAdministrador;
 
     @FXML
 	void initialize() {
     	gestionArtistas();
+    	lblAdministrador.setText(mfm.getUsuarioSesion().getUsername());
 	}
     
     @FXML
@@ -34,6 +39,7 @@ public class AdministradorController {
     @FXML
     void cerrarSesion() {
     	app.mostrarIniciarSesion();
+    	mfm.setUsuarioSesion(null);
     }
     
     public void cargarVentana(String ruta) {

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaCancionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaFavoritasController">
    <children>
       <TextField fx:id="txtNombreCancion" layoutX="238.0" layoutY="49.0" />
       <TextField fx:id="txtNombreAlbum" layoutX="238.0" layoutY="81.0" />
@@ -25,7 +25,7 @@
       <Label fx:id="lblAnioCancion" layoutX="573.0" layoutY="337.0" text="Año:" />
       <Label fx:id="lblAlbumCancion" layoutX="561.0" layoutY="305.0" text="Album:" />
       <Label fx:id="lblNombreCancion" layoutX="555.0" layoutY="271.0" text="Cancion:" />
-      <Label fx:id="lblTitulo" layoutX="361.0" layoutY="4.0" text="PlayList">
+      <Label fx:id="lblTitulo" layoutX="336.0" layoutY="4.0" text="Lista de Favoritos">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
@@ -34,8 +34,8 @@
       <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" text="Nombre del album:" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" text="Genero:" />
       <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" />
-      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" onAction="#busquedaY" text="Busqueda conjuntiva" />
-      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#busquedaO" text="Busqueda disyuntiva" />
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" text="Busqueda conjuntiva" />
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" text="Busqueda disyuntiva" />
       <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="266.0" prefHeight="200.0" prefWidth="381.0">
         <columns>
           <TableColumn fx:id="columnNombreCancion" prefWidth="87.20001983642578" text="Nombre" />
@@ -51,12 +51,12 @@
       <Label fx:id="lblAnio" layoutX="643.0" layoutY="337.0" text="Label" />
       <Label fx:id="lblAlbum" layoutX="643.0" layoutY="305.0" text="Label" />
       <Label fx:id="lblCancion" layoutX="643.0" layoutY="272.0" text="Label" />
-      <Button fx:id="btnDeshacer" layoutX="58.0" layoutY="477.0" mnemonicParsing="false" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="147.0" layoutY="477.0" mnemonicParsing="false" text="Rehacer" />
-      <Button fx:id="btnEliminar" layoutX="219.0" layoutY="477.0" mnemonicParsing="false" onAction="#eliminarDeLista" text="Eliminar" />
+      <Button fx:id="btnDeshacer" layoutX="75.0" layoutY="477.0" mnemonicParsing="false" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="148.0" layoutY="477.0" mnemonicParsing="false" text="Rehacer" />
+      <Button fx:id="btnEliminar" layoutX="210.0" layoutY="477.0" mnemonicParsing="false" onAction="#eliminarDeLista" text="Eliminar" />
       <Separator layoutX="488.0" layoutY="29.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnRefrescar" layoutX="293.0" layoutY="480.0" mnemonicParsing="false" onAction="#refrescarTabla" text="Refrescar" />
-      <Button fx:id="btnDetalles" layoutX="390.0" layoutY="483.0" mnemonicParsing="false" onAction="#mostrarDetallesCancion" text="Detalles" />
+      <Button fx:id="btnRefrescar" layoutX="388.0" layoutY="477.0" mnemonicParsing="false" onAction="#refrescarTabla" text="Refrescar" />
+      <Button fx:id="btnDetalles" layoutX="276.0" layoutY="477.0" mnemonicParsing="false" onAction="#mostrarDetallesCancion" text="Detalles" />
    </children>
 </AnchorPane>

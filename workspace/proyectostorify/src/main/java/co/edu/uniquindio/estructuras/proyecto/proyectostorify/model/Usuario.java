@@ -25,11 +25,13 @@ public class Usuario extends Cuenta {
 		super(username, contrasenia);
 		this.email = email;
 		lstCancionesGuardadas=new CircularList<Cancion>();
+		lstCancionesFavoritas=new CircularList<Cancion>();
 	}
 
 	public Usuario() {
 		super();
 		lstCancionesGuardadas=new CircularList<Cancion>();
+		lstCancionesFavoritas=new CircularList<Cancion>();
 	}
 	
 	public void agregarCancionGuardada(Cancion cancion) {
