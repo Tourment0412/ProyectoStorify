@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Builder;
@@ -232,7 +233,19 @@ public class ArtistasController {
 
     @FXML
     void mostrarDetallesCanciones(ActionEvent event) {
-
+    	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if(cancion!=null) {
+			if (cancion.getCaratula().equals("")) {
+				imageCaratula.setImage(null);
+			} else {
+				imageCaratula.setImage(new Image(cancion.getCaratula()));
+			}
+			lblAnio.setText(cancion.getAnio());
+			lblDuracion.setText(cancion.getDuracion());
+			lblGenero.setText(cancion.getGenero().toString());
+			lblCancion.setText(cancion.getNombreCancion());
+			lblAlbum.setText(cancion.getNombreAlbum());
+		}
     }
 
     @FXML

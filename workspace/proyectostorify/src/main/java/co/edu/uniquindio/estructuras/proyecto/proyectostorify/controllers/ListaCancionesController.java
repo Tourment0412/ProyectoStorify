@@ -11,7 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Builder;
@@ -166,8 +167,7 @@ public class ListaCancionesController {
 	private App app = mfm.getAplicacion();
 
 	private CircularList<Cancion> listaCanciones;
-	private Stack<CircularList<Cancion>> historialDeshacer = new Stack<>();
-	private Stack<CircularList<Cancion>> historialRehacer = new Stack<>();
+
 
 	@FXML
 	void initialize() {
@@ -196,17 +196,19 @@ public class ListaCancionesController {
 		if (c != null) {
 			if (listaCanciones != null) {
 				if (listaCanciones.remove(c)) {
-					actualizarTablaCanciones(listaCanciones);
-					JOptionPane.showMessageDialog(null, "Canción removida exitosamente.");
-					realizarAccionModificadora(listaCanciones, "Eliminar canción"); 
+
+					tableCanciones.getItems().remove(c);
+					listaCanciones.remove(c);
+					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
+
 				} else {
-					JOptionPane.showMessageDialog(null, "La canción seleccionada no se encontraba en la lista.");
+					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "La lista de canciones guardadas del usuario está vacía.");
+				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Por favor, seleccione una canción de la lista.");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
 		}
 	}
 
@@ -264,7 +266,15 @@ public class ListaCancionesController {
 	@FXML
 	void mostrarDetallesCancion(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if (c != null) {
+
+
+		if(c!=null) {
+			if (c.getCaratula().equals("")) {
+				imageCaratula.setImage(null);
+			} else {
+				imageCaratula.setImage(new Image(c.getCaratula()));
+			}
+
 			lblCodigo.setText(c.getCodigo());
 			lblCancion.setText(c.getNombreCancion());
 			lblAlbum.setText(c.getNombreAlbum());
@@ -272,41 +282,18 @@ public class ListaCancionesController {
 			lblDuracion.setText(c.getDuracion());
 			lblUrl.setText(c.getUrl());
 			lblGenero.setText(c.getGenero().toString());
-		} else {
+
+
+			
+		}else {
+
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}
 	}
 
-    @FXML
-    void deshacerAccion(ActionEvent event) {
-        if (!historialDeshacer.isEmpty()) {
-            CircularList<Cancion> estadoAnterior = historialDeshacer.pop();
-            historialRehacer.push(listaCanciones.clone(), "Deshacer"); 
-            listaCanciones = estadoAnterior;
-            actualizarTablaCanciones(listaCanciones);
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay acciones para deshacer.");
-        }
-    }
 
-    @FXML
-    void rehacerAccion(ActionEvent event) {
-        if (!historialRehacer.isEmpty()) {
-            CircularList<Cancion> estadoRehacer = historialRehacer.pop();
-            historialDeshacer.push(listaCanciones.clone(), "Rehacer"); 
-            listaCanciones = estadoRehacer;
-            actualizarTablaCanciones(listaCanciones);
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay acciones para rehacer.");
-        }
-    }
 
-    private void realizarAccionModificadora(CircularList<Cancion> nuevaLista, String accion) {
-    	 historialDeshacer.push(listaCanciones.clone(), accion); // Guardar el estado actual antes de realizar la acción
-         historialRehacer.clear(); // Limpiar el historial de rehacer, ya que se creará un nuevo estado
-         listaCanciones = nuevaLista;
-         
-    }
+
 
 
 

@@ -67,8 +67,9 @@ public class CircularList<E> implements Iterable<E>{
 	public boolean remove(E value) {
 	    Node<E> previousNode = null;
 	    Node<E> currentNode = head;
-	    
-	    while (currentNode != null) {
+	    int cont=0;
+	    while (cont < size) {
+	    	cont++;
 	        if (currentNode.getValue().equals(value)) {
 	            if (previousNode != null) {
 	                // El nodo a eliminar no es el primero en la lista
@@ -76,6 +77,7 @@ public class CircularList<E> implements Iterable<E>{
 	            } else {
 	                // El nodo a eliminar es el primero en la lista
 	                head = currentNode.getNext();
+	                endNode.setNext(head);
 	            }
 	            this.size--;
 	            return true;

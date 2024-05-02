@@ -25,7 +25,7 @@ public class Cancion {
 	@NonNull
 	private String nombreAlbum;
 	@NonNull
-	private String caratula;
+	private String caratula="";
 	@NonNull
 	private String anio;
 	@NonNull
