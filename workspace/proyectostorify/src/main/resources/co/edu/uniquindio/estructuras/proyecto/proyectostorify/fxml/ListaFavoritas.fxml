@@ -51,8 +51,8 @@
       <Label fx:id="lblAnio" layoutX="643.0" layoutY="337.0" text="Label" />
       <Label fx:id="lblAlbum" layoutX="643.0" layoutY="305.0" text="Label" />
       <Label fx:id="lblCancion" layoutX="643.0" layoutY="272.0" text="Label" />
-      <Button fx:id="btnDeshacer" layoutX="75.0" layoutY="477.0" mnemonicParsing="false" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="148.0" layoutY="477.0" mnemonicParsing="false" text="Rehacer" />
+      <Button fx:id="btnDeshacer" layoutX="75.0" layoutY="477.0" mnemonicParsing="false" onAction="#deshacerAccion" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="148.0" layoutY="477.0" mnemonicParsing="false" onAction="#rehacerAccion" text="Rehacer" />
       <Button fx:id="btnEliminar" layoutX="210.0" layoutY="477.0" mnemonicParsing="false" onAction="#eliminarDeLista" text="Eliminar" />
       <Separator layoutX="488.0" layoutY="29.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />

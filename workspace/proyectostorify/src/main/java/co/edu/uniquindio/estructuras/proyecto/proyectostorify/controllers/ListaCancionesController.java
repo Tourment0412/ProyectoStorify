@@ -11,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -165,6 +166,8 @@ public class ListaCancionesController {
 	private App app = mfm.getAplicacion();
 
 	private CircularList<Cancion> listaCanciones;
+	private Stack<CircularList<Cancion>> historialDeshacer = new Stack<>();
+	private Stack<CircularList<Cancion>> historialRehacer = new Stack<>();
 
 	@FXML
 	void initialize() {
@@ -176,7 +179,6 @@ public class ListaCancionesController {
 		generos.add("Electronica");
 		cmbGenero.setItems(generos);
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
-		System.out.println("Tam: " + listaCanciones.size());
 		;
 		actualizarTablaCanciones(listaCanciones);
 	}
@@ -185,6 +187,7 @@ public class ListaCancionesController {
 	void refrescarTabla(ActionEvent event) {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
+		realizarAccionModificadora(listaCanciones, "Refrescar tabla"); 
 	}
 
 	@FXML
@@ -193,9 +196,9 @@ public class ListaCancionesController {
 		if (c != null) {
 			if (listaCanciones != null) {
 				if (listaCanciones.remove(c)) {
-					System.out.println("Lista" + listaCanciones.toString());
 					actualizarTablaCanciones(listaCanciones);
 					JOptionPane.showMessageDialog(null, "Canción removida exitosamente.");
+					realizarAccionModificadora(listaCanciones, "Eliminar canción"); 
 				} else {
 					JOptionPane.showMessageDialog(null, "La canción seleccionada no se encontraba en la lista.");
 				}
@@ -223,6 +226,7 @@ public class ListaCancionesController {
 			}
 		}
 		actualizarTablaCanciones(listaTemp);
+		realizarAccionModificadora(listaCanciones, "Busqueda 0");
 	}
 
 	@FXML
@@ -233,21 +237,34 @@ public class ListaCancionesController {
 		String anioC = txtAnio.getText();
 		String duracionC = txtDuracion.getText();
 		String generoC = cmbGenero.getSelectionModel().getSelectedItem();
+
 		for (Cancion c : listaCanciones) {
-			if (c.getNombreCancion().equalsIgnoreCase(nombreC) && c.getNombreAlbum().equalsIgnoreCase(albumC)
-					&& c.getAnio().equalsIgnoreCase(anioC) && c.getDuracion().equalsIgnoreCase(duracionC)
-					&& c.getGenero().toString().equals(generoC)) {
+			boolean cumpleParametros = true;
+
+			if (!nombreC.isEmpty() && !c.getNombreCancion().equalsIgnoreCase(nombreC))
+				cumpleParametros = false;
+			if (!albumC.isEmpty() && !c.getNombreAlbum().equalsIgnoreCase(albumC))
+				cumpleParametros = false;
+			if (!anioC.isEmpty() && !c.getAnio().equalsIgnoreCase(anioC))
+				cumpleParametros = false;
+			if (!duracionC.isEmpty() && !c.getDuracion().equalsIgnoreCase(duracionC))
+				cumpleParametros = false;
+			if (generoC != null && !c.getGenero().toString().equalsIgnoreCase(generoC))
+				cumpleParametros = false;
+
+			if (cumpleParametros) {
 				listaTemp.add(c);
 			}
 		}
+		System.out.println(listaTemp.size());
 		actualizarTablaCanciones(listaTemp);
-
+		realizarAccionModificadora(listaCanciones, "Busqueda Y"); 
 	}
 
 	@FXML
 	void mostrarDetallesCancion(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if(c!=null) {
+		if (c != null) {
 			lblCodigo.setText(c.getCodigo());
 			lblCancion.setText(c.getNombreCancion());
 			lblAlbum.setText(c.getNombreAlbum());
@@ -255,12 +272,43 @@ public class ListaCancionesController {
 			lblDuracion.setText(c.getDuracion());
 			lblUrl.setText(c.getUrl());
 			lblGenero.setText(c.getGenero().toString());
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}
-		
-
 	}
+
+    @FXML
+    void deshacerAccion(ActionEvent event) {
+        if (!historialDeshacer.isEmpty()) {
+            CircularList<Cancion> estadoAnterior = historialDeshacer.pop();
+            historialRehacer.push(listaCanciones.clone(), "Deshacer"); 
+            listaCanciones = estadoAnterior;
+            actualizarTablaCanciones(listaCanciones);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay acciones para deshacer.");
+        }
+    }
+
+    @FXML
+    void rehacerAccion(ActionEvent event) {
+        if (!historialRehacer.isEmpty()) {
+            CircularList<Cancion> estadoRehacer = historialRehacer.pop();
+            historialDeshacer.push(listaCanciones.clone(), "Rehacer"); 
+            listaCanciones = estadoRehacer;
+            actualizarTablaCanciones(listaCanciones);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay acciones para rehacer.");
+        }
+    }
+
+    private void realizarAccionModificadora(CircularList<Cancion> nuevaLista, String accion) {
+    	 historialDeshacer.push(listaCanciones.clone(), accion); // Guardar el estado actual antes de realizar la acción
+         historialRehacer.clear(); // Limpiar el historial de rehacer, ya que se creará un nuevo estado
+         listaCanciones = nuevaLista;
+         
+    }
+
+
 
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();

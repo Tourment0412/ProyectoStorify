@@ -201,6 +201,16 @@ public class ListaFavoritasController {
     void mostrarDetallesCancion(ActionEvent event) {
 
     }
+    
+    @FXML
+    void deshacerAccion(ActionEvent event) {
+
+    }
+
+	@FXML
+	void rehacerAccion(ActionEvent event) {
+
+	}
 
 	
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
