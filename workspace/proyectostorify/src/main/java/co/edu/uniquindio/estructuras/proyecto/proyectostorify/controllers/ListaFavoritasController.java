@@ -3,11 +3,14 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Builder;
@@ -172,43 +176,104 @@ public class ListaFavoritasController {
 		generos.add("Reggaeton");
 		generos.add("Electronica");
 		cmbGenero.setItems(generos);
-		listaCanciones =((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+		System.out.println("Tam: " + listaCanciones.size());
+		;
 		actualizarTablaCanciones(listaCanciones);
 	}
-	
-    @FXML
-    void refrescarTabla(ActionEvent event) {
-    	listaCanciones =((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+
+	@FXML
+	void refrescarTabla(ActionEvent event) {
+		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
-    }
-    
-    @FXML
-    void eliminarDeLista(ActionEvent event) {
+	}
 
-    }
-    
-    @FXML
-    void busquedaO(ActionEvent event) {
+	@FXML
+	void eliminarDeLista(ActionEvent event) {
+		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
+		if (c != null) {
+			if (listaCanciones != null) {
+				if (listaCanciones.remove(c)) {
+					tableCanciones.getItems().remove(c);
+					listaCanciones.remove(c);
+					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
+				} else {
+					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
+				}
+			} else {
+				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
+		}
+	}
 
-    }
+	@FXML
+	void busquedaO(ActionEvent event) {
+		CircularList<Cancion> listaTemp = new CircularList<Cancion>();
+		String nombreC = txtNombreCancion.getText();
+		String albumC = txtNombreAlbum.getText();
+		String anioC = txtAnio.getText();
+		String duracionC = txtDuracion.getText();
+		String generoC = cmbGenero.getSelectionModel().getSelectedItem();
+		for (Cancion c : listaCanciones) {
+			if (c.getNombreCancion().equalsIgnoreCase(nombreC) || c.getNombreAlbum().equalsIgnoreCase(albumC)
+					|| c.getAnio().equalsIgnoreCase(anioC) || c.getDuracion().equalsIgnoreCase(duracionC)
+					|| c.getGenero().toString().equals(generoC)) {
+				listaTemp.add(c);
+			}
+		}
+		actualizarTablaCanciones(listaTemp);
+	}
 
-    @FXML
-    void busquedaY(ActionEvent event) {
+	@FXML
+	void busquedaY(ActionEvent event) {
+		CircularList<Cancion> listaTemp = new CircularList<Cancion>();
+		String nombreC = txtNombreCancion.getText();
+		String albumC = txtNombreAlbum.getText();
+		String anioC = txtAnio.getText();
+		String duracionC = txtDuracion.getText();
+		String generoC = cmbGenero.getSelectionModel().getSelectedItem();
+		for (Cancion c : listaCanciones) {
+			if (c.getNombreCancion().equalsIgnoreCase(nombreC) && c.getNombreAlbum().equalsIgnoreCase(albumC)
+					&& c.getAnio().equalsIgnoreCase(anioC) && c.getDuracion().equalsIgnoreCase(duracionC)
+					&& c.getGenero().toString().equals(generoC)) {
+				listaTemp.add(c);
+			}
+		}
+		actualizarTablaCanciones(listaTemp);
 
-    }
-    
-    @FXML
-    void mostrarDetallesCancion(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void mostrarDetallesCancion(ActionEvent event) {
+		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
+		if(c!=null) {
+			if (c.getCaratula().equals("")) {
+				imageCaratula.setImage(null);
+			} else {
+				imageCaratula.setImage(new Image(c.getCaratula()));
+			}
+			lblCodigo.setText(c.getCodigo());
+			lblCancion.setText(c.getNombreCancion());
+			lblAlbum.setText(c.getNombreAlbum());
+			lblAnio.setText(c.getAnio());
+			lblDuracion.setText(c.getDuracion());
+			lblUrl.setText(c.getUrl());
+			lblGenero.setText(c.getGenero().toString());
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
+		}
+	}
 
-	
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
 			listaCancionProperty.add(cancion);
 
 		}
+
 		tableCanciones.setItems(listaCancionProperty);
 		columnNombreCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreCancion()));
@@ -216,10 +281,9 @@ public class ListaFavoritasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
 		columnDuracionCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
-		columnGeneroCancion.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+		columnGeneroCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
 	}
-
-
 
 }

@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Builder;
@@ -249,6 +250,11 @@ public class ListaCancionesController {
 	void mostrarDetallesCancion(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if(c!=null) {
+			if (c.getCaratula().equals("")) {
+				imageCaratula.setImage(null);
+			} else {
+				imageCaratula.setImage(new Image(c.getCaratula()));
+			}
 			lblCodigo.setText(c.getCodigo());
 			lblCancion.setText(c.getNombreCancion());
 			lblAlbum.setText(c.getNombreAlbum());
@@ -256,6 +262,7 @@ public class ListaCancionesController {
 			lblDuracion.setText(c.getDuracion());
 			lblUrl.setText(c.getUrl());
 			lblGenero.setText(c.getGenero().toString());
+			
 		}else {
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}

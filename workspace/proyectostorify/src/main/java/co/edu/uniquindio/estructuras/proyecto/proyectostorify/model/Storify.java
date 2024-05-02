@@ -71,7 +71,9 @@ public class Storify {
 	}
 
 	public void agregarArtista(Artista artista) {
+		System.out.println(lstArtistas.toCircularList().getSize());
 		lstArtistas.add(artista);
+		System.out.println(lstArtistas.toCircularList().getSize());
 	}
 
 	public void eliminarArtista(Artista artista) {
@@ -233,6 +235,10 @@ public class Storify {
 
 		newArtista.setLstCanciones(cancionesArtista);
 		return cancionesArtista;
+	}
+
+	public boolean existeCodigoCancion(String codigo) {
+		return lstCanciones.filter(cancion->cancion.getCodigo().equals(codigo)).size()!=0;
 	}
 
 }

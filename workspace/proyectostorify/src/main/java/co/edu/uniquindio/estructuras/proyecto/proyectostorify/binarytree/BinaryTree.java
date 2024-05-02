@@ -126,8 +126,22 @@ public class BinaryTree<E extends Comparable<E>> {
 	    return searchRecursive(current.getRight(), value);
 	}
 	
+	public void clear() {
+		root=null;
+	}
+	
 	public void remove(E value) {
-		if (root!=null && root.getValue().equals(value)) {
+		CircularList<E> auxiliaryList=this.toCircularList();
+		auxiliaryList.remove(value);
+		clear();
+		for (E element : auxiliaryList) {
+			this.add(element);
+		}
+	}
+	
+	/*
+	public void remove(E value) {
+		if (root!=null && root.getValue().compareTo(value)==0) {
 			if (root.getLeft()!=null) {
 				
 			} else if (root.getRight()!=null) {
@@ -139,6 +153,39 @@ public class BinaryTree<E extends Comparable<E>> {
 			//remove(value,root,null);
 		}
 	}
+	
+	public void remove(E value,TreeNode<E> node,TreeNode<E> previusNode) {
+		if (node.getValue().compareTo(value)==0) {
+			if (node.getLeft()!=null) {
+				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
+					previusNode.setLeft(node.getLeft());
+				} else {
+					previusNode.setRight(node.getLeft());
+				}
+			} else if (node.getRight()!=null) {
+				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
+					previusNode.setLeft(node.getRight());
+				} else {
+					previusNode.setRight(node.getRight());
+				}
+			} else {
+				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
+					previusNode.setLeft(null);
+				} else {
+					previusNode.setRight(null);
+				}
+			}
+		} else {
+			if (node.getLeft()!=null) {
+				remove(value,node,node.getLeft());
+			}
+			if (node.getRight()!=null) {
+				remove(value,node,node.getRight());
+			}
+		}
+
+	}
+	*/
 
 	public CircularList<E> toCircularList() {
 		CircularList<E> eLementsList=new CircularList<E>();

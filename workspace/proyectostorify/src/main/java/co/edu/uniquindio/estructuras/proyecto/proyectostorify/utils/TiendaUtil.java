@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils;
 
+import java.io.File;
+
 public class TiendaUtil {
 	
 	public static char obtenerCaracter(int numero) {
@@ -86,6 +88,28 @@ public class TiendaUtil {
 		} else {
 			return obtenerCaracter((int)(Math.random()*64))+generarCadenaAleatoria(i+1,limite);
 		}
+	}
+	
+	public static String obtenerRutaCopiaOrganizada(String archivoNombre) {
+		String nombre;
+		nombre=generarCadenaAleatoria();
+		int posicion=archivoNombre.lastIndexOf('.');{
+		}
+		for (int i=posicion;i<archivoNombre.length();i++) {
+			nombre+=archivoNombre.charAt(i);
+		}
+		return nombre;
+	}
+
+	public static boolean existeArchivo(String nombre) {
+		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones";
+		File directorio = new File(ruta);
+		for (File elemento : directorio.listFiles()) {
+			if(!elemento.isHidden() && elemento.getName().equals(directorio)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

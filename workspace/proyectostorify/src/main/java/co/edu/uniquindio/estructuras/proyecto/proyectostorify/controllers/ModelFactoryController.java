@@ -73,8 +73,8 @@ public class ModelFactoryController {
 	    tiendaMusica.getLstArtistas().add(artista3);
 
 	    // Creación y adición de canciones para los artistas
-	    Cancion cancion1 = new Cancion("Si", "Si", "Si", "Si", "Si", "Si", "Si", Genero.ELECTRONICA, tiendaMusica.getLstArtistas().toCircularList());
-	    Cancion cancion2 = new Cancion("No", "No", "No", "No", "No", "No", "No", Genero.POP, tiendaMusica.getLstArtistas().toCircularList());
+	    Cancion cancion1 = new Cancion("Si", "Si", "Si", "", "Si", "Si", "Si", Genero.ELECTRONICA, tiendaMusica.getLstArtistas().toCircularList());
+	    Cancion cancion2 = new Cancion("No", "No", "No", "", "No", "No", "No", Genero.POP, tiendaMusica.getLstArtistas().toCircularList());
 	    tiendaMusica.agregarCancion(cancion1);
 	    tiendaMusica.agregarCancion(cancion2);
 	    
@@ -220,6 +220,10 @@ public class ModelFactoryController {
 	public void establecerCancionesArtista(Artista newArtista) {
 		// TODO Auto-generated method stub
 		tiendaMusica.establecerCancionesArtista(newArtista);
+	}
+
+	public boolean existeCodigoCancion(String codigo) {
+		return tiendaMusica.existeCodigoCancion(codigo);
 	}
 
 
