@@ -11,7 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
-
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,7 +187,7 @@ public class ListaCancionesController {
 	void refrescarTabla(ActionEvent event) {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
-		realizarAccionModificadora(listaCanciones, "Refrescar tabla"); 
+
 	}
 
 	@FXML
@@ -228,7 +228,7 @@ public class ListaCancionesController {
 			}
 		}
 		actualizarTablaCanciones(listaTemp);
-		realizarAccionModificadora(listaCanciones, "Busqueda 0");
+
 	}
 
 	@FXML
@@ -260,7 +260,7 @@ public class ListaCancionesController {
 		}
 		System.out.println(listaTemp.size());
 		actualizarTablaCanciones(listaTemp);
-		realizarAccionModificadora(listaCanciones, "Busqueda Y"); 
+
 	}
 
 	@FXML
