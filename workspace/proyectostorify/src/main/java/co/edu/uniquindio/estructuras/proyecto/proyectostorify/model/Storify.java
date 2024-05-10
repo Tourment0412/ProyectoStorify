@@ -241,4 +241,11 @@ public class Storify {
 		return lstCanciones.filter(cancion->cancion.getCodigo().equals(codigo)).size()!=0;
 	}
 
+	public void agregarCancionesArtistas(CircularList<Artista> lstArtistas, Cancion cancion) {
+		// TODO Auto-generated method stub
+		for (Artista a : lstArtistas) {
+			a.getLstCanciones().agregar(cancion);
+		}
+	}
+
 }

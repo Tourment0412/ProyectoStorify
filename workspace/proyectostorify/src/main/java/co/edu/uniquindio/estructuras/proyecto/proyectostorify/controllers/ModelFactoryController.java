@@ -225,6 +225,10 @@ public class ModelFactoryController {
 	public boolean existeCodigoCancion(String codigo) {
 		return tiendaMusica.existeCodigoCancion(codigo);
 	}
+	
+	public void agregarCancionesArtistas (CircularList<Artista> lstArtistas, Cancion cancion) {
+		tiendaMusica.agregarCancionesArtistas(lstArtistas, cancion);
+	}
 
 
 

@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
@@ -38,6 +40,9 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AdministradorCancionesController {
+	
+    @FXML
+    private Button btnSeleccionarArtista;
 
 	@FXML
 	private Button btnAdiministrarCanciones;
@@ -160,6 +165,7 @@ public class AdministradorCancionesController {
 	private App app = mfm.getAplicacion();
 
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
+	private CircularList<Artista> listaArtistasSeleccionados = new CircularList<Artista>();
 
 
 
@@ -281,10 +287,10 @@ public class AdministradorCancionesController {
 		newCancion.setNombreCancion(txtCancion.getText());
 		newCancion.setNombreAlbum(txtAlbum.getText());
 		newCancion.setUrl(txtUrl.getText());
-		newCancion.setLstArtistas(new CircularList<Artista>());
-		newCancion.getLstArtistas().add(tableArtistas.getSelectionModel().getSelectedItem());
+		newCancion.setLstArtistas(listaArtistasSeleccionados);
+		mfm.agregarCancionesArtistas(listaArtistasSeleccionados, newCancion);
 		mfm.agregarCancion(newCancion);
-		
+		listaArtistasSeleccionados.clear();
 		actualizarTablaCanciones();
 	}
 	
@@ -318,5 +324,17 @@ public class AdministradorCancionesController {
         	imageCaratula.setImage(null);
         }
 	}
+	
+    @FXML
+    void seleccionarArtista(ActionEvent event) {
+    	Artista artistaSeleccionado = tableArtistas.getSelectionModel().getSelectedItem();
+    	if (!listaArtistasSeleccionados.contains(artistaSeleccionado)) {
+    		listaArtistasSeleccionados.add(artistaSeleccionado);
+    		
+    		
+    	}else {
+    		JOptionPane.showMessageDialog(null, "El artista ya fue seleccionado");
+    	}
+    }
 
 }
