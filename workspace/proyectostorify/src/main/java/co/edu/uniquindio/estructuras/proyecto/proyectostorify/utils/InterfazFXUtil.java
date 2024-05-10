@@ -1,6 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -118,4 +120,14 @@ public class InterfazFXUtil {
 		comboBox.setDisable(false);	
 	}
 
+	public static boolean mostrarConfirmacion(String titulo, String texto) {
+	    Alert alert = new Alert(AlertType.CONFIRMATION);
+	    alert.setTitle(titulo);
+	    alert.setHeaderText(titulo);
+	    alert.setContentText(texto);
+
+	    Optional<ButtonType> resultado = alert.showAndWait();
+
+	    return resultado.isPresent() && resultado.get() == ButtonType.OK;
+	}
 }

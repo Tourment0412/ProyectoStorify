@@ -2,10 +2,11 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.net.URL;
 
+
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
-
+import javafx.scene.input.MouseEvent;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
@@ -219,20 +220,17 @@ public class ArtistasController {
 
 	}	
 	
-    @FXML
-    void mostrarCancionesArtista(ActionEvent event) {
+	@FXML
+    void mostrarCancionesArtista(MouseEvent event) {
     	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
-    	if (artista!=null) {
-    		ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
-        	actualizarTablaCanciones(cancionesArtista);
-    	}else {
-    		JOptionPane.showMessageDialog(null, "Seleccione un artista");
-    	}
+    	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
+    	actualizarTablaCanciones(cancionesArtista);
+    	
     	
     }
 
     @FXML
-    void mostrarDetallesCanciones(ActionEvent event) {
+    void mostrarDetallesCanciones(MouseEvent event) {
     	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
 		if(cancion!=null) {
 			if (cancion.getCaratula().equals("")) {
@@ -263,7 +261,13 @@ public class ArtistasController {
 		tableArtistas.setItems(listaArtistasProperty);
 		columNombreArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
 		columCodigoArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
-		columGrupoArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().isEsGrupo()));
+		columGrupoArtista.setCellValueFactory(cellData -> {
+			if (cellData.getValue().isEsGrupo()) {
+				return new SimpleStringProperty("Grupo");
+			} else {
+				return new SimpleStringProperty("No grupo");
+			}
+		});
 		columNacionalidadArtista
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();

@@ -10,6 +10,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.Circu
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -166,6 +168,9 @@ public class ListaFavoritasController {
 	private App app = mfm.getAplicacion();
 	
 	private CircularList<Cancion> listaCanciones;
+	
+	private Stack<Cancion> undoStack = new Stack<>();
+	private Stack<Cancion> redoStack = new Stack<>();
 
 	@FXML
 	void initialize() {
@@ -194,6 +199,8 @@ public class ListaFavoritasController {
 		if (c != null) {
 			if (listaCanciones != null) {
 				if (listaCanciones.remove(c)) {
+					undoStack.push(c, "deshacer");
+					redoStack.clear();
 					tableCanciones.getItems().remove(c);
 					listaCanciones.remove(c);
 					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
@@ -247,7 +254,7 @@ public class ListaFavoritasController {
 
 
 	@FXML
-	void mostrarDetallesCancion(ActionEvent event) {
+	void mostrarDetallesCancion(MouseEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if(c!=null) {
 			if (c.getCaratula().equals("")) {
@@ -268,6 +275,7 @@ public class ListaFavoritasController {
 		}
 
 	}
+	
 
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -286,6 +294,30 @@ public class ListaFavoritasController {
 		columnGeneroCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
+	}
+	
+	@FXML
+	void deshacer(ActionEvent event) {
+		if (!undoStack.isEmpty()) {
+			Cancion operacionDeshacer = undoStack.pop();
+			listaCanciones.add(operacionDeshacer);
+			actualizarTablaCanciones(listaCanciones);
+			redoStack.push(operacionDeshacer, "deshacer");
+		} else {
+			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
+		}
+	}
+
+	@FXML
+	void rehacer(ActionEvent event) {
+		if (!redoStack.isEmpty()) {
+			Cancion operacionRehacer = redoStack.pop();
+			listaCanciones.add(operacionRehacer);
+			actualizarTablaCanciones(listaCanciones);
+			undoStack.push(operacionRehacer, "rehacer");
+		} else {
+			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
+		}
 	}
 
 }

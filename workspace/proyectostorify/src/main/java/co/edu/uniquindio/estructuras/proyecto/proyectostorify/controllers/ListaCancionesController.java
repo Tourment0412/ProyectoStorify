@@ -11,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -168,6 +170,8 @@ public class ListaCancionesController {
 
 	private CircularList<Cancion> listaCanciones;
 
+	private Stack<Cancion> undoStack = new Stack<>();
+	private Stack<Cancion> redoStack = new Stack<>();
 
 	@FXML
 	void initialize() {
@@ -179,7 +183,6 @@ public class ListaCancionesController {
 		generos.add("Electronica");
 		cmbGenero.setItems(generos);
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
-		;
 		actualizarTablaCanciones(listaCanciones);
 	}
 
@@ -190,25 +193,57 @@ public class ListaCancionesController {
 
 	}
 
+//	@FXML
+//	void eliminarDeLista(ActionEvent event) {
+//		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
+//		if (c != null) {
+//			if (listaCanciones != null) {
+//				if (listaCanciones.remove(c)) {
+//                    undoStack.push(c, "deshacer");
+//                    redoStack.clear(); 
+//					tableCanciones.getItems().remove(c);
+//					((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().remove(c);
+//					System.out.println(((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
+//					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
+//
+//				} else {
+//					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
+//				}
+//			} else {
+//				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
+//			}
+//		} else {
+//			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
+//		}
+//	}
+
 	@FXML
 	void eliminarDeLista(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if (c != null) {
 			if (listaCanciones != null) {
-				if (listaCanciones.remove(c)) {
+				boolean confirmacion = InterfazFXUtil.mostrarConfirmacion("Eliminar canción",
+						"¿Estás seguro de que quieres eliminar esta canción?");
+				if (confirmacion) {
+					if (listaCanciones.remove(c)) {
+						undoStack.push(c, "deshacer");
+						redoStack.clear();
+						tableCanciones.getItems().remove(c);
+						((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().remove(c);
+						System.out.println(((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
+						actualizarTablaCanciones(listaCanciones);
+						InterfazFXUtil.mostrarMensaje("Canción removida", "Canción removida exitosamente.");
 
-					tableCanciones.getItems().remove(c);
-					listaCanciones.remove(c);
-					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
-
-				} else {
-					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
+					} else {
+						InterfazFXUtil.mostrarMensaje("No está en la lista",
+								"La canción seleccionada no se encontraba en la lista.");
+					}
 				}
 			} else {
-				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
+				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones guardadas del usuario está vacía.");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
+			InterfazFXUtil.mostrarMensaje("Canción no seleccionada", "Por favor, seleccione una canción de la lista.");
 		}
 	}
 
@@ -264,11 +299,10 @@ public class ListaCancionesController {
 	}
 
 	@FXML
-	void mostrarDetallesCancion(ActionEvent event) {
+	void mostrarDetallesCancion(MouseEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 
-
-		if(c!=null) {
+		if (c != null) {
 			if (c.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
 			} else {
@@ -283,19 +317,11 @@ public class ListaCancionesController {
 			lblUrl.setText(c.getUrl());
 			lblGenero.setText(c.getGenero().toString());
 
-
-			
-		}else {
+		} else {
 
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}
 	}
-
-
-
-
-
-
 
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -314,6 +340,30 @@ public class ListaCancionesController {
 		columnGeneroCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
+	}
+
+	@FXML
+	void deshacer(ActionEvent event) {
+		if (!undoStack.isEmpty()) {
+			Cancion operacionDeshacer = undoStack.pop();
+			listaCanciones.add(operacionDeshacer);
+			actualizarTablaCanciones(listaCanciones);
+			redoStack.push(operacionDeshacer, "deshacer");
+		} else {
+			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
+		}
+	}
+
+	@FXML
+	void rehacer(ActionEvent event) {
+		if (!redoStack.isEmpty()) {
+			Cancion operacionRehacer = redoStack.pop();
+			listaCanciones.add(operacionRehacer);
+			actualizarTablaCanciones(listaCanciones);
+			undoStack.push(operacionRehacer, "rehacer");
+		} else {
+			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
+		}
 	}
 
 }
