@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -151,14 +152,10 @@ public class AdministradorCancionesController {
 	private TextField txtCancion;
 
 	@FXML
-	private TextField txtCodigo;
-
-	@FXML
 	private TextField txtDuracion;
 
-	@FXML
-	private TextField txtUrl;
 	private File archivoImagenCaratula;
+	private File archivoAudioCancion;
 
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
@@ -196,25 +193,43 @@ public class AdministradorCancionesController {
 	@FXML
 	void actualizar() {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
-			if (imageCaratula.getImage()!=null) {
-				String nombre;
+		if (sonDatosValidos()) {
+			if(cancion!=null) {
+				File archivoCopia;
+				if (imageCaratula.getImage()!=null) {
+					String nombre;
+					do {
+						nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
+					} while (TiendaUtil.existeArchivoCaratula(nombre));
+					archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
+					try {
+						Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					} catch (IOException ex) {
+						ex.printStackTrace();
+					}
+					cancion.setCaratula(archivoCopia.toURI().toString());
+
+				} else {
+					cancion.setCaratula("");
+				}
+				cancion.setAnio(txtAnio.getText());
+				cancion.setDuracion(txtDuracion.getText());
+				cancion.setGenero(Genero.getEstadoByString(cmbGenero.getSelectionModel().getSelectedItem()));
+				cancion.setNombreCancion(txtCancion.getText());
+				cancion.setNombreAlbum(txtAlbum.getText());
+
+				String audio;
 				do {
-					nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
-				} while (TiendaUtil.existeArchivo(nombre));
-				 File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
-				 try {
-	                    Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
-	                } catch (IOException ex) {
-	                    ex.printStackTrace();
-	                }
-				 cancion.setCaratula(archivoCopia.toURI().toString());
-				 cancion.setAnio(txtAnio.getText());
-				 cancion.setDuracion(txtDuracion.getText());
-				 cancion.setGenero(Genero.getEstadoByString(cmbGenero.getSelectionModel().getSelectedItem()));
-				 cancion.setNombreCancion(txtCancion.getText());
-				 cancion.setNombreAlbum(txtAlbum.getText());
-				 cancion.setUrl(txtUrl.getText());
+					audio=TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
+				} while (TiendaUtil.existeArchivoAudio(audio));
+				archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
+						+audio);
+				try {
+					Files.copy(archivoAudioCancion.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+				cancion.setUrl(audio);
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Cancion no seleccionada para actualizar");
 			}
@@ -258,45 +273,75 @@ public class AdministradorCancionesController {
 		tableCanciones.refresh();
 	}
 	
+	public boolean sonDatosValidos() {
+		boolean sonDatosValidos = false;
+		String msj = "";
+
+		if (archivoAudioCancion==null) {
+			msj += "Debe seleccionar el audio de la cancion";
+		}
+		if (msj.equals("")) {
+			sonDatosValidos = true;
+		} else {
+			InterfazFXUtil.mostrarMensaje("Entradas no validas", "Entradas no validas", msj, AlertType.ERROR);
+		}
+		return sonDatosValidos;
+	}
 
 
 	@FXML
 	void guardarCancion(ActionEvent event) {
-		Cancion newCancion = new Cancion();
-		String codigo;
-		do {
-			codigo=TiendaUtil.generarCadenaAleatoria();
-		} while(mfm.existeCodigoCancion(codigo));
-		newCancion.setCodigo(codigo);
-		if (imageCaratula.getImage()!=null) {
-			String nombre;
+		if (sonDatosValidos()) {
+			Cancion newCancion = new Cancion();
+			String codigo;
 			do {
-				nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
-			} while (TiendaUtil.existeArchivo(nombre));
-			 File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
-			 try {
-                    Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-			 newCancion.setCaratula(archivoCopia.toURI().toString());
+				codigo=TiendaUtil.generarCadenaAleatoria();
+			} while(mfm.existeCodigoCancion(codigo));
+			newCancion.setCodigo(codigo);
+			if (imageCaratula.getImage()!=null) {
+				String nombre;
+				do {
+					nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
+				} while (TiendaUtil.existeArchivoCaratula(nombre));
+				File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
+				try {
+					Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+				newCancion.setCaratula(archivoCopia.toURI().toString());
+			}
+			newCancion.setAnio(txtAnio.getText());
+			newCancion.setDuracion(txtDuracion.getText());
+			newCancion.setGenero(Genero.getEstadoByString(cmbGenero.getSelectionModel().getSelectedItem()));
+			newCancion.setNombreCancion(txtCancion.getText());
+			newCancion.setNombreAlbum(txtAlbum.getText());
+
+			String audio;
+			do {
+				audio=TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
+			} while (TiendaUtil.existeArchivoAudio(audio));
+			File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
+					+audio);
+			try {
+				Files.copy(archivoAudioCancion.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			newCancion.setUrl(audio);
+
+			newCancion.setLstArtistas(listaArtistasSeleccionados);
+			mfm.agregarCancionesArtistas(listaArtistasSeleccionados, newCancion);
+			mfm.agregarCancion(newCancion);
+			listaArtistasSeleccionados.clear();
+			actualizarTablaCanciones();
 		}
-		newCancion.setAnio(txtAnio.getText());
-		newCancion.setDuracion(txtDuracion.getText());
-		newCancion.setGenero(Genero.getEstadoByString(cmbGenero.getSelectionModel().getSelectedItem()));
-		newCancion.setNombreCancion(txtCancion.getText());
-		newCancion.setNombreAlbum(txtAlbum.getText());
-		newCancion.setUrl(txtUrl.getText());
-		newCancion.setLstArtistas(listaArtistasSeleccionados);
-		mfm.agregarCancionesArtistas(listaArtistasSeleccionados, newCancion);
-		mfm.agregarCancion(newCancion);
-		listaArtistasSeleccionados.clear();
-		actualizarTablaCanciones();
 	}
 	
 	@FXML
 	void ponerDatosCancion() {
-		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		
+		Cancion cancion= tableCanciones.getSelectionModel().getSelectedItem();
 		if(cancion!=null) {
 			if (cancion.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
@@ -308,6 +353,7 @@ public class AdministradorCancionesController {
 			cmbGenero.setValue(cancion.getGenero().toString());
 			txtCancion.setText(cancion.getNombreCancion());
 			txtAlbum.setText(cancion.getNombreAlbum());
+			archivoAudioCancion=TiendaUtil.obtenerArchivoAudio(cancion);
 		}
 	}
 
@@ -335,6 +381,26 @@ public class AdministradorCancionesController {
     	}else {
     		JOptionPane.showMessageDialog(null, "El artista ya fue seleccionado");
     	}
+    }
+    
+    @FXML
+    void seleccionarAudioCancion() {
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.getExtensionFilters().add(
+    			new FileChooser.ExtensionFilter("Archivos MP3", "*.mp3"));
+    	archivoAudioCancion = fileChooser.showOpenDialog(null);
+    }
+    
+    @FXML
+    void reproducirAudioCancion() {
+    	if (archivoAudioCancion!=null) {
+    		CircularList<File> cancion=new CircularList<File>();
+        	cancion.add(archivoAudioCancion);
+        	mfm.mostrarReproductorAudio(cancion);
+    	} else {
+    		InterfazFXUtil.mostrarMensaje("No se puede reproducir cancion", "No hay audio para reproducir");
+    	}
+    	
     }
 
 }

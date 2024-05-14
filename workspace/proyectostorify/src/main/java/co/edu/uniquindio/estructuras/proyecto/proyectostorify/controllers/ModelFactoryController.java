@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import java.util.List;
@@ -11,6 +13,10 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -65,36 +71,37 @@ public class ModelFactoryController {
 	    tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
 
 	    // Creación de artistas y canciones
-	    Artista artista1 = new Artista("Pedro1", "Pablo1", "malo", false, new ListaDoble<Cancion>());
-	    Artista artista2 = new Artista("Pedro2", "Pablo2", "odio", false, new ListaDoble<Cancion>());
-	    Artista artista3 = new Artista("Pedro3", "Pablo3", "no", false, new ListaDoble<Cancion>());
+	    Artista artista1 = new Artista("aaaaa", "Evanescence", "Estadounidense", true, new ListaDoble<Cancion>());
+	    Artista artista2 = new Artista("aaaab", "Michael Jackson", "Estadounidense", false, new ListaDoble<Cancion>());
+	    Artista artista3 = new Artista("aaaac", "Maluma", "Colombiana", false, new ListaDoble<Cancion>());
 	    tiendaMusica.getLstArtistas().add(artista1);
 	    tiendaMusica.getLstArtistas().add(artista2);
 	    tiendaMusica.getLstArtistas().add(artista3);
 
 	    // Creación y adición de canciones para los artistas
-	    Cancion cancion1 = new Cancion("Si", "Si", "Si", "", "Si", "Si", "Si", Genero.ELECTRONICA, tiendaMusica.getLstArtistas().toCircularList());
-	    Cancion cancion2 = new Cancion("No", "No", "No", "", "No", "No", "No", Genero.POP, tiendaMusica.getLstArtistas().toCircularList());
+	    Cancion cancion1 = new Cancion("aaaaa", "Bring Me To Life", "Fallen", "", "2003", "3:55", "evan1.mp3", Genero.ROCK, new CircularList<Artista>());
+	    Cancion cancion2 = new Cancion("aaaab", "Call Me When You're Sober", "The Open Door", "", "2006", "3:32", "evan2.mp3", Genero.ROCK, new CircularList<Artista>());
+	    Cancion cancion3 = new Cancion("aaaac", "Billie Jean", "Thriller", "", "1982", "4:45", "Mich1.mp3", Genero.POP, new CircularList<Artista>());
+	    Cancion cancion4 = new Cancion("aaaad", "Beat It", "Thriller", "", "1982", "4:48", "Mich2.mp3", Genero.POP, new CircularList<Artista>());
+	    Cancion cancion5 = new Cancion("aaaae", "Felices los 4", "F.A.M.E.", "", "2018", "4:50", "Malu1.mp3", Genero.REGGAETON, new CircularList<Artista>());
+	    Cancion cancion6 = new Cancion("aaaaf", "Hawai", "Papi Juancho", "", "2020", "4:18", "Malu2.mp3", Genero.REGGAETON, new CircularList<Artista>());
+	    artista1.agregarCancion(cancion1);
+	    artista1.agregarCancion(cancion2);
+	    artista2.agregarCancion(cancion3);
+	    artista2.agregarCancion(cancion4);
+	    artista3.agregarCancion(cancion5);
+	    artista3.agregarCancion(cancion6);
 	    tiendaMusica.agregarCancion(cancion1);
 	    tiendaMusica.agregarCancion(cancion2);
-	    
-//	    System.out.println("Canciones "+tiendaMusica.getLstCanciones().toString());
-//
-//	    
-//	    System.out.println("CancionesArtistas1 "+artista1.getLstCanciones().toString());
-//	    System.out.println("CancionesArtistas1 "+artista2.getLstCanciones().toString());
-//	    System.out.println("CancionesArtistas1 "+artista3.getLstCanciones().toString());
+	    tiendaMusica.agregarCancion(cancion3);
+	    tiendaMusica.agregarCancion(cancion4);
+	    tiendaMusica.agregarCancion(cancion5);
+	    tiendaMusica.agregarCancion(cancion6);
 
 	    // Establecimiento de canciones para cada artista
 	    establecerCancionesArtista(artista1);
 	    establecerCancionesArtista(artista2);
 	    establecerCancionesArtista(artista3);
-	    
-//	    System.out.println("CancionesArtistas1 "+artista1.getLstCanciones().toString());
-//	    System.out.println("CancionesArtistas1 "+artista2.getLstCanciones().toString());
-//	    System.out.println("CancionesArtistas1 "+artista3.getLstCanciones().toString());
-
-	    // Impresión de la lista de artistas y su información
 
 	}
 
@@ -230,6 +237,17 @@ public class ModelFactoryController {
 		tiendaMusica.agregarCancionesArtistas(lstArtistas, cancion);
 	}
 
-
+	public CircularList<File> obtenerAudiosCancionesUsuario(CircularList<Cancion> listaCanciones) {
+		CircularList<File> audios=new CircularList<File>();
+		String audio;
+		for (Cancion cancion : listaCanciones) {
+			audio=cancion.getUrl();
+		}
+		return audios;
+	}
+	
+	public void mostrarReproductorAudio(CircularList<File> archivos) {
+		this.getAplicacion().reproducirCancion(archivos);
+	}
 
  }

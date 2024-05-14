@@ -29,6 +29,7 @@ public class Artista implements Comparable<Artista>{
 	}
 
 	public void agregarCancion(Cancion cancion) {
+		cancion.getLstArtistas().add(this);
 		lstCanciones.agregarfinal(cancion);
 	}
 	

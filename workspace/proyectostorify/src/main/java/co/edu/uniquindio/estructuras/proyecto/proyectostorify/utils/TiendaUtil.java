@@ -2,6 +2,9 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils;
 
 import java.io.File;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+
 public class TiendaUtil {
 	
 	public static char obtenerCaracter(int numero) {
@@ -101,15 +104,46 @@ public class TiendaUtil {
 		return nombre;
 	}
 
-	public static boolean existeArchivo(String nombre) {
+	public static boolean existeArchivoCaratula(String nombre) {
+		if (nombre.equals("")) {
+			return false;
+		}
 		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones";
 		File directorio = new File(ruta);
 		for (File elemento : directorio.listFiles()) {
-			if(!elemento.isHidden() && elemento.getName().equals(directorio)) {
+			if(!elemento.isHidden() && elemento.getName().equals(nombre)) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public static boolean existeArchivoAudio(String nombre) {
+		if (nombre.equals("")) {
+			return false;
+		}
+		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios";
+		File directorio = new File(ruta);
+		for (File elemento : directorio.listFiles()) {
+			if(!elemento.isHidden() && elemento.getName().equals(nombre)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static File obtenerArchivoAudio(Cancion cancion) {
+		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios";
+		File directorio = new File(ruta);
+		if (cancion.getUrl().equals("")) {
+			return null;
+		}
+		for (File elemento : directorio.listFiles()) {
+			if(!elemento.isHidden() && elemento.getName().equals(cancion.getUrl())) {
+				return elemento;
+			}
+		}
+		return null;
 	}
 
 }

@@ -26,5 +26,10 @@ public enum Genero {
 				return estado;
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return genero;
+	}
 
 }

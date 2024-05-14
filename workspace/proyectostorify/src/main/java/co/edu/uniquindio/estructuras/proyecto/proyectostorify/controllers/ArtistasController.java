@@ -1,11 +1,11 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
+import java.io.File;
 import java.net.URL;
 
 
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
 import javafx.scene.input.MouseEvent;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
@@ -13,6 +13,8 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDo
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -193,9 +195,9 @@ public class ArtistasController {
 		CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		if(!favoritas.contains(c)) {
 			favoritas.add(c);
-			JOptionPane.showMessageDialog(null, "Cancion Guardada En Favoritos");
+			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
 		}else {
-			JOptionPane.showMessageDialog(null, "La cancion ya se encuentra en su lista de Favotitos");
+			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favotitos");
 		}
 		
 		
@@ -207,10 +209,9 @@ public class ArtistasController {
 		CircularList<Cancion> playlist = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		if(!playlist.contains(c)) {
 			playlist.add(c);
-			System.out.println(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
-			JOptionPane.showMessageDialog(null, "Cancion Guardada En PlayList");
+			InterfazFXUtil.mostrarMensaje("Cancion guardada", "Cancion Guardada En PlayList");
 		}else {
-			JOptionPane.showMessageDialog(null, "La cancion ya se encuentra en su PlayList");
+			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
 		}
 		
 	}
@@ -238,11 +239,13 @@ public class ArtistasController {
 			} else {
 				imageCaratula.setImage(new Image(cancion.getCaratula()));
 			}
+			lblCodigo.setText(cancion.getUrl());
 			lblAnio.setText(cancion.getAnio());
 			lblDuracion.setText(cancion.getDuracion());
 			lblGenero.setText(cancion.getGenero().toString());
 			lblCancion.setText(cancion.getNombreCancion());
 			lblAlbum.setText(cancion.getNombreAlbum());
+			lblUrl.setText(cancion.getUrl());
 		}
     }
 
@@ -288,6 +291,18 @@ public class ArtistasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
 		columGeneroCancion.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
+	}
+	
+	@FXML
+	void reproducirCancion() {
+		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if(cancion!=null) {
+			CircularList<File> archivo=new CircularList<File>();
+			archivo.add(TiendaUtil.obtenerArchivoAudio(cancion));
+			mfm.mostrarReproductorAudio(archivo);
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleecionada", "No ha seleccionado una cancion para reproducir");
+		}
 	}
 
 }

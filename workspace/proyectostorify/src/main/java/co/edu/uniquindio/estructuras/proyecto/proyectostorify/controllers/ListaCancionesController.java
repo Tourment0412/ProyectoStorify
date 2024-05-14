@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -364,6 +366,24 @@ public class ListaCancionesController {
 		} else {
 			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
 		}
+	}
+	
+	@FXML
+	void reproducirCancion() {
+		CircularList<File> archivosCaciones=obtenerArchivosCanciones();
+		mfm.mostrarReproductorAudio(archivosCaciones);
+	}
+	
+	public CircularList<File> obtenerArchivosCanciones() {
+		CircularList<File> archivosCaciones=new CircularList<File>();
+		File archivo;
+		for (Cancion cancion : listaCanciones) {
+			archivo=TiendaUtil.obtenerArchivoAudio(cancion);
+			if (archivo!=null) {
+				archivosCaciones.add(archivo);
+			}
+		}
+		return archivosCaciones;
 	}
 
 }

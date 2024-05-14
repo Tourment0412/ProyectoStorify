@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,10 +16,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorCancionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: #FF7777;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorCancionesController">
    <children>
       <Label fx:id="lblNombreArtista" layoutX="78.0" layoutY="98.0" text="Nombre" />
-      <Button fx:id="btnBuscarNombre" layoutX="289.0" layoutY="94.0" mnemonicParsing="false" text="Buscar" />
+      <Button fx:id="btnBuscarNombre" layoutX="320.0" layoutY="93.0" mnemonicParsing="false" text="Buscar" />
       <TableView fx:id="tableArtistas" layoutX="78.0" layoutY="124.0" prefHeight="147.0" prefWidth="372.0">
         <columns>
           <TableColumn fx:id="columnCodigo" prefWidth="75.0" text="Codigo" />
@@ -38,27 +43,26 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblCodigoCancion" layoutX="558.0" layoutY="310.0" text="Codigo:" />
-      <Label fx:id="lblNombreCancion" layoutX="555.0" layoutY="339.0" text="Cancion:" />
-      <Label fx:id="lblAlbum" layoutX="562.0" layoutY="366.0" text="Album:" />
-      <Label fx:id="lblAnioCancion" layoutX="575.0" layoutY="392.0" text="Año:" />
-      <Label fx:id="lblDuracionCancion" layoutX="549.0" layoutY="420.0" text="Duracion:" />
+      <Label fx:id="lblNombreCancion" layoutX="556.0" layoutY="300.0" text="Cancion:" />
+      <Label fx:id="lblAlbum" layoutX="560.0" layoutY="334.0" text="Album:" />
+      <Label fx:id="lblAnioCancion" layoutX="575.0" layoutY="370.0" text="Año:" />
+      <Label fx:id="lblDuracionCancion" layoutX="553.0" layoutY="407.0" text="Duracion:" />
       <Label fx:id="lblUrlCancion" layoutX="581.0" layoutY="445.0" text="Url:" />
       <Label fx:id="lblGeneroCancion" layoutX="557.0" layoutY="474.0" text="Genero:" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="txtBuscarNombre" layoutX="133.0" layoutY="94.0" />
       <Button fx:id="btnSeleccionarCaratula" layoutX="586.0" layoutY="255.0" mnemonicParsing="false" onAction="#seleccionarCaratula" text="Seleccionar Caratula" />
-      <TextField fx:id="txtCodigo" layoutX="618.0" layoutY="308.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtCancion" layoutX="619.0" layoutY="335.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtAlbum" layoutX="619.0" layoutY="363.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtAnio" layoutX="619.0" layoutY="390.0" prefHeight="31.0" prefWidth="154.0" />
-      <TextField fx:id="txtDuracion" layoutX="620.0" layoutY="417.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtUrl" layoutX="621.0" layoutY="444.0" prefHeight="31.0" prefWidth="150.0" />
-      <ComboBox fx:id="cmbGenero" layoutX="621.0" layoutY="470.0" prefWidth="150.0" />
+      <TextField fx:id="txtCancion" layoutX="620.0" layoutY="296.0" prefHeight="31.0" prefWidth="150.0" />
+      <TextField fx:id="txtAlbum" layoutX="620.0" layoutY="331.0" prefHeight="31.0" prefWidth="150.0" />
+      <TextField fx:id="txtAnio" layoutX="620.0" layoutY="368.0" prefHeight="31.0" prefWidth="150.0" />
+      <TextField fx:id="txtDuracion" layoutX="620.0" layoutY="404.0" prefHeight="31.0" prefWidth="150.0" />
+      <ComboBox fx:id="cmbGenero" layoutX="620.0" layoutY="470.0" prefWidth="150.0" />
       <Button fx:id="btnGuardar" layoutX="674.0" layoutY="506.0" mnemonicParsing="false" onAction="#guardarCancion" text="Guardar" />
       <Button layoutX="564.0" layoutY="506.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
-      <Button fx:id="btnVolver" layoutX="156.0" layoutY="519.0" mnemonicParsing="false" text="Volver" />
-      <Button fx:id="btnEliminar" layoutX="263.0" layoutY="519.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="btnVolver" layoutX="88.0" layoutY="519.0" mnemonicParsing="false" text="Volver" />
+      <Button fx:id="btnEliminar" layoutX="216.0" layoutY="516.0" mnemonicParsing="false" text="Eliminar" />
       <Button fx:id="btnSeleccionarArtista" layoutX="79.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarArtista" text="Seleccionar Artista" />
+      <Button layoutX="620.0" layoutY="437.0" mnemonicParsing="false" onAction="#seleccionarAudioCancion" prefWidth="150.0" text="Poner cancion" />
+      <Button layoutX="319.0" layoutY="516.0" mnemonicParsing="false" onAction="#reproducirAudioCancion" text="Reproducir" />
    </children>
 </AnchorPane>

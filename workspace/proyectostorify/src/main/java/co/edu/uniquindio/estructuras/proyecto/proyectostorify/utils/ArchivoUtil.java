@@ -12,12 +12,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 
 
 /**
@@ -49,9 +50,9 @@ public  class ArchivoUtil {
      * @return
      * @throws IOException
      */
-    public static ArrayList<String> leerArchivo(String ruta) throws IOException {
+    public static CircularList<String> leerArchivo(String ruta) throws IOException {
 
-        ArrayList<String>  contenido = new ArrayList<String>();
+    	CircularList<String>  contenido = new CircularList<String>();
         FileReader fr=new FileReader(ruta);
         BufferedReader bfr=new BufferedReader(fr);
         String linea="";

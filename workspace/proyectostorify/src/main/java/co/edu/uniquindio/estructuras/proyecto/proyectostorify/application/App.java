@@ -8,9 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.*;
 
 
@@ -187,6 +192,28 @@ public class App extends Application {
 			RegistrarseController controlador = loader.getController();
 			controlador.setVentana(primaryStage);
 			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void reproducirCancion(CircularList<File> archivosReproducir) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(App.class.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/videoplayer.fxml"));
+			BorderPane page = (BorderPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Reproductor");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+			VideoPlayerController controller = loader.getController();
+			controller.organizarArchivos(archivosReproducir);
+			dialogStage.setOnCloseRequest(event -> {
+				 controller.stop();
+		        });
+			dialogStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

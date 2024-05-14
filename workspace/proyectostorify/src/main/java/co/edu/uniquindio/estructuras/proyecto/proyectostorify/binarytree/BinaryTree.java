@@ -129,7 +129,7 @@ public class BinaryTree<E extends Comparable<E>> {
 	public void clear() {
 		root=null;
 	}
-	
+	/*
 	public void remove(E value) {
 		CircularList<E> auxiliaryList=this.toCircularList();
 		auxiliaryList.remove(value);
@@ -137,53 +137,6 @@ public class BinaryTree<E extends Comparable<E>> {
 		for (E element : auxiliaryList) {
 			this.add(element);
 		}
-	}
-	
-	/*
-	public void remove(E value) {
-		if (root!=null && root.getValue().compareTo(value)==0) {
-			if (root.getLeft()!=null) {
-				
-			} else if (root.getRight()!=null) {
-				
-			} else {
-				root=null;
-			}
-		} else {
-			//remove(value,root,null);
-		}
-	}
-	
-	public void remove(E value,TreeNode<E> node,TreeNode<E> previusNode) {
-		if (node.getValue().compareTo(value)==0) {
-			if (node.getLeft()!=null) {
-				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
-					previusNode.setLeft(node.getLeft());
-				} else {
-					previusNode.setRight(node.getLeft());
-				}
-			} else if (node.getRight()!=null) {
-				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
-					previusNode.setLeft(node.getRight());
-				} else {
-					previusNode.setRight(node.getRight());
-				}
-			} else {
-				if (previusNode.getLeft().getValue().compareTo(node.getValue())==0) {
-					previusNode.setLeft(null);
-				} else {
-					previusNode.setRight(null);
-				}
-			}
-		} else {
-			if (node.getLeft()!=null) {
-				remove(value,node,node.getLeft());
-			}
-			if (node.getRight()!=null) {
-				remove(value,node,node.getRight());
-			}
-		}
-
 	}
 	*/
 
@@ -203,6 +156,87 @@ public class BinaryTree<E extends Comparable<E>> {
 			toCircularList(elements,node.getRight());
 		}
 		elements.add(node.getValue());
+	}
+	
+	public void remove(E value) {
+		if (root.getValue().compareTo(value)==0) {
+			if (root.getLeft()==null && root.getRight()==null) {
+				root=null;
+			} else if (root.getLeft()==null || root.getRight()==null) {
+				if (root.getLeft()==null) {
+					root=root.getRight();
+				} else {
+					root=root.getLeft();
+				}
+			} else {
+				TreeNode<E> originalRoot=root;
+				root=root.getLeft();
+				addToArbol(this,originalRoot.getRight());
+			}
+		} else {
+			removeSearch(value,root,null);
+		}
+	}
+	
+	public void removeLeaf(TreeNode<E> node,TreeNode<E> previusNode) {
+		if (previusNode.getLeft()==node) {
+			previusNode.setLeft(null);
+		} if (previusNode.getRight()==node) {
+			previusNode.setRight(null);
+		}
+	}
+	
+	public void removeFather1(TreeNode<E> node,TreeNode<E> previusNode) {
+		if (previusNode.getLeft()==node) {
+			if (node.getLeft()==null) {
+				previusNode.setLeft(node.getRight());
+			} else if (node.getRight()==null) {
+				previusNode.setLeft(node.getLeft());
+			}
+		}
+		if (previusNode.getRight()==node) {
+			if (node.getLeft()==null) {
+				previusNode.setRight(node.getRight());
+			} else if (node.getRight()==null) {
+				previusNode.setRight(node.getLeft());
+			}
+		}
+	}
+	
+	public void removeFather2(TreeNode<E> node,TreeNode<E> previusNode) {
+		if (previusNode.getLeft()==node) {
+			previusNode.setLeft(null);
+		} if (previusNode.getRight()==node) {
+			previusNode.setRight(null);
+		}
+		addToArbol(this,node.getLeft());
+		addToArbol(this,node.getRight());
+	}
+	
+	public void addToArbol(BinaryTree<E> tree,TreeNode<E> inicialNode) {
+		if (inicialNode!=null) {
+			addToArbol(tree,inicialNode.getLeft());
+			tree.add(inicialNode.getValue());
+			addToArbol(tree,inicialNode.getRight());
+		}
+	}
+	
+	public void removeSearch(E value,TreeNode<E> node,TreeNode<E> previusNode) {
+		if (node!=null) {
+			if (value.compareTo(node.getValue())<0) {
+				removeSearch(value,node.getLeft(),node);
+			} else if (value.compareTo(node.getValue())>0) {
+				removeSearch(value,node.getRight(),node);
+			} else {
+				if (node.getLeft()==null && node.getRight()==null) {
+					removeLeaf(node,previusNode);
+				} else if (node.getLeft()==null || node.getRight()==null) {
+					removeFather1(node,previusNode);
+				} else {
+					removeFather2(node,previusNode);
+				}
+			}
+		}
 	}
 
 }
