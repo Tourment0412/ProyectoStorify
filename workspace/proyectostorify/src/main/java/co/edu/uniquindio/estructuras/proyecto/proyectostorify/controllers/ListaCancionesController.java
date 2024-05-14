@@ -227,19 +227,15 @@ public class ListaCancionesController {
 				boolean confirmacion = InterfazFXUtil.mostrarConfirmacion("Eliminar canción",
 						"¿Estás seguro de que quieres eliminar esta canción?");
 				if (confirmacion) {
-					if (listaCanciones.remove(c)) {
-						undoStack.push(c, "deshacer");
-						redoStack.clear();
-						tableCanciones.getItems().remove(c);
-						((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().remove(c);
-						System.out.println(((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
-						actualizarTablaCanciones(listaCanciones);
-						InterfazFXUtil.mostrarMensaje("Canción removida", "Canción removida exitosamente.");
 
-					} else {
-						InterfazFXUtil.mostrarMensaje("No está en la lista",
-								"La canción seleccionada no se encontraba en la lista.");
-					}
+					undoStack.push(c, "deshacer");
+					redoStack.clear();
+					listaCanciones.remove(tableCanciones.getSelectionModel().getSelectedIndex());
+					System.out.println(((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());
+					System.out.println(listaCanciones.toString());
+					actualizarTablaCanciones(listaCanciones);
+					InterfazFXUtil.mostrarMensaje("Canción removida", "Canción removida exitosamente.");
+
 				}
 			} else {
 				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones guardadas del usuario está vacía.");
@@ -326,10 +322,10 @@ public class ListaCancionesController {
 	}
 
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
+		tableCanciones.getItems().clear();
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
 			listaCancionProperty.add(cancion);
-
 		}
 
 		tableCanciones.setItems(listaCancionProperty);
@@ -341,6 +337,7 @@ public class ListaCancionesController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
 		columnGeneroCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+
 		tableCanciones.refresh();
 	}
 
@@ -367,19 +364,19 @@ public class ListaCancionesController {
 			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
 		}
 	}
-	
+
 	@FXML
 	void reproducirCancion() {
-		CircularList<File> archivosCaciones=obtenerArchivosCanciones();
+		CircularList<File> archivosCaciones = obtenerArchivosCanciones();
 		mfm.mostrarReproductorAudio(archivosCaciones);
 	}
-	
+
 	public CircularList<File> obtenerArchivosCanciones() {
-		CircularList<File> archivosCaciones=new CircularList<File>();
+		CircularList<File> archivosCaciones = new CircularList<File>();
 		File archivo;
 		for (Cancion cancion : listaCanciones) {
-			archivo=TiendaUtil.obtenerArchivoAudio(cancion);
-			if (archivo!=null) {
+			archivo = TiendaUtil.obtenerArchivoAudio(cancion);
+			if (archivo != null) {
 				archivosCaciones.add(archivo);
 			}
 		}

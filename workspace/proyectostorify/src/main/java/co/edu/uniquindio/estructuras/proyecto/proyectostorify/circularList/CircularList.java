@@ -65,27 +65,33 @@ public class CircularList<E> implements Iterable<E>{
 	}
 	
 	public boolean remove(E value) {
+	    if (head == null) // Verifica si la lista está vacía
+	        return false;
+
 	    Node<E> previousNode = null;
 	    Node<E> currentNode = head;
-	    int cont=0;
-	    while (cont < size) {
-	    	cont++;
+
+	    do {
 	        if (currentNode.getValue().equals(value)) {
 	            if (previousNode != null) {
-	                // El nodo a eliminar no es el primero en la lista
 	                previousNode.setNext(currentNode.getNext());
+	                if (currentNode == endNode) // Si el nodo a eliminar es el último, actualiza endNode
+	                    endNode = previousNode;
 	            } else {
-	                // El nodo a eliminar es el primero en la lista
 	                head = currentNode.getNext();
-	                endNode.setNext(head);
+	                if (size == 1) // Si solo hay un elemento en la lista, head y endNode deben ser null
+	                    endNode = null;
+	                else
+	                    endNode.setNext(head);
 	            }
-	            this.size--;
+	            size--;
 	            return true;
 	        }
 	        previousNode = currentNode;
 	        currentNode = currentNode.getNext();
-	    }
-	    return false;
+	    } while (currentNode != head);
+
+	    return false; // El valor no se encontró en la lista
 	}
 	
 	public void removeHead() {
