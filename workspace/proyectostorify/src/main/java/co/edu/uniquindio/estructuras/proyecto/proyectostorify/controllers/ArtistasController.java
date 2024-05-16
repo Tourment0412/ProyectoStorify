@@ -206,13 +206,8 @@ public class ArtistasController {
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		CircularList<Cancion> playlist = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
-		if(!playlist.contains(c)) {
-			playlist.add(c);
-			InterfazFXUtil.mostrarMensaje("Cancion guardada", "Cancion Guardada En PlayList");
-		}else {
-			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
-		}
+		mfm.guardarPlayListUsuario(c);
+		
 		
 	}
 

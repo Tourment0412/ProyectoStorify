@@ -41,6 +41,8 @@ public class ModelFactoryController {
 	
 	
 	
+	
+	
 	private static class SingletonHolder { 
 		// El constructor de Singleton puede ser llamado desde aqu� al ser protected
 		private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
@@ -248,6 +250,16 @@ public class ModelFactoryController {
 	
 	public void mostrarReproductorAudio(CircularList<File> archivos) {
 		this.getAplicacion().reproducirCancion(archivos);
+	}
+
+	public void guardarPlayListUsuario(Cancion c) {
+		// TODO Auto-generated method stub
+		tiendaMusica.guardarPlayListUsuario(c, (Usuario)usuarioSesion);
+	}
+
+	public void eliminarCancionPlayListUsuario(Cancion c) {
+		// TODO Auto-generated method stub
+		tiendaMusica.eliminarCancionPlayListUsuario(c, (Usuario)usuarioSesion);
 	}
 
  }

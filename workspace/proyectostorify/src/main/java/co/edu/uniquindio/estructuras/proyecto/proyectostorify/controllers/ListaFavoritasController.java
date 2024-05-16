@@ -171,8 +171,8 @@ public class ListaFavoritasController {
 	
 	private CircularList<Cancion> listaCanciones;
 	
-	private Stack<Cancion> undoStack = new Stack<>();
-	private Stack<Cancion> redoStack = new Stack<>();
+	private Stack<CircularList<Cancion>> undoStack = new Stack<>();
+	private Stack<CircularList<Cancion>> redoStack = new Stack<>();
 
 	@FXML
 	void initialize() {
@@ -201,10 +201,11 @@ public class ListaFavoritasController {
 		if (c != null) {
 			if (listaCanciones != null) {
 				if (listaCanciones.remove(c)) {
-					undoStack.push(c, "deshacer");
 					redoStack.clear();
-					tableCanciones.getItems().remove(c);
+					tableCanciones.getItems().clear();
 					listaCanciones.remove(c);
+					undoStack.push(listaCanciones, "deshacer");
+					System.out.println(listaCanciones.size());
 					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
 				} else {
 					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
@@ -301,10 +302,10 @@ public class ListaFavoritasController {
 	@FXML
 	void deshacer(ActionEvent event) {
 		if (!undoStack.isEmpty()) {
-			Cancion operacionDeshacer = undoStack.pop();
-			listaCanciones.add(operacionDeshacer);
+			CircularList<Cancion> listaPrev = undoStack.pop();
+			redoStack.push(listaCanciones, "deshacer");
+			listaCanciones=listaPrev;
 			actualizarTablaCanciones(listaCanciones);
-			redoStack.push(operacionDeshacer, "deshacer");
 		} else {
 			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
 		}
@@ -313,10 +314,9 @@ public class ListaFavoritasController {
 	@FXML
 	void rehacer(ActionEvent event) {
 		if (!redoStack.isEmpty()) {
-			Cancion operacionRehacer = redoStack.pop();
-			listaCanciones.add(operacionRehacer);
+			CircularList<Cancion> listaPrev = redoStack.pop();
+			listaCanciones = listaPrev;
 			actualizarTablaCanciones(listaCanciones);
-			undoStack.push(operacionRehacer, "rehacer");
 		} else {
 			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
 		}

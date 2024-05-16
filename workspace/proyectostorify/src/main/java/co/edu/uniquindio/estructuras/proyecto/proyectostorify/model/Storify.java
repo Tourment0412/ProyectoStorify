@@ -6,6 +6,7 @@ import java.util.Iterator;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.BinaryTree;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -245,6 +246,28 @@ public class Storify {
 		// TODO Auto-generated method stub
 		for (Artista a : lstArtistas) {
 			a.getLstCanciones().agregar(cancion);
+		}
+	}
+
+	public void guardarPlayListUsuario(Cancion c, Usuario u) {
+		// TODO Auto-generated method stub
+		CircularList<Cancion> playlist = u.getLstCancionesGuardadas();
+		if(!playlist.contains(c)) {
+			playlist.add(c);
+			InterfazFXUtil.mostrarMensaje("Cancion guardada", "Cancion Guardada En PlayList");
+		}else {
+			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
+		}
+	}
+
+	public void eliminarCancionPlayListUsuario(Cancion c, Usuario usuarioSesion) {
+		// TODO Auto-generated method stub
+		CircularList<Cancion> playlist = usuarioSesion.getLstCancionesGuardadas();
+		if(playlist.indexOf(c)!=-1) {
+			playlist.remove(playlist.indexOf(c));
+			InterfazFXUtil.mostrarMensaje("Cancion Eliminada", "Cancion Eliminada de su PlayList");
+		}else {
+			InterfazFXUtil.mostrarMensaje("Cancion no Encontrada", "La cancion no se encuentra en su PlayList");
 		}
 	}
 

@@ -3,6 +3,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 import java.util.Iterator;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 
 public class CircularList<E> implements Iterable<E>{
 	
@@ -64,58 +65,89 @@ public class CircularList<E> implements Iterable<E>{
 		return node.getValue();
 	}
 	
-	public boolean remove(E value) {
-	    if (head == null) // Verifica si la lista está vacía
-	        return false;
-
-	    Node<E> previousNode = null;
+	public boolean remove(E valueToRemove) {
+	    if (head == null) {
+	        return false; // La lista está vacía, no hay nada que eliminar
+	    }
+	    
+	    Node<E> prevNode = null;
 	    Node<E> currentNode = head;
-
-	    do {
-	        if (currentNode.getValue().equals(value)) {
-	            if (previousNode != null) {
-	                previousNode.setNext(currentNode.getNext());
-	                if (currentNode == endNode) // Si el nodo a eliminar es el último, actualiza endNode
-	                    endNode = previousNode;
-	            } else {
+	    
+	    while (currentNode != null) {
+	        if (currentNode.getValue().equals(valueToRemove)) {
+	            if (prevNode == null) {
+	                // El valor a eliminar está en el primer nodo
 	                head = currentNode.getNext();
-	                if (size == 1) // Si solo hay un elemento en la lista, head y endNode deben ser null
-	                    endNode = null;
-	                else
-	                    endNode.setNext(head);
+	            } else {
+	                // El valor a eliminar está en algún lugar intermedio o en el último nodo
+	                prevNode.setNext(currentNode.getNext());
+	                if (currentNode.getNext() == null) {
+	                    endNode = prevNode; // Actualizar el endNode si se eliminó el último nodo
+	                }
 	            }
 	            size--;
-	            return true;
+	            return true; // Se encontró y eliminó el valor
 	        }
-	        previousNode = currentNode;
+	        prevNode = currentNode;
 	        currentNode = currentNode.getNext();
-	    } while (currentNode != head);
-
-	    return false; // El valor no se encontró en la lista
+	    }
+	    
+	    return false; // No se encontró el valor en la lista
 	}
+
 	
 	public void removeHead() {
 		endNode.setNext(head.getNext());
 		head=head.getNext();
 	}
 	
+//	public void remove(int index) {
+//		if (index<0 || index>=size) {
+//			throw new IndexOutOfBoundsException();
+//		}
+//		int cont=0;
+//		Node<E> previusNode=endNode;
+//		Node<E> actualNode=head;
+//		while (true) {
+//			if (cont==index) {
+//				previusNode.setNext(actualNode.getNext());
+//				break;
+//			}
+//			previusNode=actualNode;
+//			actualNode=actualNode.getNext();
+//			cont++;
+//		}
+//		size--;
+//	}
+	
 	public void remove(int index) {
-		if (index<0 || index>=size) {
-			throw new IndexOutOfBoundsException();
-		}
-		int cont=0;
-		Node<E> previusNode=endNode;
-		Node<E> actualNode=head;
-		while (true) {
-			if (cont==index) {
-				previusNode.setNext(actualNode.getNext());
-				break;
-			}
-			previusNode=actualNode;
-			actualNode=actualNode.getNext();
-			cont++;
-		}
-		size--;
+	    if (index < 0 || index >= size) {
+	        throw new IndexOutOfBoundsException();
+	    }
+	    
+	    if (index == 0) {
+	        head = head.getNext();
+	        if (head == null) {
+	            endNode = null;
+	        }
+	    } else {
+	        Node<E> previusNode = getNode(index - 1);
+	        Node<E> actualNode = previusNode.getNext();
+	        previusNode.setNext(actualNode.getNext());
+	        if (previusNode.getNext() == null) {
+	            endNode = previusNode;
+	        }
+	    }
+	    
+	    size--;
+	}
+	
+	private Node<E> getNode(int index) {
+	    Node<E> node = head;
+	    for (int i = 0; i < index; i++) {
+	        node = node.getNext();
+	    }
+	    return node;
 	}
 	
 	public int indexOf(E value) {
@@ -279,6 +311,8 @@ public class CircularList<E> implements Iterable<E>{
 	public interface Comparation<E> {
 		boolean comparation(E value);
 	}
+
+	
 
 	
 
