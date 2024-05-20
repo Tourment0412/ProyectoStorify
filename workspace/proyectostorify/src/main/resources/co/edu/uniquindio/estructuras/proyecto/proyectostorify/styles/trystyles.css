@@ -96,10 +96,19 @@
     -fx-text-fill: white;
 }
 
+/* Aumentar el tamaño de letra de .title */
 .title {
     -fx-font-family: "Arial black";
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 20px !important; /* Tamaño de letra aumentado con !important */
+    -fx-text-fill: white;
+}
+
+/* Nueva clase .subtitle con las propiedades originales de .title */
+.subtitle {
+    -fx-font-family: "Arial black";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px; /* Tamaño de letra original de .title */
     -fx-text-fill: white;
 }
 
@@ -140,7 +149,7 @@
 }
 
 /* Cambios en los text-fields */
-.text-field {
+.text-field, .password-field {
     -fx-background-radius: 10;
     -fx-background-color: #404040; /* Gris oscuro */
     -fx-border-color: transparent;

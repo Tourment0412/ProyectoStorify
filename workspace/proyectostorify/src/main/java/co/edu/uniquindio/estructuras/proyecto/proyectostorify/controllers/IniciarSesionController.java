@@ -3,17 +3,20 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.*;
-import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Administrador;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -45,7 +48,7 @@ public class IniciarSesionController {
 	private Label lblTitulo;
 
 	@FXML
-	private TextField txtContrasenia;
+    private PasswordField txtContrasenia;
 
 	@FXML
 	private TextField txtNombre;

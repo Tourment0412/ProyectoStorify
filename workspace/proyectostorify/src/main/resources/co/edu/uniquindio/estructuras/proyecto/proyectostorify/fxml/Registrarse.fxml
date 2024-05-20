@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" style="-fx-background-color: #8888FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.RegistrarseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.RegistrarseController">
    <children>
-      <TextField fx:id="txtNombre" layoutX="239.0" layoutY="76.0" />
-      <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="158.0" />
-      <Label fx:id="lblNombre" layoutX="171.0" layoutY="76.0" text="Nombre:" />
-      <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="158.0" text="Contrasenia:" />
-      <Button fx:id="btnIniciarSesion" layoutX="431.0" layoutY="228.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar Sesion" />
-      <Label fx:id="lblTitulo" layoutX="244.0" layoutY="22.0" text="Registro">
+      <TextField fx:id="txtNombre" layoutX="239.0" layoutY="76.0" stylesheets="@../styles/trystyles.css" />
+      <TextField fx:id="txtContrasenia" layoutX="239.0" layoutY="158.0" stylesheets="@../styles/trystyles.css" />
+      <Label fx:id="lblNombre" layoutX="171.0" layoutY="76.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Nombre:" />
+      <Label fx:id="lblContrasenia" layoutX="153.0" layoutY="158.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Contrasenia:" />
+      <Button fx:id="btnIniciarSesion" layoutX="421.0" layoutY="228.0" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Iniciar Sesion" />
+      <Label fx:id="lblTitulo" layoutX="218.0" layoutY="20.0" styleClass="title" stylesheets="@../styles/trystyles.css" text="Registro">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <TextField fx:id="txtEmail" layoutX="239.0" layoutY="118.0" />
-      <Label fx:id="lblEmail" layoutX="185.0" layoutY="120.0" text="Email:" />
-      <Button fx:id="btnRegistrarse" layoutX="221.0" layoutY="202.0" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" />
-      <Label layoutX="414.0" layoutY="206.0" text="¿Ya tienes una cuenta?" />
+      <TextField fx:id="txtEmail" layoutX="239.0" layoutY="118.0" stylesheets="@../styles/trystyles.css" />
+      <Label fx:id="lblEmail" layoutX="185.0" layoutY="120.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Email:" />
+      <Button fx:id="btnRegistrarse" layoutX="221.0" layoutY="202.0" mnemonicParsing="false" onAction="#registrarse" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Registrarse" />
+      <Label layoutX="400.0" layoutY="206.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="¿Ya tienes una cuenta?" />
    </children>
 </AnchorPane>
