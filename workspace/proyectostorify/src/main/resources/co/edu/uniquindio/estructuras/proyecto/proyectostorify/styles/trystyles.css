@@ -139,11 +139,10 @@
     -fx-text-fill: white;
 }
 
+/* Cambios en los text-fields */
 .text-field {
-    -fx-padding: 12 5 12 5;
     -fx-background-radius: 10;
-    -fx-background-color: #f1f4f5;
+    -fx-background-color: #404040; /* Gris oscuro */
     -fx-border-color: transparent;
-    -fx-font-size: 15;
     -fx-text-fill: white;
 }
