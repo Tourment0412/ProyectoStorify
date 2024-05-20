@@ -1,0 +1,135 @@
+/* Estilo general para todos los botones */
+.button, #btn-seleccion, #buscar, #alejo, .boton-principal, .boton-cancelar, .boton-gris {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+/* Hovers y pressed se mantienen como están */
+.button:hover {
+    -fx-background-color: #3d94ea;
+}
+
+.button:pressed {
+    -fx-background-color: #61a7ee;
+}
+
+#btn-seleccion:hover {
+    -fx-background-color: #b9d8f7;
+}
+
+#btn-seleccion:pressed {
+    -fx-background-color: #96c5f4;
+}
+
+#buscar:hover {
+    -fx-background-color: #e6eaed;
+}
+
+#alejo:hover {
+    -fx-background-color: #e6eaed;
+}
+
+.boton-principal:hover {
+    -fx-background-color: #f1f4f5;
+}
+
+.boton-principal:pressed {
+    -fx-background-color: #e6eaed;
+}
+
+.boton-cancelar:hover {
+    -fx-background-color: #f1f4f5;
+}
+
+.boton-gris:hover {
+    -fx-background-color: #e6eaed;
+}
+
+.boton-gris:pressed {
+    -fx-background-color: #dbe0e5;
+}
+
+/* Estilos específicos para botones deshabilitados */
+.button:disabled {
+    -fx-background-color: #e85e5e;
+    -fx-opacity: 1;
+}
+
+#btn-seleccion:disabled {
+    -fx-background-color: #1a80e6;
+    -fx-opacity: 1;
+}
+
+#btn-seleccion:disabled .label {
+    -fx-text-fill: white;
+}
+
+#btn-seleccion:disabled .label:disabled {
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.boton-lateral:disabled {
+    -fx-background-color: #e6eaed;
+}
+
+/* Otros estilos permanecen sin cambios */
+.separator .line {
+    -fx-background-color: #e6eaed;
+    -fx-pref-height: 1;
+    -fx-border-color: null;
+}
+
+#nopadding {
+    -fx-padding: 0;
+}
+
+.button .text, .boton-principal .text {
+    -fx-font-family: "Arial black";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+}
+
+.title {
+    -fx-font-family: "Arial black";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+}
+
+#textBold {
+    -fx-font-family: "Arial black";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#bigtitle {
+    -fx-font-family: "Arial black";
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+}
+
+.bigtext {
+    -fx-font-size: 15px;
+}
+
+.boton-perfil {
+    -fx-padding: 5;
+    -fx-background-radius: 5;
+}
+
+#boton-lateral {
+    -fx-alignment: center-left;
+}
+
+.text-field {
+    -fx-padding: 12 5 12 5;
+    -fx-background-radius: 10;
+    -fx-background-color: #f1f4f5;
+    -fx-border-color: transparent;
+    -fx-font-size: 15;
+}
