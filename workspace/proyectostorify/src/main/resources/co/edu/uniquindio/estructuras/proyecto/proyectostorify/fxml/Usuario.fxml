@@ -5,17 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.UsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="854.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.UsuarioController">
    <children>
-      <Button layoutX="138.0" layoutY="15.0" mnemonicParsing="false" onAction="#cancionesGuardadas" styleClass="boton-gris" stylesheets="@../styles/essentialstyle.css" text="Canciones Favoritas" />
-      <Button layoutX="37.0" layoutY="15.0" mnemonicParsing="false" onAction="#listaCanciones" styleClass="boton-gris" stylesheets="@../styles/essentialstyle.css" text="PlayList" />
-      <Button layoutX="307.0" layoutY="15.0" mnemonicParsing="false" onAction="#listaArtistas" styleClass="boton-gris" stylesheets="@../styles/essentialstyle.css" text="Lista de artistas" />
-      <Button layoutX="736.0" layoutY="15.0" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="boton-gris" stylesheets="@../styles/essentialstyle.css" text="Cerrar sesion" />
+      <Button layoutX="138.0" layoutY="21.0" mnemonicParsing="false" onAction="#cancionesGuardadas" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Canciones Favoritas" />
+      <Button layoutX="37.0" layoutY="21.0" mnemonicParsing="false" onAction="#listaCanciones" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="PlayList" />
+      <Button layoutX="307.0" layoutY="21.0" mnemonicParsing="false" onAction="#listaArtistas" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Lista de artistas" />
+      <Button layoutX="739.0" layoutY="21.0" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Cerrar sesion" />
       <AnchorPane fx:id="panel" layoutX="37.0" layoutY="54.0" prefHeight="560.0" prefWidth="780.0" />
-      <Label layoutX="571.0" layoutY="25.0" styleClass="title" stylesheets="@../styles/essentialstyle.css" text="Usuario:">
+      <Label layoutX="548.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Usuario:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblUsuario" layoutX="635.0" layoutY="25.0" styleClass="text" stylesheets="@../styles/essentialstyle.css" text="Label" />
+      <Label fx:id="lblUsuario" layoutX="612.0" layoutY="25.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Label" />
    </children>
 </AnchorPane>
