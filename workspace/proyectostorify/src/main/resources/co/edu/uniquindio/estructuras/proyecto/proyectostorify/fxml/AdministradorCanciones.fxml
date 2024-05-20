@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -16,10 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: #FF7777;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorCancionesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorCancionesController">
    <children>
-      <Label fx:id="lblNombreArtista" layoutX="78.0" layoutY="98.0" text="Nombre" />
-      <Button fx:id="btnBuscarNombre" layoutX="320.0" layoutY="93.0" mnemonicParsing="false" text="Buscar" />
+      <Label fx:id="lblNombreArtista" layoutX="78.0" layoutY="91.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre" />
+      <Button fx:id="btnBuscarNombre" layoutX="320.0" layoutY="88.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Buscar" />
       <TableView fx:id="tableArtistas" layoutX="78.0" layoutY="124.0" prefHeight="147.0" prefWidth="372.0">
         <columns>
           <TableColumn fx:id="columnCodigo" prefWidth="75.0" text="Codigo" />
@@ -36,33 +31,33 @@
             <TableColumn fx:id="columnGenero" prefWidth="92.7999267578125" text="Genero" />
         </columns>
       </TableView>
-      <Label fx:id="lblCanciones" layoutX="78.0" layoutY="336.0" text="Canciones" />
+      <Label fx:id="lblCanciones" layoutX="78.0" layoutY="336.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Canciones" />
       <Separator layoutX="57.0" layoutY="326.0" prefHeight="0.0" prefWidth="414.0" />
       <Separator layoutX="511.0" layoutY="53.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="0.0" />
-      <Label fx:id="lblTitulo" layoutX="319.0" layoutY="14.0" text="Gestion de Canciones">
+      <Label fx:id="lblTitulo" layoutX="319.0" layoutY="14.0" styleClass="title" stylesheets="@../styles/trystyles.css" text="Gestion de Canciones">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="lblNombreCancion" layoutX="556.0" layoutY="300.0" text="Cancion:" />
-      <Label fx:id="lblAlbum" layoutX="560.0" layoutY="334.0" text="Album:" />
-      <Label fx:id="lblAnioCancion" layoutX="575.0" layoutY="370.0" text="Año:" />
-      <Label fx:id="lblDuracionCancion" layoutX="553.0" layoutY="407.0" text="Duracion:" />
-      <Label fx:id="lblUrlCancion" layoutX="581.0" layoutY="445.0" text="Url:" />
-      <Label fx:id="lblGeneroCancion" layoutX="557.0" layoutY="474.0" text="Genero:" />
+      <Label fx:id="lblNombreCancion" layoutX="556.0" layoutY="300.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Cancion:" />
+      <Label fx:id="lblAlbum" layoutX="560.0" layoutY="334.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Album:" />
+      <Label fx:id="lblAnioCancion" layoutX="575.0" layoutY="370.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Año:" />
+      <Label fx:id="lblDuracionCancion" layoutX="553.0" layoutY="407.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Duracion:" />
+      <Label fx:id="lblUrlCancion" layoutX="581.0" layoutY="445.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Url:" />
+      <Label fx:id="lblGeneroCancion" layoutX="557.0" layoutY="474.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="txtBuscarNombre" layoutX="133.0" layoutY="94.0" />
-      <Button fx:id="btnSeleccionarCaratula" layoutX="586.0" layoutY="255.0" mnemonicParsing="false" onAction="#seleccionarCaratula" text="Seleccionar Caratula" />
-      <TextField fx:id="txtCancion" layoutX="620.0" layoutY="296.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtAlbum" layoutX="620.0" layoutY="331.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtAnio" layoutX="620.0" layoutY="368.0" prefHeight="31.0" prefWidth="150.0" />
-      <TextField fx:id="txtDuracion" layoutX="620.0" layoutY="404.0" prefHeight="31.0" prefWidth="150.0" />
-      <ComboBox fx:id="cmbGenero" layoutX="620.0" layoutY="470.0" prefWidth="150.0" />
-      <Button fx:id="btnGuardar" layoutX="674.0" layoutY="506.0" mnemonicParsing="false" onAction="#guardarCancion" text="Guardar" />
-      <Button layoutX="564.0" layoutY="506.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
-      <Button fx:id="btnVolver" layoutX="88.0" layoutY="519.0" mnemonicParsing="false" text="Volver" />
-      <Button fx:id="btnEliminar" layoutX="216.0" layoutY="516.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnSeleccionarArtista" layoutX="79.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarArtista" text="Seleccionar Artista" />
-      <Button layoutX="620.0" layoutY="437.0" mnemonicParsing="false" onAction="#seleccionarAudioCancion" prefWidth="150.0" text="Poner cancion" />
-      <Button layoutX="319.0" layoutY="516.0" mnemonicParsing="false" onAction="#reproducirAudioCancion" text="Reproducir" />
+      <TextField fx:id="txtBuscarNombre" layoutX="133.0" layoutY="87.0" stylesheets="@../styles/trystyles.css" />
+      <Button fx:id="btnSeleccionarCaratula" layoutX="586.0" layoutY="255.0" mnemonicParsing="false" onAction="#seleccionarCaratula" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Seleccionar Caratula" />
+      <TextField fx:id="txtCancion" layoutX="620.0" layoutY="296.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
+      <TextField fx:id="txtAlbum" layoutX="620.0" layoutY="331.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
+      <TextField fx:id="txtAnio" layoutX="620.0" layoutY="368.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
+      <TextField fx:id="txtDuracion" layoutX="620.0" layoutY="404.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
+      <ComboBox fx:id="cmbGenero" layoutX="620.0" layoutY="470.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
+      <Button fx:id="btnGuardar" layoutX="674.0" layoutY="506.0" mnemonicParsing="false" onAction="#guardarCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar" />
+      <Button layoutX="564.0" layoutY="506.0" mnemonicParsing="false" onAction="#actualizar" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Actualizar" />
+      <Button fx:id="btnVolver" layoutX="88.0" layoutY="515.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Volver" />
+      <Button fx:id="btnEliminar" layoutX="208.0" layoutY="516.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar" />
+      <Button fx:id="btnSeleccionarArtista" layoutX="79.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarArtista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Seleccionar Artista" />
+      <Button layoutX="620.0" layoutY="441.0" mnemonicParsing="false" onAction="#seleccionarAudioCancion" prefWidth="150.0" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Poner cancion" />
+      <Button layoutX="319.0" layoutY="516.0" mnemonicParsing="false" onAction="#reproducirAudioCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
    </children>
 </AnchorPane>

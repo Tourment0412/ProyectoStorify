@@ -10,7 +10,7 @@
       <Button layoutX="138.0" layoutY="21.0" mnemonicParsing="false" onAction="#cancionesGuardadas" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Canciones Favoritas" />
       <Button layoutX="37.0" layoutY="21.0" mnemonicParsing="false" onAction="#listaCanciones" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="PlayList" />
       <Button layoutX="307.0" layoutY="21.0" mnemonicParsing="false" onAction="#listaArtistas" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Lista de artistas" />
-      <Button layoutX="739.0" layoutY="21.0" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Cerrar sesion" />
+      <Button layoutX="739.0" layoutY="18.0" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Cerrar sesion" />
       <AnchorPane fx:id="panel" layoutX="37.0" layoutY="54.0" prefHeight="560.0" prefWidth="780.0" />
       <Label layoutX="548.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Usuario:">
          <font>

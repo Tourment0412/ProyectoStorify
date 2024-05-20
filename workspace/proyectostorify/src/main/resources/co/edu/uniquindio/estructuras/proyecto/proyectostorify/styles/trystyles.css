@@ -155,3 +155,52 @@
     -fx-border-color: transparent;
     -fx-text-fill: white;
 }
+
+/* Estilo del ComboBox */
+.combo-box {
+    -fx-background-color: #404040; /* Fondo gris oscuro */
+    -fx-text-inner-color: white; /* Color del texto dentro del ComboBox */
+}
+
+/* Estilo del desplegable del ComboBox */
+.combo-box-popup .list-view {
+    -fx-background-color: #404040; /* Fondo gris oscuro */
+    -fx-text-fill: white; /* Letras blancas */
+}
+
+/* Estilo del item seleccionado en la lista desplegable */
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #595959; /* Fondo azul */
+    -fx-text-fill: white; /* Letras blancas */
+}
+
+/* Estilo del item no seleccionado en la lista desplegable */
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: #404040; /* Fondo gris oscuro */
+    -fx-text-fill: white; /* Letras blancas */
+}
+
+/* Estilo del ícono desplegable del ComboBox */
+.combo-box .arrow-button {
+    -fx-background-color: #404040; /* Fondo gris oscuro */
+    -fx-text-fill: white; /* Letras blancas */
+}
+
+/* Estilo del botón presionado del ComboBox */
+.combo-box .arrow-button:pressed {
+    -fx-background-color: #1a80e6; /* Fondo azul */
+    -fx-text-fill: white; /* Letras blancas */
+}
+
+/* Estilo del botón al pasar el ratón sobre el ComboBox */
+.combo-box-base .list-cell{
+    -fx-text-fill: white; /* Letras blancas */
+   /* Color del texto dentro del ComboBox */
+}
+
+.combo-box .arrow-button:hover {
+    -fx-background-color: #595959; /* Fondo gris más oscuro */
+    
+}
+
+
