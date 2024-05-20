@@ -171,8 +171,8 @@ public class ListaFavoritasController {
 	
 	private CircularList<Cancion> listaCanciones;
 	
-	private Stack<CircularList<Cancion>> undoStack = new Stack<>();
-	private Stack<CircularList<Cancion>> redoStack = new Stack<>();
+	private Stack<Cancion> undoStack = new Stack<>();
+	private Stack<Cancion> redoStack = new Stack<>();
 
 	@FXML
 	void initialize() {
@@ -200,21 +200,20 @@ public class ListaFavoritasController {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if (c != null) {
 			if (listaCanciones != null) {
-				if (listaCanciones.remove(c)) {
-					redoStack.clear();
-					tableCanciones.getItems().clear();
-					listaCanciones.remove(c);
-					undoStack.push(listaCanciones, "deshacer");
-					System.out.println(listaCanciones.size());
-					InterfazFXUtil.mostrarMensaje("Cancion removida","Canción removida exitosamente.");
-				} else {
-					InterfazFXUtil.mostrarMensaje("No esta en la lista","La canción seleccionada no se encontraba en la lista.");
+				
+				boolean confirmacion = InterfazFXUtil.mostrarConfirmacion("Eliminar canción",
+						"¿Estás seguro de que quieres eliminar esta canción?");
+				if (confirmacion) {
+					undoStack.push(c, "eliminacion");
+					tableCanciones.getItems().remove(c);
+					mfm.eliminarCancionFavoritatUsuario(c);
+					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas());
 				}
 			} else {
-				InterfazFXUtil.mostrarMensaje("Lista vacia","La lista de canciones guardadas del usuario esta vacia.");
+				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones favoritas del usuario está vacía.");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor, seleccione una canción de la lista.");
+			InterfazFXUtil.mostrarMensaje("Canción no seleccionada", "Por favor, seleccione una canción de la lista.");
 		}
 	}
 
@@ -302,10 +301,21 @@ public class ListaFavoritasController {
 	@FXML
 	void deshacer(ActionEvent event) {
 		if (!undoStack.isEmpty()) {
-			CircularList<Cancion> listaPrev = undoStack.pop();
-			redoStack.push(listaCanciones, "deshacer");
-			listaCanciones=listaPrev;
-			actualizarTablaCanciones(listaCanciones);
+		String operacion = undoStack.headAction();
+		Cancion operacionDeshacer = undoStack.pop();
+		switch (operacion) {
+		    case "eliminacion":
+				mfm.guardarPlayListUsuario(operacionDeshacer);
+				actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
+				undoStack.push(operacionDeshacer, "insercion");
+				break;
+		    case "insersion":
+		    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
+		    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
+		    	undoStack.push(operacionDeshacer, "eliminacion");
+				break;
+		}
+			
 		} else {
 			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
 		}
@@ -314,9 +324,20 @@ public class ListaFavoritasController {
 	@FXML
 	void rehacer(ActionEvent event) {
 		if (!redoStack.isEmpty()) {
-			CircularList<Cancion> listaPrev = redoStack.pop();
-			listaCanciones = listaPrev;
-			actualizarTablaCanciones(listaCanciones);
+			String operacion = redoStack.getHead().getAction();
+			Cancion operacionDeshacer = redoStack.pop();
+			switch (operacion) {
+			    case "eliminacion":
+					mfm.guardarFavoritatUsuario(operacionDeshacer);
+					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas());
+					undoStack.push(operacionDeshacer, "insercion");
+					break;
+			    case "insersion":
+			    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
+			    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas());
+					undoStack.push(operacionDeshacer, "eliminacion");
+					break;
+			}
 		} else {
 			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
 		}

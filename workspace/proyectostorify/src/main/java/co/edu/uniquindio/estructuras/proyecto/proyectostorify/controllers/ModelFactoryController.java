@@ -256,10 +256,18 @@ public class ModelFactoryController {
 		// TODO Auto-generated method stub
 		tiendaMusica.guardarPlayListUsuario(c, (Usuario)usuarioSesion);
 	}
+	
+	public void guardarFavoritatUsuario(Cancion c) {
+		// TODO Auto-generated method stub
+		tiendaMusica.guardarCancionFavoritaUsuario(c, (Usuario)usuarioSesion);
+	}
 
 	public void eliminarCancionPlayListUsuario(Cancion c) {
-		// TODO Auto-generated method stub
-		tiendaMusica.eliminarCancionPlayListUsuario(c, (Usuario)usuarioSesion);
+		tiendaMusica.eliminarCancionGuardada(c, (Usuario)usuarioSesion);
+	}
+	
+	public void eliminarCancionFavoritatUsuario(Cancion c) {
+		tiendaMusica.eliminarCancionFavorita(c, (Usuario)usuarioSesion);
 	}
 
  }

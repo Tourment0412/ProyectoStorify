@@ -201,14 +201,14 @@ public class ListaCancionesController {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if (c != null) {
 			if (listaCanciones != null) {
+				
 				boolean confirmacion = InterfazFXUtil.mostrarConfirmacion("Eliminar canción",
 						"¿Estás seguro de que quieres eliminar esta canción?");
 				if (confirmacion) {
-					mfm.eliminarCancionPlayListUsuario(c);
 					undoStack.push(c, "eliminacion");
 					tableCanciones.getItems().remove(c);
+					mfm.eliminarCancionPlayListUsuario(c);
 					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-					System.out.println(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas().size());;
 				}
 			} else {
 				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones guardadas del usuario está vacía.");
@@ -301,6 +301,7 @@ public class ListaCancionesController {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
 			listaCancionProperty.add(cancion);
+			System.out.println(cancion);
 		}
 
 		tableCanciones.setItems(listaCancionProperty);
@@ -325,12 +326,12 @@ public class ListaCancionesController {
 		    case "eliminacion":
 				mfm.guardarPlayListUsuario(operacionDeshacer);
 				actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-				redoStack.push(operacionDeshacer, "insercion");
+				undoStack.push(operacionDeshacer, "insercion");
 				break;
 		    case "insersion":
 		    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
 		    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-				redoStack.push(operacionDeshacer, "eliminacion");
+		    	undoStack.push(operacionDeshacer, "eliminacion");
 				break;
 		}
 			
@@ -341,9 +342,9 @@ public class ListaCancionesController {
 
 	@FXML
 	void rehacer(ActionEvent event) {
-		if (!undoStack.isEmpty()) {
-			String operacion = undoStack.getHead().getAction();
-			Cancion operacionDeshacer = undoStack.pop();
+		if (!redoStack.isEmpty()) {
+			String operacion = redoStack.getHead().getAction();
+			Cancion operacionDeshacer = redoStack.pop();
 			switch (operacion) {
 			    case "eliminacion":
 					mfm.guardarPlayListUsuario(operacionDeshacer);

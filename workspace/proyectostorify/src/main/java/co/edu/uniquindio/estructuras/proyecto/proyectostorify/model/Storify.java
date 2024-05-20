@@ -259,16 +259,27 @@ public class Storify {
 			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
 		}
 	}
-
-	public void eliminarCancionPlayListUsuario(Cancion c, Usuario usuarioSesion) {
+	
+	public void guardarCancionFavoritaUsuario(Cancion c, Usuario u) {
 		// TODO Auto-generated method stub
-		CircularList<Cancion> playlist = usuarioSesion.getLstCancionesGuardadas();
-		if(playlist.indexOf(c)!=-1) {
-			playlist.remove(playlist.indexOf(c));
-			InterfazFXUtil.mostrarMensaje("Cancion Eliminada", "Cancion Eliminada de su PlayList");
+		CircularList<Cancion> favoritas = u.getLstCancionesFavoritas();
+		if(!favoritas.contains(c)) {
+			favoritas.add(c);
+			InterfazFXUtil.mostrarMensaje("Cancion guardada", "Cancion Guardada En PlayList");
 		}else {
-			InterfazFXUtil.mostrarMensaje("Cancion no Encontrada", "La cancion no se encuentra en su PlayList");
+			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
 		}
+	}
+
+	public void eliminarCancionGuardada(Cancion cancion, Usuario usuario) {
+		// TODO Auto-generated method stub
+		usuario.getLstCancionesGuardadas().remove(cancion);
+
+	}
+
+	public void eliminarCancionFavorita(Cancion cancion, Usuario usuario) {
+		// TODO Auto-generated method stub
+		usuario.getLstCancionesFavoritas().remove(cancion);
 	}
 
 }

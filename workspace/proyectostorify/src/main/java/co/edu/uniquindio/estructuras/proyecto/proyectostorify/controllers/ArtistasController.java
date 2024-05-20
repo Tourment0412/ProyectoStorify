@@ -219,9 +219,10 @@ public class ArtistasController {
 	@FXML
     void mostrarCancionesArtista(MouseEvent event) {
     	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
-    	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
-    	actualizarTablaCanciones(cancionesArtista);
-    	
+    	if (artista!=null) {
+        	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
+        	actualizarTablaCanciones(cancionesArtista);
+    	}
     	
     }
 
