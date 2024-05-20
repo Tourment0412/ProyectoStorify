@@ -4,6 +4,11 @@
     -fx-text-fill: white;
 }
 
+/* Estilo de los textos y títulos */
+.title, .label, #textBold, #bigtitle, .bigtext {
+    -fx-text-fill: white;
+}
+
 /* Hovers y pressed se mantienen como están */
 .button:hover {
     -fx-background-color: #3d94ea;
@@ -42,11 +47,11 @@
 }
 
 .boton-gris:hover {
-    -fx-background-color: #e6eaed;
+    -fx-background-color: #595959;
 }
 
 .boton-gris:pressed {
-    -fx-background-color: #dbe0e5;
+    -fx-background-color: #6d6c6c;
 }
 
 /* Estilos específicos para botones deshabilitados */
@@ -88,42 +93,50 @@
     -fx-font-family: "Arial black";
     -fx-font-weight: bold;
     -fx-font-size: 10px;
+    -fx-text-fill: white;
 }
 
 .title {
     -fx-font-family: "Arial black";
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+    -fx-text-fill: white;
 }
 
 .label {
     -fx-font-family: "Arial";
     -fx-font-size: 12px;
+    -fx-text-fill: white;
 }
 
 #textBold {
     -fx-font-family: "Arial black";
     -fx-font-weight: bold;
     -fx-font-size: 16px;
+    -fx-text-fill: white;
 }
 
 #bigtitle {
     -fx-font-family: "Arial black";
     -fx-font-weight: bold;
     -fx-font-size: 25px;
+    -fx-text-fill: white;
 }
 
 .bigtext {
     -fx-font-size: 15px;
+    -fx-text-fill: white;
 }
 
 .boton-perfil {
     -fx-padding: 5;
     -fx-background-radius: 5;
+    -fx-text-fill: white;
 }
 
 #boton-lateral {
     -fx-alignment: center-left;
+    -fx-text-fill: white;
 }
 
 .text-field {
@@ -132,4 +145,5 @@
     -fx-background-color: #f1f4f5;
     -fx-border-color: transparent;
     -fx-font-size: 15;
+    -fx-text-fill: white;
 }
