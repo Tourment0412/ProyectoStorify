@@ -33,7 +33,7 @@
       <Label fx:id="lblAnioDeLaCancion" layoutX="165.0" layoutY="119.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Año:" />
       <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre del album:" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
-      <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" />
+      <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
       <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda conjuntiva" />
       <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda disyuntiva" />
       <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="266.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="200.0" prefWidth="395.0">
