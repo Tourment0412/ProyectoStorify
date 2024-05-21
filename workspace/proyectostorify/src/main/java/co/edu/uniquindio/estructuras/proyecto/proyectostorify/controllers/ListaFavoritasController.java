@@ -233,6 +233,7 @@ public class ListaFavoritasController {
 			}
 		}
 		actualizarTablaCanciones(listaTemp);
+
 	}
 
 	@FXML
@@ -243,15 +244,26 @@ public class ListaFavoritasController {
 		String anioC = txtAnio.getText();
 		String duracionC = txtDuracion.getText();
 		String generoC = cmbGenero.getSelectionModel().getSelectedItem();
+
 		for (Cancion c : listaCanciones) {
-			if (c.getNombreCancion().equalsIgnoreCase(nombreC) && c.getNombreAlbum().equalsIgnoreCase(albumC)
-					&& c.getAnio().equalsIgnoreCase(anioC) && c.getDuracion().equalsIgnoreCase(duracionC)
-					&& c.getGenero().toString().equals(generoC)) {
+			boolean cumpleParametros = true;
+
+			if (!nombreC.isEmpty() && !c.getNombreCancion().equalsIgnoreCase(nombreC))
+				cumpleParametros = false;
+			if (!albumC.isEmpty() && !c.getNombreAlbum().equalsIgnoreCase(albumC))
+				cumpleParametros = false;
+			if (!anioC.isEmpty() && !c.getAnio().equalsIgnoreCase(anioC))
+				cumpleParametros = false;
+			if (!duracionC.isEmpty() && !c.getDuracion().equalsIgnoreCase(duracionC))
+				cumpleParametros = false;
+			if (generoC != null && !c.getGenero().toString().equalsIgnoreCase(generoC))
+				cumpleParametros = false;
+
+			if (cumpleParametros) {
 				listaTemp.add(c);
 			}
 		}
 		actualizarTablaCanciones(listaTemp);
-
 	}
 
 
@@ -360,5 +372,7 @@ public class ListaFavoritasController {
 		}
 		return archivosCaciones;
 	}
+	
+	
 
 }

@@ -199,5 +199,15 @@ public class AdministradorArtistasController {
 			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a eliminar");
 		}
 	}
+	
+	@FXML
+	void importar() {
+		
+	}
+	
+	@FXML
+	void exportar() {
+		
+	}
 
 }

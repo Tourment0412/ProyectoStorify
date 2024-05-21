@@ -270,4 +270,8 @@ public class ModelFactoryController {
 		tiendaMusica.eliminarCancionFavorita(c, (Usuario)usuarioSesion);
 	}
 
+	public CircularList<Cancion> obtenerCancionesArtistas() {
+		return tiendaMusica.obtenerCancionesArtistas();
+	}
+
  }

@@ -229,9 +229,10 @@ public class CircularList<E> implements Iterable<E>{
 	}
 	
 	public void setUnion(CircularList<E> list) {
+		
 		for (E element : list) {
 			if (!this.contains(element)) {
-				list.add(element);
+				this.add(element);
 			}
 		}
 	}

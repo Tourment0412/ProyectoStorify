@@ -25,7 +25,6 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.*;
 public class App extends Application {
 
 	
-	
 	private Stage primaryStage;
 	private AnchorPane rootLayout;
 	

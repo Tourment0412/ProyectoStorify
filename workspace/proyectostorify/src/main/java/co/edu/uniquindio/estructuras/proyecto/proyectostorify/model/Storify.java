@@ -282,4 +282,51 @@ public class Storify {
 		usuario.getLstCancionesFavoritas().remove(cancion);
 	}
 
+	public CircularList<Cancion> obtenerCancionesArtistas() {
+		CircularList<Artista> artistas=lstArtistas.toCircularList();
+		CircularList<Cancion> canciones=new CircularList<Cancion>();
+		for (Artista artista : artistas) {
+			canciones.setUnion(artista.getLstCanciones().toCircularList());
+		}
+		return canciones;
+	}
+	
+	public int contarGeneroCancionesUsuarios(Genero genero) {
+		int cantidad=0;
+		for (Cuenta cuenta : lstCuentas.values()) {
+			if (cuenta instanceof Usuario) {
+				cantidad+=contarCancionesGenero(genero,((Usuario)cuenta).getLstCancionesGuardadas());
+				cantidad+=contarCancionesGenero(genero,((Usuario)cuenta).getLstCancionesFavoritas());
+			}
+		}
+		return cantidad;
+	}
+	
+	public int contarCancionesGenero(Genero genero,CircularList<Cancion> canciones) {
+		int cantidad=0;
+		for (Cancion cancion : canciones) {
+			if (cancion.getGenero()==genero) {
+				cantidad++;
+			}
+		}
+		return cantidad;
+	}
+	
+	public CircularList<Genero> obtenerGenerosPopulares() {
+		CircularList<Genero> generosPopulares=new CircularList<Genero>();
+		int mayor=0;
+		int cantidad;
+		for (Genero genero : Genero.values()) {
+			cantidad=contarGeneroCancionesUsuarios(genero);
+			if (mayor>cantidad) {
+				mayor=cantidad;
+				generosPopulares.clear();
+				generosPopulares.add(genero);
+			} else if (mayor==cantidad) {
+				generosPopulares.add(genero);
+			}
+		}
+		return generosPopulares;
+	}
+
 }

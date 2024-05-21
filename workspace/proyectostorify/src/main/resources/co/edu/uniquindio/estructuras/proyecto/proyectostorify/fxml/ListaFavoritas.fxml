@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaFavoritasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaFavoritasController">
    <children>
       <TextField fx:id="txtNombreCancion" layoutX="238.0" layoutY="49.0" stylesheets="@../styles/trystyles.css" />
       <TextField fx:id="txtNombreAlbum" layoutX="238.0" layoutY="81.0" stylesheets="@../styles/trystyles.css" />
@@ -34,8 +39,8 @@
       <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre del album:" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
       <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
-      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda conjuntiva" />
-      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda disyuntiva" />
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
       <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="266.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="200.0" prefWidth="381.0">
         <columns>
           <TableColumn fx:id="columnNombreCancion" prefWidth="87.20001983642578" text="Nombre" />

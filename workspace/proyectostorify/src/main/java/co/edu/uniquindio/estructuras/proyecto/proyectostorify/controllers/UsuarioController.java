@@ -39,12 +39,19 @@ public class UsuarioController {
     void listaArtistas() {
     	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/Artistas.fxml");
     }
+    
+    @FXML
+    void cancionesTienda() {
+    	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/CancionesTienda.fxml");
+    }
 
     @FXML
     void cerrarSesion() {
     	app.mostrarIniciarSesion();
     	mfm.setUsuarioSesion(null);
     }
+    
+
     
     public void cargarVentana(String ruta) {
     	

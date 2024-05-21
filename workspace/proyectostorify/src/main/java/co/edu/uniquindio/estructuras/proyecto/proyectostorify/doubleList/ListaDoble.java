@@ -2,6 +2,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList;
 
 import java.util.Iterator;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 
 /**
@@ -460,7 +461,15 @@ public class ListaDoble<E> implements Iterable<E> {
 		return msj;
 	}
 
-	
+	public CircularList<E> toCircularList() {
+		CircularList<E> obtainedList=new CircularList<E>();
+		NodoDoble<E> nodo=nodoPrimero;
+		while(nodo!=null) {
+			obtainedList.add(nodo.getValorNodo());
+			nodo=nodo.getSiguienteNodo();
+		}
+		return obtainedList;
+	}
 	
 
 	

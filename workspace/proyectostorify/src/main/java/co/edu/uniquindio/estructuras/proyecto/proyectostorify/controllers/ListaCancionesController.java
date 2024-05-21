@@ -266,9 +266,7 @@ public class ListaCancionesController {
 				listaTemp.add(c);
 			}
 		}
-		System.out.println(listaTemp.size());
 		actualizarTablaCanciones(listaTemp);
-
 	}
 
 	@FXML
