@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ArtistasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ArtistasController">
    <children>
       <Label fx:id="lblNombreArtista" layoutX="78.0" layoutY="71.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre" />
       <Button fx:id="btnBuscarNombre" layoutX="316.0" layoutY="67.0" mnemonicParsing="false" onAction="#buscarNombreArtista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Buscar" />
@@ -59,8 +59,8 @@
       <Label fx:id="lblGenero" layoutX="656.0" layoutY="435.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Label" />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="txtBuscarNombre" layoutX="133.0" layoutY="67.0" stylesheets="@../styles/trystyles.css" />
-      <Button fx:id="btnDeshacer" layoutX="75.0" layoutY="471.0" mnemonicParsing="false" onAction="#deshacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="390.0" layoutY="470.0" mnemonicParsing="false" onAction="#rehacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
+      <Button fx:id="btnDeshacer" layoutX="75.0" layoutY="471.0" mnemonicParsing="false" onAction="#deshacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="390.0" layoutY="470.0" mnemonicParsing="false" onAction="#rehacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
       <Button fx:id="btnGuardarPlaylist" layoutX="78.0" layoutY="517.0" mnemonicParsing="false" onAction="#guardarPlaylist" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en PlayList" />
       <Button fx:id="btnGuardarFavoritos" layoutX="324.0" layoutY="517.0" mnemonicParsing="false" onAction="#guardarFavoritos" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en Favoritos" />
       <Button fx:id="btnRefrescar" layoutX="380.0" layoutY="67.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar" />
