@@ -400,7 +400,21 @@ public class AdministradorCancionesController {
     	} else {
     		InterfazFXUtil.mostrarMensaje("No se puede reproducir cancion", "No hay audio para reproducir");
     	}
-    	
+    }
+    
+    @FXML
+    void generosPopulares() {
+    	CircularList<Genero> generosPopulares=mfm.obtenerGenerosPopulares();
+    	String msj="";
+    	if (generosPopulares.size()>1) {
+    		msj+="Los generos mas populares son :\n";
+    		for (Genero genero : generosPopulares) {
+    			msj+=genero.toString()+"\n";
+			}
+    	} else {
+    		msj+="El genero mas popular es :"+generosPopulares.get(0).toString();
+    	}
+    	InterfazFXUtil.mostrarMensaje("Popularidad de los generos", msj);
     }
 
 }

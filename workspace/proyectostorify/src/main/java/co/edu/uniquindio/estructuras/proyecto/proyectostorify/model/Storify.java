@@ -35,11 +35,16 @@ public class Storify {
 	private HashMap<String, Cuenta> lstCuentas;
 
 	public Storify() {
-
+		lstArtistas=new BinaryTree<Artista>();
+		lstCanciones=new CircularList<Cancion>();
+		lstCuentas=new HashMap<String, Cuenta>();
 	}
 
 	public Storify(String nombre) {
 		this.nombre = nombre;
+		lstArtistas=new BinaryTree<Artista>();
+		lstCanciones=new CircularList<Cancion>();
+		lstCuentas=new HashMap<String, Cuenta>();
 	}
 
 	public Cuenta obtenerCuenta(String nombre) {
@@ -318,7 +323,7 @@ public class Storify {
 		int cantidad;
 		for (Genero genero : Genero.values()) {
 			cantidad=contarGeneroCancionesUsuarios(genero);
-			if (mayor>cantidad) {
+			if (mayor<cantidad) {
 				mayor=cantidad;
 				generosPopulares.clear();
 				generosPopulares.add(genero);

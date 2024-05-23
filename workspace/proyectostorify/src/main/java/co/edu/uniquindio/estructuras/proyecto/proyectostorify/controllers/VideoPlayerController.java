@@ -241,8 +241,12 @@ public class VideoPlayerController implements Initializable {
 	
 	public void stop () {
 		running=false;
-		timer.cancel();
-		task.cancel();
+		if (timer!=null) {
+			timer.cancel();
+		}
+		if (task!=null) {
+			task.cancel();
+		}
 		mediaPlayer.stop();
 	}
 

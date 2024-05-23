@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
+import java.io.File;
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -22,6 +23,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -202,12 +206,28 @@ public class AdministradorArtistasController {
 	
 	@FXML
 	void importar() {
-		
+		File archivoArtistas;
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Archivos de Texto", "*.txt"));
+        archivoArtistas = fileChooser.showOpenDialog(null);
+        if (archivoArtistas != null) {
+        	mfm.importarArtistas(archivoArtistas);
+        	actualizarTablaArtistas();
+            InterfazFXUtil.mostrarMensaje("Importacion existosa", "Las canciones y artistas fueron cargados correctamente");
+        }
 	}
 	
 	@FXML
 	void exportar() {
-		
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Seleccionar Carpeta");
+        File selectedDirectory = directoryChooser.showDialog(null);
+
+        if (selectedDirectory != null) {
+            File txtFile = new File(selectedDirectory, "archivoArtistas.txt");
+            mfm.exportarArtistas(txtFile);
+        }
 	}
 
 }

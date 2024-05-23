@@ -12,6 +12,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.Circu
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.PersistenciaTexto;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,8 +36,8 @@ public class ModelFactoryController {
 	private Stage ventana;
 	@NonNull
 	Storify tiendaMusica=new Storify("Stori");
-	@NonNull
-	Stack<Cancion> pilaCanciones;
+	Stack<Cancion> pilaDeshacer;
+	Stack<Cancion> pilaRehacer;
 	Cuenta usuarioSesion;
 	
 	
@@ -57,20 +58,21 @@ public class ModelFactoryController {
 	 * Metodo constructor
 	 */
 	public ModelFactoryController() {
+		inicializarDatosCuenta();
 		inicializarDatos();
 	}
 	
-	public void inicializarDatos() {
-	    // Inicialización de la tienda de música
-	    tiendaMusica.setLstArtistas(new BinaryTree<Artista>());
-	    tiendaMusica.setLstCanciones(new CircularList<Cancion>());
-	    tiendaMusica.setLstCuentas(new HashMap<String, Cuenta>());
-
-	    // Creación de cuentas de administrador y usuario
-	    Administrador admin = new Administrador("pepe", "123", "code1");
+	public void inicializarDatosCuenta() {
+		Administrador admin = new Administrador("pepe", "123", "code1");
 	    Usuario usuario = new Usuario("juan", "456", "@789");
 	    tiendaMusica.getLstCuentas().put(usuario.getUsername(), usuario);
 	    tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
+	}
+	
+	public void inicializarDatos() {
+
+	    // Creación de cuentas de administrador y usuario
+	    
 
 	    // Creación de artistas y canciones
 	    Artista artista1 = new Artista("aaaaa", "Evanescence", "Estadounidense", true, new ListaDoble<Cancion>());
@@ -107,6 +109,11 @@ public class ModelFactoryController {
 
 	}
 
+	public void iniciarSesionUsuario(Usuario usuario) {
+		usuarioSesion=usuario;
+		pilaDeshacer=new Stack<Cancion>();
+		pilaRehacer=new Stack<Cancion>();
+	}
 
 	public CircularList<Cancion> obtenerListaCaciones (){
 		return tiendaMusica.getLstCanciones();
@@ -164,25 +171,6 @@ public class ModelFactoryController {
 		return tiendaMusica.obtenerArtistaNombre(nombre);
 	}
 	
-	/**
-	 * 
-	 * @param cancion
-	 * @param accion
-	 */
-	public void agregarCambioCancion(Cancion cancion,String accion) {
-		pilaCanciones.push(cancion, accion);
-	}
-	
-	/**
-	 * 
-	 */
-	public void deshacerCambioCancion() {
-		String accion=pilaCanciones.headAction();
-		Cancion cancion=pilaCanciones.pop();
-		switch(accion) {
-		
-		}
-	}
 	
 	/**
 	 * 
@@ -273,5 +261,62 @@ public class ModelFactoryController {
 	public CircularList<Cancion> obtenerCancionesArtistas() {
 		return tiendaMusica.obtenerCancionesArtistas();
 	}
+
+	public CircularList<Genero> obtenerGenerosPopulares() {
+		return tiendaMusica.obtenerGenerosPopulares();
+	}
+
+	public void importarArtistas(File archivoArtistas) {
+		try {
+			PersistenciaTexto.cargarArtistas(tiendaMusica, archivoArtistas.getAbsolutePath());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void exportarArtistas(File txtFile) {
+		try {
+			PersistenciaTexto.guardarArtistas(tiendaMusica, txtFile.getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarAccion(Cancion cancion, String accion) {
+		pilaDeshacer.push(cancion, accion);
+	}
+	
+	public void deshacer() {
+		if (!pilaDeshacer.isEmpty()) {
+			String accion=pilaDeshacer.headAction();
+			Cancion cancion=pilaDeshacer.pop();
+			pilaRehacer.push(cancion, accion);
+			Usuario usuario=(Usuario)usuarioSesion;
+			switch(accion) {
+				case "ADDplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
+				case "RMplaylist": usuario.getLstCancionesGuardadas().add(cancion);; break;
+				case "ADDfavorita": usuario.getLstCancionesFavoritas().remove(cancion);  break;
+				case "RMfavorita": usuario.getLstCancionesFavoritas().add(cancion);; break;
+			}
+		}
+	}
+	
+	public void rehacer() {
+		if (!pilaRehacer.isEmpty()) {
+			String accion=pilaRehacer.headAction();
+			Cancion cancion=pilaRehacer.pop();
+			pilaDeshacer.push(cancion, accion);
+			Usuario usuario=(Usuario)usuarioSesion;
+			switch(accion) {
+				case "ADDplaylist": usuario.getLstCancionesGuardadas().add(cancion);; break;
+				case "RMplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
+				case "ADDfavorita": usuario.getLstCancionesFavoritas().add(cancion);;  break;
+				case "RMfavorita": usuario.getLstCancionesFavoritas().remove(cancion); break;
+			}
+		}
+	}
+
 
  }

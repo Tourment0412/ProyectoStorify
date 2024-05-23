@@ -1,7 +1,9 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils;
 
 import java.io.IOException;
+import java.util.HashMap;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.BinaryTree;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
@@ -27,6 +29,9 @@ public class PersistenciaTexto {
      */
     public static CircularList<Artista> cargarArtistas(Storify tienda,String ruta) throws Exception
     {
+    	tienda.setLstArtistas(new BinaryTree<Artista>());
+    	tienda.setLstCanciones(new CircularList<Cancion>());
+    	tienda.setLstCuentas(new HashMap<String, Cuenta>());
         CircularList<Artista> artistas =new CircularList<Artista>();
         CircularList<String> contenido = ArchivoUtil.leerArchivo(ruta);
         String linea="";
@@ -51,11 +56,12 @@ public class PersistenciaTexto {
             artista.setNacionalidad(linea.split(";")[2]);
             artista.setEsGrupo(Boolean.parseBoolean(linea.split(";")[3]));
             artistas.add(artista);
+            tienda.agregarArtista(artista);
         }
         
         CircularList<Cancion> cancionesCargadas=new CircularList<Cancion>();
         
-        for (int i = 1; posicionInicioCanciones+1 < contenido.size(); i++) {
+        for (int i = posicionInicioCanciones+1; i < contenido.size(); i++) {
         	linea = contenido.get(i);//NombreArtista1;NombreCancion;NombreAlbum;Anio;Duracion;Genero;URLCancionYoutube
         	Artista artistaObtenido=buscarArtistaNombre(artistas,linea.split(";")[0]);
         	if (!estaCancionCargada(cancionesCargadas,linea.split(";")[1])) {
@@ -68,6 +74,7 @@ public class PersistenciaTexto {
             	cancion.setGenero(Genero.getEstadoByString(linea.split(";")[5]));
             	cancion.setUrl(linea.split(";")[6]);
             	artistaObtenido.agregarCancion(cancion);
+            	tienda.agregarCancion(cancion);
         	} else {
         		artistaObtenido.agregarCancion(obtenerCancion(cancionesCargadas,linea.split(";")[1]));
         	}
@@ -120,26 +127,27 @@ public class PersistenciaTexto {
      * @throws IOException
      */
 
-    public static void guardarObjetos(Storify tienda, String ruta) throws IOException  {
+    public static void guardarArtistas(Storify tienda, String ruta) throws IOException  {
     	Cancion cancion;//NombreArtista1;NombreCancion;NombreAlbum;Anio;Duracion;Genero;URLCancionYoutube
     	CircularList<Artista> lstArtistas=tienda.getLstArtistas().toCircularList();
     	ListaDoble<Cancion> lstCanciones;
         String contenidoArtistas = "#Artistas\n";//CodigoArtista1;NombreArtista1;Nacionalidad1;true/false1
         String contenidoCanciones = "";
-        contenidoArtistas+="\n#Canciones\n";
+        contenidoCanciones+="\n#Canciones\n";
         for(Artista artista:lstArtistas) {
         	contenidoArtistas+=artista.getCodigo()+";"+artista.getNombre()+";"+artista.getNacionalidad().toString()+";"+
         			artista.isEsGrupo()+"\n";
         	lstCanciones=artista.getLstCanciones();
         	for (int i = 0; i < lstCanciones.getTamanio(); i++) {
         		cancion=lstCanciones.obtener(i);
-        		contenidoCanciones+=artista.getNombre()+","+cancion.getNombreCancion()+";"+cancion.getNombreAlbum()+";"+
-        				cancion.getAnio()+";"+cancion.getDuracion()+cancion.getGenero().toString()+"\n";
+        		contenidoCanciones+=artista.getNombre()+";"+cancion.getNombreCancion()+";"+cancion.getNombreAlbum()+";"+
+        				cancion.getAnio()+";"+cancion.getDuracion()+";"+cancion.getGenero().toString()
+        				+";"+cancion.getUrl()+"\n";
 			}
         }
         contenidoArtistas+=contenidoCanciones;
         
-        ArchivoUtil.guardarArchivo(ruta, contenidoArtistas, true);
+        ArchivoUtil.guardarArchivo(ruta, contenidoArtistas, false);
     }
 
 

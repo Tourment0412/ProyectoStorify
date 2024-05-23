@@ -41,6 +41,7 @@ public class Cancion {
 	
 	public Cancion() {
 		super();
+		lstArtistas=new CircularList<Artista>();
 	}
 
 

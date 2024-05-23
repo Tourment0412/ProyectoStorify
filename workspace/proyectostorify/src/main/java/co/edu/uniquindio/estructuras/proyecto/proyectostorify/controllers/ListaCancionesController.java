@@ -209,6 +209,7 @@ public class ListaCancionesController {
 					tableCanciones.getItems().remove(c);
 					mfm.eliminarCancionPlayListUsuario(c);
 					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
+					mfm.guardarAccion(c, "RMplaylist");
 				}
 			} else {
 				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones guardadas del usuario está vacía.");
@@ -294,12 +295,55 @@ public class ListaCancionesController {
 		}
 	}
 
+//	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
+//		tableCanciones.getItems().clear();
+//		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
+//		for (Cancion cancion : listaCanciones) {
+//			listaCancionProperty.add(cancion);
+//			System.out.println(cancion);
+//		}
+//
+//		tableCanciones.setItems(listaCancionProperty);
+//		columnNombreCancion
+//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreCancion()));
+//		columnAlbumCancion
+//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
+//		columnDuracionCancion
+//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
+//		columnGeneroCancion
+//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+//
+//		tableCanciones.refresh();
+//	}
+//
+//	@FXML
+//	void deshacer(ActionEvent event) {
+//		if (!undoStack.isEmpty()) {
+//		String operacion = undoStack.headAction();
+//		Cancion operacionDeshacer = undoStack.pop();
+//		switch (operacion) {
+//		    case "eliminacion":
+//				mfm.guardarPlayListUsuario(operacionDeshacer);
+//				actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
+//				undoStack.push(operacionDeshacer, "insercion");
+//				break;
+//		    case "insersion":
+//		    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
+//		    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
+//		    	undoStack.push(operacionDeshacer, "eliminacion");
+//				break;
+//		}
+//			
+//		} else {
+//			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
+//		}
+//	}
+	
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		tableCanciones.getItems().clear();
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
 			listaCancionProperty.add(cancion);
-			System.out.println(cancion);
 		}
 
 		tableCanciones.setItems(listaCancionProperty);
@@ -317,47 +361,16 @@ public class ListaCancionesController {
 
 	@FXML
 	void deshacer(ActionEvent event) {
-		if (!undoStack.isEmpty()) {
-		String operacion = undoStack.headAction();
-		Cancion operacionDeshacer = undoStack.pop();
-		switch (operacion) {
-		    case "eliminacion":
-				mfm.guardarPlayListUsuario(operacionDeshacer);
-				actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-				undoStack.push(operacionDeshacer, "insercion");
-				break;
-		    case "insersion":
-		    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
-		    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-		    	undoStack.push(operacionDeshacer, "eliminacion");
-				break;
-		}
-			
-		} else {
-			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
-		}
+		mfm.deshacer();
+		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		actualizarTablaCanciones(listaCanciones);
 	}
 
 	@FXML
 	void rehacer(ActionEvent event) {
-		if (!redoStack.isEmpty()) {
-			String operacion = redoStack.getHead().getAction();
-			Cancion operacionDeshacer = redoStack.pop();
-			switch (operacion) {
-			    case "eliminacion":
-					mfm.guardarPlayListUsuario(operacionDeshacer);
-					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-					undoStack.push(operacionDeshacer, "insercion");
-					break;
-			    case "insersion":
-			    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
-			    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-					undoStack.push(operacionDeshacer, "eliminacion");
-					break;
-			}
-		} else {
-			InterfazFXUtil.mostrarMensaje("Nada que rehacer", "No hay operaciones para rehacer.");
-		}
+		mfm.rehacer();
+		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		actualizarTablaCanciones(listaCanciones);
 	}
 
 	@FXML

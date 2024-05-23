@@ -81,7 +81,7 @@ public class IniciarSesionController {
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		ventana.close();
-		mfm.setUsuarioSesion(usuario);
+		mfm.iniciarSesionUsuario(usuario);
 		app.mostrarUsuario();
 
 	}
@@ -115,8 +115,7 @@ public class IniciarSesionController {
 	
 	@FXML
     void registrarse(ActionEvent event) {
-    	app.mostrarResgistrarse();;
-
+    	app.mostrarResgistrarse();
     }
 
 

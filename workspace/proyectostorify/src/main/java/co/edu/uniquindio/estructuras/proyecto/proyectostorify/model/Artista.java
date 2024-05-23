@@ -49,6 +49,7 @@ public class Artista implements Comparable<Artista>{
 
 	public Artista() {
 		super();
+		lstCanciones=new ListaDoble<Cancion>();
 	}
 	
 	

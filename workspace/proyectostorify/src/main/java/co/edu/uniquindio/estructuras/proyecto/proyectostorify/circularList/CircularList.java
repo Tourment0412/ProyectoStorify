@@ -50,7 +50,7 @@ public class CircularList<E> implements Iterable<E>{
 	}
 	
 	public E get(int index) {
-		if (index>=size || 0<index) {
+		if (index>=size || 0>index) {
 			throw new IndexOutOfBoundsException("Index out of bounds");
 		}
 		Node<E> node=head;
@@ -202,6 +202,7 @@ public class CircularList<E> implements Iterable<E>{
 	
 	public void clear() {
 		head=endNode=null;
+		size=0;
 	}
 	
 	@Override

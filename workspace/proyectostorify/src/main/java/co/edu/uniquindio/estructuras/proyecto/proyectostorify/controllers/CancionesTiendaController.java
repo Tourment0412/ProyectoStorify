@@ -207,6 +207,7 @@ public class CancionesTiendaController {
 		CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		if(!favoritas.contains(c)) {
 			favoritas.add(c);
+			mfm.guardarAccion(c, "ADDfavorita");
 			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
 		}else {
 			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favotitos");
@@ -219,6 +220,7 @@ public class CancionesTiendaController {
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		mfm.guardarPlayListUsuario(c);
+		mfm.guardarAccion(c, "ADDplaylist");
 	}
 
     @FXML
