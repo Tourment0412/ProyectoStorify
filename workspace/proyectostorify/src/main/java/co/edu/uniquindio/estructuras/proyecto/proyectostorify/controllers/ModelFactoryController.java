@@ -286,6 +286,7 @@ public class ModelFactoryController {
 	
 	public void guardarAccion(Cancion cancion, String accion) {
 		pilaDeshacer.push(cancion, accion);
+		System.out.println("Opcion agregada: "+cancion+" "+cancion.getNombreCancion());
 	}
 	
 	public void deshacer() {
@@ -294,12 +295,23 @@ public class ModelFactoryController {
 			Cancion cancion=pilaDeshacer.pop();
 			pilaRehacer.push(cancion, accion);
 			Usuario usuario=(Usuario)usuarioSesion;
+			System.out.println("Deshacer: "+accion+" "+cancion.getNombreCancion());
 			switch(accion) {
 				case "ADDplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
-				case "RMplaylist": usuario.getLstCancionesGuardadas().add(cancion);; break;
+				case "RMplaylist": usuario.getLstCancionesGuardadas().add(cancion); break;
 				case "ADDfavorita": usuario.getLstCancionesFavoritas().remove(cancion);  break;
-				case "RMfavorita": usuario.getLstCancionesFavoritas().add(cancion);; break;
+				case "RMfavorita": usuario.getLstCancionesFavoritas().add(cancion); break;
+				default: System.out.println("Error en deshacer");
 			}
+			System.out.println("Guardadas/Playlist");
+			for (Cancion cancionObtenida : usuario.getLstCancionesGuardadas()) {
+				System.out.println(cancionObtenida);
+			}
+			System.out.println("Fvoritas");
+			for (Cancion cancionObtenida : usuario.getLstCancionesFavoritas()) {
+				System.out.println(cancionObtenida);
+			}
+			System.out.println("");
 		}
 	}
 	
@@ -309,12 +321,23 @@ public class ModelFactoryController {
 			Cancion cancion=pilaRehacer.pop();
 			pilaDeshacer.push(cancion, accion);
 			Usuario usuario=(Usuario)usuarioSesion;
+			System.out.println("Rehacer: "+accion+" "+cancion.getNombreCancion());
 			switch(accion) {
-				case "ADDplaylist": usuario.getLstCancionesGuardadas().add(cancion);; break;
+				case "ADDplaylist": usuario.getLstCancionesGuardadas().add(cancion); break;
 				case "RMplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
-				case "ADDfavorita": usuario.getLstCancionesFavoritas().add(cancion);;  break;
+				case "ADDfavorita": usuario.getLstCancionesFavoritas().add(cancion);  break;
 				case "RMfavorita": usuario.getLstCancionesFavoritas().remove(cancion); break;
+				default: System.out.println("Error en rehacer");
 			}
+			System.out.println("Guardadas/Playlist");
+			for (Cancion cancionObtenida : usuario.getLstCancionesGuardadas()) {
+				System.out.println(cancionObtenida);
+			}
+			System.out.println("Fvoritas");
+			for (Cancion cancionObtenida : usuario.getLstCancionesFavoritas()) {
+				System.out.println(cancionObtenida);
+			}
+			System.out.println("");
 		}
 	}
 

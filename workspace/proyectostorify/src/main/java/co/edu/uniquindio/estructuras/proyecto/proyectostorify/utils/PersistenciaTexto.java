@@ -31,7 +31,6 @@ public class PersistenciaTexto {
     {
     	tienda.setLstArtistas(new BinaryTree<Artista>());
     	tienda.setLstCanciones(new CircularList<Cancion>());
-    	tienda.setLstCuentas(new HashMap<String, Cuenta>());
         CircularList<Artista> artistas =new CircularList<Artista>();
         CircularList<String> contenido = ArchivoUtil.leerArchivo(ruta);
         String linea="";
