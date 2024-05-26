@@ -10,6 +10,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.ComparadoresCancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
@@ -25,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +40,18 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ListaFavoritasController {
+	
+	@FXML
+    private Button btnOrdenarAlbum;
+
+    @FXML
+    private Button btnOrdenarDuracion;
+
+    @FXML
+    private Button btnOrdenarGenero;
+
+    @FXML
+    private Button btnOrdenarNombre;
 	
     @FXML
     private Button btnDetalles;
@@ -196,7 +210,7 @@ public class ListaFavoritasController {
 	 */
 	@FXML
 	void refrescarTabla(ActionEvent event) {
-		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		actualizarTablaCanciones(listaCanciones);
 	}
 	
@@ -306,8 +320,7 @@ public class ListaFavoritasController {
 			lblGenero.setText(c.getGenero().toString());
 			
 		}else {
-			InterfazFXUtil.mostrarMensaje("Por favor seleccione una cancion");
-		}
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor seleccione una cancion", AlertType.ERROR);;		}
 
 	}
 	
@@ -380,5 +393,30 @@ public class ListaFavoritasController {
 		}
 		return archivosCaciones;
 	}
+	
+	
+	@FXML
+    void ordenarPorNombre(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorAlbum(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorDuracion(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorGenero(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);
+        actualizarTablaCanciones(listaCanciones);
+    }
 	
 }

@@ -18,13 +18,13 @@
       <TextField fx:id="txtAnio" layoutX="238.0" layoutY="115.0" stylesheets="@../styles/trystyles.css" />
       <TextField fx:id="txtDuracion" layoutX="239.0" layoutY="148.0" stylesheets="@../styles/trystyles.css" />
       <Label fx:id="lblNombreDeLaCancion" layoutX="71.0" layoutY="54.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre de la cancion:" />
-      <Label fx:id="lblCodigoCancion" layoutX="559.0" layoutY="243.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Codigo:" />
-      <Label fx:id="lblGeneroCancion" layoutX="557.0" layoutY="428.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
-      <Label fx:id="lblUrlCancion" layoutX="581.0" layoutY="397.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Url:" />
-      <Label fx:id="lblDuracionCancion" layoutX="550.0" layoutY="366.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Duracion:" />
-      <Label fx:id="lblAnioCancion" layoutX="573.0" layoutY="337.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Año:" />
-      <Label fx:id="lblAlbumCancion" layoutX="561.0" layoutY="305.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Album:" />
-      <Label fx:id="lblNombreCancion" layoutX="555.0" layoutY="271.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Cancion:" />
+      <Label fx:id="lblCodigoCancion" layoutX="581.0" layoutY="275.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Codigo:" />
+      <Label fx:id="lblGeneroCancion" layoutX="579.0" layoutY="460.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
+      <Label fx:id="lblUrlCancion" layoutX="603.0" layoutY="429.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Url:" />
+      <Label fx:id="lblDuracionCancion" layoutX="572.0" layoutY="398.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Duracion:" />
+      <Label fx:id="lblAnioCancion" layoutX="595.0" layoutY="369.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Año:" />
+      <Label fx:id="lblAlbumCancion" layoutX="583.0" layoutY="337.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Album:" />
+      <Label fx:id="lblNombreCancion" layoutX="577.0" layoutY="303.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Cancion:" />
       <Label fx:id="lblTitulo" layoutX="336.0" layoutY="4.0" styleClass="title" stylesheets="@../styles/trystyles.css" text="Lista de Favoritos">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -34,9 +34,9 @@
       <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre del album:" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
       <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
-      <Button fx:id="btnBusquedaConjuntiva" layoutX="93.0" layoutY="229.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
-      <Button fx:id="btnBusquedaDisyuntiva" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
-      <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="266.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="200.0" prefWidth="381.0">
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="148.0" layoutY="226.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="249.0" layoutY="225.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
+      <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="339.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="158.0" prefWidth="382.0">
         <columns>
           <TableColumn fx:id="columnNombreCancion" prefWidth="87.20001983642578" text="Nombre" />
           <TableColumn fx:id="columnAlbumCancion" prefWidth="103.20001220703125" text="Album" />
@@ -47,19 +47,25 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label fx:id="lblCodigo" layoutX="643.0" layoutY="243.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblGenero" layoutX="643.0" layoutY="428.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblUrl" layoutX="643.0" layoutY="397.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblDuracion" layoutX="643.0" layoutY="366.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblAnio" layoutX="643.0" layoutY="337.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblAlbum" layoutX="643.0" layoutY="305.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Label fx:id="lblCancion" layoutX="643.0" layoutY="272.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Button fx:id="btnDeshacer" layoutX="71.0" layoutY="473.0" mnemonicParsing="false" onAction="#deshacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="148.0" layoutY="473.0" mnemonicParsing="false" onAction="#rehacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
-      <Button fx:id="btnEliminar" layoutX="313.0" layoutY="473.0" mnemonicParsing="false" onAction="#eliminarDeLista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar" />
-      <Separator layoutX="488.0" layoutY="29.0" orientation="VERTICAL" prefHeight="456.0" prefWidth="0.0" />
-      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnRefrescar" layoutX="380.0" layoutY="473.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar" />
-      <Button layoutX="223.0" layoutY="473.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
+      <Label fx:id="lblCodigo" layoutX="665.0" layoutY="275.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblGenero" layoutX="665.0" layoutY="460.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblUrl" layoutX="665.0" layoutY="429.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblDuracion" layoutX="665.0" layoutY="398.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblAnio" layoutX="665.0" layoutY="369.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblAlbum" layoutX="665.0" layoutY="337.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblCancion" layoutX="665.0" layoutY="304.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
+      <Button fx:id="btnDeshacer" layoutX="72.0" layoutY="504.0" mnemonicParsing="false" onAction="#deshacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="149.0" layoutY="504.0" mnemonicParsing="false" onAction="#rehacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
+      <Button fx:id="btnEliminar" layoutX="314.0" layoutY="504.0" mnemonicParsing="false" onAction="#eliminarDeLista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar" />
+      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnRefrescar" layoutX="381.0" layoutY="504.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar" />
+      <Button layoutX="224.0" layoutY="504.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
+      <Button fx:id="btnOrdenarNombre" layoutX="80.0" layoutY="310.0" mnemonicParsing="false" onAction="#ordenarPorNombre" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="btnOrdenarAlbum" layoutX="177.0" layoutY="309.0" mnemonicParsing="false" onAction="#ordenarPorAlbum" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="btnOrdenarDuracion" layoutX="274.0" layoutY="310.0" mnemonicParsing="false" onAction="#ordenarPorDuracion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="btnOrdenarGenero" layoutX="372.0" layoutY="309.0" mnemonicParsing="false" onAction="#ordenarPorGenero" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Separator layoutX="71.0" layoutY="276.0" prefHeight="0.0" prefWidth="414.0" />
+      <Label fx:id="lblCanciones" layoutX="76.0" layoutY="291.0" stylesheets="@../styles/trystyles.css" text="Canciones" />
+      <Separator layoutX="532.0" layoutY="59.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="0.0" />
    </children>
 </AnchorPane>

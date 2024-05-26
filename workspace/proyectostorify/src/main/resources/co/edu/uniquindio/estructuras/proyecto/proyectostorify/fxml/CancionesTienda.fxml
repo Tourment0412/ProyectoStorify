@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
    <children>
-      <TableView fx:id="tableCanciones" layoutX="79.0" layoutY="310.0" onMouseClicked="#mostrarDetallesCanciones" prefHeight="147.0" prefWidth="372.0">
+      <TableView fx:id="tableCanciones" layoutX="74.0" layoutY="331.0" onMouseClicked="#mostrarDetallesCanciones" prefHeight="147.0" prefWidth="372.0">
         <columns>
           <TableColumn fx:id="columNombreCancion" prefWidth="95.99996185302734" text="Nombre" />
           <TableColumn fx:id="columAlbumCancion" prefWidth="87.20001220703125" text="Album" />
@@ -43,13 +43,13 @@
       <Label fx:id="lblUrl" layoutX="656.0" layoutY="405.0" stylesheets="@../styles/trystyles.css" text=" " />
       <Label fx:id="lblGenero" layoutX="656.0" layoutY="435.0" stylesheets="@../styles/trystyles.css" text=" " />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnDeshacer" layoutX="113.0" layoutY="471.0" mnemonicParsing="false" onAction="#deshacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="302.0" layoutY="471.0" mnemonicParsing="false" onAction="#rehacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
-      <Button fx:id="btnGuardarPlaylist" layoutX="26.0" layoutY="518.0" mnemonicParsing="false" onAction="#guardarPlaylist" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en PlayList" />
-      <Button fx:id="btnGuardarFavoritos" layoutX="311.0" layoutY="518.0" mnemonicParsing="false" onAction="#guardarFavoritos" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en Favoritos" />
-      <Button layoutX="200.0" layoutY="518.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
-      <Button fx:id="btnBusquedaDisyuntiva" layoutX="260.0" layoutY="240.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
-      <Button fx:id="btnBusquedaConjuntiva" layoutX="103.0" layoutY="239.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
+      <Button fx:id="btnDeshacer" layoutX="73.0" layoutY="490.0" mnemonicParsing="false" onAction="#deshacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
+      <Button fx:id="btnRehacer" layoutX="386.0" layoutY="492.0" mnemonicParsing="false" onAction="#rehacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
+      <Button fx:id="btnGuardarPlaylist" layoutX="72.0" layoutY="518.0" mnemonicParsing="false" onAction="#guardarPlaylist" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en PlayList" />
+      <Button fx:id="btnGuardarFavoritos" layoutX="321.0" layoutY="518.0" mnemonicParsing="false" onAction="#guardarFavoritos" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en Favoritos" />
+      <Button layoutX="218.0" layoutY="517.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="251.0" layoutY="228.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="134.0" layoutY="228.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
       <ComboBox fx:id="cmbGenero" layoutX="249.0" layoutY="192.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="158.0" layoutY="196.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
       <Label fx:id="lblNombreDelAlbum" layoutX="97.0" layoutY="95.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre del album:" />
@@ -60,5 +60,9 @@
       <TextField fx:id="txtAnio" layoutX="248.0" layoutY="125.0" stylesheets="@../styles/trystyles.css" />
       <TextField fx:id="txtNombreAlbum" layoutX="248.0" layoutY="91.0" stylesheets="@../styles/trystyles.css" />
       <TextField fx:id="txtNombreCancion" layoutX="248.0" layoutY="59.0" stylesheets="@../styles/trystyles.css" />
+      <Button fx:id="brnOrdenarNombre" layoutX="97.0" layoutY="302.0" mnemonicParsing="false" onAction="#ordenarPorNombre" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="brnOrdenarAlbum" layoutX="188.0" layoutY="301.0" mnemonicParsing="false" onAction="#ordenarPorAlbum" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="brnOrdenarDuracion" layoutX="278.0" layoutY="302.0" mnemonicParsing="false" onAction="#ordenarPorDuracion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
+      <Button fx:id="brnOrdenarGenero" layoutX="370.0" layoutY="303.0" mnemonicParsing="false" onAction="#ordenarPorGenero" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
    </children>
 </AnchorPane>

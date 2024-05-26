@@ -18,143 +18,156 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class CancionesTiendaController {
-	
-    @FXML
-    private TableColumn<Cancion, String> columNombreCancion;
 
-    @FXML
-    private Button btnBusquedaConjuntiva;
+	@FXML
+	private Button brnOrdenarAlbum;
 
-    @FXML
-    private Label lblAnio;
+	@FXML
+	private Button brnOrdenarDuracion;
 
-    @FXML
-    private Label lblTitulo;
+	@FXML
+	private Button brnOrdenarGenero;
 
-    @FXML
-    private Button btnRehacer;
+	@FXML
+	private Button brnOrdenarNombre;
 
-    @FXML
-    private TextField txtNombreCancion;
+	@FXML
+	private TableColumn<Cancion, String> columNombreCancion;
 
-    @FXML
-    private Label lblCancion;
+	@FXML
+	private Button btnBusquedaConjuntiva;
 
-    @FXML
-    private ComboBox<String> cmbGenero;
+	@FXML
+	private Label lblAnio;
 
-    @FXML
-    private Label lblDuracion;
+	@FXML
+	private Label lblTitulo;
 
-    @FXML
-    private Label lblDuracionCancion;
+	@FXML
+	private Button btnRehacer;
 
-    @FXML
-    private TableColumn<Cancion, String> columDuracionCancion;
+	@FXML
+	private TextField txtNombreCancion;
 
-    @FXML
-    private TableColumn<Cancion, String> columAlbumCancion;
+	@FXML
+	private Label lblCancion;
 
-    @FXML
-    private Label lblUrlCancion;
+	@FXML
+	private ComboBox<String> cmbGenero;
 
-    @FXML
-    private Label lblCanciones;
+	@FXML
+	private Label lblDuracion;
 
-    @FXML
-    private Button btnDeshacer;
+	@FXML
+	private Label lblDuracionCancion;
 
-    @FXML
-    private ImageView imageCaratula;
+	@FXML
+	private TableColumn<Cancion, String> columDuracionCancion;
 
-    @FXML
-    private Label lblCodigoCancion;
+	@FXML
+	private TableColumn<Cancion, String> columAlbumCancion;
 
-    @FXML
-    private Label lblGeneroCancion;
+	@FXML
+	private Label lblUrlCancion;
 
-    @FXML
-    private Label lblAlbum;
+	@FXML
+	private Label lblCanciones;
 
-    @FXML
-    private Button btnGuardarFavoritos;
+	@FXML
+	private Button btnDeshacer;
 
-    @FXML
-    private Label lblDuracionDeLaCancion;
+	@FXML
+	private ImageView imageCaratula;
 
-    @FXML
-    private Label lblNombreCancion;
+	@FXML
+	private Label lblCodigoCancion;
 
-    @FXML
-    private Label lblGeneroDeLaCancion;
+	@FXML
+	private Label lblGeneroCancion;
 
-    @FXML
-    private Label lblNombreDelAlbum;
+	@FXML
+	private Label lblAlbum;
 
-    @FXML
-    private Label lblAnioCancion;
+	@FXML
+	private Button btnGuardarFavoritos;
 
-    @FXML
-    private Label lblNombreDeLaCancion;
+	@FXML
+	private Label lblDuracionDeLaCancion;
 
-    @FXML
-    private TextField txtDuracion;
+	@FXML
+	private Label lblNombreCancion;
 
-    @FXML
-    private Label lblGenero;
+	@FXML
+	private Label lblGeneroDeLaCancion;
 
-    @FXML
-    private Button btnBusquedaDisyuntiva;
+	@FXML
+	private Label lblNombreDelAlbum;
 
-    @FXML
-    private Label lblAnioDeLaCancion;
+	@FXML
+	private Label lblAnioCancion;
 
-    @FXML
-    private TableColumn<Cancion, String> columGeneroCancion;
+	@FXML
+	private Label lblNombreDeLaCancion;
 
-    @FXML
-    private Button btnGuardarPlaylist;
+	@FXML
+	private TextField txtDuracion;
 
-    @FXML
-    private TextField txtAnio;
+	@FXML
+	private Label lblGenero;
 
-    @FXML
-    private TableView<Cancion> tableCanciones;
+	@FXML
+	private Button btnBusquedaDisyuntiva;
 
-    @FXML
-    private TextField txtNombreAlbum;
+	@FXML
+	private Label lblAnioDeLaCancion;
 
-    @FXML
-    private Label lblUrl;
+	@FXML
+	private TableColumn<Cancion, String> columGeneroCancion;
 
-    @FXML
-    private Label lblCodigo;
-    
-    private ModelFactoryController mfm = ModelFactoryController.getInstance();
+	@FXML
+	private Button btnGuardarPlaylist;
+
+	@FXML
+	private TextField txtAnio;
+
+	@FXML
+	private TableView<Cancion> tableCanciones;
+
+	@FXML
+	private TextField txtNombreAlbum;
+
+	@FXML
+	private Label lblUrl;
+
+	@FXML
+	private Label lblCodigo;
+
+	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
-	CircularList<Cancion> listaCanciones=mfm.obtenerCancionesArtistas();
-	
+	CircularList<Cancion> listaCanciones = mfm.obtenerCancionesArtistas();
+
 	/**
 	 * 
 	 */
-    @FXML
+	@FXML
 	void initialize() {
-    	ObservableList<String> generos = FXCollections.observableArrayList();
+		ObservableList<String> generos = FXCollections.observableArrayList();
 		generos.add("Pop");
 		generos.add("Rock");
 		generos.add("Punk");
 		generos.add("Reggaeton");
 		generos.add("Electronica");
 		cmbGenero.setItems(generos);
-    	actualizarTablaCanciones(listaCanciones);
+		actualizarTablaCanciones(listaCanciones);
 	}
-	
+
 	/**
 	 * 
 	 * @param listaCanciones
@@ -178,14 +191,14 @@ public class CancionesTiendaController {
 
 		tableCanciones.refresh();
 	}
-	
+
 	/**
 	 * 
 	 */
-    @FXML
-    void mostrarDetallesCanciones() {
-    	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
+	@FXML
+	void mostrarDetallesCanciones() {
+		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if (cancion != null) {
 			if (cancion.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
 			} else {
@@ -198,27 +211,31 @@ public class CancionesTiendaController {
 			lblCancion.setText(cancion.getNombreCancion());
 			lblAlbum.setText(cancion.getNombreAlbum());
 			lblUrl.setText(cancion.getUrl());
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor seleccione una cancion",
+					AlertType.ERROR);
+			;
 		}
-    }
-	
+	}
+
 	/**
 	 * 
 	 * @param event
 	 */
-    @FXML
-    void deshacerSeleccion(ActionEvent event) {
+	@FXML
+	void deshacerSeleccion(ActionEvent event) {
 
-    }
-	
+	}
+
 	/**
 	 * 
 	 * @param event
 	 */
-    @FXML
-    void rehacerSeleccion(ActionEvent event) {
+	@FXML
+	void rehacerSeleccion(ActionEvent event) {
 
-    }
-	
+	}
+
 	/**
 	 * 
 	 * @param event
@@ -226,20 +243,22 @@ public class CancionesTiendaController {
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if (c!=null) {
-			CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
-			if(!favoritas.contains(c)) {
+		if (c != null) {
+			CircularList<Cancion> favoritas = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+			if (!favoritas.contains(c)) {
 				favoritas.add(c);
 				mfm.guardarAccion(c, "ADDfavorita");
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
-			}else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favoritos");
+			} else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+						"La cancion ya se encuentra en su lista de Favoritos");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a favoritos");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada",
+					"No hay una cancion seleccionada para agregar a favoritos");
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -247,36 +266,38 @@ public class CancionesTiendaController {
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if (c!=null) {
-			CircularList<Cancion> guardadas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
-			if(!guardadas.contains(c)) {
+		if (c != null) {
+			CircularList<Cancion> guardadas = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+			if (!guardadas.contains(c)) {
 				guardadas.add(c);
 				mfm.guardarAccion(c, "ADDplaylist");
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
-			}else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de playlist");
+			} else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+						"La cancion ya se encuentra en su lista de playlist");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a playlist");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada",
+					"No hay una cancion seleccionada para agregar a playlist");
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param event
 	 */
-    @FXML
-    void reproducirCancion(ActionEvent event) {
+	@FXML
+	void reproducirCancion(ActionEvent event) {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
-			CircularList<File> archivo=new CircularList<File>();
+		if (cancion != null) {
+			CircularList<File> archivo = new CircularList<File>();
 			archivo.add(TiendaUtil.obtenerArchivoAudio(cancion));
 			mfm.mostrarReproductorAudio(archivo);
 		} else {
 			InterfazFXUtil.mostrarMensaje("Cancion no seleecionada", "No ha seleccionado una cancion para reproducir");
 		}
-    }
-	
+	}
+
 	/**
 	 * 
 	 * @param event
@@ -299,7 +320,7 @@ public class CancionesTiendaController {
 		actualizarTablaCanciones(listaTemp);
 
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -332,6 +353,30 @@ public class CancionesTiendaController {
 			}
 		}
 		actualizarTablaCanciones(listaTemp);
+	}
+
+	@FXML
+	void ordenarPorNombre(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
+		actualizarTablaCanciones(listaCanciones);
+	}
+
+	@FXML
+	void ordenarPorAlbum(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
+		actualizarTablaCanciones(listaCanciones);
+	}
+
+	@FXML
+	void ordenarPorDuracion(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
+		actualizarTablaCanciones(listaCanciones);
+	}
+
+	@FXML
+	void ordenarPorGenero(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);
+		actualizarTablaCanciones(listaCanciones);
 	}
 
 }

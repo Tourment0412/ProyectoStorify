@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -324,7 +325,7 @@ public class ListaCancionesController {
 
 		} else {
 
-			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor seleccione una cancion", AlertType.ERROR);
 		}
 	}
 	
