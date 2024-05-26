@@ -64,7 +64,6 @@ public class IniciarSesionController {
 
 	/**
 	 * Inicia sesión para un usuario administrador.
-	 * 
 	 * @param admin
 	 */
 	public void iniciarSesionAdministrador(Administrador admin) {
@@ -76,7 +75,6 @@ public class IniciarSesionController {
 
 	/**
 	 * Inicia sesión para un usuario comun
-	 * 
 	 * @param usuario
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
@@ -87,7 +85,7 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * Método que se ejecuta al presionar el botón "Iniciar Sesion".
+	 * Metodo que se ejecuta al presionar el botón "Iniciar Sesion".
 	 */
 	@FXML
 	private void ingresar() {
@@ -95,7 +93,6 @@ public class IniciarSesionController {
 		String tipoCuenra;
 		if (mfm.existeUsuario(txtNombre.getText(), txtContrasenia.getText())) {
 			tipoCuenra = mfm.obtenerTipoCuenta(txtNombre.getText(), txtContrasenia.getText());
-			System.out.println("Es " + tipoCuenra);
 			switch (tipoCuenra) {
 			case "Administrador":
 				iniciarSesionAdministrador(
@@ -113,6 +110,10 @@ public class IniciarSesionController {
 
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
     void registrarse(ActionEvent event) {
     	app.mostrarResgistrarse();

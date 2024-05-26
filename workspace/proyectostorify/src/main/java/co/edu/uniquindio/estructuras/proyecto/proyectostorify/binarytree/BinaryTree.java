@@ -8,19 +8,34 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	private TreeNode<E> root;
 	// Talvez llegar a poner el size o algo asi
-
+	
+	/**
+	 * 
+	 */
 	public BinaryTree() {
 		this.root = null;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public TreeNode<E> getRoot() {
 		return root;
 	}
-
+	
+	/**
+	 * 
+	 * @param root
+	 */
 	public void setRoot(TreeNode<E> root) {
 		this.root = root;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public E peek() {
 		if (root == null) {
 			throw new NoSuchElementException("");
@@ -32,6 +47,11 @@ public class BinaryTree<E extends Comparable<E>> {
 	// Para los metodos de añadir es obligatoriamente necesario que las clases a
 	// guardar implementen un comparable
 
+	
+	/**
+	 * 
+	 * @param value
+	 */
 	public void add(E value) {
 		root = addRecursive(this.root, value);
 	}
@@ -59,6 +79,10 @@ public class BinaryTree<E extends Comparable<E>> {
 	// Recorrdio Postorder => hijoizquierdo, hijo derecho, raiz
 
 	// Recorrdio Preorder => raiz, hijo izquierdo, hijo derecho
+	
+	/**
+	 * 
+	 */
 	public void preorder() {
 		preorderAux(this.root);
 	}
@@ -69,6 +93,11 @@ public class BinaryTree<E extends Comparable<E>> {
 	 * sus derechas y ya lueego pasara a la parte derecha y de la parte derecha,
 	 * todas las izquierdas y luego las derechas
 	 */
+	
+	/**
+	 * 
+	 * @param current
+	 */
 	private void preorderAux(TreeNode<E> current) {
 		if (current == null) {
 			return;
@@ -78,10 +107,18 @@ public class BinaryTree<E extends Comparable<E>> {
 		preorderAux(current.getRight());
 	}
 
+	
+	/**
+	 * 
+	 */
 	public void inorder() {
 		inorderAux(this.root);
 	}
-
+	
+	/**
+	 * 
+	 * @param current
+	 */
 	private void inorderAux(TreeNode<E> current) {
 		if (current == null) {
 			return;
@@ -93,10 +130,18 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	}
 	
+	/**
+	 * 
+	 */
 	public void postorder() {
 		postorderAux(this.root);
 	}
 
+	
+	/**
+	 * 
+	 * @param current
+	 */
 	private void postorderAux(TreeNode<E> current) {
 		if (current == null) {
 			return;
@@ -108,10 +153,22 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	}
 	
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public E search(E value) {
 	    return searchRecursive(root, value);
 	}
 
+	
+	/**
+	 * 
+	 * @param current
+	 * @param value
+	 * @return
+	 */
 	private E searchRecursive(TreeNode<E> current, E value) {
 	    if (current == null) {
 	        return null;
@@ -126,20 +183,17 @@ public class BinaryTree<E extends Comparable<E>> {
 	    return searchRecursive(current.getRight(), value);
 	}
 	
+	/**
+	 * 
+	 */
 	public void clear() {
 		root=null;
 	}
-	/*
-	public void remove(E value) {
-		CircularList<E> auxiliaryList=this.toCircularList();
-		auxiliaryList.remove(value);
-		clear();
-		for (E element : auxiliaryList) {
-			this.add(element);
-		}
-	}
-	*/
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<E> toCircularList() {
 		CircularList<E> eLementsList=new CircularList<E>();
 		if (root!=null) {
@@ -148,6 +202,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		return eLementsList;
 	}
 	
+	/**
+	 * 
+	 * @param elements
+	 * @param node
+	 */
 	public void toCircularList(CircularList<E> elements,TreeNode<E> node) {
 		if (node.getLeft()!=null) {
 			toCircularList(elements,node.getLeft());
@@ -158,6 +217,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		elements.add(node.getValue());
 	}
 	
+	
+	/**
+	 * 
+	 * @param value
+	 */
 	public void remove(E value) {
 		if (root.getValue().compareTo(value)==0) {
 			if (root.getLeft()==null && root.getRight()==null) {
@@ -178,6 +242,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param node
+	 * @param previusNode
+	 */
 	public void removeLeaf(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
 			previusNode.setLeft(null);
@@ -186,6 +255,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param node
+	 * @param previusNode
+	 */
 	public void removeFather1(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
 			if (node.getLeft()==null) {
@@ -203,6 +277,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param node
+	 * @param previusNode
+	 */
 	public void removeFather2(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
 			previusNode.setLeft(null);
@@ -213,6 +292,11 @@ public class BinaryTree<E extends Comparable<E>> {
 		addToArbol(this,node.getRight());
 	}
 	
+	/**
+	 * 
+	 * @param tree
+	 * @param inicialNode
+	 */
 	public void addToArbol(BinaryTree<E> tree,TreeNode<E> inicialNode) {
 		if (inicialNode!=null) {
 			addToArbol(tree,inicialNode.getLeft());
@@ -221,6 +305,12 @@ public class BinaryTree<E extends Comparable<E>> {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param value
+	 * @param node
+	 * @param previusNode
+	 */
 	public void removeSearch(E value,TreeNode<E> node,TreeNode<E> previusNode) {
 		if (node!=null) {
 			if (value.compareTo(node.getValue())<0) {

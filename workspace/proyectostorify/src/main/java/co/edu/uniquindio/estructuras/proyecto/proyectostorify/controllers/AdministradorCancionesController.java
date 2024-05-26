@@ -164,9 +164,11 @@ public class AdministradorCancionesController {
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 	private CircularList<Artista> listaArtistasSeleccionados = new CircularList<Artista>();
 
-
-
-	@FXML void initialize() {
+	/**
+	 * 
+	 */
+	@FXML
+	void initialize() {
 		listaCanciones = mfm.obtenerListaCaciones();
 		ObservableList<String> lista = FXCollections.observableArrayList();
 		lista.add("Rock");
@@ -178,18 +180,29 @@ public class AdministradorCancionesController {
 		actualizarTablaArtistas();
 		actualizarTablaCanciones();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void administrarCanciones(ActionEvent event) {
 		app.mostrarAdministradorCanciones();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
 		app.mostrarIniciarSesion();
 
 	}
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	void actualizar() {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
@@ -236,6 +249,9 @@ public class AdministradorCancionesController {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void actualizarTablaArtistas() {
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
 		for (Artista artista : mfm.obtenerListaArtistas().toCircularList()) {
@@ -255,7 +271,10 @@ public class AdministradorCancionesController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void actualizarTablaCanciones() {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
@@ -273,12 +292,41 @@ public class AdministradorCancionesController {
 		tableCanciones.refresh();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean sonDatosValidos() {
 		boolean sonDatosValidos = false;
 		String msj = "";
-
+		if (InterfazFXUtil.estaCampoVacio(txtCancion)) {
+			msj+="Debe indicar el nombre de la cancion\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(txtAlbum)) {
+			msj+="Debe indicar el album al que pertenece la cancion\n";
+		}
+		try {
+    		int valor=Integer.parseInt(txtAnio.getText());
+			if (valor<0) {
+				throw new Exception("Valor invalido");
+			}
+		} catch (Exception e) {
+			if (txtAnio.getText().trim().equals("")) {
+				msj+="El a\u00F1o no debe estar vacio\n";
+			} else {
+				msj+="A\u00F1o indicado no valido\n";
+			}
+		}
+		if (InterfazFXUtil.estaCampoVacio(txtDuracion)) {
+			msj+="Debe indicar la duracion\n";
+		} else if (!txtDuracion.getText().trim().matches("^[0-9:]+$")) {
+			msj+="Duracion no valida\n";
+		}
 		if (archivoAudioCancion==null) {
-			msj += "Debe seleccionar el audio de la cancion";
+			msj += "Debe seleccionar el audio de la cancion\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(cmbGenero)) {
+			msj+="Debe indicar el genero de la cancion\n";
 		}
 		if (msj.equals("")) {
 			sonDatosValidos = true;
@@ -288,7 +336,11 @@ public class AdministradorCancionesController {
 		return sonDatosValidos;
 	}
 
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void guardarCancion(ActionEvent event) {
 		if (sonDatosValidos()) {
@@ -338,6 +390,9 @@ public class AdministradorCancionesController {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@FXML
 	void ponerDatosCancion() {
 		
@@ -356,7 +411,11 @@ public class AdministradorCancionesController {
 			archivoAudioCancion=TiendaUtil.obtenerArchivoAudio(cancion);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void seleccionarCaratula(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -371,6 +430,10 @@ public class AdministradorCancionesController {
         }
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void seleccionarArtista(ActionEvent event) {
     	Artista artistaSeleccionado = tableArtistas.getSelectionModel().getSelectedItem();
@@ -382,7 +445,10 @@ public class AdministradorCancionesController {
     		JOptionPane.showMessageDialog(null, "El artista ya fue seleccionado");
     	}
     }
-    
+	
+	/**
+	 * 
+	 */
     @FXML
     void seleccionarAudioCancion() {
     	FileChooser fileChooser = new FileChooser();
@@ -390,7 +456,10 @@ public class AdministradorCancionesController {
     			new FileChooser.ExtensionFilter("Archivos MP3", "*.mp3"));
     	archivoAudioCancion = fileChooser.showOpenDialog(null);
     }
-    
+	
+	/**
+	 * 
+	 */
     @FXML
     void reproducirAudioCancion() {
     	if (archivoAudioCancion!=null) {
@@ -401,7 +470,10 @@ public class AdministradorCancionesController {
     		InterfazFXUtil.mostrarMensaje("No se puede reproducir cancion", "No hay audio para reproducir");
     	}
     }
-    
+	
+	/**
+	 * 
+	 */
     @FXML
     void generosPopulares() {
     	CircularList<Genero> generosPopulares=mfm.obtenerGenerosPopulares();

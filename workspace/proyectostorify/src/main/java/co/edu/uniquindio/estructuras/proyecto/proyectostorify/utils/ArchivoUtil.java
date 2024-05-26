@@ -64,8 +64,14 @@ public  class ArchivoUtil {
         fr.close();
         return contenido;
     }
-
-
+	
+	/**
+	 * 
+	 * @param mensajeLog
+	 * @param nivel
+	 * @param accion
+	 * @param rutaArchivo
+	 */
     public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo)
     {
         String log = "";
@@ -107,7 +113,10 @@ public  class ArchivoUtil {
             fileHandler.close();
         }
     }
-
+	
+	/**
+	 * 
+	 */
     private static void cargarFechaSistema() {
 
         String diaN = "";

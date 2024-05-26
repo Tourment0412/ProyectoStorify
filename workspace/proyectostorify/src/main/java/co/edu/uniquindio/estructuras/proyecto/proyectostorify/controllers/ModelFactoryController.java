@@ -40,10 +40,6 @@ public class ModelFactoryController {
 	Stack<Cancion> pilaRehacer;
 	Cuenta usuarioSesion;
 	
-	
-	
-	
-	
 	private static class SingletonHolder { 
 		// El constructor de Singleton puede ser llamado desde aqu� al ser protected
 		private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
@@ -62,6 +58,9 @@ public class ModelFactoryController {
 		inicializarDatos();
 	}
 	
+	/**
+	 * 
+	 */
 	public void inicializarDatosCuenta() {
 		Administrador admin = new Administrador("pepe", "123", "code1");
 	    Usuario usuario = new Usuario("juan", "456", "@789");
@@ -69,6 +68,9 @@ public class ModelFactoryController {
 	    tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);
 	}
 	
+	/**
+	 * 
+	 */
 	public void inicializarDatos() {
 
 	    // Creación de cuentas de administrador y usuario
@@ -108,65 +110,135 @@ public class ModelFactoryController {
 	    establecerCancionesArtista(artista3);
 
 	}
-
+	
+	/**
+	 * 
+	 * @param usuario
+	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		usuarioSesion=usuario;
 		pilaDeshacer=new Stack<Cancion>();
 		pilaRehacer=new Stack<Cancion>();
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerListaCaciones (){
 		return tiendaMusica.getLstCanciones();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public BinaryTree<Artista> obtenerListaArtistas(){
 		return tiendaMusica.getLstArtistas();
 	}
 	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Cuenta obtenerCuenta(String nombre) {
 		return tiendaMusica.obtenerCuenta(null);
 	}
 	
+	/**
+	 * 
+	 * @param codigo
+	 * @return
+	 */
 	public Cancion obtenerCancion(String codigo) {
 		return tiendaMusica.obtenerCancion(codigo);
 	}
 	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Artista obtenerArtista(String nombre) {
 		return tiendaMusica.obtenerArtista(nombre);
 	}
 	
+	/**
+	 * 
+	 * @param usuario
+	 */
 	public void agregarUsuario(Usuario usuario) {
 		tiendaMusica.agregarUsuario(usuario);
 	}
 	
+	/**
+	 * 
+	 * @param nombreUsuario
+	 */
 	public void eliminarUsuario(String nombreUsuario) {
 		tiendaMusica.eliminarUsuario(nombreUsuario);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void agregarCancion(Cancion cancion) {
 		tiendaMusica.agregarCancion(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void eliminarCancion(Cancion cancion) {
 		tiendaMusica.eliminarCancion(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param artista
+	 */
 	public void agregarArtista(Artista artista) {
 		tiendaMusica.agregarArtista(artista);
 	}
 	
+	/**
+	 * 
+	 * @param artista
+	 */
 	public void eliminarArtista(Artista artista) {
 		tiendaMusica.eliminarArtista(artista);
 	}
 	
+	/**
+	 * 
+	 * @param lista
+	 * @param usuario
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasUnion(String lista,Usuario usuario,String[] datos) {
 		return tiendaMusica.obtenerCancionesFiltradasUnion(lista, usuario, datos);
 	}
 	
+	/**
+	 * 
+	 * @param lista
+	 * @param usuario
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista,Usuario usuario,String[] datos) {
 		return tiendaMusica.obtenerCancionesFiltradasInterseccion(lista, usuario, datos);
 	}
 	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Artista obtenerArtistaNombre(String nombre) {
 		return tiendaMusica.obtenerArtistaNombre(nombre);
 	}
@@ -204,29 +276,58 @@ public class ModelFactoryController {
 		// TODO Auto-generated method stub
 		return tiendaMusica.obtenerCuentaDatos(nombre, contrasenia);
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param email
+	 * @param contrasenia
+	 */
 	public void agregarUsuario(String nombre, String email, String contrasenia) {
 		// TODO Auto-generated method stub
 		tiendaMusica.registrarUsuario(nombre, email, contrasenia);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Artista> obtenerArtistas() {
 		return tiendaMusica.obtenerArtistas();
 	}
-
+	
+	/**
+	 * 
+	 * @param newArtista
+	 */
 	public void establecerCancionesArtista(Artista newArtista) {
 		// TODO Auto-generated method stub
 		tiendaMusica.establecerCancionesArtista(newArtista);
 	}
-
+	
+	/**
+	 * 
+	 * @param codigo
+	 * @return
+	 */
 	public boolean existeCodigoCancion(String codigo) {
 		return tiendaMusica.existeCodigoCancion(codigo);
 	}
 	
+	/**
+	 * 
+	 * @param lstArtistas
+	 * @param cancion
+	 */
 	public void agregarCancionesArtistas (CircularList<Artista> lstArtistas, Cancion cancion) {
 		tiendaMusica.agregarCancionesArtistas(lstArtistas, cancion);
 	}
-
+	
+	/**
+	 * 
+	 * @param listaCanciones
+	 * @return
+	 */
 	public CircularList<File> obtenerAudiosCancionesUsuario(CircularList<Cancion> listaCanciones) {
 		CircularList<File> audios=new CircularList<File>();
 		String audio;
@@ -236,36 +337,68 @@ public class ModelFactoryController {
 		return audios;
 	}
 	
+	/**
+	 * 
+	 * @param archivos
+	 */
 	public void mostrarReproductorAudio(CircularList<File> archivos) {
 		this.getAplicacion().reproducirCancion(archivos);
 	}
-
+	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void guardarPlayListUsuario(Cancion c) {
 		// TODO Auto-generated method stub
 		tiendaMusica.guardarPlayListUsuario(c, (Usuario)usuarioSesion);
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void guardarFavoritatUsuario(Cancion c) {
 		// TODO Auto-generated method stub
 		tiendaMusica.guardarCancionFavoritaUsuario(c, (Usuario)usuarioSesion);
 	}
-
+	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void eliminarCancionPlayListUsuario(Cancion c) {
 		tiendaMusica.eliminarCancionGuardada(c, (Usuario)usuarioSesion);
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void eliminarCancionFavoritatUsuario(Cancion c) {
 		tiendaMusica.eliminarCancionFavorita(c, (Usuario)usuarioSesion);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesArtistas() {
 		return tiendaMusica.obtenerCancionesArtistas();
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Genero> obtenerGenerosPopulares() {
 		return tiendaMusica.obtenerGenerosPopulares();
 	}
-
+	
+	/**
+	 * 
+	 * @param archivoArtistas
+	 */
 	public void importarArtistas(File archivoArtistas) {
 		try {
 			PersistenciaTexto.cargarArtistas(tiendaMusica, archivoArtistas.getAbsolutePath());
@@ -274,7 +407,11 @@ public class ModelFactoryController {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param txtFile
+	 */
 	public void exportarArtistas(File txtFile) {
 		try {
 			PersistenciaTexto.guardarArtistas(tiendaMusica, txtFile.getAbsolutePath());
@@ -284,18 +421,24 @@ public class ModelFactoryController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 * @param accion
+	 */
 	public void guardarAccion(Cancion cancion, String accion) {
 		pilaDeshacer.push(cancion, accion);
-		System.out.println("Opcion agregada: "+cancion+" "+cancion.getNombreCancion());
 	}
 	
+	/**
+	 * 
+	 */
 	public void deshacer() {
 		if (!pilaDeshacer.isEmpty()) {
 			String accion=pilaDeshacer.headAction();
 			Cancion cancion=pilaDeshacer.pop();
 			pilaRehacer.push(cancion, accion);
 			Usuario usuario=(Usuario)usuarioSesion;
-			System.out.println("Deshacer: "+accion+" "+cancion.getNombreCancion());
 			switch(accion) {
 				case "ADDplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
 				case "RMplaylist": usuario.getLstCancionesGuardadas().add(cancion); break;
@@ -303,25 +446,18 @@ public class ModelFactoryController {
 				case "RMfavorita": usuario.getLstCancionesFavoritas().add(cancion); break;
 				default: System.out.println("Error en deshacer");
 			}
-			System.out.println("Guardadas/Playlist");
-			for (Cancion cancionObtenida : usuario.getLstCancionesGuardadas()) {
-				System.out.println(cancionObtenida);
-			}
-			System.out.println("Fvoritas");
-			for (Cancion cancionObtenida : usuario.getLstCancionesFavoritas()) {
-				System.out.println(cancionObtenida);
-			}
-			System.out.println("");
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void rehacer() {
 		if (!pilaRehacer.isEmpty()) {
 			String accion=pilaRehacer.headAction();
 			Cancion cancion=pilaRehacer.pop();
 			pilaDeshacer.push(cancion, accion);
 			Usuario usuario=(Usuario)usuarioSesion;
-			System.out.println("Rehacer: "+accion+" "+cancion.getNombreCancion());
 			switch(accion) {
 				case "ADDplaylist": usuario.getLstCancionesGuardadas().add(cancion); break;
 				case "RMplaylist": usuario.getLstCancionesGuardadas().remove(cancion); break;
@@ -329,17 +465,22 @@ public class ModelFactoryController {
 				case "RMfavorita": usuario.getLstCancionesFavoritas().remove(cancion); break;
 				default: System.out.println("Error en rehacer");
 			}
-			System.out.println("Guardadas/Playlist");
-			for (Cancion cancionObtenida : usuario.getLstCancionesGuardadas()) {
-				System.out.println(cancionObtenida);
-			}
-			System.out.println("Fvoritas");
-			for (Cancion cancionObtenida : usuario.getLstCancionesFavoritas()) {
-				System.out.println(cancionObtenida);
-			}
-			System.out.println("");
 		}
 	}
-
-
+	
+	/**
+	 * 
+	 */
+	public void cargarDatos() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void guardarDatos() {
+		
+	}
+	
+	
  }

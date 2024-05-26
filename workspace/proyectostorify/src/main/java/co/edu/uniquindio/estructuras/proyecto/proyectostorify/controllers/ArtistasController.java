@@ -156,11 +156,18 @@ public class ArtistasController {
 	private CircularList<Artista> listaArtista = mfm.obtenerArtistas();
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 
+	/**
+	 * 
+	 */
 	@FXML
 	void initialize() {
 		actualizarTablaArtistas(listaArtista);
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void buscarNombreArtista(ActionEvent event) {
     	CircularList<Artista> listTemp = new CircularList<Artista>();
@@ -172,50 +179,98 @@ public class ArtistasController {
     	actualizarTablaArtistas(listTemp);
     	listTemp.clear();
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
 		app.mostrarIniciarSesion();
 
 	}
-
+	
+	/**
+	 * 
+	 */
+	@FXML
+	void rehacer() {
+		mfm.rehacer();
+	}
+	
+	/**
+	 * 
+	 */
+	@FXML
+	void deshacer() {
+		mfm.deshacer();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Artista> obtenerArtistasNombre() {
 		CircularList<Artista> listaArtistas = mfm.obtenerArtistas();
 		return listaArtistas;
 	}
-
-	@FXML
-	void deshacerSeleccion(ActionEvent event) {
-
-	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
-		if(!favoritas.contains(c)) {
-			favoritas.add(c);
-			mfm.guardarAccion(c, "ADDfavorita");
-			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
-		}else {
-			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favotitos");
+		if (c!=null) {
+			CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+			if(!favoritas.contains(c)) {
+				favoritas.add(c);
+				mfm.guardarAccion(c, "ADDfavorita");
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
+			}else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favoritos");
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a favoritos");
 		}
-		
-		
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		mfm.guardarPlayListUsuario(c);
-		mfm.guardarAccion(c, "ADDplaylist");
+		if (c!=null) {
+			CircularList<Cancion> guardadas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+			if(!guardadas.contains(c)) {
+				guardadas.add(c);
+				mfm.guardarAccion(c, "ADDplaylist");
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
+			}else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de playlist");
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a playlist");
+		}
 	}
 
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void rehacerSeleccion(ActionEvent event) {
 
 	}	
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
     void mostrarCancionesArtista(MouseEvent event) {
     	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
@@ -225,7 +280,11 @@ public class ArtistasController {
     	}
     	
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void mostrarDetallesCanciones(MouseEvent event) {
     	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
@@ -244,13 +303,21 @@ public class ArtistasController {
 			lblUrl.setText(cancion.getUrl());
 		}
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void refrescarTabla(ActionEvent event) {
     	actualizarTablaArtistas(listaArtista);
     	actualizarTablaCanciones(new ListaDoble<Cancion>());
     }
-
+	
+	/**
+	 * 
+	 * @param listaArtista
+	 */
 	private void actualizarTablaArtistas(CircularList<Artista> listaArtista) {
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
 		for (Artista artista : listaArtista) {
@@ -272,6 +339,10 @@ public class ArtistasController {
 		tableArtistas.refresh();
 	}
 	
+	/**
+	 * 
+	 * @param listaCanciones
+	 */
 	public void actualizarTablaCanciones(ListaDoble<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
 		for (Cancion cancion : listaCanciones) {
@@ -289,6 +360,9 @@ public class ArtistasController {
 		tableCanciones.refresh();
 	}
 	
+	/**
+	 * 
+	 */
 	@FXML
 	void reproducirCancion() {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();

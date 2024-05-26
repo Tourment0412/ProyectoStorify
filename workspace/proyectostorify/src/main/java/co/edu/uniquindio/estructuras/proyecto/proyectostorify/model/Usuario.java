@@ -20,32 +20,57 @@ public class Usuario extends Cuenta {
 	private CircularList<Cancion> lstCancionesGuardadas;
 	
 	private CircularList<Cancion> lstCancionesFavoritas;
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @param contrasenia
+	 * @param email
+	 */
 	public Usuario(@NonNull String username, @NonNull String contrasenia, @NonNull String email) {
 		super(username, contrasenia);
 		this.email = email;
 		lstCancionesGuardadas=new CircularList<Cancion>();
 		lstCancionesFavoritas=new CircularList<Cancion>();
 	}
-
+	
+	/**
+	 * 
+	 */
 	public Usuario() {
 		super();
 		lstCancionesGuardadas=new CircularList<Cancion>();
 		lstCancionesFavoritas=new CircularList<Cancion>();
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void agregarCancionGuardada(Cancion cancion) {
 		lstCancionesGuardadas.add(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void eliminarCancionGuardada(Cancion cancion) {
 		lstCancionesGuardadas.remove(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void agregarCancionFavorita(Cancion cancion) {
 		lstCancionesFavoritas.add(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void eliminarCancionFavorita(Cancion cancion) {
 		lstCancionesFavoritas.remove(cancion);
 	}

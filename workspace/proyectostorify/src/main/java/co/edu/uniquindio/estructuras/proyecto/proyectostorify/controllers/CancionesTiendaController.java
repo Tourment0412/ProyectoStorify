@@ -140,6 +140,9 @@ public class CancionesTiendaController {
 	private App app = mfm.getAplicacion();
 	CircularList<Cancion> listaCanciones=mfm.obtenerCancionesArtistas();
 	
+	/**
+	 * 
+	 */
     @FXML
 	void initialize() {
     	ObservableList<String> generos = FXCollections.observableArrayList();
@@ -151,7 +154,11 @@ public class CancionesTiendaController {
 		cmbGenero.setItems(generos);
     	actualizarTablaCanciones(listaCanciones);
 	}
-
+	
+	/**
+	 * 
+	 * @param listaCanciones
+	 */
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		tableCanciones.getItems().clear();
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -172,6 +179,9 @@ public class CancionesTiendaController {
 		tableCanciones.refresh();
 	}
 	
+	/**
+	 * 
+	 */
     @FXML
     void mostrarDetallesCanciones() {
     	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
@@ -190,39 +200,71 @@ public class CancionesTiendaController {
 			lblUrl.setText(cancion.getUrl());
 		}
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void deshacerSeleccion(ActionEvent event) {
 
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void rehacerSeleccion(ActionEvent event) {
 
     }
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
-		if(!favoritas.contains(c)) {
-			favoritas.add(c);
-			mfm.guardarAccion(c, "ADDfavorita");
-			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
-		}else {
-			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favotitos");
+		if (c!=null) {
+			CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+			if(!favoritas.contains(c)) {
+				favoritas.add(c);
+				mfm.guardarAccion(c, "ADDfavorita");
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
+			}else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favoritos");
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a favoritos");
 		}
-		
-		
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		mfm.guardarPlayListUsuario(c);
-		mfm.guardarAccion(c, "ADDplaylist");
+		if (c!=null) {
+			CircularList<Cancion> guardadas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+			if(!guardadas.contains(c)) {
+				guardadas.add(c);
+				mfm.guardarAccion(c, "ADDplaylist");
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
+			}else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de playlist");
+			}
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a playlist");
+		}
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void reproducirCancion(ActionEvent event) {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
@@ -234,7 +276,11 @@ public class CancionesTiendaController {
 			InterfazFXUtil.mostrarMensaje("Cancion no seleecionada", "No ha seleccionado una cancion para reproducir");
 		}
     }
-    
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void busquedaO(ActionEvent event) {
 		CircularList<Cancion> listaTemp = new CircularList<Cancion>();
@@ -253,7 +299,11 @@ public class CancionesTiendaController {
 		actualizarTablaCanciones(listaTemp);
 
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void busquedaY(ActionEvent event) {
 		CircularList<Cancion> listaTemp = new CircularList<Cancion>();

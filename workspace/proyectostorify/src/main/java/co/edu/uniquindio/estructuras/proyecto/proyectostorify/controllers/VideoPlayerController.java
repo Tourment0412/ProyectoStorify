@@ -67,7 +67,11 @@ public class VideoPlayerController implements Initializable {
 	// Se importo el de javafx scene
 	private Media media;
 	private MediaPlayer mediaPlayer;
-
+	
+	/**
+	 * 
+	 * @param songs
+	 */
 	public void organizarArchivos(CircularList<File> songs) {
 		this.songs = songs;
 		if (files != null) {
@@ -100,12 +104,19 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void changeSpeedEvent(ActionEvent event) {
 		// mediaPlayer.setRate(Integer.parseInt(speedBox.getValue())*0.01);
@@ -116,7 +127,11 @@ public class VideoPlayerController implements Initializable {
 					Integer.parseInt(speedBox.getValue().substring(0, speedBox.getValue().length() - 1)) * 0.01);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void nextMediaEvent(ActionEvent event) {
 		if (songNumber < songs.size() - 1) {
@@ -149,13 +164,21 @@ public class VideoPlayerController implements Initializable {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pauseMediaEvent(ActionEvent event) {
 		cancelTimer();
 		mediaPlayer.pause();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void playMediaEvent(ActionEvent event) {
 		
@@ -171,7 +194,11 @@ public class VideoPlayerController implements Initializable {
 		mediaPlayer.setVolume(volumeSlider.getValue()*0.01);
 		mediaPlayer.play();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void previousMediaEvent(ActionEvent event) {
 		if (songNumber > 0) {
@@ -203,14 +230,21 @@ public class VideoPlayerController implements Initializable {
 
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void resetMediaEvent(ActionEvent event) {
 		//Solo se setea la progress bar al parecer
 		songProgressBar.setProgress(0);
 		mediaPlayer.seek(Duration.seconds(0));
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void beginTimer() {
 		timer= new Timer();
 		task= new TimerTask() {
@@ -221,7 +255,6 @@ public class VideoPlayerController implements Initializable {
 				running=true;
 				double current= mediaPlayer.getCurrentTime().toSeconds();
 				double end=media.getDuration().toSeconds();
-				//System.out.println(current/end);
 				songProgressBar.setProgress(current/end);
 				
 				if(current/end==1) {
@@ -239,6 +272,9 @@ public class VideoPlayerController implements Initializable {
 
 	}
 	
+	/**
+	 * 
+	 */
 	public void stop () {
 		running=false;
 		if (timer!=null) {
@@ -249,7 +285,10 @@ public class VideoPlayerController implements Initializable {
 		}
 		mediaPlayer.stop();
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void cancelTimer() {
 		running=false;
 		timer.cancel();

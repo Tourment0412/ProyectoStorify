@@ -11,31 +11,58 @@ public class SimpleNode<E> {
 		this.next = null;
 		this.action = action;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public E getValue() {
 		return value;
 	}
-
+	
+	/**
+	 * 
+	 * @param value
+	 */
 	public void setValue(E value) {
 		this.value = value;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public SimpleNode<E> getNext() {
 		return next;
 	}
-
+	
+	/**
+	 * 
+	 * @param next
+	 */
 	public void setNext(SimpleNode<E> next) {
 		this.next = next;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAction() {
 		return action;
 	}
-
+	
+	/**
+	 * 
+	 * @param action
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return next != null ? String.format("%s, %s", value, next) : value.toString();

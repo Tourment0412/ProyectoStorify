@@ -71,10 +71,20 @@ public class InterfazFXUtil {
 		alert.showAndWait();
 	}
 	
+	/**
+	 * 
+	 * @param campo
+	 * @return
+	 */
 	public static boolean estaCampoVacio(TextField campo) {
 		return campo.getText() == null || campo.getText().trim().equals("");
 	}
 	
+	/**
+	 * 
+	 * @param campo
+	 * @return
+	 */
 	public static boolean estaCampoVacio(ComboBox campo) {
 		return campo.getValue() == null || ((String) campo.getValue()).trim().equals("");
 	}
@@ -119,7 +129,13 @@ public class InterfazFXUtil {
 		comboBox.setValue("");
 		comboBox.setDisable(false);	
 	}
-
+	
+	/**
+	 * 
+	 * @param titulo
+	 * @param texto
+	 * @return
+	 */
 	public static boolean mostrarConfirmacion(String titulo, String texto) {
 	    Alert alert = new Alert(AlertType.CONFIRMATION);
 	    alert.setTitle(titulo);

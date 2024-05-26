@@ -40,6 +40,9 @@ public class App extends Application {
 		mostrarIniciarSesion();
 	}
 	
+	/**
+	 * 
+	 */
 	public void mostrarAdministrador() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -56,6 +59,9 @@ public class App extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void mostrarUsuario() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -196,6 +202,10 @@ public class App extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param archivosReproducir
+	 */
 	public void reproducirCancion(CircularList<File> archivosReproducir) {
 		try {
 			FXMLLoader loader = new FXMLLoader();

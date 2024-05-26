@@ -20,19 +20,28 @@ public class Artista implements Comparable<Artista>{
 	private boolean esGrupo;
 	private ListaDoble<Cancion> lstCanciones;
 	
-	
-	
+	/**
+	 * 
+	 */
 	@Override
 	public int compareTo(Artista o) {
 		return nombre.compareTo(o.getNombre());
 		
 	}
-
+	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void agregarCancion(Cancion cancion) {
 		cancion.getLstArtistas().add(this);
 		lstCanciones.agregarfinal(cancion);
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void eliminarCancion(Cancion cancion) {
 		lstCanciones.eliminar(cancion);
 	}

@@ -4,11 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.InterfazFXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -56,7 +58,10 @@ public class RegistrarseController {
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	void initialize() {
 		assert btnIniciarSesion != null
@@ -73,16 +78,50 @@ public class RegistrarseController {
 
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean sonDatosValidos() {
+		boolean sonDatosValidos = false;
+		String msj = "";
+		if (InterfazFXUtil.estaCampoVacio(txtNombre)) {
+			msj+="Debe indicar el nombre de usuario\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(txtEmail)) {
+			msj+="Debe indicar el email del usuario\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(txtContrasenia)) {
+			msj+="Debe indicar su contrase\u00F1a\n";
+		}
+		if (msj.equals("")) {
+			sonDatosValidos = true;
+		} else {
+			InterfazFXUtil.mostrarMensaje("Entradas no validas", "Entradas no validas", msj, AlertType.ERROR);
+		}
+		return sonDatosValidos;
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
     void iniciarSesion(ActionEvent event) {
     	app.mostrarIniciarSesion();
 
     }
 	
+	/**
+	 * 
+	 * @param event
+	 */
     @FXML
     void registrarse(ActionEvent event) {
-    	mfm.agregarUsuario(txtNombre.getText(), txtEmail.getText(), txtContrasenia.getText());
-    	app.mostrarIniciarSesion();
+    	if (sonDatosValidos()) {
+        	mfm.agregarUsuario(txtNombre.getText(), txtEmail.getText(), txtContrasenia.getText());
+        	app.mostrarIniciarSesion();
+    	}
     }
 
 

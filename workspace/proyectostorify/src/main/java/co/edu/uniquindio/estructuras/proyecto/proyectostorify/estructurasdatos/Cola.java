@@ -42,15 +42,27 @@ public class Cola<E> {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public Nodo<E> getUltimoNodo() {
 		return ultimoNodo;
 	}
 
+	
+	/**
+	 * 
+	 * @param ultimoNodo
+	 */
 	public void setUltimoNodo(Nodo<E> ultimoNodo) {
 		this.ultimoNodo = ultimoNodo;
 	}
-
+	
+	/**
+	 * 
+	 * @param primerNodo
+	 */
 	public void setPrimerNodo(Nodo<E> primerNodo) {
 		this.primerNodo = primerNodo;
 	}
@@ -62,7 +74,11 @@ public class Cola<E> {
 	public boolean estaVacia () {
 		return primerNodo==null;
 	}
-
+	
+	/**
+	 * 
+	 * @param data
+	 */
 	public void encolar(E data) {
 		Nodo newNode = new Nodo(data);
 		if (estaVacia()) {
@@ -74,6 +90,10 @@ public class Cola<E> {
 		tam++;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public E desencolar() {
 		E elemento=(E)this.getPrimerNodo().getValue();
 		quitar();
@@ -89,11 +109,19 @@ public class Cola<E> {
         	primerNodo=node;
     	} 
     }
-    
+	
+	/**
+	 * 
+	 * @return
+	 */
     public E obtenerFrente() {
     	return (E)this.getPrimerNodo().getValue();
     }
-    
+	
+	/**
+	 * 
+	 * @return
+	 */
     public Cola<E> clonarCola() {
     	Cola<E> cola = new Cola<E>();
     	Nodo<E> nodo=primerNodo;
@@ -103,7 +131,12 @@ public class Cola<E> {
     	}
     	return cola;
     }
-    
+	
+	/**
+	 * 
+	 * @param cola
+	 * @return
+	 */
     public boolean equals(Cola cola) {
     	if (this==cola) {
     		return true;
@@ -117,8 +150,12 @@ public class Cola<E> {
     	}
     	return true;
     }
-    
-    
+	
+	/**
+	 * 
+	 * @param posicion
+	 * @param valor
+	 */
     public void introducirElemento(int posicion,E valor) {
     	if (posicion<0 || posicion>=tam) {
     		throw new IndexOutOfBoundsException();
@@ -162,7 +199,10 @@ public class Cola<E> {
     	}
     	return respuesta;
     }
-    
+	
+	/**
+	 * 
+	 */
     @Override
     public String toString() {
     	String msj="[";
@@ -179,6 +219,4 @@ public class Cola<E> {
     	return msj;
     }
     
-    
-	
 }

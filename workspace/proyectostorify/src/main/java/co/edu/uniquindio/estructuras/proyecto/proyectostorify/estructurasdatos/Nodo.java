@@ -47,6 +47,4 @@ public class Nodo<E> {
 		this.value = valorNodo;
 	}
 	
-	
-
 }

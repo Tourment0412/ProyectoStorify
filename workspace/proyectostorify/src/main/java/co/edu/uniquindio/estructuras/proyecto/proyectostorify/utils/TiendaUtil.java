@@ -7,6 +7,12 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
 
 public class TiendaUtil {
 	
+	
+	/**
+	 * 
+	 * @param numero
+	 * @return
+	 */
 	public static char obtenerCaracter(int numero) {
 		char caracter='*';
 		switch(numero) {
@@ -77,7 +83,11 @@ public class TiendaUtil {
 		}
 		return caracter;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static String generarCadenaAleatoria() {
 		int tamanio=5;
 		String cadena;
@@ -85,6 +95,12 @@ public class TiendaUtil {
 		return cadena;
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @param limite
+	 * @return
+	 */
 	public static String generarCadenaAleatoria(int i,int limite) {
 		if (i>=limite) {
 			return "";
@@ -93,6 +109,11 @@ public class TiendaUtil {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param archivoNombre
+	 * @return
+	 */
 	public static String obtenerRutaCopiaOrganizada(String archivoNombre) {
 		String nombre;
 		nombre=generarCadenaAleatoria();
@@ -103,7 +124,12 @@ public class TiendaUtil {
 		}
 		return nombre;
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public static boolean existeArchivoCaratula(String nombre) {
 		if (nombre.equals("")) {
 			return false;
@@ -118,6 +144,11 @@ public class TiendaUtil {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public static boolean existeArchivoAudio(String nombre) {
 		if (nombre.equals("")) {
 			return false;
@@ -132,6 +163,11 @@ public class TiendaUtil {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param cancion
+	 * @return
+	 */
 	public static File obtenerArchivoAudio(Cancion cancion) {
 		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios";
 		File directorio = new File(ruta);

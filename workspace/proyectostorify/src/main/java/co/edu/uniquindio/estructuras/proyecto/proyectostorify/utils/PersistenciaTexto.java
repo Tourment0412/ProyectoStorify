@@ -81,8 +81,13 @@ public class PersistenciaTexto {
         
         return artistas;
     }
-    
-    
+	
+	/**
+	 * 
+	 * @param artistas
+	 * @param nombre
+	 * @return
+	 */
     public static Artista buscarArtistaNombre(CircularList<Artista> artistas,String nombre) {
     	for (Artista artista : artistas) {
 			if (artista.getNombre().equals(nombre)) {
@@ -91,7 +96,13 @@ public class PersistenciaTexto {
 		}
     	return null;
     }
-    
+	
+	/**
+	 * 
+	 * @param cancionesCargadas
+	 * @param nombreCancion
+	 * @return
+	 */
     public static boolean estaCancionCargada(CircularList<Cancion> cancionesCargadas,String nombreCancion) {
     	for (Cancion cancion : cancionesCargadas) {
 			if (cancion.getNombreCancion().equals(nombreCancion)) {
@@ -100,7 +111,13 @@ public class PersistenciaTexto {
 		}
     	return false;
     }
-    
+	
+	/**
+	 * 
+	 * @param cancionesCargadas
+	 * @param nombreCancion
+	 * @return
+	 */
     public static Cancion obtenerCancion(CircularList<Cancion> cancionesCargadas,String nombreCancion) {
     	for (Cancion cancion : cancionesCargadas) {
 			if (cancion.getNombreCancion().equals(nombreCancion)) {
@@ -109,7 +126,13 @@ public class PersistenciaTexto {
 		}
     	return null;
     }
-
+	
+	/**
+	 * 
+	 * @param mensajeLog
+	 * @param nivel
+	 * @param accion
+	 */
     public static void guardaRegistroLog(String mensajeLog, int nivel, String accion)
     {
         ArchivoUtil.guardarRegistroLog(mensajeLog, nivel, accion, RUTA_ARCHIVO_LOG);
@@ -119,13 +142,14 @@ public class PersistenciaTexto {
 
 //	----------------------SAVES------------------------
 
-    /**
-     * Guarda en un archivo de texto todos la información de las personas almacenadas en el ArrayList
-     * @param
-     * @param ruta
-     * @throws IOException
-     */
 
+	
+	/**
+	 * 
+	 * @param tienda
+	 * @param ruta
+	 * @throws IOException
+	 */
     public static void guardarArtistas(Storify tienda, String ruta) throws IOException  {
     	Cancion cancion;//NombreArtista1;NombreCancion;NombreAlbum;Anio;Duracion;Genero;URLCancionYoutube
     	CircularList<Artista> lstArtistas=tienda.getLstArtistas().toCircularList();
@@ -153,7 +177,11 @@ public class PersistenciaTexto {
 
     //------------------------------------SERIALIZACIÓN COMO DATDEL PROYECTO COMPLETO
 
-
+	
+	/**
+	 * 
+	 * @return
+	 */
     public static Storify cargarRecursoBancoBinario() {
 
     	Storify tienda = null;
@@ -166,7 +194,11 @@ public class PersistenciaTexto {
         }
         return tienda;
     }
-
+	
+	/**
+	 * 
+	 * @param tienda
+	 */
     public static void guardarRecursoBancoBinario(Storify tienda) {
         try {
             ArchivoUtil.salvarRecursoSerializado(RUTA_ARCHIVO_MODELO_TIENDA_BINARIO, tienda);

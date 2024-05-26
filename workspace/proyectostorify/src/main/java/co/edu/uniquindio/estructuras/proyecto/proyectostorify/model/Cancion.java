@@ -37,15 +37,26 @@ public class Cancion {
 	@NonNull
 	private CircularList<Artista> lstArtistas;
 	
-	
-	
+	/**
+	 * 
+	 */
 	public Cancion() {
 		super();
 		lstArtistas=new CircularList<Artista>();
 	}
-
-
-
+	
+	/**
+	 * 
+	 * @param codigo
+	 * @param nombreCancion
+	 * @param nombreAlbum
+	 * @param caratula
+	 * @param anio
+	 * @param duracion
+	 * @param url
+	 * @param genero
+	 * @param lstCircularList
+	 */
 	public Cancion(@NonNull String codigo, @NonNull String nombreCancion, @NonNull String nombreAlbum,
 			@NonNull String caratula, @NonNull String anio, @NonNull String duracion, @NonNull String url,
 			@NonNull Genero genero, @NonNull CircularList<Artista> lstCircularList) {
@@ -60,11 +71,5 @@ public class Cancion {
 		this.genero = genero;
 		this.lstArtistas = lstCircularList;
 	}
-
-
-
-
-	
-
 
 }

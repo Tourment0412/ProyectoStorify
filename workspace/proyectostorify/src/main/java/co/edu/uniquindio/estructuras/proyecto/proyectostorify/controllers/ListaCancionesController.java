@@ -174,7 +174,10 @@ public class ListaCancionesController {
 
 	private Stack<Cancion> undoStack = new Stack<>();
 	private Stack<Cancion> redoStack = new Stack<>();
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	void initialize() {
 		ObservableList<String> generos = FXCollections.observableArrayList();
@@ -187,21 +190,27 @@ public class ListaCancionesController {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void refrescarTabla(ActionEvent event) {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
 
 	}
-
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void eliminarDeLista(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
 		if (c != null) {
 			if (listaCanciones != null) {
-				
 				boolean confirmacion = InterfazFXUtil.mostrarConfirmacion("Eliminar canción",
 						"¿Estás seguro de que quieres eliminar esta canción?");
 				if (confirmacion) {
@@ -219,8 +228,10 @@ public class ListaCancionesController {
 		}
 	}
 	
-	
-
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void busquedaO(ActionEvent event) {
 		CircularList<Cancion> listaTemp = new CircularList<Cancion>();
@@ -239,7 +250,11 @@ public class ListaCancionesController {
 		actualizarTablaCanciones(listaTemp);
 
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void busquedaY(ActionEvent event) {
 		CircularList<Cancion> listaTemp = new CircularList<Cancion>();
@@ -269,7 +284,11 @@ public class ListaCancionesController {
 		}
 		actualizarTablaCanciones(listaTemp);
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void mostrarDetallesCancion(MouseEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
@@ -294,51 +313,11 @@ public class ListaCancionesController {
 			JOptionPane.showMessageDialog(null, "Por favor seleccione una cancion");
 		}
 	}
-
-//	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
-//		tableCanciones.getItems().clear();
-//		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
-//		for (Cancion cancion : listaCanciones) {
-//			listaCancionProperty.add(cancion);
-//			System.out.println(cancion);
-//		}
-//
-//		tableCanciones.setItems(listaCancionProperty);
-//		columnNombreCancion
-//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreCancion()));
-//		columnAlbumCancion
-//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
-//		columnDuracionCancion
-//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
-//		columnGeneroCancion
-//				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
-//
-//		tableCanciones.refresh();
-//	}
-//
-//	@FXML
-//	void deshacer(ActionEvent event) {
-//		if (!undoStack.isEmpty()) {
-//		String operacion = undoStack.headAction();
-//		Cancion operacionDeshacer = undoStack.pop();
-//		switch (operacion) {
-//		    case "eliminacion":
-//				mfm.guardarPlayListUsuario(operacionDeshacer);
-//				actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-//				undoStack.push(operacionDeshacer, "insercion");
-//				break;
-//		    case "insersion":
-//		    	mfm.eliminarCancionPlayListUsuario(operacionDeshacer);
-//		    	actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
-//		    	undoStack.push(operacionDeshacer, "eliminacion");
-//				break;
-//		}
-//			
-//		} else {
-//			InterfazFXUtil.mostrarMensaje("Nada que deshacer", "No hay operaciones para deshacer.");
-//		}
-//	}
 	
+	/**
+	 * 
+	 * @param listaCanciones
+	 */
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		tableCanciones.getItems().clear();
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -358,27 +337,42 @@ public class ListaCancionesController {
 
 		tableCanciones.refresh();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void deshacer(ActionEvent event) {
 		mfm.deshacer();
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void rehacer(ActionEvent event) {
 		mfm.rehacer();
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-
+	
+	/**
+	 * 
+	 */
 	@FXML
 	void reproducirCancion() {
 		CircularList<File> archivosCaciones = obtenerArchivosCanciones();
 		mfm.mostrarReproductorAudio(archivosCaciones);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<File> obtenerArchivosCanciones() {
 		CircularList<File> archivosCaciones = new CircularList<File>();
 		File archivo;

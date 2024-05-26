@@ -2,39 +2,24 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 
 import java.util.Iterator;
 
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.TreeNode;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class CircularList<E> implements Iterable<E>{
 	
 	private Node<E> head; 
 	private Node<E> endNode;
 	private int size;
 	
-	public Node<E> getHead() {
-		return head;
-	}
-
-	public void setHead(Node<E> head) {
-		this.head = head;
-	}
-
-	public Node<E> getEndNode() {
-		return endNode;
-	}
-
-	public void setEndNode(Node<E> endNode) {
-		this.endNode = endNode;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-	
+	/**
+	 * 
+	 * @param value
+	 */
 	public void add(E value) {
 		if (head==null) {
 			head=endNode=new Node<E>(value);
@@ -49,6 +34,11 @@ public class CircularList<E> implements Iterable<E>{
 		size++;
 	}
 	
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
 	public E get(int index) {
 		if (index>=size || 0>index) {
 			throw new IndexOutOfBoundsException("Index out of bounds");
@@ -64,7 +54,12 @@ public class CircularList<E> implements Iterable<E>{
 		}
 		return node.getValue();
 	}
-
+	
+	/**
+	 * 
+	 * @param valueToRemove
+	 * @return
+	 */
 	public boolean remove(E valueToRemove) {
 	    if (head == null || !contains(valueToRemove)) {
 	        return false; // La lista está vacía o no contiene el elemento, no hay nada que eliminar
@@ -102,32 +97,20 @@ public class CircularList<E> implements Iterable<E>{
 	    
 	    return false; // No se encontró el valor en la lista
 	}
-
 	
+	/**
+	 * 
+	 */
 	public void removeHead() {
 		endNode.setNext(head.getNext());
 		head=head.getNext();
 	}
 	
-//	public void remove(int index) {
-//		if (index<0 || index>=size) {
-//			throw new IndexOutOfBoundsException();
-//		}
-//		int cont=0;
-//		Node<E> previusNode=endNode;
-//		Node<E> actualNode=head;
-//		while (true) {
-//			if (cont==index) {
-//				previusNode.setNext(actualNode.getNext());
-//				break;
-//			}
-//			previusNode=actualNode;
-//			actualNode=actualNode.getNext();
-//			cont++;
-//		}
-//		size--;
-//	}
 	
+	/**
+	 * 
+	 * @param index
+	 */
 	public void remove(int index) {
 	    if (index < 0 || index >= size) {
 	        throw new IndexOutOfBoundsException();
@@ -150,6 +133,11 @@ public class CircularList<E> implements Iterable<E>{
 	    size--;
 	}
 	
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
 	private Node<E> getNode(int index) {
 	    Node<E> node = head;
 	    for (int i = 0; i < index; i++) {
@@ -158,6 +146,11 @@ public class CircularList<E> implements Iterable<E>{
 	    return node;
 	}
 	
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public int indexOf(E value) {
 		int index=-1;
 		int cont=0;
@@ -171,10 +164,19 @@ public class CircularList<E> implements Iterable<E>{
 		return index;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int size() {
 		return size;
 	}
 	
+	/**
+	 * 
+	 * @param index
+	 * @param value
+	 */
 	public void set(int index,E value) {
 		if (index<0 || index>=size) {
 			throw new IndexOutOfBoundsException();
@@ -187,6 +189,11 @@ public class CircularList<E> implements Iterable<E>{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public boolean contains(E value) {
 		for (E actualValue : this) {
 			if (actualValue==value || value.equals(actualValue)) {
@@ -196,15 +203,25 @@ public class CircularList<E> implements Iterable<E>{
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isEmpty() {
 		return size==0;
 	}
 	
+	/**
+	 * 
+	 */
 	public void clear() {
 		head=endNode=null;
 		size=0;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		String msj="[";
@@ -219,6 +236,11 @@ public class CircularList<E> implements Iterable<E>{
 		return msj;
 	}
 	
+	/**
+	 * 
+	 * @param comparation
+	 * @return
+	 */
 	public CircularList<E> filter(Comparation<E> comparation) {
 		CircularList<E> listObtained=new CircularList<E>();
 		for (E actualValue : this) {
@@ -229,6 +251,10 @@ public class CircularList<E> implements Iterable<E>{
 		return listObtained;
 	}
 	
+	/**
+	 * 
+	 * @param list
+	 */
 	public void setUnion(CircularList<E> list) {
 		
 		for (E element : list) {
@@ -238,6 +264,10 @@ public class CircularList<E> implements Iterable<E>{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param list
+	 */
 	public void setIntersection(CircularList<E> list) {
 		CircularList<E> obtaindedList=new CircularList<E>();
 		for (E element : this) {
@@ -249,6 +279,11 @@ public class CircularList<E> implements Iterable<E>{
 		endNode=obtaindedList.getEndNode();
 	}
 	
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
 	public CircularList<E> getUnion(CircularList<E> list) {
 		CircularList<E> obtaindedList=new CircularList<E>();
 		for (E element : this) {
@@ -262,6 +297,11 @@ public class CircularList<E> implements Iterable<E>{
 		return obtaindedList;
 	}
 	
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
 	public CircularList<E> getIntersection(CircularList<E> list) {
 		CircularList<E> obtaindedList=new CircularList<E>();
 		for (E element : this) {
@@ -272,6 +312,9 @@ public class CircularList<E> implements Iterable<E>{
 		return obtaindedList;
 	}
 	
+	/**
+	 * 
+	 */
 	public CircularList<E> clone() {
 		CircularList<E> obtaindedList=new CircularList<E>();
 		for (E element : this) {
@@ -279,7 +322,10 @@ public class CircularList<E> implements Iterable<E>{
 		}
 		return obtaindedList;
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Override
 	public Iterator<E> iterator() {
 		CircularListIterator<E> iterator=new CircularListIterator<E>(head);
@@ -292,10 +338,18 @@ public class CircularList<E> implements Iterable<E>{
 		Node<E> firtsElement;
 		boolean firtsElementOut=false;
 		
+		
+		/**
+		 * 
+		 * @param node
+		 */
 		public CircularListIterator(Node<E> node) {
 			this.node=firtsElement=node;
 		}
 		
+		/**
+		 * 
+		 */
 		@Override
 		public boolean hasNext() {
 			boolean hasNext=true;
@@ -304,7 +358,10 @@ public class CircularList<E> implements Iterable<E>{
 			}
 			return hasNext;
 		}
-
+		
+		/**
+		 * 
+		 */
 		@Override
 		public Object next() {
 			E value=null;

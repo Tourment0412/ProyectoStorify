@@ -14,12 +14,21 @@ public class Administrador extends Cuenta {
 	@EqualsAndHashCode.Include
 	@NonNull
 	private String idAdministrador;
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @param contrasenia
+	 * @param idAdministrador
+	 */
 	public Administrador(@NonNull String username, @NonNull String contrasenia, @NonNull String idAdministrador) {
 		super(username, contrasenia);
 		this.idAdministrador = idAdministrador;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public Administrador() {
 		super();
 	}

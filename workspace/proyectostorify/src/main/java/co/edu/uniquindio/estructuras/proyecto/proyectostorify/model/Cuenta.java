@@ -16,22 +16,36 @@ public class Cuenta {
 	@EqualsAndHashCode.Include
 	@NonNull
 	private String username;
-
+	
+	/**
+	 * 
+	 */
 	@NonNull
 	private String contrasenia;
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @param contrasenia
+	 */
 	public Cuenta(@NonNull String username, @NonNull String contrasenia) {
 		this.username = username;
 		this.contrasenia = contrasenia;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public Cuenta() {
 
 	}
 	
-	
-	
-	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
 	public boolean verificarDatos(String nombre, String contrasenia) {
 		boolean respuesta=false;
 		if (this.username.equals(nombre) && this.contrasenia.equals(contrasenia)) {

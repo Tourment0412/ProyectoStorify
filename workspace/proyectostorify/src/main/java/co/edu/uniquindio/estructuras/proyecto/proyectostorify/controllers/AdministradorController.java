@@ -20,28 +20,45 @@ public class AdministradorController {
     @FXML
     private Label lblAdministrador;
 
+	
+	/**
+	 * 
+	 */
     @FXML
 	void initialize() {
     	gestionArtistas();
     	lblAdministrador.setText(mfm.getUsuarioSesion().getUsername());
 	}
-    
+	
+	/**
+	 * 
+	 */
     @FXML
     void gestionArtistas() {
     	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorArtistas.fxml");
     }
-
+	
+	/**
+	 * 
+	 */
     @FXML
     void gestionCanciones() {
     	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorCanciones.fxml");
     }
-    
+	
+	/**
+	 * 
+	 */
     @FXML
     void cerrarSesion() {
     	app.mostrarIniciarSesion();
     	mfm.setUsuarioSesion(null);
     }
-    
+	
+	/**
+	 * 
+	 * @param ruta
+	 */
     public void cargarVentana(String ruta) {
     	
     	try {

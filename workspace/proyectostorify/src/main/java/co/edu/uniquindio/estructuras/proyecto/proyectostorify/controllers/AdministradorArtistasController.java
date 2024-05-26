@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -102,7 +103,35 @@ public class AdministradorArtistasController {
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean sonDatosValidos() {
+		boolean sonDatosValidos = false;
+		String msj = "";
+		if (InterfazFXUtil.estaCampoVacio(txtNombre)) {
+			msj+="Debe indicar el nombre del artista\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(txtNacionalidad)) {
+			msj+="Debe indicar la nacionalidad del artista\n";
+		}
+		if (InterfazFXUtil.estaCampoVacio(cmbGrupo)) {
+			msj+="Debe indicar si es un grupo o no\n";
+		}
+		if (msj.equals("")) {
+			sonDatosValidos = true;
+		} else {
+			InterfazFXUtil.mostrarMensaje("Entradas no validas", "Entradas no validas", msj, AlertType.ERROR);
+		}
+		return sonDatosValidos;
+	}
 
+	
+	/**
+	 * 
+	 */
 	@FXML
 	void initialize() {
 		actualizarTablaArtistas();
@@ -112,6 +141,10 @@ public class AdministradorArtistasController {
 		cmbGrupo.setItems(lista);
 	}
 
+	
+	/**
+	 * 
+	 */
 	private void actualizarTablaArtistas() {
 
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
@@ -132,51 +165,74 @@ public class AdministradorArtistasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
 		app.mostrarIniciarSesion();
 
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void actualizarArtista(ActionEvent event) {
 		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
-			artistaElejido.setNombre(txtNombre.getText());
-			artistaElejido.setNacionalidad(txtNacionalidad.getText());
-			if (cmbGrupo.getSelectionModel().getSelectedItem() == "No") {
-				artistaElejido.setEsGrupo(false);
-			} else {
-				artistaElejido.setEsGrupo(true);
+			if (sonDatosValidos()) {
+				Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
+				artistaElejido.setNombre(txtNombre.getText());
+				artistaElejido.setNacionalidad(txtNacionalidad.getText());
+				if (cmbGrupo.getSelectionModel().getSelectedItem() == "No") {
+					artistaElejido.setEsGrupo(false);
+				} else {
+					artistaElejido.setEsGrupo(true);
+				}
 			}
 		} else {
 			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a actualizar");
 		}
 		actualizarTablaArtistas();
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void administrarCanciones(ActionEvent event) {
 
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void crearArtista(ActionEvent event) {
 		Artista newArtista = new Artista();
-		newArtista.setCodigo(TiendaUtil.generarCadenaAleatoria());
-		if (cmbGrupo.getSelectionModel().getSelectedItem() == "No") {
-			newArtista.setEsGrupo(false);
-		} else {
-			newArtista.setEsGrupo(true);
+		if (sonDatosValidos()) {
+			newArtista.setCodigo(TiendaUtil.generarCadenaAleatoria());
+			if (cmbGrupo.getSelectionModel().getSelectedItem() == "No") {
+				newArtista.setEsGrupo(false);
+			} else {
+				newArtista.setEsGrupo(true);
+			}
+			newArtista.setNombre(txtNombre.getText());
+			newArtista.setNacionalidad(txtNacionalidad.getText());
+			mfm.agregarArtista(newArtista);
+			actualizarTablaArtistas();
 		}
-		newArtista.setNombre(txtNombre.getText());
-		newArtista.setNacionalidad(txtNacionalidad.getText());
-		mfm.agregarArtista(newArtista);
-		actualizarTablaArtistas();
 	}
 	
+	/**
+	 * 
+	 */
 	@FXML
 	void ponerDatos() {
 		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
@@ -191,7 +247,11 @@ public class AdministradorArtistasController {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void eliminarArtista(ActionEvent event) {
 		int selectedIndex = tableArtistas.getSelectionModel().getSelectedIndex();
@@ -204,6 +264,9 @@ public class AdministradorArtistasController {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@FXML
 	void importar() {
 		File archivoArtistas;
@@ -218,6 +281,9 @@ public class AdministradorArtistasController {
         }
 	}
 	
+	/**
+	 * 
+	 */
 	@FXML
 	void exportar() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();

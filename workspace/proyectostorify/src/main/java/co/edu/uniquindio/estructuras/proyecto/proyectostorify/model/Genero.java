@@ -10,7 +10,11 @@ public enum Genero {
 	
 	@Getter
 	private String genero;
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public static String[] stringValues() {
 		Genero[] values = values();
 		String[] stringValues = new String[values.length];
@@ -18,7 +22,12 @@ public enum Genero {
 			stringValues[i] = values[i].getGenero();
 		return stringValues;
 	}
-
+	
+	/**
+	 * 
+	 * @param estadoString
+	 * @return
+	 */
 	public static Genero getEstadoByString(String estadoString) {
 		Genero[] values = values();
 		for (Genero estado : values)
@@ -27,6 +36,9 @@ public enum Genero {
 		return null;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return genero;

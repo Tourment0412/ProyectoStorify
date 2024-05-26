@@ -34,27 +34,49 @@ public class Storify {
 
 	private HashMap<String, Cuenta> lstCuentas;
 
+	/**
+	 * 
+	 */
 	public Storify() {
 		lstArtistas=new BinaryTree<Artista>();
 		lstCanciones=new CircularList<Cancion>();
 		lstCuentas=new HashMap<String, Cuenta>();
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 */
 	public Storify(String nombre) {
 		this.nombre = nombre;
 		lstArtistas=new BinaryTree<Artista>();
 		lstCanciones=new CircularList<Cancion>();
 		lstCuentas=new HashMap<String, Cuenta>();
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Cuenta obtenerCuenta(String nombre) {
 		return lstCuentas.get(nombre);
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Artista obtenerArtista(String nombre) {
 		return null;
 	}
-
+	
+	/**
+	 * 
+	 * @param codigo
+	 * @return
+	 */
 	public Cancion obtenerCancion(String codigo) {
 		for (Cancion cancion : lstCanciones) {
 			if (cancion.getCodigo().equals(codigo)) {
@@ -63,11 +85,19 @@ public class Storify {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void agregarCancion(Cancion cancion) {
 		lstCanciones.add(cancion);
 	}
-
+	
+	/**
+	 * 
+	 * @param cancion
+	 */
 	public void eliminarCancion(Cancion cancion) {
 		CircularList<Artista> artistas = cancion.getLstArtistas();
 		for (Artista a : artistas) {
@@ -75,25 +105,47 @@ public class Storify {
 		}
 		lstCanciones.remove(cancion);
 	}
-
+	
+	/**
+	 * 
+	 * @param artista
+	 */
 	public void agregarArtista(Artista artista) {
 		System.out.println(lstArtistas.toCircularList().getSize());
 		lstArtistas.add(artista);
 		System.out.println(lstArtistas.toCircularList().getSize());
 	}
-
+	
+	/**
+	 * 
+	 * @param artista
+	 */
 	public void eliminarArtista(Artista artista) {
 		lstArtistas.remove(artista);
 	}
-
+	
+	/**
+	 * 
+	 * @param usuario
+	 */
 	public void agregarUsuario(Usuario usuario) {
 		lstCuentas.put(usuario.getUsername(), usuario);
 	}
-
+	
+	/**
+	 * 
+	 * @param nombreUsuario
+	 */
 	public void eliminarUsuario(String nombreUsuario) {
 		lstCuentas.remove(nombreUsuario);
 	}
-
+	
+	/**
+	 * 
+	 * @param lstCanciones
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasUnion(CircularList<Cancion> lstCanciones, String[] datos) {
 		CircularList<Cancion> obtainedList = new CircularList<Cancion>();
 		if (!datos[0].equals("")) {
@@ -114,7 +166,13 @@ public class Storify {
 		}
 		return obtainedList;
 	}
-
+	
+	/**
+	 * 
+	 * @param lstCanciones
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(CircularList<Cancion> lstCanciones,
 			String[] datos) {
 		CircularList<Cancion> obtainedList = lstCanciones.clone();
@@ -136,7 +194,14 @@ public class Storify {
 		}
 		return obtainedList;
 	}
-
+	
+	/**
+	 * 
+	 * @param lista
+	 * @param usuario
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasUnion(String lista, Usuario usuario, String[] datos) {
 		CircularList<Cancion> canciones = null;
 		switch (lista) {
@@ -149,7 +214,14 @@ public class Storify {
 		}
 		return canciones;
 	}
-
+	
+	/**
+	 * 
+	 * @param lista
+	 * @param usuario
+	 * @param datos
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista, Usuario usuario, String[] datos) {
 		CircularList<Cancion> canciones = null;
 		switch (lista) {
@@ -162,7 +234,13 @@ public class Storify {
 		}
 		return canciones;
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
 	public boolean existeUsuario(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
 		for (HashMap.Entry<String, Cuenta> cuenta : lstCuentas.entrySet()) {
@@ -175,7 +253,13 @@ public class Storify {
 		return false;
 
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
 	public String obtenerTipoCuenta(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
 		String tipoCuenta = "";
@@ -193,7 +277,13 @@ public class Storify {
 		}
 		return tipoCuenta;
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param contrasenia
+	 * @return
+	 */
 	public Cuenta obtenerCuentaDatos(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
 		Cuenta cuentaObtenida = null;
@@ -207,18 +297,33 @@ public class Storify {
 		}
 		return cuentaObtenida;
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @param email
+	 * @param contrasenia
+	 */
 	public void registrarUsuario(String nombre, String email, String contrasenia) {
 		// TODO Auto-generated method stub
 		Usuario newUsuario = new Usuario(nombre, contrasenia, email);
 		agregarUsuario(newUsuario);
 
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Artista> obtenerArtistas() {
 		return getLstArtistas().toCircularList();
 	}
-
+	
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 */
 	public Artista obtenerArtistaNombre(String nombre) {
 		CircularList<Artista> listTemp = getLstArtistas().toCircularList();
 		for (Artista a : listTemp) {
@@ -228,7 +333,12 @@ public class Storify {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * 
+	 * @param newArtista
+	 * @return
+	 */
 	public ListaDoble<Cancion> establecerCancionesArtista(Artista newArtista) {
 		ListaDoble<Cancion> cancionesArtista = new ListaDoble<Cancion>();
 		for (Cancion c : getLstCanciones()) {
@@ -242,18 +352,33 @@ public class Storify {
 		newArtista.setLstCanciones(cancionesArtista);
 		return cancionesArtista;
 	}
-
+	
+	/**
+	 * 
+	 * @param codigo
+	 * @return
+	 */
 	public boolean existeCodigoCancion(String codigo) {
 		return lstCanciones.filter(cancion->cancion.getCodigo().equals(codigo)).size()!=0;
 	}
-
+	
+	/**
+	 * 
+	 * @param lstArtistas
+	 * @param cancion
+	 */
 	public void agregarCancionesArtistas(CircularList<Artista> lstArtistas, Cancion cancion) {
 		// TODO Auto-generated method stub
 		for (Artista a : lstArtistas) {
 			a.getLstCanciones().agregar(cancion);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param c
+	 * @param u
+	 */
 	public void guardarPlayListUsuario(Cancion c, Usuario u) {
 		// TODO Auto-generated method stub
 		CircularList<Cancion> playlist = u.getLstCancionesGuardadas();
@@ -265,6 +390,11 @@ public class Storify {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 * @param u
+	 */
 	public void guardarCancionFavoritaUsuario(Cancion c, Usuario u) {
 		// TODO Auto-generated method stub
 		CircularList<Cancion> favoritas = u.getLstCancionesFavoritas();
@@ -275,18 +405,32 @@ public class Storify {
 			InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su PlayList");
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param cancion
+	 * @param usuario
+	 */
 	public void eliminarCancionGuardada(Cancion cancion, Usuario usuario) {
 		// TODO Auto-generated method stub
 		usuario.getLstCancionesGuardadas().remove(cancion);
 
 	}
-
+	
+	/**
+	 * 
+	 * @param cancion
+	 * @param usuario
+	 */
 	public void eliminarCancionFavorita(Cancion cancion, Usuario usuario) {
 		// TODO Auto-generated method stub
 		usuario.getLstCancionesFavoritas().remove(cancion);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Cancion> obtenerCancionesArtistas() {
 		CircularList<Artista> artistas=lstArtistas.toCircularList();
 		CircularList<Cancion> canciones=new CircularList<Cancion>();
@@ -296,6 +440,11 @@ public class Storify {
 		return canciones;
 	}
 	
+	/**
+	 * 
+	 * @param genero
+	 * @return
+	 */
 	public int contarGeneroCancionesUsuarios(Genero genero) {
 		int cantidad=0;
 		for (Cuenta cuenta : lstCuentas.values()) {
@@ -307,6 +456,12 @@ public class Storify {
 		return cantidad;
 	}
 	
+	/**
+	 * 
+	 * @param genero
+	 * @param canciones
+	 * @return
+	 */
 	public int contarCancionesGenero(Genero genero,CircularList<Cancion> canciones) {
 		int cantidad=0;
 		for (Cancion cancion : canciones) {
@@ -317,6 +472,10 @@ public class Storify {
 		return cantidad;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public CircularList<Genero> obtenerGenerosPopulares() {
 		CircularList<Genero> generosPopulares=new CircularList<Genero>();
 		int mayor=0;
