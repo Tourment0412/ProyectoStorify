@@ -2,6 +2,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.application.App;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.ComparadoresCancion;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Genero;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Usuario;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
@@ -39,6 +41,18 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ListaCancionesController {
+	
+    @FXML
+    private Button btnOrdenarAlbum;
+
+    @FXML
+    private Button btnOrdenarDuracion;
+
+    @FXML
+    private Button btnOrdenarGenero;
+
+    @FXML
+    private Button btnOrdenarNombre;
 
 	@FXML
 	private Button btnDetalles;
@@ -384,5 +398,32 @@ public class ListaCancionesController {
 		}
 		return archivosCaciones;
 	}
+	
+	@FXML
+    void ordenarPorNombre(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorAlbum(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorDuracion(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
+        actualizarTablaCanciones(listaCanciones);
+    }
+
+    @FXML
+    void ordenarPorGenero(ActionEvent event) {
+        listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);
+        actualizarTablaCanciones(listaCanciones);
+    }
+	
+
+    
 
 }

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
    <children>
       <TableView fx:id="tableCanciones" layoutX="79.0" layoutY="310.0" onMouseClicked="#mostrarDetallesCanciones" prefHeight="147.0" prefWidth="372.0">
         <columns>
@@ -39,13 +35,13 @@
       <Label fx:id="lblDuracionCancion" layoutX="582.0" layoutY="381.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Duracion:" />
       <Label fx:id="lblUrlCancion" layoutX="614.0" layoutY="406.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Url:" />
       <Label fx:id="lblGeneroCancion" layoutX="590.0" layoutY="435.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
-      <Label fx:id="lblCancion" layoutX="656.0" layoutY="300.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblCodigo" layoutX="656.0" layoutY="271.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblAlbum" layoutX="656.0" layoutY="327.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblAnio" layoutX="656.0" layoutY="353.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblDuracion" layoutX="656.0" layoutY="381.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblUrl" layoutX="656.0" layoutY="405.0" stylesheets="@../styles/trystyles.css" text="Label" />
-      <Label fx:id="lblGenero" layoutX="656.0" layoutY="435.0" stylesheets="@../styles/trystyles.css" text="Label" />
+      <Label fx:id="lblCancion" layoutX="656.0" layoutY="300.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblCodigo" layoutX="656.0" layoutY="271.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblAlbum" layoutX="656.0" layoutY="327.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblAnio" layoutX="656.0" layoutY="353.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblDuracion" layoutX="656.0" layoutY="381.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblUrl" layoutX="656.0" layoutY="405.0" stylesheets="@../styles/trystyles.css" text=" " />
+      <Label fx:id="lblGenero" layoutX="656.0" layoutY="435.0" stylesheets="@../styles/trystyles.css" text=" " />
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnDeshacer" layoutX="113.0" layoutY="471.0" mnemonicParsing="false" onAction="#deshacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
       <Button fx:id="btnRehacer" layoutX="302.0" layoutY="471.0" mnemonicParsing="false" onAction="#rehacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />

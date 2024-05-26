@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.TreeNode;
@@ -323,6 +324,23 @@ public class CircularList<E> implements Iterable<E>{
 		return obtaindedList;
 	}
 	
+	public void ordenar(Comparator<E> comparador) {
+	    int n = size();
+	    for (int i = 0; i < n - 1; i++) {
+	        int minIndex = i;
+	        for (int j = i + 1; j < n; j++) {
+	            if (comparador.compare(get(j), get(minIndex)) < 0) {
+	                minIndex = j;
+	            }
+	        }
+	        if (minIndex != i) {
+	            E temp = get(i);
+	            set(i, get(minIndex));
+	            set(minIndex, temp);
+	        }
+	    }
+	}
+	
 	/**
 	 * 
 	 */
@@ -378,6 +396,9 @@ public class CircularList<E> implements Iterable<E>{
 	public interface Comparation<E> {
 		boolean comparation(E value);
 	}
+	
+	
+
 
 	
 

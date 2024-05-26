@@ -17,59 +17,74 @@ import javafx.stage.Stage;
 
 public class InterfazFXUtil {
 	
-	/**
-	 * Metodo que muestra un mensaje
-	 * @param titulo Titulo del mensaje
-	 * @param encabezado Cabecera del mensaje
-	 * @param texto Texto principal del mensaje
-	 * @param alerta Alerta del mensaje
-	 */
-	public static void mostrarMensaje(String titulo,String encabezado,String texto,AlertType alerta) {
-		Alert alert = new Alert(alerta);
-		alert.setTitle(titulo);
-		alert.setHeaderText(encabezado);
-		alert.setContentText(texto);
-		alert.showAndWait();
-	}
-	
-	/**
-	 * Metodo que muestra un mensaje
-	 * @param titulo Titulo del mensaje
-	 * @param texto Texto principal del mensaje
-	 * @param alerta Alerta del mensaje
-	 */
-	public static void mostrarMensaje(String titulo,String texto,AlertType alerta) {
-		Alert alert = new Alert(alerta);
-		alert.setTitle(titulo);
-		alert.setHeaderText(titulo);
-		alert.setContentText(texto);
-		alert.showAndWait();
-	}
-	
-	/**
-	 * Metodo que muestra un mensaje
-	 * @param titulo Titulo del mensaje
-	 * @param texto Texto principal del mensaje
-	 */
-	public static void mostrarMensaje(String titulo,String texto) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(titulo);
-		alert.setHeaderText(titulo);
-		alert.setContentText(texto);
-		alert.showAndWait();
-	}
-	
-	/**
-	 * Metodo que muestra un mensaje
-	 * @param titulo Titulo del mensaje
-	 */
-	public static void mostrarMensaje(String texto) {
-		Alert alert = new Alert(AlertType.NONE);
-		alert.setTitle("");
-		alert.setHeaderText("");
-		alert.setContentText(texto);
-		alert.showAndWait();
-	}
+	 private static final String ALERT_CSS = "/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/alert.css";
+
+    /**
+     * Metodo que muestra un mensaje
+     * @param titulo Titulo del mensaje
+     * @param encabezado Cabecera del mensaje
+     * @param texto Texto principal del mensaje
+     * @param alerta Alerta del mensaje
+     */
+    public static void mostrarMensaje(String titulo, String encabezado, String texto, AlertType alerta) {
+        Alert alert = new Alert(alerta);
+        alert.setTitle(titulo);
+        alert.setHeaderText(encabezado);
+        alert.setContentText(texto);
+        applyAlertStyle(alert);
+        alert.showAndWait();
+    }
+
+    /**
+     * Metodo que muestra un mensaje
+     * @param titulo Titulo del mensaje
+     * @param texto Texto principal del mensaje
+     * @param alerta Alerta del mensaje
+     */
+    public static void mostrarMensaje(String titulo, String texto, AlertType alerta) {
+        Alert alert = new Alert(alerta);
+        alert.setTitle(titulo);
+        alert.setHeaderText(titulo);
+        alert.setContentText(texto);
+        applyAlertStyle(alert);
+        alert.showAndWait();
+    }
+
+    /**
+     * Metodo que muestra un mensaje
+     * @param titulo Titulo del mensaje
+     * @param texto Texto principal del mensaje
+     */
+    public static void mostrarMensaje(String titulo, String texto) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(titulo);
+        alert.setContentText(texto);
+        applyAlertStyle(alert);
+        alert.showAndWait();
+    }
+
+    /**
+     * Metodo que muestra un mensaje
+     * @param titulo Titulo del mensaje
+     */
+    public static void mostrarMensaje(String texto) {
+        Alert alert = new Alert(AlertType.NONE);
+        alert.setTitle("");
+        alert.setHeaderText("");
+        alert.setContentText(texto);
+        applyAlertStyle(alert);
+        alert.showAndWait();
+    }
+
+    /**
+     * Aplica el estilo CSS a la alerta.
+     * @param alert La alerta a la que se le aplicará el estilo.
+     */
+    private static void applyAlertStyle(Alert alert) {
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        alert.getDialogPane().getStylesheets().add(InterfazFXUtil.class.getResource(ALERT_CSS).toExternalForm());
+    }
 	
 	/**
 	 * 

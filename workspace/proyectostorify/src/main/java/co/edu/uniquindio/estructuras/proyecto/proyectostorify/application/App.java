@@ -33,6 +33,13 @@ public class App extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException{
+		// Cargar la imagen del icono desde el classpath
+        String iconPath = "/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo2.png";
+        Image icon = new Image(getClass().getResourceAsStream(iconPath));
+        
+     // Establecer la imagen como el icono del Stage principal
+        primaryStage.getIcons().add(icon);
+		
 		ModelFactoryController mfm = ModelFactoryController.getInstance();
 		mfm.setAplicacion(this);
 		this.primaryStage = primaryStage;

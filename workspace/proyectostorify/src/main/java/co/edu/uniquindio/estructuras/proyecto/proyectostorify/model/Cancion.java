@@ -71,5 +71,19 @@ public class Cancion {
 		this.genero = genero;
 		this.lstArtistas = lstCircularList;
 	}
+	
+	public int getDuracionEnSegundos() {
+        String[] partes = duracion.split(":");
+        int minutos = Integer.parseInt(partes[0]);
+        int segundos = Integer.parseInt(partes[1]);
+        return minutos * 60 + segundos;
+    }
+
+	@Override
+	public String toString() {
+		return "Cancion [codigo=" + codigo + ", nombreCancion=" + nombreCancion + "]";
+	}
+	
+	
 
 }

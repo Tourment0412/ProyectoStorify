@@ -1,0 +1,46 @@
+/* alert.css */
+
+/* Fondo y bordes de la alerta */
+.dialog-pane {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Estilo del texto del contenido */
+.dialog-pane .content.label {
+    -fx-text-fill: white;
+}
+
+/* Fondo y bordes del panel de cabecera */
+.dialog-pane .header-panel {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 2px 0; /* Solo borde inferior */
+}
+
+/* Estilo del texto de la cabecera */
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Fondo y estilo de los botones */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #555;
+}
+
+.dialog-pane .button-bar .button:focused {
+    -fx-border-color: #555;
+}
