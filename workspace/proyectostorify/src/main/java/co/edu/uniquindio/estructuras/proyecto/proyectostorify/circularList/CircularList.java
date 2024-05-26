@@ -3,6 +3,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 import java.util.Comparator;
 import java.util.Iterator;
 
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.TreeNode;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Artista;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
@@ -178,16 +179,28 @@ public class CircularList<E> implements Iterable<E>{
 	 * @param index
 	 * @param value
 	 */
-	public void set(int index,E value) {
-		if (index<0 || index>=size) {
-			throw new IndexOutOfBoundsException();
-		}
-		Node<E> node=head;
-		int cont;
-		while (node!=null) {
-			
-			node=node.getNext();
-		}
+//	public void set(int index,E value) {
+//		if (index<0 || index>=size) {
+//			throw new IndexOutOfBoundsException();
+//		}
+//		Node<E> node=head;
+//		int cont;
+//		while (node!=null) {
+//			
+//			node=node.getNext();
+//		}
+//	}
+	public void set(int index, E value) {
+	    if (index < 0 || index >= size) {
+	        throw new IndexOutOfBoundsException();
+	    }
+	    Node<E> node = head;
+	    // Recorre la lista hasta el índice deseado
+	    for (int cont = 0; cont < index; cont++) {
+	        node = node.getNext();
+	    }
+	    // Establece el nuevo valor en el nodo encontrado
+	    node.setValue(value);
 	}
 	
 	/**
@@ -325,14 +338,22 @@ public class CircularList<E> implements Iterable<E>{
 	}
 	
 	public void ordenar(Comparator<E> comparador) {
+	    if (comparador == null) {
+	        throw new IllegalArgumentException("El comparador no puede ser nulo");
+	    }
+	    
+
 	    int n = size();
+	    // Recorre todos los elementos excepto el último
 	    for (int i = 0; i < n - 1; i++) {
-	        int minIndex = i;
+	        int minIndex = i; // Índice del elemento mínimo
+	        // Encuentra el menor elemento en la sublista no ordenada
 	        for (int j = i + 1; j < n; j++) {
 	            if (comparador.compare(get(j), get(minIndex)) < 0) {
 	                minIndex = j;
 	            }
 	        }
+	        // Intercambia el elemento mínimo con el primer elemento no ordenado
 	        if (minIndex != i) {
 	            E temp = get(i);
 	            set(i, get(minIndex));
