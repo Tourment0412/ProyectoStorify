@@ -35,7 +35,7 @@ public class Storify {
 	private HashMap<String, Cuenta> lstCuentas;
 
 	/**
-	 * 
+	 * Metodo constructor
 	 */
 	public Storify() {
 		lstArtistas=new BinaryTree<Artista>();
@@ -44,8 +44,8 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
+	 * Metodo constructor
+	 * @param nombre Nombre de la tienda
 	 */
 	public Storify(String nombre) {
 		this.nombre = nombre;
@@ -55,27 +55,18 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @return
+	 * Obtiene una cuenta con el nombre indicado
+	 * @param nombre Nombre de la cuenta
+	 * @return Cuenta obtenida
 	 */
 	public Cuenta obtenerCuenta(String nombre) {
 		return lstCuentas.get(nombre);
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @return
-	 */
-	public Artista obtenerArtista(String nombre) {
-		return null;
-	}
-	
-	/**
-	 * 
-	 * @param codigo
-	 * @return
+	 * Obtiene una cancion indicando su codigo
+	 * @param codigo Codigo de la cancion
+	 * @return Cancion encontrada
 	 */
 	public Cancion obtenerCancion(String codigo) {
 		for (Cancion cancion : lstCanciones) {
@@ -87,16 +78,16 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param cancion
+	 * Agrega una cancion a la tienda
+	 * @param cancion Cancion a agregar
 	 */
 	public void agregarCancion(Cancion cancion) {
 		lstCanciones.add(cancion);
 	}
 	
 	/**
-	 * 
-	 * @param cancion
+	 * Elimina una cancion de la tienda
+	 * @param cancion Cancion a eliminar
 	 */
 	public void eliminarCancion(Cancion cancion) {
 		CircularList<Artista> artistas = cancion.getLstArtistas();
@@ -107,139 +98,42 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param artista
+	 * Agrega un artista a la tienda
+	 * @param artista Artista a agregar
 	 */
 	public void agregarArtista(Artista artista) {
-		System.out.println(lstArtistas.toCircularList().getSize());
 		lstArtistas.add(artista);
-		System.out.println(lstArtistas.toCircularList().getSize());
 	}
 	
 	/**
-	 * 
-	 * @param artista
+	 * Elimina una cancion de la tienda
+	 * @param artista Artista a eliminar
 	 */
 	public void eliminarArtista(Artista artista) {
 		lstArtistas.remove(artista);
 	}
 	
 	/**
-	 * 
-	 * @param usuario
+	 * Agrega un usuario a la tienda
+	 * @param usuario Usuario a agregar
 	 */
 	public void agregarUsuario(Usuario usuario) {
 		lstCuentas.put(usuario.getUsername(), usuario);
 	}
 	
 	/**
-	 * 
-	 * @param nombreUsuario
+	 * Elimina un usuario de la tienda
+	 * @param nombreUsuario Nombre del usuario a eliminar
 	 */
 	public void eliminarUsuario(String nombreUsuario) {
 		lstCuentas.remove(nombreUsuario);
 	}
 	
 	/**
-	 * 
-	 * @param lstCanciones
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasUnion(CircularList<Cancion> lstCanciones, String[] datos) {
-		CircularList<Cancion> obtainedList = new CircularList<Cancion>();
-		if (!datos[0].equals("")) {
-			obtainedList.setUnion(lstCanciones.filter(cancion -> cancion.getNombreCancion().equals(datos[0])));
-		}
-		if (!datos[1].equals("")) {
-			obtainedList.setUnion(lstCanciones.filter(cancion -> cancion.getNombreAlbum().equals(datos[1])));
-		}
-		if (!datos[2].equals("")) {
-			obtainedList.setUnion(lstCanciones.filter(cancion -> cancion.getAnio().equals(datos[2])));
-		}
-		if (!datos[3].equals("")) {
-			obtainedList.setUnion(lstCanciones.filter(cancion -> cancion.getDuracion().equals(datos[3])));
-		}
-		if (!datos[4].equals("")) {
-			obtainedList.setUnion(
-					lstCanciones.filter(cancion -> cancion.getGenero().equals(Genero.getEstadoByString(datos[4]))));
-		}
-		return obtainedList;
-	}
-	
-	/**
-	 * 
-	 * @param lstCanciones
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(CircularList<Cancion> lstCanciones,
-			String[] datos) {
-		CircularList<Cancion> obtainedList = lstCanciones.clone();
-		if (!datos[0].equals("")) {
-			obtainedList.setIntersection(lstCanciones.filter(cancion -> cancion.getNombreCancion().equals(datos[0])));
-		}
-		if (!datos[1].equals("")) {
-			obtainedList.setIntersection(lstCanciones.filter(cancion -> cancion.getNombreAlbum().equals(datos[1])));
-		}
-		if (!datos[2].equals("")) {
-			obtainedList.setIntersection(lstCanciones.filter(cancion -> cancion.getAnio().equals(datos[2])));
-		}
-		if (!datos[3].equals("")) {
-			obtainedList.setIntersection(lstCanciones.filter(cancion -> cancion.getDuracion().equals(datos[3])));
-		}
-		if (!datos[4].equals("")) {
-			obtainedList.setIntersection(
-					lstCanciones.filter(cancion -> cancion.getGenero().equals(Genero.getEstadoByString(datos[4]))));
-		}
-		return obtainedList;
-	}
-	
-	/**
-	 * 
-	 * @param lista
-	 * @param usuario
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasUnion(String lista, Usuario usuario, String[] datos) {
-		CircularList<Cancion> canciones = null;
-		switch (lista) {
-		case "guardadas":
-			canciones = obtenerCancionesFiltradasUnion(usuario.getLstCancionesGuardadas(), datos);
-			break;
-		case "favoritas":
-			canciones = obtenerCancionesFiltradasUnion(usuario.getLstCancionesFavoritas(), datos);
-			break;
-		}
-		return canciones;
-	}
-	
-	/**
-	 * 
-	 * @param lista
-	 * @param usuario
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista, Usuario usuario, String[] datos) {
-		CircularList<Cancion> canciones = null;
-		switch (lista) {
-		case "guardadas":
-			canciones = obtenerCancionesFiltradasInterseccion(usuario.getLstCancionesGuardadas(), datos);
-			break;
-		case "favoritas":
-			canciones = obtenerCancionesFiltradasInterseccion(usuario.getLstCancionesFavoritas(), datos);
-			break;
-		}
-		return canciones;
-	}
-	
-	/**
-	 * 
-	 * @param nombre
-	 * @param contrasenia
-	 * @return
+	 * Verifica si un usuario existe
+	 * @param nombre Nombre del usuario a verificar
+	 * @param contrasenia Contrasenia del usuario a verificar
+	 * @return Respuesta de que si existe el usuario o no
 	 */
 	public boolean existeUsuario(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
@@ -251,14 +145,13 @@ public class Storify {
 			}
 		}
 		return false;
-
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @param contrasenia
-	 * @return
+	 * Obtener el tipo de cuenta en forma de cadena
+	 * @param nombre Nombre de la cuenta
+	 * @param contrasenia Contrasenia de la cuenta
+	 * @return Cadena del tipo de usuario
 	 */
 	public String obtenerTipoCuenta(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
@@ -279,10 +172,10 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @param contrasenia
-	 * @return
+	 * Obtiene una cuenta indicando sus datos
+	 * @param nombre Nombre de la cuenta
+	 * @param contrasenia Contrasenia de la cuenta
+	 * @return Cuenta obtenida
 	 */
 	public Cuenta obtenerCuentaDatos(String nombre, String contrasenia) {
 		// TODO Auto-generated method stub
@@ -299,10 +192,10 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @param email
-	 * @param contrasenia
+	 * Registra un usuario
+	 * @param nombre Nombre del usuario a registrar
+	 * @param email Email del usuario a registrar
+	 * @param contrasenia Contrasenia del usuario a registrar
 	 */
 	public void registrarUsuario(String nombre, String email, String contrasenia) {
 		// TODO Auto-generated method stub
@@ -312,17 +205,17 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene la lista de artistas
+	 * @return Lista de artistas
 	 */
 	public CircularList<Artista> obtenerArtistas() {
 		return getLstArtistas().toCircularList();
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @return
+	 * Obtiene un artista a a partir de un nombre
+	 * @param nombre Nombre del artista
+	 * @return Artista obtenida
 	 */
 	public Artista obtenerArtistaNombre(String nombre) {
 		CircularList<Artista> listTemp = getLstArtistas().toCircularList();
@@ -335,9 +228,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param newArtista
-	 * @return
+	 * Obtiene las canciones de un artista
+	 * @param newArtista Artista del que se quiere obtener las canciones
+	 * @return Canciones del artista
 	 */
 	public ListaDoble<Cancion> establecerCancionesArtista(Artista newArtista) {
 		ListaDoble<Cancion> cancionesArtista = new ListaDoble<Cancion>();
@@ -354,18 +247,18 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param codigo
-	 * @return
+	 * Verifica si existe una cancion con el codigo indicado
+	 * @param codigo Codigo que se va a buscar
+	 * @return Si existe una cancion con el codigo indicado o no
 	 */
 	public boolean existeCodigoCancion(String codigo) {
 		return lstCanciones.filter(cancion->cancion.getCodigo().equals(codigo)).size()!=0;
 	}
 	
 	/**
-	 * 
-	 * @param lstArtistas
-	 * @param cancion
+	 * Agrega una cancion a artistas
+	 * @param lstArtistas Lista de artistas
+	 * @param cancion Cancion a agregar
 	 */
 	public void agregarCancionesArtistas(CircularList<Artista> lstArtistas, Cancion cancion) {
 		// TODO Auto-generated method stub
@@ -375,9 +268,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param c
-	 * @param u
+	 * Guarda una cancion en las canciones guardadas o playlist
+	 * @param c Cancion a guardar
+	 * @param u Usuario donde se le va agregar la cancion
 	 */
 	public void guardarPlayListUsuario(Cancion c, Usuario u) {
 		// TODO Auto-generated method stub
@@ -391,9 +284,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param c
-	 * @param u
+	 * Guarda una cancion en las canciones favoritas
+	 * @param c Cancion a guardar
+	 * @param u Usuario donde se le va agregar la cancion
 	 */
 	public void guardarCancionFavoritaUsuario(Cancion c, Usuario u) {
 		// TODO Auto-generated method stub
@@ -407,9 +300,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param cancion
-	 * @param usuario
+	 * Elimina una cancion en la lsita de canciones guardadas
+	 * @param cancion Cancion a eliminar
+	 * @param usuario Usuario donde se va a eliminar la cancion
 	 */
 	public void eliminarCancionGuardada(Cancion cancion, Usuario usuario) {
 		// TODO Auto-generated method stub
@@ -418,9 +311,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param cancion
-	 * @param usuario
+	 * Elimina una cancion en la lsita de canciones favoritas
+	 * @param cancion Cancion a eliminar
+	 * @param usuario Usuario donde se va a eliminar la cancion
 	 */
 	public void eliminarCancionFavorita(Cancion cancion, Usuario usuario) {
 		// TODO Auto-generated method stub
@@ -428,8 +321,8 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obteiene las canciones de todos los artistas
+	 * @return Lista de las canciones de todos los artistas
 	 */
 	public CircularList<Cancion> obtenerCancionesArtistas() {
 		CircularList<Artista> artistas=lstArtistas.toCircularList();
@@ -441,9 +334,9 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param genero
-	 * @return
+	 * Cuenta cuantas canciones han sido guardadas y seleccionadas como favoritas de cierto genero 
+	 * @param genero Genero indicado
+	 * @return Cantidad de canciones guardades del genero indicado
 	 */
 	public int contarGeneroCancionesUsuarios(Genero genero) {
 		int cantidad=0;
@@ -457,10 +350,10 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @param genero
-	 * @param canciones
-	 * @return
+	 * Cuenta cuantas canciones tienen el genero indicado
+	 * @param genero Genero indicado
+	 * @param canciones Canciones donde se van a contar la cantidad que aparece el genero
+	 * @return Cantidad que aparece el genero
 	 */
 	public int contarCancionesGenero(Genero genero,CircularList<Cancion> canciones) {
 		int cantidad=0;
@@ -473,8 +366,8 @@ public class Storify {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene los generos mas populares
+	 * @return Generos mas populares
 	 */
 	public CircularList<Genero> obtenerGenerosPopulares() {
 		CircularList<Genero> generosPopulares=new CircularList<Genero>();

@@ -13,55 +13,55 @@ public class SimpleNode<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el valor del nodo
+	 * @return Valor del nodo
 	 */
 	public E getValue() {
 		return value;
 	}
 	
 	/**
-	 * 
-	 * @param value
+	 * Cambia el valor del nodo
+	 * @param value Nuevo valor del nodo
 	 */
 	public void setValue(E value) {
 		this.value = value;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el nodo
+	 * @return Nodo
 	 */
 	public SimpleNode<E> getNext() {
 		return next;
 	}
 	
 	/**
-	 * 
-	 * @param next
+	 * Cambia el nodo
+	 * @param next Nuevo nodo
 	 */
 	public void setNext(SimpleNode<E> next) {
 		this.next = next;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene la accion del nodo
+	 * @return Accion del nodo
 	 */
 	public String getAction() {
 		return action;
 	}
 	
 	/**
-	 * 
-	 * @param action
+	 * Cambia la accion del nodo
+	 * @param action Nueva accion del nodo
 	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
 	
 	/**
-	 * 
+	 * Obtiene la clase en forma de cadena
 	 */
 	@Override
 	public String toString() {

@@ -24,9 +24,9 @@ public class Cuenta {
 	private String contrasenia;
 	
 	/**
-	 * 
-	 * @param username
-	 * @param contrasenia
+	 * Metodo constructor
+	 * @param username Nombre de usuario
+	 * @param contrasenia Contrasenia
 	 */
 	public Cuenta(@NonNull String username, @NonNull String contrasenia) {
 		this.username = username;
@@ -34,17 +34,17 @@ public class Cuenta {
 	}
 	
 	/**
-	 * 
+	 * Metodo constructor
 	 */
 	public Cuenta() {
 
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @param contrasenia
-	 * @return
+	 * Verifica si los datos indicados pertenecen a esa cuenta
+	 * @param nombre Nombre a comparar
+	 * @param contrasenia Contrasenia a comparar
+	 * @return Respuesta de que si los datos coinciden
 	 */
 	public boolean verificarDatos(String nombre, String contrasenia) {
 		boolean respuesta=false;

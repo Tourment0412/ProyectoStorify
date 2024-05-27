@@ -21,7 +21,7 @@ public class Artista implements Comparable<Artista>{
 	private ListaDoble<Cancion> lstCanciones;
 	
 	/**
-	 * 
+	 * Metodo que se compara con otro artista
 	 */
 	@Override
 	public int compareTo(Artista o) {
@@ -30,8 +30,8 @@ public class Artista implements Comparable<Artista>{
 	}
 	
 	/**
-	 * 
-	 * @param cancion
+	 * Agrega una cancion al artista
+	 * @param cancion Cancion a agregar
 	 */
 	public void agregarCancion(Cancion cancion) {
 		cancion.getLstArtistas().add(this);
@@ -39,13 +39,21 @@ public class Artista implements Comparable<Artista>{
 	}
 	
 	/**
-	 * 
-	 * @param cancion
+	 * Elimina una cancion del artista 
+	 * @param cancion Cancion a eliminar
 	 */
 	public void eliminarCancion(Cancion cancion) {
 		lstCanciones.eliminar(cancion);
 	}
 
+	/**
+	 * Metodod constructor
+	 * @param codigo Codigo del artista
+	 * @param nombre Nombre del artista
+	 * @param nacionalidad Nacionalidad del artista
+	 * @param esGrupo Si es un grupo o no del artista
+	 * @param lstCanciones Lista de canciones del artista
+	 */
 	public Artista(String codigo, String nombre, String nacionalidad, boolean esGrupo,
 			ListaDoble<Cancion> lstCanciones) {
 		super();
@@ -56,6 +64,9 @@ public class Artista implements Comparable<Artista>{
 		this.lstCanciones = lstCanciones;
 	}
 
+	/**
+	 * Metodo constructor
+	 */
 	public Artista() {
 		super();
 		lstCanciones=new ListaDoble<Cancion>();

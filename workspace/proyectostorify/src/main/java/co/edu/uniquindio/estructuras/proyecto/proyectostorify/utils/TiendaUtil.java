@@ -9,9 +9,9 @@ public class TiendaUtil {
 	
 	
 	/**
-	 * 
-	 * @param numero
-	 * @return
+	 * Obtiene un caracter a partir de un numero
+	 * @param numero Numero del caracter a obtener
+	 * @return Caracter obtenido
 	 */
 	public static char obtenerCaracter(int numero) {
 		char caracter='*';
@@ -85,8 +85,8 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Genera una cadena aleatoria
+	 * @return Cadena generada
 	 */
 	public static String generarCadenaAleatoria() {
 		int tamanio=5;
@@ -96,10 +96,10 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @param i
-	 * @param limite
-	 * @return
+	 * Genera una cadena aleatoria
+	 * @param i Indice que cuenta cuantos caracteres han sido generados
+	 * @param limite Limite del tamanio de la cadena generada
+	 * @return Cadena generada
 	 */
 	public static String generarCadenaAleatoria(int i,int limite) {
 		if (i>=limite) {
@@ -110,9 +110,9 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @param archivoNombre
-	 * @return
+	 * Obtiene la ruta de una archivo de forma organizada, de modo que genera un nombre aleatorio a un archivo
+	 * @param archivoNombre Nombre del archivo original
+	 * @return Nombre de la copia del archivo
 	 */
 	public static String obtenerRutaCopiaOrganizada(String archivoNombre) {
 		String nombre;
@@ -126,9 +126,9 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @return
+	 * Verifica si ya existe un archivo en las imagenes de las caratulas
+	 * @param nombre Nombre del archivo a verificar su existencia
+	 * @return Si existe el archivo o no
 	 */
 	public static boolean existeArchivoCaratula(String nombre) {
 		if (nombre.equals("")) {
@@ -145,9 +145,9 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @param nombre
-	 * @return
+	 * Verifica si ya existe un archivo en de los audios de las canciones
+	 * @param nombre Nombre del archivo a verificar su existencia
+	 * @return Si existe el archivo o no
 	 */
 	public static boolean existeArchivoAudio(String nombre) {
 		if (nombre.equals("")) {
@@ -164,9 +164,9 @@ public class TiendaUtil {
 	}
 	
 	/**
-	 * 
-	 * @param cancion
-	 * @return
+	 * Obtiene el archivo de audio de una cancion
+	 * @param cancion Cancion de la cual se quiere obtener su archivo de audio
+	 * @return Archivo de audio de la cancion
 	 */
 	public static File obtenerArchivoAudio(Cancion cancion) {
 		String ruta = "src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios";

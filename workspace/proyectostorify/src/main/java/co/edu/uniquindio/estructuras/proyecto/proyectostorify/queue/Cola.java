@@ -17,7 +17,7 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * eObtiene el primer nodo
+	 * Obtiene el primer nodo
 	 * @return Primer nodo
 	 */
 	public Nodo getPrimerNodo() {
@@ -42,7 +42,8 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
+	 * Obtiene el ultimo nodo de la cola
+	 * @param
 	 */
 	public Nodo<E> getUltimoNodo() {
 		return ultimoNodo;
@@ -73,8 +74,8 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
-	 * @param data
+	 * Agrega un elemento a la cola
+	 * @param data Elemento a gregar
 	 */
 	public void encolar(E data) {
 		Nodo newNode = new Nodo(data);
@@ -88,8 +89,8 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retira un elemento de la cola
+	 * @return Elemento retirado
 	 */
 	public E desencolar() {
 		E elemento=(E)this.getPrimerNodo().getValue();
@@ -108,16 +109,16 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el elemento que esta al frente de la cola sin sacarlo
+	 * @return Elemento que esta en el frente
 	 */
     public E obtenerFrente() {
     	return (E)this.getPrimerNodo().getValue();
     }
 	
 	/**
-	 * 
-	 * @return
+	 * Clona la cola
+	 * @return Copia o clon de la cola
 	 */
     public Cola<E> clonarCola() {
     	Cola<E> cola = new Cola<E>();
@@ -130,9 +131,9 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
-	 * @param cola
-	 * @return
+	 * 	Determina si una cola es igual a otra
+	 * @param cola Cola con la que se va a comparar
+	 * @return Respuesta si son equivalentes o no
 	 */
     public boolean equals(Cola cola) {
     	if (this==cola) {
@@ -150,9 +151,9 @@ public class Cola<E> {
     
 	
 	/**
-	 * 
-	 * @param posicion
-	 * @param valor
+	 * Introduce un elemento en la posicion indicada
+	 * @param posicion Posicion donde se va insertar el elemento
+	 * @param valor Valor a ingresar
 	 */
     public void introducirElemento(int posicion,E valor) {
     	if (posicion<0 || posicion>=tam) {
@@ -199,7 +200,8 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
+	 * Metodo que obtiene la cola en forma de String
+	 * @return Cola representada en una cadena
 	 */
     @Override
     public String toString() {

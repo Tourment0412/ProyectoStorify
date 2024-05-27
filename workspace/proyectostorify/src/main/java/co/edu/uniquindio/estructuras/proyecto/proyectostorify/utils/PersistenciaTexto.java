@@ -20,13 +20,13 @@ public class PersistenciaTexto {
 
 //	----------------------LOADS------------------------
 
-    /**
-     *
-     * @param
-     * @param
-     * @return un Arraylist de personas con los datos obtenidos del archivo de texto indicado
-     * @throws Exception 
-     */
+   /**
+    * Carga los artistas apartir de un archivo txt
+    * @param tienda Tienda donde se van a cargar los artistas
+    * @param ruta Ruta del archivo del ue se van a acargar los artistas
+    * @return Lista con los artistas cargados
+    * @throws Exception Excepcion en caso de que el formato del archivo no sea valido
+    */
     public static CircularList<Artista> cargarArtistas(Storify tienda,String ruta) throws Exception
     {
     	tienda.setLstArtistas(new BinaryTree<Artista>());
@@ -83,10 +83,10 @@ public class PersistenciaTexto {
     }
 	
 	/**
-	 * 
-	 * @param artistas
-	 * @param nombre
-	 * @return
+	 * Busca un artista basado en su nombre
+	 * @param artistas Lista de los artistas donde se va a realizar la busqueda
+	 * @param nombre Nombre del artista a buscar
+	 * @return Artista encontrado con el nombre indicado
 	 */
     public static Artista buscarArtistaNombre(CircularList<Artista> artistas,String nombre) {
     	for (Artista artista : artistas) {
@@ -98,10 +98,10 @@ public class PersistenciaTexto {
     }
 	
 	/**
-	 * 
-	 * @param cancionesCargadas
-	 * @param nombreCancion
-	 * @return
+	 * Verifica si una cancion ya fue cargada del archivo
+	 * @param cancionesCargadas Canciones cargadas hasta el momento
+	 * @param nombreCancion Nombre de la cancion
+	 * @return Respuesta de que si la cancion ya fue cargada
 	 */
     public static boolean estaCancionCargada(CircularList<Cancion> cancionesCargadas,String nombreCancion) {
     	for (Cancion cancion : cancionesCargadas) {

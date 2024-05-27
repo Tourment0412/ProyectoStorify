@@ -16,10 +16,10 @@ public class Administrador extends Cuenta {
 	private String idAdministrador;
 	
 	/**
-	 * 
-	 * @param username
-	 * @param contrasenia
-	 * @param idAdministrador
+	 * Metodod constructor
+	 * @param username Nombre del usuario
+	 * @param contrasenia Contrasenia del usuario
+	 * @param idAdministrador Id del administrador
 	 */
 	public Administrador(@NonNull String username, @NonNull String contrasenia, @NonNull String idAdministrador) {
 		super(username, contrasenia);
@@ -27,7 +27,7 @@ public class Administrador extends Cuenta {
 	}
 	
 	/**
-	 * 
+	 * Metodo constructor
 	 */
 	public Administrador() {
 		super();

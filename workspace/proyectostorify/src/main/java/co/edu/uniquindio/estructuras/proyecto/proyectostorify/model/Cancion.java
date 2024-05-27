@@ -38,7 +38,7 @@ public class Cancion {
 	private CircularList<Artista> lstArtistas;
 	
 	/**
-	 * 
+	 * Metodo costructor
 	 */
 	public Cancion() {
 		super();
@@ -46,16 +46,16 @@ public class Cancion {
 	}
 	
 	/**
-	 * 
-	 * @param codigo
-	 * @param nombreCancion
-	 * @param nombreAlbum
-	 * @param caratula
-	 * @param anio
-	 * @param duracion
-	 * @param url
-	 * @param genero
-	 * @param lstCircularList
+	 * Metodo constructor
+	 * @param codigo Codigo de la cancion
+	 * @param nombreCancion Nombre de la cancion
+	 * @param nombreAlbum Nombre del album del que hace parte la cancion
+	 * @param caratula Caratula  de la cancion
+	 * @param anio Anio de salida de la cancion
+	 * @param duracion Duracion de la cancion
+	 * @param url Direccion del audio de la cancion
+	 * @param genero Genero de la cancion
+	 * @param lstCircularList Lista de los artitas de los que hace parte la cancion
 	 */
 	public Cancion(@NonNull String codigo, @NonNull String nombreCancion, @NonNull String nombreAlbum,
 			@NonNull String caratula, @NonNull String anio, @NonNull String duracion, @NonNull String url,
@@ -72,6 +72,10 @@ public class Cancion {
 		this.lstArtistas = lstCircularList;
 	}
 	
+	/**
+	 * Obtiene la duracion de las canciones en segundos
+	 * @return Duracion en segundos
+	 */
 	public int getDuracionEnSegundos() {
         String[] partes = duracion.split(":");
         int minutos = Integer.parseInt(partes[0]);
@@ -79,6 +83,9 @@ public class Cancion {
         return minutos * 60 + segundos;
     }
 
+	/**
+	 * Convierte la cancion en una cadena
+	 */
 	@Override
 	public String toString() {
 		return "Cancion [codigo=" + codigo + ", nombreCancion=" + nombreCancion + "]";

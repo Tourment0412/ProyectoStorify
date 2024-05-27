@@ -13,41 +13,41 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtienede el nodo de la cima
+	 * @return Nodo de la cima
 	 */
 	public SimpleNode<E> getHead() {
 		return head;
 	}
 	
 	/**
-	 * 
-	 * @param head
+	 * Cambia el nodo de la cima
+	 * @param head Nuevo nodo de la cima
 	 */
 	public void setHead(SimpleNode<E> head) {
 		this.head = head;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el tamanio de la pila
+	 * @return Tamanio de la pila
 	 */
 	public int getSize() {
 		return size;
 	}
 	
 	/**
-	 * 
-	 * @param size
+	 * Cambia el tamanio de la pila
+	 * @param size Nuevo tamanio de la pila
 	 */
 	public void setSize(int size) {
 		this.size = size;
 	}
 	
 	/**
-	 * 
-	 * @param value
-	 * @param action
+	 * Agrega unn valor en la cima de la pila
+	 * @param value Valor a agregar
+	 * @param action Accion relacionada al valor
 	 */
 	public void push(E value, String action) {
 		SimpleNode<E> node = new SimpleNode<E>(value,action);
@@ -62,8 +62,8 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Saca el valor de la cima
+	 * @return Valor de la cima
 	 */
 	public E pop() {
 		if (isEmpty())
@@ -74,7 +74,8 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
+	 * Pasa la pila en forma de cadena
+	 * @return Cadena resultante
 	 */
 	@Override
 	public String toString() {
@@ -95,8 +96,8 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Pasa las acciones en una cadena
+	 * @return Cadena resultante
 	 */
 	public String toStringActions() {
 		String msj="[";
@@ -114,16 +115,16 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Verifica si la pila esta vacio
+	 * @return La pila esta vacio o no
 	 */
 	public boolean isEmpty() {
 		return head == null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el valor de la cima de la pila sin sacarlo
+	 * @return Valor de la cima
 	 */
 	public E peek() {
 		E value;
@@ -136,15 +137,16 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene la accion del valor de la cima de la pila
+	 * @return Acciond e la cima de a pila
 	 */
 	public String headAction() {
 		return head.getAction();
 	}
 	
 	/**
-	 * 
+	 * Clona la pila
+	 * @return Clon o copia de la pila
 	 */
 	public Stack<E> clone() {
 		Stack<E> pila=new Stack<E>();
@@ -168,9 +170,9 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
-	 * @param value
-	 * @return
+	 * Verifica si la pila contiene un valor
+	 * @param value Valor a verificar
+	 * @return Si la pila tiene el valor o no
 	 */
 	public boolean contains(E value) {
 		SimpleNode<E> node=head;
@@ -183,7 +185,7 @@ public class Stack<E> {
 	}
 	
 	/**
-	 * 
+	 * Elimmina los elementos de la pila
 	 */
 	public void clear() {
 		head=null;

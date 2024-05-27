@@ -155,14 +155,6 @@ public class ModelFactoryController {
 		return tiendaMusica.obtenerCancion(codigo);
 	}
 	
-	/**
-	 * 
-	 * @param nombre
-	 * @return
-	 */
-	public Artista obtenerArtista(String nombre) {
-		return tiendaMusica.obtenerArtista(nombre);
-	}
 	
 	/**
 	 * 
@@ -210,28 +202,6 @@ public class ModelFactoryController {
 	 */
 	public void eliminarArtista(Artista artista) {
 		tiendaMusica.eliminarArtista(artista);
-	}
-	
-	/**
-	 * 
-	 * @param lista
-	 * @param usuario
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasUnion(String lista,Usuario usuario,String[] datos) {
-		return tiendaMusica.obtenerCancionesFiltradasUnion(lista, usuario, datos);
-	}
-	
-	/**
-	 * 
-	 * @param lista
-	 * @param usuario
-	 * @param datos
-	 * @return
-	 */
-	public CircularList<Cancion> obtenerCancionesFiltradasInterseccion(String lista,Usuario usuario,String[] datos) {
-		return tiendaMusica.obtenerCancionesFiltradasInterseccion(lista, usuario, datos);
 	}
 	
 	/**

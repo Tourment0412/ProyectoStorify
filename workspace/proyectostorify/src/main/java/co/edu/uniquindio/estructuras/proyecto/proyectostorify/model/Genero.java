@@ -12,8 +12,8 @@ public enum Genero {
 	private String genero;
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene los valores de los generos en forma de cadena
+	 * @return Cadenas de los generos
 	 */
 	public static String[] stringValues() {
 		Genero[] values = values();
@@ -24,9 +24,9 @@ public enum Genero {
 	}
 	
 	/**
-	 * 
-	 * @param estadoString
-	 * @return
+	 * Obtiene el genero a partir de una cadena
+	 * @param estadoString Cadena
+	 * @return Genero obtenido a apartir d ela cadena
 	 */
 	public static Genero getEstadoByString(String estadoString) {
 		Genero[] values = values();
@@ -37,7 +37,7 @@ public enum Genero {
 	}
 	
 	/**
-	 * 
+	 * Convierte el genero en forma de cadena
 	 */
 	@Override
 	public String toString() {

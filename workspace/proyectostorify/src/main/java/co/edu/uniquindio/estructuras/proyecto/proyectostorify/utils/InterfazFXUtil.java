@@ -87,18 +87,18 @@ public class InterfazFXUtil {
     }
 	
 	/**
-	 * 
-	 * @param campo
-	 * @return
+	 * Metodo que verifica si el campo esta vacio
+	 * @param Campo que se quiere verificar si esta vacio
+	 * @return Respuesta de que si esta vacio o no
 	 */
 	public static boolean estaCampoVacio(TextField campo) {
 		return campo.getText() == null || campo.getText().trim().equals("");
 	}
 	
 	/**
-	 * 
-	 * @param campo
-	 * @return
+	 * Metodo que verifica si el campo esta vacio
+	 * @param Campo que se quiere verificar si esta vacio
+	 * @return Respuesta de que si esta vacio o no
 	 */
 	public static boolean estaCampoVacio(ComboBox campo) {
 		return campo.getValue() == null || ((String) campo.getValue()).trim().equals("");
@@ -146,10 +146,10 @@ public class InterfazFXUtil {
 	}
 	
 	/**
-	 * 
-	 * @param titulo
-	 * @param texto
-	 * @return
+	 * Muestra un mensaje que muestra una ventana para confirmar algo
+	 * @param titulo Titulo de la ventana
+	 * @param texto Texto principal de la ventana
+	 * @return Si el usuario acepto o no la confirmacion
 	 */
 	public static boolean mostrarConfirmacion(String titulo, String texto) {
 	    Alert alert = new Alert(AlertType.CONFIRMATION);
