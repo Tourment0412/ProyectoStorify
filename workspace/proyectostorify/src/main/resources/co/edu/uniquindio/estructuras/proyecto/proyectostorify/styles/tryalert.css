@@ -1,0 +1,72 @@
+/* alert.css */
+.dialog-pane {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #000000; /* Negro */
+    -fx-text-fill: #ffffff; /* Blanco */
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #ffffff; /* Blanco */
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.3), 10, 0, 0, 0); /* Sombra blanca */
+    -fx-font-size: 14px; /* Tamaño de fuente más grande */
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #000000; /* Negro */
+    -fx-text-fill: #ffffff; /* Blanco */
+    -fx-font-size: 18px; /* Tamaño de fuente más grande */
+    -fx-font-weight: bold;
+    -fx-padding: 15; /* Espaciado interior aumentado */
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-color: #ffffff; /* Blanco */
+    -fx-border-width: 0 0 1 0; /* Borde blanco inferior */
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: #ffffff; /* Blanco */
+}
+
+.dialog-pane .content.label {
+    -fx-font-size: 12px; /* Tamaño de fuente más pequeño */
+    -fx-text-fill: #ffffff; /* Blanco */
+    -fx-padding: 15; /* Espaciado interior aumentado */
+}
+
+.dialog-pane .graphic-container {
+    -fx-padding: 15; /* Espaciado interior aumentado */
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #000000; /* Negro */
+    -fx-border-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 10 10;
+    -fx-padding: 15; /* Espaciado interior aumentado */
+    -fx-border-color: #ffffff; /* Blanco */
+    -fx-border-width: 1 0 0 0; /* Borde blanco superior */
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #000000; /* Negro */
+    -fx-text-fill: #ffffff; /* Blanco */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 16px; /* Tamaño de fuente más grande */
+    -fx-font-weight: bold;
+    -fx-padding: 8 20; /* Ajuste del padding */
+    -fx-cursor: hand;
+    -fx-border-color: #ffffff; /* Blanco */
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 5, 0, 0, 1); /* Sombra blanca */
+    -fx-transition: background-color 0.3s, transform 0.3s;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #333333; /* Negro más claro al pasar el ratón */
+    -fx-transform: scale(1.05);
+}
+
+.dialog-pane .button-bar .button:pressed {
+    -fx-background-color: #1a1a1a; /* Negro más claro al presionar */
+    -fx-transform: scale(0.95);
+}

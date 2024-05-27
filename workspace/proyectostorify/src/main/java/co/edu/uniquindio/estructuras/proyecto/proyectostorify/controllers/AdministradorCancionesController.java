@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -471,22 +472,56 @@ public class AdministradorCancionesController {
     	}
     }
 	
-	/**
-	 * 
-	 */
+//	/**
+//	 * 
+//	 */
+//    @FXML
+//    void generosPopulares() {
+//    	CircularList<Genero> generosPopulares=mfm.obtenerGenerosPopulares();
+//    	String msj="";
+//    	if (generosPopulares.size()>1) {
+//    		msj+="Los generos mas populares son :\n";
+//    		for (Genero genero : generosPopulares) {
+//    			msj+=genero.toString()+"\n";
+//			}
+//    	} else {
+//    		msj+="El genero mas popular es :"+generosPopulares.get(0).toString();
+//    	}
+//    	InterfazFXUtil.mostrarMensaje("Popularidad de los generos", msj);
+//    }
     @FXML
     void generosPopulares() {
-    	CircularList<Genero> generosPopulares=mfm.obtenerGenerosPopulares();
-    	String msj="";
-    	if (generosPopulares.size()>1) {
-    		msj+="Los generos mas populares son :\n";
-    		for (Genero genero : generosPopulares) {
-    			msj+=genero.toString()+"\n";
-			}
-    	} else {
-    		msj+="El genero mas popular es :"+generosPopulares.get(0).toString();
-    	}
-    	InterfazFXUtil.mostrarMensaje("Popularidad de los generos", msj);
+        CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
+        String msj = "";
+        
+        if (generosPopulares.size() > 1) {
+            msj += "Los géneros más populares son:\n";
+            for (Genero genero : generosPopulares) {
+                msj += "- " + genero.toString() + "\n";
+            }
+        } else {
+            msj += "El género más popular es: " + generosPopulares.get(0).toString();
+        }
+
+        // Crear una alerta personalizada
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Popularidad de los Géneros");
+        alert.setHeaderText("Información sobre los géneros musicales más populares");
+        alert.setContentText(msj);
+
+        // Añadir un icono a la alerta (opcional)
+        Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        alert.setGraphic(imageView);
+
+        // Personalizar el estilo de la alerta
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css").toExternalForm());
+        
+        // Mostrar la alerta y esperar a que el usuario cierre la ventana
+        alert.showAndWait();
     }
+
 
 }
