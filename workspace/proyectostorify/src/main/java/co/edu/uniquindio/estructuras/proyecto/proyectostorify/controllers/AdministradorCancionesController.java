@@ -166,7 +166,8 @@ public class AdministradorCancionesController {
 	private CircularList<Artista> listaArtistasSeleccionados = new CircularList<Artista>();
 
 	/**
-	 * 
+	 * Método llamado al inicializar el controlador.
+	 * Configura la lista de géneros musicales y actualiza las tablas de artistas y canciones.
 	 */
 	@FXML
 	void initialize() {
@@ -183,8 +184,9 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
+	 * Abre la interfaz para administrar canciones.
 	 * 
-	 * @param event
+	 * @param event el evento que dispara la acción
 	 */
 	@FXML
 	void administrarCanciones(ActionEvent event) {
@@ -192,8 +194,9 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
+	 * Cierra la sesión actual y muestra la pantalla de inicio de sesión.
 	 * 
-	 * @param event
+	 * @param event el evento que dispara la acción
 	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
@@ -202,7 +205,8 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
-	 * 
+	 * Actualiza la información de la canción seleccionada en la tabla.
+	 * Copia los archivos de carátula y audio a sus respectivas ubicaciones si están disponibles.
 	 */
 	@FXML
 	void actualizar() {
@@ -251,7 +255,7 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
-	 * 
+	 * Actualiza la tabla de artistas con la lista actualizada de artistas.
 	 */
 	public void actualizarTablaArtistas() {
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
@@ -274,7 +278,7 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
-	 * 
+	 * Actualiza la tabla de canciones con la lista actualizada de canciones.
 	 */
 	public void actualizarTablaCanciones() {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -294,8 +298,9 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
+	 * Verifica si los datos de entrada para una canción son válidos.
 	 * 
-	 * @return
+	 * @return true si los datos son válidos, false en caso contrario
 	 */
 	public boolean sonDatosValidos() {
 		boolean sonDatosValidos = false;
@@ -339,8 +344,9 @@ public class AdministradorCancionesController {
 
 	
 	/**
+	 * Guarda una nueva canción con los datos ingresados.
 	 * 
-	 * @param event
+	 * @param event el evento que dispara la acción
 	 */
 	@FXML
 	void guardarCancion(ActionEvent event) {
@@ -392,7 +398,7 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
-	 * 
+	 * Coloca los datos de la canción seleccionada en los campos correspondientes.
 	 */
 	@FXML
 	void ponerDatosCancion() {
@@ -414,8 +420,9 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
+	 * Selecciona una imagen de carátula para la canción.
 	 * 
-	 * @param event
+	 * @param event el evento que dispara la acción
 	 */
 	@FXML
 	void seleccionarCaratula(ActionEvent event) {
@@ -432,8 +439,9 @@ public class AdministradorCancionesController {
 	}
 	
 	/**
+	 * Selecciona un artista de la tabla de artistas para agregarlo a la lista de artistas seleccionados.
 	 * 
-	 * @param event
+	 * @param event el evento que dispara la acción
 	 */
     @FXML
     void seleccionarArtista(ActionEvent event) {
@@ -447,9 +455,9 @@ public class AdministradorCancionesController {
     	}
     }
 	
-	/**
-	 * 
-	 */
+    /**
+     * Selecciona un archivo de audio para la canción.
+     */
     @FXML
     void seleccionarAudioCancion() {
     	FileChooser fileChooser = new FileChooser();
@@ -458,9 +466,9 @@ public class AdministradorCancionesController {
     	archivoAudioCancion = fileChooser.showOpenDialog(null);
     }
 	
-	/**
-	 * 
-	 */
+    /**
+     * Reproduce el archivo de audio seleccionado para la canción.
+     */
     @FXML
     void reproducirAudioCancion() {
     	if (archivoAudioCancion!=null) {
@@ -472,23 +480,9 @@ public class AdministradorCancionesController {
     	}
     }
 	
-//	/**
-//	 * 
-//	 */
-//    @FXML
-//    void generosPopulares() {
-//    	CircularList<Genero> generosPopulares=mfm.obtenerGenerosPopulares();
-//    	String msj="";
-//    	if (generosPopulares.size()>1) {
-//    		msj+="Los generos mas populares son :\n";
-//    		for (Genero genero : generosPopulares) {
-//    			msj+=genero.toString()+"\n";
-//			}
-//    	} else {
-//    		msj+="El genero mas popular es :"+generosPopulares.get(0).toString();
-//    	}
-//    	InterfazFXUtil.mostrarMensaje("Popularidad de los generos", msj);
-//    }
+    /**
+     * Muestra un mensaje con los géneros musicales más populares.
+     */
     @FXML
     void generosPopulares() {
         CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
@@ -503,23 +497,20 @@ public class AdministradorCancionesController {
             msj += "El género más popular es: " + generosPopulares.get(0).toString();
         }
 
-        // Crear una alerta personalizada
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Popularidad de los Géneros");
         alert.setHeaderText("Información sobre los géneros musicales más populares");
         alert.setContentText(msj);
 
-        // Añadir un icono a la alerta (opcional)
         Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
         ImageView imageView = new ImageView(icon);
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
         alert.setGraphic(imageView);
 
-        // Personalizar el estilo de la alerta
+
         alert.getDialogPane().getStylesheets().add(getClass().getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css").toExternalForm());
         
-        // Mostrar la alerta y esperar a que el usuario cierre la ventana
         alert.showAndWait();
     }
 

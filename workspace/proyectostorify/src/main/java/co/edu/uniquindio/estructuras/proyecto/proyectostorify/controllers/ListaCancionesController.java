@@ -191,7 +191,8 @@ public class ListaCancionesController {
 	private Stack<Cancion> redoStack = new Stack<>();
 	
 	/**
-	 * 
+	 * Inicializa el controlador.
+	 * Configura la lista de géneros disponibles y actualiza la tabla de canciones con las canciones guardadas del usuario.
 	 */
 	@FXML
 	void initialize() {
@@ -207,8 +208,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Refresca la tabla de canciones.
+	 * Actualiza la lista de canciones guardadas del usuario y muestra las canciones en la tabla.
+	 *
+	 * @param event el evento de acción que dispara la acción de refrescar la tabla
 	 */
 	@FXML
 	void refrescarTabla(ActionEvent event) {
@@ -218,8 +221,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Elimina la canción seleccionada de la lista de canciones guardadas del usuario.
+	 * Muestra una confirmación antes de eliminar la canción.
+	 *
+	 * @param event el evento de acción que dispara la acción de eliminar la canción
 	 */
 	@FXML
 	void eliminarDeLista(ActionEvent event) {
@@ -244,8 +249,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones usando el operador OR.
+	 * Actualiza la tabla con las canciones que coinciden con al menos uno de los criterios de búsqueda.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaO(ActionEvent event) {
@@ -267,8 +274,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones usando el operador AND.
+	 * Actualiza la tabla con las canciones que coinciden con todos los criterios de búsqueda.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaY(ActionEvent event) {
@@ -301,8 +310,9 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Muestra los detalles de la canción seleccionada.
+	 *
+	 * @param event el evento de mouse que dispara la acción de mostrar detalles de la canción
 	 */
 	@FXML
 	void mostrarDetallesCancion(MouseEvent event) {
@@ -330,8 +340,9 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param listaCanciones
+	 * Actualiza la tabla de canciones con la lista de canciones proporcionada.
+	 *
+	 * @param listaCanciones la lista de canciones a mostrar en la tabla
 	 */
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		tableCanciones.getItems().clear();
@@ -354,8 +365,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Deshace la última acción realizada.
+	 * Refresca la tabla de canciones para reflejar el estado actual de la lista de canciones guardadas del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de deshacer
 	 */
 	@FXML
 	void deshacer(ActionEvent event) {
@@ -365,8 +378,10 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Rehace la última acción deshecha.
+	 * Refresca la tabla de canciones para reflejar el estado actual de la lista de canciones guardadas del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de rehacer
 	 */
 	@FXML
 	void rehacer(ActionEvent event) {
@@ -376,7 +391,8 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
+	 * Reproduce la canción seleccionada.
+	 * Muestra el reproductor de audio con la lista de archivos de canciones.
 	 */
 	@FXML
 	void reproducirCancion() {
@@ -385,8 +401,9 @@ public class ListaCancionesController {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene la lista de archivos de audio de las canciones guardadas del usuario.
+	 *
+	 * @return una lista de archivos de audio de las canciones guardadas del usuario
 	 */
 	public CircularList<File> obtenerArchivosCanciones() {
 		CircularList<File> archivosCaciones = new CircularList<File>();
@@ -400,24 +417,44 @@ public class ListaCancionesController {
 		return archivosCaciones;
 	}
 	
+	/**
+	 * Ordena la lista de canciones guardadas por nombre de canción.
+	 *
+	 * @param event el evento de acción que dispara la operación de ordenar
+	 */
 	@FXML
     void ordenarPorNombre(ActionEvent event) {
         listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
         actualizarTablaCanciones(listaCanciones);
     }
-
+	
+	/**
+	 * Ordena la lista de canciones guardadas por nombre de álbum.
+	 *
+	 * @param event el evento de acción que dispara la operación de ordenar
+	 */
     @FXML
     void ordenarPorAlbum(ActionEvent event) {
         listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
         actualizarTablaCanciones(listaCanciones);
     }
-
+    
+    /**
+     * Ordena la lista de canciones guardadas por duración.
+     *
+     * @param event el evento de acción que dispara la operación de ordenar
+     */
     @FXML
     void ordenarPorDuracion(ActionEvent event) {
         listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
         actualizarTablaCanciones(listaCanciones);
     }
-
+    
+    /**
+     * Ordena la lista de canciones guardadas por género.
+     *
+     * @param event el evento de acción que dispara la operación de ordenar
+     */
     @FXML
     void ordenarPorGenero(ActionEvent event) {
         listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);

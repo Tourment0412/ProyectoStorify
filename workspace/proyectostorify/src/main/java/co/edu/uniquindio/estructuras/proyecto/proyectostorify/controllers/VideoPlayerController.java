@@ -69,8 +69,9 @@ public class VideoPlayerController implements Initializable {
 	private MediaPlayer mediaPlayer;
 	
 	/**
+	 * Organiza los archivos de música y configura el reproductor multimedia.
 	 * 
-	 * @param songs
+	 * @param songs la lista de archivos de música a organizar
 	 */
 	public void organizarArchivos(CircularList<File> songs) {
 		this.songs = songs;
@@ -105,7 +106,8 @@ public class VideoPlayerController implements Initializable {
 	
 	
 	/**
-	 * 
+	 * Inicializa la clase.
+	 * Este método no realiza ninguna acción específica.
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -114,8 +116,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de cambio de velocidad de reproducción del audio.
 	 * 
-	 * @param event
+	 * @param event el evento de cambio de velocidad
 	 */
 	@FXML
 	void changeSpeedEvent(ActionEvent event) {
@@ -129,8 +132,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de reproducción del siguiente archivo multimedia en la lista.
 	 * 
-	 * @param event
+	 * @param event el evento de reproducción
 	 */
 	@FXML
 	void nextMediaEvent(ActionEvent event) {
@@ -166,8 +170,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de pausa de reproducción del archivo multimedia actual.
 	 * 
-	 * @param event
+	 * @param event el evento de pausa
 	 */
 	@FXML
 	void pauseMediaEvent(ActionEvent event) {
@@ -176,8 +181,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de reproducción del archivo multimedia actual.
 	 * 
-	 * @param event
+	 * @param event el evento de reproducción
 	 */
 	@FXML
 	void playMediaEvent(ActionEvent event) {
@@ -196,8 +202,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de reproducción del archivo multimedia anterior en la lista.
 	 * 
-	 * @param event
+	 * @param event el evento de reproducción
 	 */
 	@FXML
 	void previousMediaEvent(ActionEvent event) {
@@ -232,8 +239,9 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
+	 * Maneja el evento de reinicio de reproducción del archivo multimedia actual.
 	 * 
-	 * @param event
+	 * @param event el evento de reinicio
 	 */
 	@FXML
 	void resetMediaEvent(ActionEvent event) {
@@ -243,7 +251,7 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Inicia el temporizador para actualizar la barra de progreso de reproducción del audio.
 	 */
 	public void beginTimer() {
 		timer= new Timer();
@@ -273,7 +281,7 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Detiene la reproducción actual del audio y detiene el temporizador.
 	 */
 	public void stop () {
 		running=false;
@@ -287,7 +295,7 @@ public class VideoPlayerController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Cancela el temporizador actual.
 	 */
 	public void cancelTimer() {
 		running=false;
