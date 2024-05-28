@@ -71,7 +71,7 @@ public class ModelFactoryController {
 	 * Inicializa los datos de la cuenta, creando cuentas de administrador y usuario.
 	 */
 	public void inicializarDatosCuenta() {
-		Administrador admin = new Administrador("pepe", "123", "code1");
+		Administrador admin = new Administrador("admin", "$aDmiN", "code1");
 		Usuario usuario = new Usuario("juan", "456", "@789");
 		tiendaMusica.getLstCuentas().put(usuario.getUsername(), usuario);
 		tiendaMusica.getLstCuentas().put(admin.getUsername(), admin);

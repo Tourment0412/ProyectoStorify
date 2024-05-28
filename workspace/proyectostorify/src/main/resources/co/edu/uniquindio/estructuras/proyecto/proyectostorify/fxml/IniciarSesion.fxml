@@ -20,5 +20,7 @@
       <Label layoutX="199.0" layoutY="199.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="¿No tiene una cuenta?" />
       <Button fx:id="btnRegistrarse" layoutX="220.0" layoutY="228.0" mnemonicParsing="false" onAction="#registrarse" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Registrarse" />
       <PasswordField fx:id="txtContrasenia" layoutX="239.0" layoutY="113.0" stylesheets="@../styles/trystyles.css" />
+      <Button fx:id="toggleButton" layoutX="409.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleToggle" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Mostrar" />
+      <TextField fx:id="txtContra" layoutX="239.0" layoutY="113.0" stylesheets="@../styles/trystyles.css" visible="false" />
    </children>
 </AnchorPane>

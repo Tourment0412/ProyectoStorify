@@ -23,13 +23,12 @@ import lombok.Setter;
 @Setter
 @Getter
 public class IniciarSesionController {
-	
 
-    @FXML
-    private Button btnCerrarSesion;
-    
-    @FXML
-    private Button btnRegistrarse;
+	@FXML
+	private Button btnCerrarSesion;
+
+	@FXML
+	private Button btnRegistrarse;
 
 	@FXML
 	private ResourceBundle resources;
@@ -50,36 +49,60 @@ public class IniciarSesionController {
 	private Label lblTitulo;
 
 	@FXML
-    private PasswordField txtContrasenia;
+	private PasswordField txtContrasenia;
 
 	@FXML
 	private TextField txtNombre;
+
+	@FXML
+	private Button toggleButton;
+
+	@FXML
+	private TextField txtContra;
 
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
 	/**
-	 * Inicializa el controlador.
-	 * Configura los eventos de teclado para los campos de texto para ingresar el nombre de usuario y la contraseña.
-	 * Al presionar la tecla Enter en cualquiera de los campos, se ejecuta el método ingresar().
+	 * Inicializa el controlador. Configura los eventos de teclado para los campos
+	 * de texto para ingresar el nombre de usuario y la contraseña. Al presionar la
+	 * tecla Enter en cualquiera de los campos, se ejecuta el método ingresar().
 	 */
 	@FXML
 	void initialize() {
 		txtNombre.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                ingresar();
-                event.consume();
-            }
-        });
+			if (event.getCode() == KeyCode.ENTER) {
+				ingresar();
+				event.consume();
+			}
+		});
 
-        txtContrasenia.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                ingresar();
-                event.consume();
-            }
-        });
+		txtContrasenia.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				ingresar();
+				event.consume();
+			}
+		});
+		
+		txtContra.textProperty().bindBidirectional(txtContrasenia.textProperty());
+	}
 
+	@FXML
+	void handleToggle(ActionEvent event) {
+		if (txtContrasenia.isVisible()) {
+			txtContrasenia.setManaged(false);
+			txtContrasenia.setVisible(false);
+			txtContra.setManaged(true);
+			txtContra.setVisible(true);
+            toggleButton.setText("Ocultar");
+        } else {
+        	txtContrasenia.setManaged(true);
+        	txtContrasenia.setVisible(true);
+        	txtContra.setManaged(false);
+        	txtContra.setVisible(false);
+            toggleButton.setText("Mostrar");
+        }
 	}
 
 	/**
@@ -107,13 +130,19 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * Método que se ejecuta al presionar el botón "Iniciar Sesión".
-	 * Verifica el tipo de cuenta e inicia sesión como Administrador o Usuario.
-	 * Muestra un mensaje de advertencia si no se encuentra la cuenta.
+	 * Método que se ejecuta al presionar el botón "Iniciar Sesión". Verifica el
+	 * tipo de cuenta e inicia sesión como Administrador o Usuario. Muestra un
+	 * mensaje de advertencia si no se encuentra la cuenta.
 	 */
 	@FXML
 	private void ingresar() {
 		// Codigo para verificar el tipo de cuenta que va a ingresar (No borrar)
+		txtContrasenia.setManaged(true);
+    	txtContrasenia.setVisible(true);
+    	txtContra.setManaged(false);
+    	txtContra.setVisible(false);
+        toggleButton.setText("Mostrar");
+        
 		String tipoCuenra;
 		if (mfm.existeUsuario(txtNombre.getText(), txtContrasenia.getText())) {
 			tipoCuenra = mfm.obtenerTipoCuenta(txtNombre.getText(), txtContrasenia.getText());
@@ -133,16 +162,15 @@ public class IniciarSesionController {
 		}
 
 	}
-	
+
 	/**
 	 * Muestra la ventana de registro de usuario.
 	 *
 	 * @param event el evento de acción que dispara la acción de registrarse
 	 */
 	@FXML
-    void registrarse(ActionEvent event) {
-    	app.mostrarResgistrarse();
-    }
-
+	void registrarse(ActionEvent event) {
+		app.mostrarResgistrarse();
+	}
 
 }
