@@ -154,7 +154,8 @@ public class CancionesTiendaController {
 	CircularList<Cancion> listaCanciones = mfm.obtenerCancionesArtistas();
 
 	/**
-	 * 
+	 * Inicializa el controlador. Configura la lista de géneros en el ComboBox y
+	 * actualiza la tabla de canciones.
 	 */
 	@FXML
 	void initialize() {
@@ -169,8 +170,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param listaCanciones
+	 * Actualiza la tabla de canciones con una lista dada.
+	 *
+	 * @param listaCanciones la lista de canciones a mostrar en la tabla
 	 */
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		tableCanciones.getItems().clear();
@@ -193,7 +195,7 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
+	 * Muestra los detalles de una canción seleccionada.
 	 */
 	@FXML
 	void mostrarDetallesCanciones() {
@@ -219,8 +221,10 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Deshace la selección actual.
+	 *
+	 * @param event el evento de acción que dispara la acción de deshacer la
+	 *              selección
 	 */
 	@FXML
 	void deshacerSeleccion(ActionEvent event) {
@@ -228,8 +232,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Rehace la selección anterior.
+	 *
+	 * @param event el evento de acción que dispara la acción de rehacer la selección
 	 */
 	@FXML
 	void rehacerSeleccion(ActionEvent event) {
@@ -237,8 +242,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Guarda una canción en la lista de favoritos del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de guardar en favoritos
 	 */
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
@@ -260,8 +266,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Guarda una canción en la lista de reproducción del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de guardar en la lista de reproducción
 	 */
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
@@ -283,8 +290,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Reproduce una canción seleccionada.
+	 *
+	 * @param event el evento de acción que dispara la acción de reproducir la canción
 	 */
 	@FXML
 	void reproducirCancion(ActionEvent event) {
@@ -299,8 +307,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones con condiciones OR en los campos especificados.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaO(ActionEvent event) {
@@ -322,8 +331,9 @@ public class CancionesTiendaController {
 	}
 
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones con condiciones AND en los campos especificados.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaY(ActionEvent event) {
@@ -354,25 +364,45 @@ public class CancionesTiendaController {
 		}
 		actualizarTablaCanciones(listaTemp);
 	}
-
+	
+	/**
+	 * Ordena la lista de canciones por nombre.
+	 *
+	 * @param event el evento de acción que dispara la acción de ordenar por nombre
+	 */
 	@FXML
 	void ordenarPorNombre(ActionEvent event) {
 		listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
 		actualizarTablaCanciones(listaCanciones);
 	}
-
+	
+	/**
+	 * Ordena la lista de canciones por álbum.
+	 *
+	 * @param event el evento de acción que dispara la acción de ordenar por álbum
+	 */
 	@FXML
 	void ordenarPorAlbum(ActionEvent event) {
 		listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
 		actualizarTablaCanciones(listaCanciones);
 	}
 
+	/**
+	 * Ordena la lista de canciones por duración.
+	 *
+	 * @param event el evento de acción que dispara la acción de ordenar por duración
+	 */
 	@FXML
 	void ordenarPorDuracion(ActionEvent event) {
 		listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
 		actualizarTablaCanciones(listaCanciones);
 	}
 
+	/**
+	 * Ordena la lista de canciones por género.
+	 *
+	 * @param event el evento de acción que dispara la acción de ordenar por género
+	 */
 	@FXML
 	void ordenarPorGenero(ActionEvent event) {
 		listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);

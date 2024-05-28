@@ -104,9 +104,11 @@ public class AdministradorArtistasController {
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 	
+	
 	/**
+	 * Verifica si los datos ingresados son válidos.
 	 * 
-	 * @return
+	 * @return true si los datos son válidos, false en caso contrario.
 	 */
 	public boolean sonDatosValidos() {
 		boolean sonDatosValidos = false;
@@ -129,8 +131,9 @@ public class AdministradorArtistasController {
 	}
 
 	
+	
 	/**
-	 * 
+	 * Inicializa el controlador después de que su raíz ha sido procesada.
 	 */
 	@FXML
 	void initialize() {
@@ -143,7 +146,7 @@ public class AdministradorArtistasController {
 
 	
 	/**
-	 * 
+	 * Actualiza la tabla de artistas con los datos actuales.
 	 */
 	private void actualizarTablaArtistas() {
 
@@ -167,8 +170,9 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
+	 * Cierra la sesión actual y muestra la pantalla de inicio de sesión.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que desencadena este método.
 	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
@@ -177,8 +181,9 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
+	 * Actualiza los datos del artista seleccionado.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que desencadena este método.
 	 */
 	@FXML
 	void actualizarArtista(ActionEvent event) {
@@ -201,8 +206,9 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
+	 * Abre la ventana para administrar canciones.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que desencadena este método.
 	 */
 	@FXML
 	void administrarCanciones(ActionEvent event) {
@@ -210,8 +216,9 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
+	 * Crea un nuevo artista con los datos ingresados.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que desencadena este método.
 	 */
 	@FXML
 	void crearArtista(ActionEvent event) {
@@ -231,7 +238,7 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
-	 * 
+	 * Coloca los datos del artista seleccionado en los campos de entrada.
 	 */
 	@FXML
 	void ponerDatos() {
@@ -249,8 +256,9 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
+	 * Elimina el artista seleccionado de la lista.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que desencadena este método.
 	 */
 	@FXML
 	void eliminarArtista(ActionEvent event) {
@@ -265,7 +273,7 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
-	 * 
+	 * Importa una lista de artistas desde un archivo.
 	 */
 	@FXML
 	void importar() {
@@ -282,7 +290,7 @@ public class AdministradorArtistasController {
 	}
 	
 	/**
-	 * 
+	 * Exporta la lista de artistas a un archivo.
 	 */
 	@FXML
 	void exportar() {

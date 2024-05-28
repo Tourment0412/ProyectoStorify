@@ -60,7 +60,8 @@ public class RegistrarseController {
 	private App app = mfm.getAplicacion();
 	
 	/**
-	 * 
+	 * Método de inicialización para la interfaz de registro.
+	 * Se asegura de que los elementos de la interfaz estén correctamente inicializados.
 	 */
 	@FXML
 	void initialize() {
@@ -79,8 +80,9 @@ public class RegistrarseController {
 	}
 	
 	/**
+	 * Verifica si los datos ingresados en la interfaz de registro son válidos.
 	 * 
-	 * @return
+	 * @return true si los datos son válidos, false de lo contrario
 	 */
 	public boolean sonDatosValidos() {
 		boolean sonDatosValidos = false;
@@ -103,8 +105,9 @@ public class RegistrarseController {
 	}
 	
 	/**
+	 * Maneja el evento de iniciar sesión.
 	 * 
-	 * @param event
+	 * @param event el evento de acción
 	 */
 	@FXML
     void iniciarSesion(ActionEvent event) {
@@ -113,8 +116,9 @@ public class RegistrarseController {
     }
 	
 	/**
+	 * Maneja el evento de registrarse.
 	 * 
-	 * @param event
+	 * @param event el evento de acción
 	 */
     @FXML
     void registrarse(ActionEvent event) {

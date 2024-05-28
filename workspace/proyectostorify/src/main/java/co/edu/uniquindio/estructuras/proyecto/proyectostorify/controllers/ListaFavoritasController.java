@@ -40,36 +40,36 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ListaFavoritasController {
-	
+
 	@FXML
-    private Button btnOrdenarAlbum;
+	private Button btnOrdenarAlbum;
 
-    @FXML
-    private Button btnOrdenarDuracion;
+	@FXML
+	private Button btnOrdenarDuracion;
 
-    @FXML
-    private Button btnOrdenarGenero;
+	@FXML
+	private Button btnOrdenarGenero;
 
-    @FXML
-    private Button btnOrdenarNombre;
-	
-    @FXML
-    private Button btnDetalles;
-	
-    @FXML
-    private Button btnRefrescar;
-	
-    @FXML
-    private TableColumn<Cancion, String> columnAlbumCancion;
+	@FXML
+	private Button btnOrdenarNombre;
 
-    @FXML
-    private TableColumn<Cancion, String> columnDuracionCancion;
+	@FXML
+	private Button btnDetalles;
 
-    @FXML
-    private TableColumn<Cancion, String> columnGeneroCancion;
+	@FXML
+	private Button btnRefrescar;
 
-    @FXML
-    private TableColumn<Cancion, String> columnNombreCancion;
+	@FXML
+	private TableColumn<Cancion, String> columnAlbumCancion;
+
+	@FXML
+	private TableColumn<Cancion, String> columnDuracionCancion;
+
+	@FXML
+	private TableColumn<Cancion, String> columnGeneroCancion;
+
+	@FXML
+	private TableColumn<Cancion, String> columnNombreCancion;
 
 	@FXML
 	private Button btnRegistrarse;
@@ -182,14 +182,16 @@ public class ListaFavoritasController {
 	private ModelFactoryController mfm = ModelFactoryController.getInstance();
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
-	
+
 	private CircularList<Cancion> listaCanciones;
-	
+
 	private Stack<Cancion> undoStack = new Stack<>();
 	private Stack<Cancion> redoStack = new Stack<>();
 
 	/**
-	 * 
+	 * Inicializa la interfaz de usuario. Carga la lista de géneros disponibles y la
+	 * lista de canciones favoritas del usuario. Actualiza la tabla de canciones con
+	 * la lista de canciones favoritas.
 	 */
 	@FXML
 	void initialize() {
@@ -205,18 +207,22 @@ public class ListaFavoritasController {
 	}
 
 	/**
+	 * Refresca la tabla de canciones con la lista actualizada de canciones
+	 * favoritas del usuario.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que dispara la actualización
 	 */
 	@FXML
 	void refrescarTabla(ActionEvent event) {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-	
+
 	/**
+	 * Elimina la canción seleccionada de la lista de canciones favoritas del
+	 * usuario.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que dispara la eliminación
 	 */
 	@FXML
 	void eliminarDeLista(ActionEvent event) {
@@ -229,7 +235,7 @@ public class ListaFavoritasController {
 					undoStack.push(c, "eliminacion");
 					tableCanciones.getItems().remove(c);
 					mfm.eliminarCancionFavoritatUsuario(c);
-					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas());
+					actualizarTablaCanciones(((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas());
 					mfm.guardarAccion(c, "RMfavorita");
 				}
 			} else {
@@ -239,10 +245,12 @@ public class ListaFavoritasController {
 			InterfazFXUtil.mostrarMensaje("Canción no seleccionada", "Por favor, seleccione una canción de la lista.");
 		}
 	}
-	
+
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones usando el operador OR.
+	 * Actualiza la tabla con las canciones que coinciden con al menos uno de los criterios de búsqueda.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaO(ActionEvent event) {
@@ -263,10 +271,11 @@ public class ListaFavoritasController {
 
 	}
 
-	
 	/**
-	 * 
-	 * @param event
+	 * Realiza una búsqueda de canciones usando el operador AND.
+	 * Actualiza la tabla con las canciones que coinciden con todos los criterios de búsqueda.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
 	@FXML
 	void busquedaY(ActionEvent event) {
@@ -297,15 +306,16 @@ public class ListaFavoritasController {
 		}
 		actualizarTablaCanciones(listaTemp);
 	}
-	
+
 	/**
+	 * Muestra los detalles de la canción seleccionada en la tabla.
 	 * 
-	 * @param event
+	 * @param event el evento del ratón que dispara la visualización de detalles
 	 */
 	@FXML
 	void mostrarDetallesCancion(MouseEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if(c!=null) {
+		if (c != null) {
 			if (c.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
 			} else {
@@ -318,15 +328,19 @@ public class ListaFavoritasController {
 			lblDuracion.setText(c.getDuracion());
 			lblUrl.setText(c.getUrl());
 			lblGenero.setText(c.getGenero().toString());
-			
-		}else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor seleccione una cancion", AlertType.ERROR);;		}
+
+		} else {
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Por favor seleccione una cancion",
+					AlertType.ERROR);
+			;
+		}
 
 	}
-	
+
 	/**
+	 * Actualiza la tabla de canciones con la lista especificada de canciones.
 	 * 
-	 * @param listaCanciones
+	 * @param listaCanciones la lista de canciones a mostrar en la tabla
 	 */
 	public void actualizarTablaCanciones(CircularList<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -346,10 +360,11 @@ public class ListaFavoritasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
 	}
-	
+
 	/**
+	 * Deshace la última acción realizada por el usuario.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que dispara el deshacer
 	 */
 	@FXML
 	void deshacer(ActionEvent event) {
@@ -357,10 +372,11 @@ public class ListaFavoritasController {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-	
+
 	/**
+	 * Rehace la última acción deshecha por el usuario.
 	 * 
-	 * @param event
+	 * @param event el evento de acción que dispara el rehacer
 	 */
 	@FXML
 	void rehacer(ActionEvent event) {
@@ -368,55 +384,75 @@ public class ListaFavoritasController {
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
 		actualizarTablaCanciones(listaCanciones);
 	}
-	
+
 	/**
-	 * 
+	 * Reproduce la canción seleccionada por el usuario.
 	 */
 	@FXML
 	void reproducirCancion() {
-		CircularList<File> archivosCaciones=obtenerArchivosCanciones();
+		CircularList<File> archivosCaciones = obtenerArchivosCanciones();
 		mfm.mostrarReproductorAudio(archivosCaciones);
 	}
-	
+
 	/**
+	 * Obtiene los archivos de audio correspondientes a las canciones favoritas del usuario.
 	 * 
-	 * @return
+	 * @return una lista circular de archivos de audio
 	 */
 	public CircularList<File> obtenerArchivosCanciones() {
-		CircularList<File> archivosCaciones=new CircularList<File>();
+		CircularList<File> archivosCaciones = new CircularList<File>();
 		File archivo;
 		for (Cancion cancion : listaCanciones) {
-			archivo=TiendaUtil.obtenerArchivoAudio(cancion);
-			if (archivo!=null) {
+			archivo = TiendaUtil.obtenerArchivoAudio(cancion);
+			if (archivo != null) {
 				archivosCaciones.add(archivo);
 			}
 		}
 		return archivosCaciones;
 	}
 	
-	
+	/**
+	 * Ordena la lista de canciones favoritas por nombre de canción.
+	 *
+	 * @param event el evento de acción que dispara la operación de ordenar
+	 */
 	@FXML
-    void ordenarPorNombre(ActionEvent event) {
-        listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
-        actualizarTablaCanciones(listaCanciones);
-    }
-
-    @FXML
-    void ordenarPorAlbum(ActionEvent event) {
-        listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
-        actualizarTablaCanciones(listaCanciones);
-    }
-
-    @FXML
-    void ordenarPorDuracion(ActionEvent event) {
-        listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
-        actualizarTablaCanciones(listaCanciones);
-    }
-
-    @FXML
-    void ordenarPorGenero(ActionEvent event) {
-        listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);
-        actualizarTablaCanciones(listaCanciones);
-    }
+	void ordenarPorNombre(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_NOMBRE);
+		actualizarTablaCanciones(listaCanciones);
+	}
 	
+	/**
+	 * Ordena la lista de canciones favoritas por nombre de álbum.
+	 *
+	 * @param event el evento de acción que dispara la operación de ordenar
+	 */
+	@FXML
+	void ordenarPorAlbum(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_ALBUM);
+		actualizarTablaCanciones(listaCanciones);
+	}
+	
+	/**
+     * Ordena la lista de canciones favoritas por duración.
+     *
+     * @param event el evento de acción que dispara la operación de ordenar
+     */
+	@FXML
+	void ordenarPorDuracion(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_DURACION);
+		actualizarTablaCanciones(listaCanciones);
+	}
+	
+	/**
+     * Ordena la lista de canciones favoritas por género.
+     *
+     * @param event el evento de acción que dispara la operación de ordenar
+     */
+	@FXML
+	void ordenarPorGenero(ActionEvent event) {
+		listaCanciones.ordenar(ComparadoresCancion.POR_GENERO);
+		actualizarTablaCanciones(listaCanciones);
+	}
+
 }

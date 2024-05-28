@@ -3,7 +3,6 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 import java.io.File;
 import java.net.URL;
 
-
 import java.util.ResourceBundle;
 
 import javafx.scene.input.MouseEvent;
@@ -37,12 +36,12 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ArtistasController {
-	
-    @FXML
-    private Button btnCanciones;
-    
-    @FXML
-    private Button btnDetalles;
+
+	@FXML
+	private Button btnCanciones;
+
+	@FXML
+	private Button btnDetalles;
 
 	@FXML
 	private Button btnBuscarNombre;
@@ -103,9 +102,9 @@ public class ArtistasController {
 
 	@FXML
 	private Label lblCanciones;
-	
-    @FXML
-    private Button btnRefrescar;
+
+	@FXML
+	private Button btnRefrescar;
 
 	@FXML
 	private Label lblCodigo;
@@ -157,138 +156,153 @@ public class ArtistasController {
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 
 	/**
-	 * 
+	 * Inicializa el controlador. Actualiza la tabla de artistas con la lista de
+	 * artistas.
 	 */
 	@FXML
 	void initialize() {
 		actualizarTablaArtistas(listaArtista);
 	}
-	
+
 	/**
-	 * 
-	 * @param event
+	 * Busca un artista por nombre. Filtra la lista de artistas y actualiza la tabla
+	 * de artistas con los resultados.
+	 *
+	 * @param event el evento de acción que dispara la búsqueda
 	 */
-    @FXML
-    void buscarNombreArtista(ActionEvent event) {
-    	CircularList<Artista> listTemp = new CircularList<Artista>();
-    	for (Artista artista : listaArtista) {
-    		if (artista.getNombre().equalsIgnoreCase(txtBuscarNombre.getText().trim())){
-    			listTemp.add(artista);
-    		}
-    	}
-    	actualizarTablaArtistas(listTemp);
-    	listTemp.clear();
-    }
-	
+	@FXML
+	void buscarNombreArtista(ActionEvent event) {
+		CircularList<Artista> listTemp = new CircularList<Artista>();
+		for (Artista artista : listaArtista) {
+			if (artista.getNombre().equalsIgnoreCase(txtBuscarNombre.getText().trim())) {
+				listTemp.add(artista);
+			}
+		}
+		actualizarTablaArtistas(listTemp);
+		listTemp.clear();
+	}
+
 	/**
-	 * 
-	 * @param event
+	 * Cierra la sesión del usuario actual y muestra la pantalla de inicio de
+	 * sesión.
+	 *
+	 * @param event el evento de acción que dispara el cierre de sesión
 	 */
 	@FXML
 	void cerrarSesion(ActionEvent event) {
 		app.mostrarIniciarSesion();
 
 	}
-	
+
 	/**
-	 * 
+	 * Rehace la última acción realizada.
 	 */
 	@FXML
 	void rehacer() {
 		mfm.rehacer();
 	}
-	
+
 	/**
-	 * 
+	 * Deshace la última acción realizada.
 	 */
 	@FXML
 	void deshacer() {
 		mfm.deshacer();
 	}
-	
+
 	/**
-	 * 
-	 * @return
+	 * Obtiene una lista de artistas por nombre.
+	 *
+	 * @return una lista circular de artistas
 	 */
 	public CircularList<Artista> obtenerArtistasNombre() {
 		CircularList<Artista> listaArtistas = mfm.obtenerArtistas();
 		return listaArtistas;
 	}
-	
+
 	/**
-	 * 
-	 * @param event
+	 * Guarda una canción en la lista de favoritos del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de guardar en
+	 *              favoritos
 	 */
 	@FXML
 	void guardarFavoritos(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if (c!=null) {
-			CircularList<Cancion> favoritas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesFavoritas();
-			if(!favoritas.contains(c)) {
+		if (c != null) {
+			CircularList<Cancion> favoritas = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesFavoritas();
+			if (!favoritas.contains(c)) {
 				favoritas.add(c);
 				mfm.guardarAccion(c, "ADDfavorita");
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
-			}else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de Favoritos");
+			} else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+						"La cancion ya se encuentra en su lista de Favoritos");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a favoritos");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada",
+					"No hay una cancion seleccionada para agregar a favoritos");
 		}
 	}
-	
+
 	/**
-	 * 
-	 * @param event
+	 * Guarda una canción en la lista de favoritos del usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de guardar en favoritos
 	 */
 	@FXML
 	void guardarPlaylist(ActionEvent event) {
 		Cancion c = tableCanciones.getSelectionModel().getSelectedItem();
-		if (c!=null) {
-			CircularList<Cancion> guardadas = ((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas();
-			if(!guardadas.contains(c)) {
+		if (c != null) {
+			CircularList<Cancion> guardadas = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+			if (!guardadas.contains(c)) {
 				guardadas.add(c);
 				mfm.guardarAccion(c, "ADDplaylist");
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
-			}else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "La cancion ya se encuentra en su lista de playlist");
+			} else {
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+						"La cancion ya se encuentra en su lista de playlist");
 			}
 		} else {
-			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "No hay una cancion seleccionada para agregar a playlist");
+			InterfazFXUtil.mostrarMensaje("Cancion no seleccionada",
+					"No hay una cancion seleccionada para agregar a playlist");
 		}
 	}
 
-	
 	/**
-	 * 
-	 * @param event
+	 * Rehace la selección de un evento.
+	 *
+	 * @param event el evento de acción que dispara la acción de rehacer la selección
 	 */
 	@FXML
 	void rehacerSeleccion(ActionEvent event) {
 
-	}	
-	
+	}
+
 	/**
-	 * 
-	 * @param event
+	 * Muestra las canciones de un artista seleccionado.
+	 *
+	 * @param event el evento del mouse que dispara la acción de mostrar las canciones del artista
 	 */
 	@FXML
-    void mostrarCancionesArtista(MouseEvent event) {
-    	Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
-    	if (artista!=null) {
-        	ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
-        	actualizarTablaCanciones(cancionesArtista);
-    	}
-    	
-    }
-	
+	void mostrarCancionesArtista(MouseEvent event) {
+		Artista artista = tableArtistas.getSelectionModel().getSelectedItem();
+		if (artista != null) {
+			ListaDoble<Cancion> cancionesArtista = artista.getLstCanciones();
+			actualizarTablaCanciones(cancionesArtista);
+		}
+
+	}
+
 	/**
-	 * 
-	 * @param event
+	 * Muestra los detalles de una canción seleccionada.
+	 *
+	 * @param event el evento del mouse que dispara la acción de mostrar los detalles de la canción
 	 */
-    @FXML
-    void mostrarDetallesCanciones(MouseEvent event) {
-    	Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
+	@FXML
+	void mostrarDetallesCanciones(MouseEvent event) {
+		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if (cancion != null) {
 			if (cancion.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
 			} else {
@@ -302,21 +316,23 @@ public class ArtistasController {
 			lblAlbum.setText(cancion.getNombreAlbum());
 			lblUrl.setText(cancion.getUrl());
 		}
-    }
-	
+	}
+
 	/**
-	 * 
-	 * @param event
+	 * Refresca las tablas de artistas y canciones.
+	 *
+	 * @param event el evento de acción que dispara la acción de refrescar las tablas
 	 */
-    @FXML
-    void refrescarTabla(ActionEvent event) {
-    	actualizarTablaArtistas(listaArtista);
-    	actualizarTablaCanciones(new ListaDoble<Cancion>());
-    }
-	
+	@FXML
+	void refrescarTabla(ActionEvent event) {
+		actualizarTablaArtistas(listaArtista);
+		actualizarTablaCanciones(new ListaDoble<Cancion>());
+	}
+
 	/**
-	 * 
-	 * @param listaArtista
+	 * Actualiza la tabla de artistas con una lista dada.
+	 *
+	 * @param listaArtista la lista de artistas a mostrar en la tabla
 	 */
 	private void actualizarTablaArtistas(CircularList<Artista> listaArtista) {
 		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
@@ -325,8 +341,10 @@ public class ArtistasController {
 		}
 
 		tableArtistas.setItems(listaArtistasProperty);
-		columNombreArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
-		columCodigoArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
+		columNombreArtista
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
+		columCodigoArtista
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
 		columGrupoArtista.setCellValueFactory(cellData -> {
 			if (cellData.getValue().isEsGrupo()) {
 				return new SimpleStringProperty("Grupo");
@@ -338,10 +356,11 @@ public class ArtistasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();
 	}
-	
+
 	/**
-	 * 
-	 * @param listaCanciones
+	 * Actualiza la tabla de canciones con una lista dada.
+	 *
+	 * @param listaCanciones la lista de canciones a mostrar en la tabla
 	 */
 	public void actualizarTablaCanciones(ListaDoble<Cancion> listaCanciones) {
 		ObservableList<Cancion> listaCancionProperty = FXCollections.observableArrayList();
@@ -356,18 +375,19 @@ public class ArtistasController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombreAlbum()));
 		columDuracionCancion
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getDuracion()));
-		columGeneroCancion.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
+		columGeneroCancion
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
 	}
-	
+
 	/**
-	 * 
+	 * Reproduce una canción seleccionada.
 	 */
 	@FXML
 	void reproducirCancion() {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
-			CircularList<File> archivo=new CircularList<File>();
+		if (cancion != null) {
+			CircularList<File> archivo = new CircularList<File>();
 			archivo.add(TiendaUtil.obtenerArchivoAudio(cancion));
 			mfm.mostrarReproductorAudio(archivo);
 		} else {

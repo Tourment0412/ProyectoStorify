@@ -21,44 +21,48 @@ public class AdministradorController {
     private Label lblAdministrador;
 
 	
-	/**
-	 * 
-	 */
+    /**
+     * Inicializa el controlador.
+     * Configura la interfaz del administrador y establece el nombre de usuario en la etiqueta correspondiente.
+     */
     @FXML
 	void initialize() {
     	gestionArtistas();
     	lblAdministrador.setText(mfm.getUsuarioSesion().getUsername());
 	}
 	
-	/**
-	 * 
-	 */
+    /**
+     * Gestiona la ventana de administración de artistas.
+     * Carga la interfaz de administración de artistas.
+     */
     @FXML
     void gestionArtistas() {
     	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorArtistas.fxml");
     }
 	
-	/**
-	 * 
-	 */
+    /**
+     * Gestiona la ventana de administración de canciones.
+     * Carga la interfaz de administración de canciones.
+     */
     @FXML
     void gestionCanciones() {
     	cargarVentana("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/fxml/AdministradorCanciones.fxml");
     }
 	
-	/**
-	 * 
-	 */
+    /**
+     * Cierra la sesión del usuario actual y muestra la pantalla de inicio de sesión.
+     */
     @FXML
     void cerrarSesion() {
     	app.mostrarIniciarSesion();
     	mfm.setUsuarioSesion(null);
     }
 	
-	/**
-	 * 
-	 * @param ruta
-	 */
+    /**
+     * Carga una nueva ventana en el panel principal.
+     * 
+     * @param ruta la ruta del archivo FXML que se va a cargar
+     */
     public void cargarVentana(String ruta) {
     	
     	try {

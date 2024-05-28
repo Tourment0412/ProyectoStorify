@@ -59,6 +59,11 @@ public class IniciarSesionController {
 	private Stage ventana = mfm.getVentana();
 	private App app = mfm.getAplicacion();
 
+	/**
+	 * Inicializa el controlador.
+	 * Configura los eventos de teclado para los campos de texto para ingresar el nombre de usuario y la contraseña.
+	 * Al presionar la tecla Enter en cualquiera de los campos, se ejecuta el método ingresar().
+	 */
 	@FXML
 	void initialize() {
 		txtNombre.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -79,7 +84,8 @@ public class IniciarSesionController {
 
 	/**
 	 * Inicia sesión para un usuario administrador.
-	 * @param admin
+	 *
+	 * @param admin el objeto Administrador que inicia sesión
 	 */
 	public void iniciarSesionAdministrador(Administrador admin) {
 		ventana.close();
@@ -89,8 +95,9 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * Inicia sesión para un usuario comun
-	 * @param usuario
+	 * Inicia sesión para un usuario común.
+	 *
+	 * @param usuario el objeto Usuario que inicia sesión
 	 */
 	public void iniciarSesionUsuario(Usuario usuario) {
 		ventana.close();
@@ -100,7 +107,9 @@ public class IniciarSesionController {
 	}
 
 	/**
-	 * Metodo que se ejecuta al presionar el botón "Iniciar Sesion".
+	 * Método que se ejecuta al presionar el botón "Iniciar Sesión".
+	 * Verifica el tipo de cuenta e inicia sesión como Administrador o Usuario.
+	 * Muestra un mensaje de advertencia si no se encuentra la cuenta.
 	 */
 	@FXML
 	private void ingresar() {
@@ -126,8 +135,9 @@ public class IniciarSesionController {
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * Muestra la ventana de registro de usuario.
+	 *
+	 * @param event el evento de acción que dispara la acción de registrarse
 	 */
 	@FXML
     void registrarse(ActionEvent event) {
