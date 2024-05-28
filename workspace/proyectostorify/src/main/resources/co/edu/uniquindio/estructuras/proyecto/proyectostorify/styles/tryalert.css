@@ -66,10 +66,10 @@
 
 .dialog-pane .button-bar .button:hover {
     -fx-background-color: #333333; /* Negro más claro al pasar el ratón */
-    -fx-transform: scale(1.05);
+    
 }
 
 .dialog-pane .button-bar .button:pressed {
     -fx-background-color: #1a1a1a; /* Negro más claro al presionar */
-    -fx-transform: scale(0.95);
+    
 }
