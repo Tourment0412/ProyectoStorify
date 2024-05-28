@@ -74,9 +74,6 @@ public class AdministradorArtistasController {
 	private Button btnEliminar;
 
 	@FXML
-	private Button btnVolver;
-
-	@FXML
 	private ComboBox<String> cmbGrupo;
 
 	@FXML
