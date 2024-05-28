@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.IniciarSesionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="543.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.IniciarSesionController">
    <children>
       <TextField fx:id="txtNombre" layoutX="239.0" layoutY="77.0" stylesheets="@../styles/trystyles.css" />
       <Label fx:id="lblNombre" layoutX="171.0" layoutY="77.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="Nombre:" />
@@ -22,7 +22,7 @@
       <Label layoutX="199.0" layoutY="199.0" styleClass="text" stylesheets="@../styles/trystyles.css" text="¿No tiene una cuenta?" />
       <Button fx:id="btnRegistrarse" layoutX="220.0" layoutY="228.0" mnemonicParsing="false" onAction="#registrarse" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Registrarse" />
       <PasswordField fx:id="txtContrasenia" layoutX="239.0" layoutY="113.0" stylesheets="@../styles/trystyles.css" />
-      <Button fx:id="toggleButton" layoutX="409.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleToggle" styleClass="boton-gris" stylesheets="@../styles/trystyles.css">
+      <Button fx:id="toggleButton" layoutX="394.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleToggle" styleClass="boton-gris" stylesheets="@../styles/trystyles.css">
          <graphic>
             <Group>
                <children>

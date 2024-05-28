@@ -94,7 +94,18 @@ public class IniciarSesionController {
 		
 		txtContra.textProperty().bindBidirectional(txtContrasenia.textProperty());
 	}
-
+	
+	/**
+	 * Maneja el evento de alternar la visibilidad de la contraseña.
+	 * 
+	 * Este método se llama cuando se activa el evento asociado (por ejemplo, un 
+	 * clic en un botón) y alterna entre mostrar el campo de texto de la 
+	 * contraseña (`txtContrasenia`) y el campo de texto visible (`txtContra`). 
+	 * También actualiza el icono SVG (`svgIcon`) para reflejar el estado actual 
+	 * (ojo abierto o cerrado).
+	 * 
+	 * @param event El evento de acción que activa este método.
+	 */
 	@FXML
 	void handleToggle(ActionEvent event) {
 		if (txtContrasenia.isVisible()) {
