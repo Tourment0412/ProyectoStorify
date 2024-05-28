@@ -48,7 +48,7 @@ public class App extends Application {
 	}
 	
 	/**
-	 * 
+	 * Muestra la ventana del administrador
 	 */
 	public void mostrarAdministrador() {
 		try {
@@ -67,7 +67,7 @@ public class App extends Application {
 	}
 	
 	/**
-	 * 
+	 * Muestra la ventana del usuario
 	 */
 	public void mostrarUsuario() {
 		try {
@@ -106,7 +106,7 @@ public class App extends Application {
 	}
 	
 	/**
-	 * 
+	 * Muestra la ventana de administrador de artistas
 	 */
 	public void mostrarAdministradorArtistas() {
 		try {
@@ -127,7 +127,7 @@ public class App extends Application {
 	
 	
 	/**
-	 * 
+	 * Muestra la ventana de administracion de canciones
 	 */
 	public void mostrarAdministradorCanciones() {
 		try {
@@ -148,7 +148,7 @@ public class App extends Application {
 	
 	
 	/**
-	 * 
+	 * Muestra la ventana de los artistas
 	 */
 	public void mostrarArtistas() {
 		try {
@@ -169,7 +169,7 @@ public class App extends Application {
 	
 	
 	/**
-	 * 
+	 * Muestra la ventana de lista de canciones
 	 */
 	public void mostrarListaCanciones() {
 		try {
@@ -190,7 +190,7 @@ public class App extends Application {
 	
 	
 	/**
-	 * 
+	 * Muestra la ventana para el registro de usuarios
 	 */
 	public void mostrarResgistrarse() {
 		try {
@@ -210,8 +210,8 @@ public class App extends Application {
 	}
 	
 	/**
-	 * 
-	 * @param archivosReproducir
+	 * Muestra la ventana para reproducir audios
+	 * @param archivosReproducir Archivos de audio a reproducir
 	 */
 	public void reproducirCancion(CircularList<File> archivosReproducir) {
 		try {

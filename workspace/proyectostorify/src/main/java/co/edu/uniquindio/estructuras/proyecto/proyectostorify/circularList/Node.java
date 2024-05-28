@@ -11,8 +11,8 @@ public class Node<E> {
 	private Node<E> next;
 	
 	/**
-	 * 
-	 * @param value
+	 * Metodo constructor
+	 * @param value Valor del nodo
 	 */
 	public Node(E value) {
 		super();

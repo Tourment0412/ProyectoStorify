@@ -13,8 +13,8 @@ public class TreeNode <E extends Comparable<E>> {
 	private TreeNode<E> right;
 	
 	/**
-	 * 
-	 * @param value
+	 * Metodo constructor
+	 * @param value Valor del nodo
 	 */
 	public TreeNode (E value) {
 		this.value= value;

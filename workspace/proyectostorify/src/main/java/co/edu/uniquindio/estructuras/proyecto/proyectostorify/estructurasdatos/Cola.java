@@ -17,7 +17,7 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * eObtiene el primer nodo
+	 * Obtiene el primer nodo
 	 * @return Primer nodo
 	 */
 	public Nodo getPrimerNodo() {
@@ -43,8 +43,8 @@ public class Cola<E> {
 	
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el ultimo nodo
+	 * @return Ultimo nodo
 	 */
 	public Nodo<E> getUltimoNodo() {
 		return ultimoNodo;
@@ -52,7 +52,7 @@ public class Cola<E> {
 
 	
 	/**
-	 * 
+	 * Cambia el ultimo nodo
 	 * @param ultimoNodo
 	 */
 	public void setUltimoNodo(Nodo<E> ultimoNodo) {
@@ -60,7 +60,7 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
+	 * Cambia el primer nodo
 	 * @param primerNodo
 	 */
 	public void setPrimerNodo(Nodo<E> primerNodo) {
@@ -76,8 +76,8 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
-	 * @param data
+	 * Agrega un elemento a la cola
+	 * @param data Elemento a gregar
 	 */
 	public void encolar(E data) {
 		Nodo newNode = new Nodo(data);
@@ -91,8 +91,8 @@ public class Cola<E> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Saca un elemento de la cola
+	 * @return Elemento sacado
 	 */
 	public E desencolar() {
 		E elemento=(E)this.getPrimerNodo().getValue();
@@ -111,16 +111,16 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el valor del frente de la cola sin sacarlo
+	 * @return Valor del frente de la cola
 	 */
     public E obtenerFrente() {
     	return (E)this.getPrimerNodo().getValue();
     }
 	
 	/**
-	 * 
-	 * @return
+	 * Crea un clon o copia de la cola
+	 * @return Clon o copia de la cola
 	 */
     public Cola<E> clonarCola() {
     	Cola<E> cola = new Cola<E>();
@@ -133,9 +133,9 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
-	 * @param cola
-	 * @return
+	 * Verifica si la cola es igual a otra
+	 * @param cola Cola a comparar
+	 * @return Si es igual o no
 	 */
     public boolean equals(Cola cola) {
     	if (this==cola) {
@@ -152,9 +152,9 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
-	 * @param posicion
-	 * @param valor
+	 * Ingresa un valor en una posicion indicada de la cola
+	 * @param posicion Posicion indicada
+	 * @param valor Valor a ingresar
 	 */
     public void introducirElemento(int posicion,E valor) {
     	if (posicion<0 || posicion>=tam) {
@@ -201,7 +201,7 @@ public class Cola<E> {
     }
 	
 	/**
-	 * 
+	 * Convierte la cola en una cadena
 	 */
     @Override
     public String toString() {

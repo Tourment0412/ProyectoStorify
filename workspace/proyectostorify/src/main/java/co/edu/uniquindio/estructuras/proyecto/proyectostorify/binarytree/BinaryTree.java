@@ -10,31 +10,31 @@ public class BinaryTree<E extends Comparable<E>> {
 	// Talvez llegar a poner el size o algo asi
 	
 	/**
-	 * 
+	 * Metodo constructor
 	 */
 	public BinaryTree() {
 		this.root = null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene la raiz del arbol
+	 * @return La raiz del arbol
 	 */
 	public TreeNode<E> getRoot() {
 		return root;
 	}
 	
 	/**
-	 * 
-	 * @param root
+	 * Cambia la raiz del arbol
+	 * @param root Nueva raiz del arbol
 	 */
 	public void setRoot(TreeNode<E> root) {
 		this.root = root;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Obtiene el valor de la raiz del arbol
+	 * @return Valor de la raiz
 	 */
 	public E peek() {
 		if (root == null) {
@@ -43,14 +43,10 @@ public class BinaryTree<E extends Comparable<E>> {
 			return root.getValue();
 		}
 	}
-
-	// Para los metodos de añadir es obligatoriamente necesario que las clases a
-	// guardar implementen un comparable
-
 	
 	/**
-	 * 
-	 * @param value
+	 * Agrega un valor al arbol
+	 * @param value Valor a agregar
 	 */
 	public void add(E value) {
 		root = addRecursive(this.root, value);
@@ -81,7 +77,7 @@ public class BinaryTree<E extends Comparable<E>> {
 	// Recorrdio Preorder => raiz, hijo izquierdo, hijo derecho
 	
 	/**
-	 * 
+	 * Imprime el recorrido preorder
 	 */
 	public void preorder() {
 		preorderAux(this.root);
@@ -95,8 +91,8 @@ public class BinaryTree<E extends Comparable<E>> {
 	 */
 	
 	/**
-	 * 
-	 * @param current
+	 * Imprime el recorrido preorder
+	 * @param current Nodo raiz
 	 */
 	private void preorderAux(TreeNode<E> current) {
 		if (current == null) {
@@ -109,15 +105,15 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	
 	/**
-	 * 
+	 * Imprime el recorrido inorder
 	 */
 	public void inorder() {
 		inorderAux(this.root);
 	}
 	
 	/**
-	 * 
-	 * @param current
+	 * Imprime el recorrido inorder
+	 * @param current Nodo raiz
 	 */
 	private void inorderAux(TreeNode<E> current) {
 		if (current == null) {
@@ -131,7 +127,7 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
+	 * Imprime el recorrido postorder
 	 */
 	public void postorder() {
 		postorderAux(this.root);
@@ -139,8 +135,8 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	
 	/**
-	 * 
-	 * @param current
+	 * Imprime el recorrido postorder
+	 * @param current Nodo raiz
 	 */
 	private void postorderAux(TreeNode<E> current) {
 		if (current == null) {
@@ -154,9 +150,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param value
-	 * @return
+	 * Busca un valor y los retorna
+	 * @param value Valor a buscar
+	 * @return Valor obtenido
 	 */
 	public E search(E value) {
 	    return searchRecursive(root, value);
@@ -164,10 +160,10 @@ public class BinaryTree<E extends Comparable<E>> {
 
 	
 	/**
-	 * 
-	 * @param current
-	 * @param value
-	 * @return
+	 * Busca un valor en el arbol
+	 * @param current Nodo actual que se esta revisando
+	 * @param value Valor a buscar
+	 * @return Valor obtenido
 	 */
 	private E searchRecursive(TreeNode<E> current, E value) {
 	    if (current == null) {
@@ -184,15 +180,15 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
+	 * Elimina los valores del arbol
 	 */
 	public void clear() {
 		root=null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Convierte el arbol en una lista circular
+	 * @return Lista circular obtenida
 	 */
 	public CircularList<E> toCircularList() {
 		CircularList<E> eLementsList=new CircularList<E>();
@@ -203,9 +199,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param elements
-	 * @param node
+	 * Convierte el arbol en una lista circular
+	 * @param elements Elementos que se han ido agregando en la lista circular resultante
+	 * @param node Nodo actual
 	 */
 	public void toCircularList(CircularList<E> elements,TreeNode<E> node) {
 		if (node.getLeft()!=null) {
@@ -219,8 +215,8 @@ public class BinaryTree<E extends Comparable<E>> {
 	
 	
 	/**
-	 * 
-	 * @param value
+	 * Elimina un elemento del arbol
+	 * @param value Elemento a eliminar
 	 */
 	public void remove(E value) {
 		if (root.getValue().compareTo(value)==0) {
@@ -243,9 +239,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param node
-	 * @param previusNode
+	 * Elimina una hoja del arbol
+	 * @param node Nodo a eliminar
+	 * @param previusNode Nodo padre del nodo a eliminar
 	 */
 	public void removeLeaf(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
@@ -256,9 +252,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param node
-	 * @param previusNode
+	 * Elimina un nodo que solo tiene un hijo
+	 * @param node Nodo a eliminar
+	 * @param previusNode Nodo padre del nodo a eliminar
 	 */
 	public void removeFather1(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
@@ -278,9 +274,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param node
-	 * @param previusNode
+	 * Elimina un nodo que tiene 2 hijos
+	 * @param node Nodo a eliminar
+	 * @param previusNode Nodo padre del nodo a eliminar
 	 */
 	public void removeFather2(TreeNode<E> node,TreeNode<E> previusNode) {
 		if (previusNode.getLeft()==node) {
@@ -293,9 +289,9 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param tree
-	 * @param inicialNode
+	 * Agrega los elementos de un arbol 
+	 * @param tree Arbol al que se le va agregar los aelemtos del otro arbol
+	 * @param inicialNode Raiz del arbol del cual se va a agregar sus elementos
 	 */
 	public void addToArbol(BinaryTree<E> tree,TreeNode<E> inicialNode) {
 		if (inicialNode!=null) {
@@ -306,10 +302,10 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 	
 	/**
-	 * 
-	 * @param value
-	 * @param node
-	 * @param previusNode
+	 * Busca un elemento para eliminarlo
+	 * @param value Elemento a eliminar
+	 * @param node Nodo del cual se esta analizando
+	 * @param previusNode Nodo padre del nodo que se esta analizando
 	 */
 	public void removeSearch(E value,TreeNode<E> node,TreeNode<E> previusNode) {
 		if (node!=null) {
