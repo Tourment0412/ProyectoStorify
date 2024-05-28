@@ -402,6 +402,15 @@ public class ModelFactoryController {
 	public CircularList<Genero> obtenerGenerosPopulares() {
 		return tiendaMusica.obtenerGenerosPopulares();
 	}
+	
+	/**
+	 * Cuenta cuantas canciones han sido guardadas y seleccionadas como favoritas de cierto genero 
+	 * @param genero Genero indicado
+	 * @return Cantidad de canciones guardades del genero indicado
+	 */
+	public int obtenerPopularidadGenero(Genero genero) {
+		return tiendaMusica.contarGeneroCancionesUsuarios(genero);
+	}
 
 	/**
 	 * Importa artistas desde un archivo.

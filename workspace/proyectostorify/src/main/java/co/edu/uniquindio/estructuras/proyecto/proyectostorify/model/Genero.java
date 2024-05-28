@@ -2,6 +2,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 public enum Genero {
@@ -10,6 +11,7 @@ public enum Genero {
 	
 	@Getter
 	private String genero;
+
 	
 	/**
 	 * Obtiene los valores de los generos en forma de cadena
