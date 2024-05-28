@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.VideoPlayerController">
@@ -26,11 +28,46 @@
    <center>
       <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="PLAY" HBox.hgrow="ALWAYS" />
-            <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="PAUSE" HBox.hgrow="ALWAYS" />
-            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="RESET" HBox.hgrow="ALWAYS" />
-            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="PREVIOUS" HBox.hgrow="ALWAYS" />
-            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="NEXT" />
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath content="M16.6582 9.28638C18.098 10.1862 18.8178 10.6361 19.0647 11.2122C19.2803 11.7152 19.2803 12.2847 19.0647 12.7878C18.8178 13.3638 18.098 13.8137 16.6582 14.7136L9.896 18.94C8.29805 19.9387 7.49907 20.4381 6.83973 20.385C6.26501 20.3388 5.73818 20.0469 5.3944 19.584C5 19.053 5 18.1108 5 16.2264V7.77357C5 5.88919 5 4.94701 5.3944 4.41598C5.73818 3.9531 6.26501 3.66111 6.83973 3.6149C7.49907 3.5619 8.29805 4.06126 9.896 5.05998L16.6582 9.28638Z" fill="WHITE" stroke="WHITE" />
+                     </children>
+                  </Group>
+               </graphic></Button>
+            <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath content="M2 6C2 4.11438 2 3.17157 2.58579 2.58579C3.17157 2 4.11438 2 6 2C7.88562 2 8.82843 2 9.41421 2.58579C10 3.17157 10 4.11438 10 6V18C10 19.8856 10 20.8284 9.41421 21.4142C8.82843 22 7.88562 22 6 22C4.11438 22 3.17157 22 2.58579 21.4142C2 20.8284 2 19.8856 2 18V6Z M14 6C14 4.11438 14 3.17157 14.5858 2.58579C15.1716 2 16.1144 2 18 2C19.8856 2 20.8284 2 21.4142 2.58579C22 3.17157 22 4.11438 22 6V18C22 19.8856 22 20.8284 21.4142 21.4142C20.8284 22 19.8856 22 18 22C16.1144 22 15.1716 22 14.5858 21.4142C14 20.8284 14 19.8856 14 18V6Z" fill="WHITE" stroke="WHITE" />
+                     </children>
+                  </Group>
+               </graphic></Button>
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath content="M8.06.56A8.05 8.05 0 0 0 1.24 4.2V1.55H0V5a1.16 1.16 0 0 0 1.15 1.14h3.44V4.9H2.27a6.79 6.79 0 0 1 5.79-3.1 6.48 6.48 0 0 1 6.7 6.2 6.48 6.48 0 0 1-6.7 6.2A6.48 6.48 0 0 1 1.36 8H.12a7.71 7.71 0 0 0 7.94 7.44A7.71 7.71 0 0 0 16 8 7.71 7.71 0 0 0 8.06.56z" fill="WHITE" scaleX="1.35" scaleY="1.35" stroke="WHITE" />
+                     </children>
+                  </Group>
+               </graphic></Button>
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath content="M59.9990013,3645.86816 L59.9990013,3652.13116 C59.9990013,3652.84516 58.8540013,3653.25316 58.2180013,3652.82516 L53.9990013,3650.14016 L53.9990013,3652.13116 C53.9990013,3652.84516 53.4260013,3653.25316 52.7900013,3652.82516 L48.4790013,3649.69316 C47.9650013,3649.34616 47.7980013,3648.65316 48.3120013,3648.30616 L52.7900013,3645.17516 C53.4260013,3644.74616 53.9990013,3645.15416 53.9990013,3645.86816 L53.9990013,3647.85916 L58.2180013,3645.17516 C58.8540013,3644.74616 59.9990013,3645.15416 59.9990013,3645.86816" fill="WHITE" scaleX="2.0" scaleY="2.0" stroke="WHITE" />
+                     </children>
+                  </Group>
+               </graphic></Button>
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextMediaEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css">
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath content="M99.684,3649.69353 L95.207,3652.82453 C94.571,3653.25353 94,3652.84553 94,3652.13153 L94,3650.14053 L89.78,3652.82453 C89.145,3653.25353 88,3652.84553 88,3652.13153 L88,3645.86853 C88,3645.15453 89.145,3644.74653 89.78,3645.17453 L94,3647.85953 L94,3645.86853 C94,3645.15453 94.571,3644.74653 95.207,3645.17453 L99.516,3648.30653 C100.03,3648.65353 100.198,3649.34653 99.684,3649.69353" fill="WHITE" scaleX="2.0" scaleY="2.0" stroke="WHITE" />
+                     </children>
+                  </Group>
+               </graphic></Button>
             <ComboBox fx:id="speedBox" onAction="#changeSpeedEvent" promptText="SPEED" stylesheets="@../styles/trystyles.css" />
             <Slider fx:id="volumeSlider" value="50.0" />
          </children>

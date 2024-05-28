@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,9 +10,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaFavoritasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.ListaFavoritasController">
    <children>
       <TextField fx:id="txtNombreCancion" layoutX="238.0" layoutY="49.0" stylesheets="@../styles/trystyles.css" />
       <TextField fx:id="txtNombreAlbum" layoutX="238.0" layoutY="81.0" stylesheets="@../styles/trystyles.css" />
@@ -34,9 +36,23 @@
       <Label fx:id="lblNombreDelAlbum" layoutX="87.0" layoutY="85.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre del album:" />
       <Label fx:id="lblGeneroDeLaCancion" layoutX="148.0" layoutY="186.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
       <ComboBox fx:id="cmbGenero" layoutX="239.0" layoutY="182.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />
-      <Button fx:id="btnBusquedaConjuntiva" layoutX="148.0" layoutY="226.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y" />
-      <Button fx:id="btnBusquedaDisyuntiva" layoutX="249.0" layoutY="225.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O" />
-      <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="339.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="158.0" prefWidth="382.0">
+      <Button fx:id="btnBusquedaConjuntiva" layoutX="402.0" layoutY="78.0" mnemonicParsing="false" onAction="#busquedaY" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda Y">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnBusquedaDisyuntiva" layoutX="402.0" layoutY="148.0" mnemonicParsing="false" onAction="#busquedaO" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Busqueda O">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <TableView fx:id="tableCanciones" layoutX="71.0" layoutY="299.0" onMouseClicked="#mostrarDetallesCancion" prefHeight="158.0" prefWidth="442.0">
         <columns>
           <TableColumn fx:id="columnNombreCancion" prefWidth="87.20001983642578" text="Nombre" />
           <TableColumn fx:id="columnAlbumCancion" prefWidth="103.20001220703125" text="Album" />
@@ -54,18 +70,81 @@
       <Label fx:id="lblAnio" layoutX="665.0" layoutY="369.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
       <Label fx:id="lblAlbum" layoutX="665.0" layoutY="337.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
       <Label fx:id="lblCancion" layoutX="665.0" layoutY="304.0" styleClass="text" stylesheets="@../styles/trystyles.css" text=" " />
-      <Button fx:id="btnDeshacer" layoutX="72.0" layoutY="504.0" mnemonicParsing="false" onAction="#deshacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer" />
-      <Button fx:id="btnRehacer" layoutX="149.0" layoutY="504.0" mnemonicParsing="false" onAction="#rehacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer" />
-      <Button fx:id="btnEliminar" layoutX="314.0" layoutY="504.0" mnemonicParsing="false" onAction="#eliminarDeLista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar" />
+      <Button fx:id="btnDeshacer" layoutX="72.0" layoutY="468.0" mnemonicParsing="false" onAction="#deshacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25L15.0358 6.25C15.94 6.24999 16.6693 6.24998 17.2576 6.3033C17.864 6.35826 18.3938 6.47456 18.875 6.75241C19.4451 7.08154 19.9185 7.55492 20.2476 8.12499C20.5254 8.60624 20.6417 9.13604 20.6967 9.74239C20.75 10.3307 20.75 11.06 20.75 11.9643V12.0358C20.75 12.94 20.75 13.6693 20.6967 14.2576C20.6418 14.8639 20.5255 15.3937 20.2476 15.875C19.9185 16.4451 19.4451 16.9185 18.875 17.2476C18.3938 17.5254 17.864 17.6417 17.2576 17.6967C16.6693 17.75 15.94 17.75 15.0358 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C15.9484 16.25 16.6096 16.2493 17.1222 16.2028C17.6245 16.1573 17.9101 16.0726 18.125 15.9486C18.4671 15.7511 18.7511 15.467 18.9486 15.125C19.0726 14.9101 19.1573 14.6245 19.2028 14.1222C19.2493 13.6096 19.25 12.9484 19.25 12C19.25 11.0516 19.2493 10.3904 19.2028 9.87779C19.1573 9.37548 19.0726 9.0899 18.9486 8.87499C18.7511 8.53295 18.467 8.24892 18.125 8.05144C17.9101 7.92737 17.6245 7.84271 17.1222 7.79718C16.6096 7.75072 15.9484 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z" fill="WHITE" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnRehacer" layoutX="437.0" layoutY="468.0" mnemonicParsing="false" onAction="#rehacer" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Rehacer">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16.4697 3.46967C16.7626 3.17678 17.2374 3.17678 17.5303 3.46967L20.5303 6.46967C20.8232 6.76256 20.8232 7.23744 20.5303 7.53033L17.5303 10.5303C17.2374 10.8232 16.7626 10.8232 16.4697 10.5303C16.1768 10.2374 16.1768 9.76256 16.4697 9.46967L18.1893 7.75H9.00001C8.05159 7.75 7.39042 7.75072 6.8778 7.79718C6.37549 7.84271 6.0899 7.92737 5.875 8.05144C5.53296 8.24892 5.24893 8.53295 5.05145 8.87499C4.92738 9.0899 4.84271 9.37548 4.79718 9.87779C4.75072 10.3904 4.75 11.0516 4.75 12C4.75 12.9484 4.75072 13.6096 4.79718 14.1222C4.84271 14.6245 4.92737 14.9101 5.05144 15.125C5.24892 15.467 5.53296 15.7511 5.875 15.9486C6.0899 16.0726 6.37549 16.1573 6.87779 16.2028C7.39041 16.2493 8.05158 16.25 9 16.25H16C16.4142 16.25 16.75 16.5858 16.75 17C16.75 17.4142 16.4142 17.75 16 17.75H8.96423C8.05998 17.75 7.3307 17.75 6.7424 17.6967C6.13605 17.6417 5.60625 17.5254 5.125 17.2476C4.55493 16.9185 4.08154 16.4451 3.75241 15.875C3.47455 15.3937 3.35826 14.8639 3.3033 14.2576C3.24998 13.6693 3.24999 12.94 3.25 12.0358V11.9642C3.24999 11.06 3.24999 10.3307 3.30331 9.74239C3.35826 9.13604 3.47456 8.60624 3.75241 8.12499C4.08154 7.55492 4.55493 7.08154 5.125 6.75241C5.60625 6.47456 6.13605 6.35826 6.7424 6.3033C7.33069 6.24998 8.05997 6.24999 8.96421 6.25L18.1893 6.25L16.4697 4.53033C16.1768 4.23744 16.1768 3.76256 16.4697 3.46967Z" fill="WHITE" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnEliminar" layoutX="159.0" layoutY="503.0" mnemonicParsing="false" onAction="#eliminarDeLista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M10 11V17 M14 11V17 M4 7H20 M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic></Button>
       <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnRefrescar" layoutX="381.0" layoutY="504.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar" />
-      <Button layoutX="224.0" layoutY="504.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir" />
-      <Button fx:id="btnOrdenarNombre" layoutX="80.0" layoutY="310.0" mnemonicParsing="false" onAction="#ordenarPorNombre" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
-      <Button fx:id="btnOrdenarAlbum" layoutX="177.0" layoutY="309.0" mnemonicParsing="false" onAction="#ordenarPorAlbum" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
-      <Button fx:id="btnOrdenarDuracion" layoutX="274.0" layoutY="310.0" mnemonicParsing="false" onAction="#ordenarPorDuracion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
-      <Button fx:id="btnOrdenarGenero" layoutX="372.0" layoutY="309.0" mnemonicParsing="false" onAction="#ordenarPorGenero" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar" />
-      <Separator layoutX="71.0" layoutY="276.0" prefHeight="0.0" prefWidth="414.0" />
-      <Label fx:id="lblCanciones" layoutX="76.0" layoutY="291.0" stylesheets="@../styles/trystyles.css" text="Canciones" />
+      <Button fx:id="btnRefrescar" layoutX="381.0" layoutY="504.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M12 21C7.02944 21 3 16.9706 3 12C3 9.69494 3.86656 7.59227 5.29168 6L8 3M12 3C16.9706 3 21 7.02944 21 12C21 14.3051 20.1334 16.4077 18.7083 18L16 21M3 3H8M8 3V8M21 21H16M16 21V16" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button layoutX="260.0" layoutY="468.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16.6582 9.28638C18.098 10.1862 18.8178 10.6361 19.0647 11.2122C19.2803 11.7152 19.2803 12.2847 19.0647 12.7878C18.8178 13.3638 18.098 13.8137 16.6582 14.7136L9.896 18.94C8.29805 19.9387 7.49907 20.4381 6.83973 20.385C6.26501 20.3388 5.73818 20.0469 5.3944 19.584C5 19.053 5 18.1108 5 16.2264V7.77357C5 5.88919 5 4.94701 5.3944 4.41598C5.73818 3.9531 6.26501 3.66111 6.83973 3.6149C7.49907 3.5619 8.29805 4.06126 9.896 5.05998L16.6582 9.28638Z" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnOrdenarNombre" layoutX="85.0" layoutY="265.0" mnemonicParsing="false" onAction="#ordenarPorNombre" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16 18L16 16M16 6L20 10.125M16 6L12 10.125M16 6L16 13 M8 18L12 13.875M8 18L4 13.875M8 18L8 11M8 6V8" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnOrdenarAlbum" layoutX="191.0" layoutY="265.0" mnemonicParsing="false" onAction="#ordenarPorAlbum" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16 18L16 16M16 6L20 10.125M16 6L12 10.125M16 6L16 13 M8 18L12 13.875M8 18L4 13.875M8 18L8 11M8 6V8" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnOrdenarDuracion" layoutX="304.0" layoutY="266.0" mnemonicParsing="false" onAction="#ordenarPorDuracion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16 18L16 16M16 6L20 10.125M16 6L12 10.125M16 6L16 13 M8 18L12 13.875M8 18L4 13.875M8 18L8 11M8 6V8" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Button fx:id="btnOrdenarGenero" layoutX="418.0" layoutY="265.0" mnemonicParsing="false" onAction="#ordenarPorGenero" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Ordenar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M16 18L16 16M16 6L20 10.125M16 6L12 10.125M16 6L16 13 M8 18L12 13.875M8 18L4 13.875M8 18L8 11M8 6V8" stroke="WHITE" />
+               </children>
+            </Group>
+         </graphic></Button>
+      <Separator layoutX="71.0" layoutY="224.0" prefHeight="2.0" prefWidth="442.0" />
+      <Label fx:id="lblCanciones" layoutX="76.0" layoutY="238.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Canciones" />
       <Separator layoutX="532.0" layoutY="59.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="0.0" />
    </children>
 </AnchorPane>
