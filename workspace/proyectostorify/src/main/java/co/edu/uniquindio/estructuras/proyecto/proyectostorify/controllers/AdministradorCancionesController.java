@@ -1,6 +1,13 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers;
 
 import java.io.File;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -26,10 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.Builder;
@@ -42,9 +46,9 @@ import lombok.ToString;
 @Setter
 @Getter
 public class AdministradorCancionesController {
-	
-    @FXML
-    private Button btnSeleccionarArtista;
+
+	@FXML
+	private Button btnSeleccionarArtista;
 
 	@FXML
 	private Button btnAdiministrarCanciones;
@@ -166,8 +170,8 @@ public class AdministradorCancionesController {
 	private CircularList<Artista> listaArtistasSeleccionados = new CircularList<Artista>();
 
 	/**
-	 * Método llamado al inicializar el controlador.
-	 * Configura la lista de géneros musicales y actualiza las tablas de artistas y canciones.
+	 * Método llamado al inicializar el controlador. Configura la lista de géneros
+	 * musicales y actualiza las tablas de artistas y canciones.
 	 */
 	@FXML
 	void initialize() {
@@ -182,7 +186,7 @@ public class AdministradorCancionesController {
 		actualizarTablaArtistas();
 		actualizarTablaCanciones();
 	}
-	
+
 	/**
 	 * Abre la interfaz para administrar canciones.
 	 * 
@@ -192,7 +196,7 @@ public class AdministradorCancionesController {
 	void administrarCanciones(ActionEvent event) {
 		app.mostrarAdministradorCanciones();
 	}
-	
+
 	/**
 	 * Cierra la sesión actual y muestra la pantalla de inicio de sesión.
 	 * 
@@ -203,25 +207,29 @@ public class AdministradorCancionesController {
 		app.mostrarIniciarSesion();
 
 	}
-	
+
 	/**
-	 * Actualiza la información de la canción seleccionada en la tabla.
-	 * Copia los archivos de carátula y audio a sus respectivas ubicaciones si están disponibles.
+	 * Actualiza la información de la canción seleccionada en la tabla. Copia los
+	 * archivos de carátula y audio a sus respectivas ubicaciones si están
+	 * disponibles.
 	 */
 	@FXML
 	void actualizar() {
 		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
 		if (sonDatosValidos()) {
-			if(cancion!=null) {
+			if (cancion != null) {
 				File archivoCopia;
-				if (imageCaratula.getImage()!=null) {
+				if (imageCaratula.getImage() != null) {
 					String nombre;
 					do {
-						nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
+						nombre = TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
 					} while (TiendaUtil.existeArchivoCaratula(nombre));
-					archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
+					archivoCopia = new File(
+							"src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"
+									+ nombre);
 					try {
-						Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(),
+								StandardCopyOption.REPLACE_EXISTING);
 					} catch (IOException ex) {
 						ex.printStackTrace();
 					}
@@ -238,12 +246,14 @@ public class AdministradorCancionesController {
 
 				String audio;
 				do {
-					audio=TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
+					audio = TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
 				} while (TiendaUtil.existeArchivoAudio(audio));
-				archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
-						+audio);
+				archivoCopia = new File(
+						"src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
+								+ audio);
 				try {
-					Files.copy(archivoAudioCancion.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.copy(archivoAudioCancion.toPath(), archivoCopia.toPath(),
+							StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -253,7 +263,7 @@ public class AdministradorCancionesController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Actualiza la tabla de artistas con la lista actualizada de artistas.
 	 */
@@ -263,7 +273,8 @@ public class AdministradorCancionesController {
 			listaArtistasProperty.add(artista);
 		}
 		tableArtistas.setItems(listaArtistasProperty);
-		columnNombreArtista.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
+		columnNombreArtista
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
 		columnCodigo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
 		columnGrupo.setCellValueFactory(cellData -> {
 			if (cellData.getValue().isEsGrupo()) {
@@ -276,7 +287,7 @@ public class AdministradorCancionesController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
 		tableArtistas.refresh();
 	}
-	
+
 	/**
 	 * Actualiza la tabla de canciones con la lista actualizada de canciones.
 	 */
@@ -296,7 +307,7 @@ public class AdministradorCancionesController {
 		columnGenero.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getGenero()));
 		tableCanciones.refresh();
 	}
-	
+
 	/**
 	 * Verifica si los datos de entrada para una canción son válidos.
 	 * 
@@ -306,33 +317,33 @@ public class AdministradorCancionesController {
 		boolean sonDatosValidos = false;
 		String msj = "";
 		if (InterfazFXUtil.estaCampoVacio(txtCancion)) {
-			msj+="Debe indicar el nombre de la cancion\n";
+			msj += "Debe indicar el nombre de la cancion\n";
 		}
 		if (InterfazFXUtil.estaCampoVacio(txtAlbum)) {
-			msj+="Debe indicar el album al que pertenece la cancion\n";
+			msj += "Debe indicar el album al que pertenece la cancion\n";
 		}
 		try {
-    		int valor=Integer.parseInt(txtAnio.getText());
-			if (valor<0) {
+			int valor = Integer.parseInt(txtAnio.getText());
+			if (valor < 0) {
 				throw new Exception("Valor invalido");
 			}
 		} catch (Exception e) {
 			if (txtAnio.getText().trim().equals("")) {
-				msj+="El a\u00F1o no debe estar vacio\n";
+				msj += "El a\u00F1o no debe estar vacio\n";
 			} else {
-				msj+="A\u00F1o indicado no valido\n";
+				msj += "A\u00F1o indicado no valido\n";
 			}
 		}
 		if (InterfazFXUtil.estaCampoVacio(txtDuracion)) {
-			msj+="Debe indicar la duracion\n";
+			msj += "Debe indicar la duracion\n";
 		} else if (!txtDuracion.getText().trim().matches("^[0-9:]+$")) {
-			msj+="Duracion no valida\n";
+			msj += "Duracion no valida\n";
 		}
-		if (archivoAudioCancion==null) {
+		if (archivoAudioCancion == null) {
 			msj += "Debe seleccionar el audio de la cancion\n";
 		}
 		if (InterfazFXUtil.estaCampoVacio(cmbGenero)) {
-			msj+="Debe indicar el genero de la cancion\n";
+			msj += "Debe indicar el genero de la cancion\n";
 		}
 		if (msj.equals("")) {
 			sonDatosValidos = true;
@@ -342,7 +353,6 @@ public class AdministradorCancionesController {
 		return sonDatosValidos;
 	}
 
-	
 	/**
 	 * Guarda una nueva canción con los datos ingresados.
 	 * 
@@ -354,17 +364,20 @@ public class AdministradorCancionesController {
 			Cancion newCancion = new Cancion();
 			String codigo;
 			do {
-				codigo=TiendaUtil.generarCadenaAleatoria();
-			} while(mfm.existeCodigoCancion(codigo));
+				codigo = TiendaUtil.generarCadenaAleatoria();
+			} while (mfm.existeCodigoCancion(codigo));
 			newCancion.setCodigo(codigo);
-			if (imageCaratula.getImage()!=null) {
+			if (imageCaratula.getImage() != null) {
 				String nombre;
 				do {
-					nombre=TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
+					nombre = TiendaUtil.obtenerRutaCopiaOrganizada(archivoImagenCaratula.getName());
 				} while (TiendaUtil.existeArchivoCaratula(nombre));
-				File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"+nombre);
+				File archivoCopia = new File(
+						"src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/caratulasCanciones/"
+								+ nombre);
 				try {
-					Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.copy(archivoImagenCaratula.toPath(), archivoCopia.toPath(),
+							StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
@@ -378,10 +391,11 @@ public class AdministradorCancionesController {
 
 			String audio;
 			do {
-				audio=TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
+				audio = TiendaUtil.obtenerRutaCopiaOrganizada(archivoAudioCancion.getName());
 			} while (TiendaUtil.existeArchivoAudio(audio));
-			File archivoCopia = new File("src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
-					+audio);
+			File archivoCopia = new File(
+					"src/main/resources/co/edu/uniquindio/estructuras/proyecto/proyectostorify/cancionesAudios/"
+							+ audio);
 			try {
 				Files.copy(archivoAudioCancion.toPath(), archivoCopia.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException ex) {
@@ -396,15 +410,15 @@ public class AdministradorCancionesController {
 			actualizarTablaCanciones();
 		}
 	}
-	
+
 	/**
 	 * Coloca los datos de la canción seleccionada en los campos correspondientes.
 	 */
 	@FXML
 	void ponerDatosCancion() {
-		
-		Cancion cancion= tableCanciones.getSelectionModel().getSelectedItem();
-		if(cancion!=null) {
+
+		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if (cancion != null) {
 			if (cancion.getCaratula().equals("")) {
 				imageCaratula.setImage(null);
 			} else {
@@ -415,10 +429,10 @@ public class AdministradorCancionesController {
 			cmbGenero.setValue(cancion.getGenero().toString());
 			txtCancion.setText(cancion.getNombreCancion());
 			txtAlbum.setText(cancion.getNombreAlbum());
-			archivoAudioCancion=TiendaUtil.obtenerArchivoAudio(cancion);
+			archivoAudioCancion = TiendaUtil.obtenerArchivoAudio(cancion);
 		}
 	}
-	
+
 	/**
 	 * Selecciona una imagen de carátula para la canción.
 	 * 
@@ -427,92 +441,157 @@ public class AdministradorCancionesController {
 	@FXML
 	void seleccionarCaratula(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Archivos de Imagen", "*.jpg", "*.png", "*.jpeg"));
-        archivoImagenCaratula = fileChooser.showOpenDialog(null);
-        if (archivoImagenCaratula != null) {
-        	Image image = new Image(archivoImagenCaratula.toURI().toString());
-        	imageCaratula.setImage(image);
-        } else {
-        	imageCaratula.setImage(null);
-        }
+		fileChooser.getExtensionFilters()
+				.add(new FileChooser.ExtensionFilter("Archivos de Imagen", "*.jpg", "*.png", "*.jpeg"));
+		archivoImagenCaratula = fileChooser.showOpenDialog(null);
+		if (archivoImagenCaratula != null) {
+			Image image = new Image(archivoImagenCaratula.toURI().toString());
+			imageCaratula.setImage(image);
+		} else {
+			imageCaratula.setImage(null);
+		}
 	}
-	
+
 	/**
-	 * Selecciona un artista de la tabla de artistas para agregarlo a la lista de artistas seleccionados.
+	 * Selecciona un artista de la tabla de artistas para agregarlo a la lista de
+	 * artistas seleccionados.
 	 * 
 	 * @param event el evento que dispara la acción
 	 */
-    @FXML
-    void seleccionarArtista(ActionEvent event) {
-    	Artista artistaSeleccionado = tableArtistas.getSelectionModel().getSelectedItem();
-    	if (!listaArtistasSeleccionados.contains(artistaSeleccionado)) {
-    		listaArtistasSeleccionados.add(artistaSeleccionado);
-    		
-    		
-    	}else {
-    		JOptionPane.showMessageDialog(null, "El artista ya fue seleccionado");
-    	}
-    }
-	
-    /**
-     * Selecciona un archivo de audio para la canción.
-     */
-    @FXML
-    void seleccionarAudioCancion() {
-    	FileChooser fileChooser = new FileChooser();
-    	fileChooser.getExtensionFilters().add(
-    			new FileChooser.ExtensionFilter("Archivos MP3", "*.mp3"));
-    	archivoAudioCancion = fileChooser.showOpenDialog(null);
-    }
-	
-    /**
-     * Reproduce el archivo de audio seleccionado para la canción.
-     */
-    @FXML
-    void reproducirAudioCancion() {
-    	if (archivoAudioCancion!=null) {
-    		CircularList<File> cancion=new CircularList<File>();
-        	cancion.add(archivoAudioCancion);
-        	mfm.mostrarReproductorAudio(cancion);
-    	} else {
-    		InterfazFXUtil.mostrarMensaje("No se puede reproducir cancion", "No hay audio para reproducir");
-    	}
-    }
-	
-    /**
-     * Muestra un mensaje con los géneros musicales más populares.
-     */
-    @FXML
-    void generosPopulares() {
-        CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
-        String msj = "";
-        
-        if (generosPopulares.size() > 1) {
-            msj += "Los géneros más populares son:\n";
-            for (Genero genero : generosPopulares) {
-                msj += "- " + genero.toString() + "\n";
-            }
-        } else {
-            msj += "El género más popular es: " + generosPopulares.get(0).toString();
-        }
+	@FXML
+	void seleccionarArtista(ActionEvent event) {
+		Artista artistaSeleccionado = tableArtistas.getSelectionModel().getSelectedItem();
+		if (!listaArtistasSeleccionados.contains(artistaSeleccionado)) {
+			listaArtistasSeleccionados.add(artistaSeleccionado);
 
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Popularidad de los Géneros");
-        alert.setHeaderText("Información sobre los géneros musicales más populares");
-        alert.setContentText(msj);
+		} else {
+			JOptionPane.showMessageDialog(null, "El artista ya fue seleccionado");
+		}
+	}
 
-        Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
-        ImageView imageView = new ImageView(icon);
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
-        alert.setGraphic(imageView);
+	/**
+	 * Selecciona un archivo de audio para la canción.
+	 */
+	@FXML
+	void seleccionarAudioCancion() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos MP3", "*.mp3"));
+		archivoAudioCancion = fileChooser.showOpenDialog(null);
+	}
 
+	/**
+	 * Reproduce el archivo de audio seleccionado para la canción.
+	 */
+	@FXML
+	void reproducirAudioCancion() {
+		if (archivoAudioCancion != null) {
+			CircularList<File> cancion = new CircularList<File>();
+			cancion.add(archivoAudioCancion);
+			mfm.mostrarReproductorAudio(cancion);
+		} else {
+			InterfazFXUtil.mostrarMensaje("No se puede reproducir cancion", "No hay audio para reproducir");
+		}
+	}
 
-        alert.getDialogPane().getStylesheets().add(getClass().getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css").toExternalForm());
-        
-        alert.showAndWait();
-    }
+	/**
+	 * Muestra un mensaje con los géneros musicales más populares.
+	 */
+//    @FXML
+//    void generosPopulares() {
+//        CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
+//        String msj = "";
+//        
+//        if (generosPopulares.size() > 1) {
+//            msj += "Los géneros más populares son:\n";
+//            for (Genero genero : generosPopulares) {
+//                msj += "- " + genero.toString() + "\n";
+//            }
+//        } else {
+//            msj += "El género más popular es: " + generosPopulares.get(0).toString();
+//        }
+//
+//        Alert alert = new Alert(AlertType.INFORMATION);
+//        alert.setTitle("Popularidad de los Géneros");
+//        alert.setHeaderText("Información sobre los géneros musicales más populares");
+//        alert.setContentText(msj);
+//
+//        Image image = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
+//        ImageView imageView = new ImageView(image);
+//        imageView.setFitWidth(100);
+//        imageView.setFitHeight(100);
+//        alert.setGraphic(imageView);
+//        
+//
+//        alert.getDialogPane().getStylesheets().add(getClass().getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css").toExternalForm());
+//        
+//        alert.showAndWait();
+//    }
+	@FXML
+	void generosPopulares() {
+		CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
+		StringBuilder msj = new StringBuilder();
 
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Popularidad de los Géneros");
+		alert.setHeaderText("Información sobre los géneros musicales más populares");
+
+		if (generosPopulares.isEmpty()) {
+			msj.append("No hay géneros populares disponibles.");
+		} else {
+			msj.append("Los géneros más populares son:\n");
+			VBox genreBox = new VBox(); // Contenedor vertical para los géneros
+			genreBox.setAlignment(Pos.CENTER_LEFT);
+			for (Genero genero : generosPopulares) {
+				HBox genreRow = new HBox(); // Contenedor horizontal para cada género
+				genreRow.setAlignment(Pos.CENTER_LEFT);
+				// Crear un ícono o color para representar el nivel de popularidad del género
+				ImageView popularityIcon = new ImageView(getPopularityIcon(generosPopulares.indexOf(genero)));
+				popularityIcon.setFitWidth(110);
+				popularityIcon.setFitHeight(40);
+				// Crear una etiqueta para mostrar el nombre del género
+				Label genreLabel = new Label("  "+genero.toString());
+				genreLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #ffffff; -fx-font-weight: bold;");
+				// Estilo de la etiqueta
+				// Agregar el ícono y la etiqueta al contenedor horizontal
+				genreRow.getChildren().addAll(popularityIcon, genreLabel);
+				// Agregar el contenedor horizontal al contenedor vertical
+				genreBox.getChildren().add(genreRow);
+			}
+			// Establecer el contenido de la alerta como el contenedor vertical con los
+			// géneros
+			alert.getDialogPane().setContent(genreBox);
+		}
+
+		alert.setContentText(msj.toString());
+
+		Image image = new Image(getClass()
+				.getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setFitWidth(100);
+		imageView.setFitHeight(100);
+		alert.setGraphic(imageView);
+
+		alert.getDialogPane().getStylesheets()
+				.add(getClass()
+						.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css")
+						.toExternalForm());
+
+		alert.showAndWait();
+	}
+
+	// Método para obtener el ícono que representará la popularidad del género
+	private Image getPopularityIcon(int index) {
+		// Lógica para determinar qué ícono usar según el índice en la lista (posición)
+		if (index == 0) {
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/high_popularity.png"));
+		} else if (index < 3) {
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/medium_popularity.png"));
+		} else {
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/low_popularity.png"));
+		}
+	}
 
 }
