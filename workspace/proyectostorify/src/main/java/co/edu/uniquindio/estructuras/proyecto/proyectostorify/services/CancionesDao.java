@@ -63,8 +63,9 @@ public class CancionesDao {
 			ois.close();
 			return (CircularList<Cancion>) object;
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("El archivo estaba vacio");
 			CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
+			saveData(listaCanciones);
 			return listaCanciones;
 		}
 	}
