@@ -89,7 +89,7 @@ public class VideoPlayerController implements Initializable {
 		for (int i = 0; i < speeds.length; i++) {
 			speedBox.getItems().add(Integer.toString(speeds[i]) + "%");
 		}
-		speedBox.setOnAction(this::changeSpeedEvent);
+		speedBox.setOnAction(event -> changeSpeedEvent(event));
 	
 		
 		volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
