@@ -19,8 +19,6 @@ El Proyecto Storify es una aplicación moderna para la tienda de música Storify
 - **Reproducción de Música**: Las canciones se pueden reproducir directamente en la aplicación.
 - **Interfaz Intuitiva**: Una interfaz gráfica fácil de usar para la gestión de música.
 ## Requisitos
-
-- JDK 8 o superior
 - JavaFX SDK
 - Maven
 - [Otros requisitos específicos, como una base de datos particular o librerías adicionales]
