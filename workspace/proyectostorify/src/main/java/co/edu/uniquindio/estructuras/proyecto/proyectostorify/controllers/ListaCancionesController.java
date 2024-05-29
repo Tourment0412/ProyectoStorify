@@ -239,6 +239,7 @@ public class ListaCancionesController {
 					mfm.eliminarCancionPlayListUsuario(c);
 					actualizarTablaCanciones(((Usuario)mfm.getUsuarioSesion()).getLstCancionesGuardadas());
 					mfm.guardarAccion(c, "RMplaylist");
+					mfm.guardarDatos();
 				}
 			} else {
 				InterfazFXUtil.mostrarMensaje("Lista vacía", "La lista de canciones guardadas del usuario está vacía.");
@@ -374,6 +375,7 @@ public class ListaCancionesController {
 	void deshacer(ActionEvent event) {
 		mfm.deshacer();
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		mfm.guardarDatos();
 		actualizarTablaCanciones(listaCanciones);
 	}
 	
@@ -387,6 +389,7 @@ public class ListaCancionesController {
 	void rehacer(ActionEvent event) {
 		mfm.rehacer();
 		listaCanciones = ((Usuario) mfm.getUsuarioSesion()).getLstCancionesGuardadas();
+		mfm.guardarDatos();
 		actualizarTablaCanciones(listaCanciones);
 	}
 	

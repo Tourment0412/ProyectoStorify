@@ -124,6 +124,7 @@ public class RegistrarseController {
     void registrarse(ActionEvent event) {
     	if (sonDatosValidos()) {
         	mfm.agregarUsuario(txtNombre.getText(), txtEmail.getText(), txtContrasenia.getText());
+        	mfm.guardarDatos();
         	app.mostrarIniciarSesion();
     	}
     }

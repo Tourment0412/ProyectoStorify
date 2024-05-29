@@ -261,6 +261,7 @@ public class AdministradorCancionesController {
 				}
 				cancion.setUrl(audio);
 				actualizarTablaCanciones();
+				mfm.guardarDatos();
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Cancion no seleccionada para actualizar");
 			}
@@ -412,6 +413,7 @@ public class AdministradorCancionesController {
 			mfm.agregarCancion(newCancion);
 			listaArtistasSeleccionados.clear();
 			actualizarTablaCanciones();
+			mfm.guardarDatos();
 		}
 	}
 

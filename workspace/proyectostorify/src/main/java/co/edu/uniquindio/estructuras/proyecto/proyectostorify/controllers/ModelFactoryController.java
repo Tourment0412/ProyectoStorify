@@ -514,7 +514,12 @@ public class ModelFactoryController {
 	 * Carga los datos desde el almacenamiento.
 	 */
 	public void cargarDatos() {
-		
+		ArtistasDao artistasCargar=ArtistasDao.getInstance();
+		CancionesDao cancionesCargar=CancionesDao.getInstance();
+		CuentasDao cuentasCargar=CuentasDao.getInstance();
+		tiendaMusica.setLstArtistas(artistasCargar.loadData());
+		tiendaMusica.setLstCanciones(cancionesCargar.loadData());
+		tiendaMusica.setLstCuentas(cuentasCargar.loadData());
 	}
 
 	/**

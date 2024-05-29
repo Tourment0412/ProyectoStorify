@@ -243,6 +243,7 @@ public class CancionesTiendaController {
 	@FXML
 	void deshacerSeleccion(ActionEvent event) {
 		mfm.deshacer();
+		mfm.guardarDatos();
 	}
 
 	/**
@@ -253,6 +254,7 @@ public class CancionesTiendaController {
 	@FXML
 	void rehacerSeleccion(ActionEvent event) {
 		mfm.rehacer();
+		mfm.guardarDatos();
 	}
 
 	/**
@@ -268,6 +270,7 @@ public class CancionesTiendaController {
 			if (!favoritas.contains(c)) {
 				favoritas.add(c);
 				mfm.guardarAccion(c, "ADDfavorita");
+				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
@@ -292,6 +295,7 @@ public class CancionesTiendaController {
 			if (!guardadas.contains(c)) {
 				guardadas.add(c);
 				mfm.guardarAccion(c, "ADDplaylist");
+				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",

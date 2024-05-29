@@ -200,6 +200,7 @@ public class ArtistasController {
 	@FXML
 	void rehacer() {
 		mfm.rehacer();
+		mfm.guardarDatos();
 	}
 
 	/**
@@ -208,6 +209,7 @@ public class ArtistasController {
 	@FXML
 	void deshacer() {
 		mfm.deshacer();
+		mfm.guardarDatos();
 	}
 
 	/**
@@ -234,6 +236,7 @@ public class ArtistasController {
 			if (!favoritas.contains(c)) {
 				favoritas.add(c);
 				mfm.guardarAccion(c, "ADDfavorita");
+				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
@@ -258,6 +261,7 @@ public class ArtistasController {
 			if (!guardadas.contains(c)) {
 				guardadas.add(c);
 				mfm.guardarAccion(c, "ADDplaylist");
+				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
