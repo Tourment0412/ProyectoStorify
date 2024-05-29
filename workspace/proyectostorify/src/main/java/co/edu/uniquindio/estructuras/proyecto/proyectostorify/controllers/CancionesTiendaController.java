@@ -273,7 +273,7 @@ public class CancionesTiendaController {
 				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
 			} else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+				InterfazFXUtil.mostrarMensaje("Cancion Guardada",
 						"La cancion ya se encuentra en su lista de Favoritos");
 			}
 		} else {
@@ -298,7 +298,7 @@ public class CancionesTiendaController {
 				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
 			} else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+				InterfazFXUtil.mostrarMensaje("Cancion Guardada",
 						"La cancion ya se encuentra en su lista de playlist");
 			}
 		} else {

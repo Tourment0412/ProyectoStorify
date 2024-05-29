@@ -237,7 +237,7 @@ public class ArtistasController {
 				favoritas.add(c);
 				mfm.guardarAccion(c, "ADDfavorita");
 				mfm.guardarDatos();
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En Favoritos");
+				InterfazFXUtil.mostrarMensaje("Cancion Guardada", "Cancion Guardada En Favoritos");
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
 						"La cancion ya se encuentra en su lista de Favoritos");
@@ -264,7 +264,7 @@ public class ArtistasController {
 				mfm.guardarDatos();
 				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
 			} else {
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
+				InterfazFXUtil.mostrarMensaje("Cancion Guardada",
 						"La cancion ya se encuentra en su lista de playlist");
 			}
 		} else {
