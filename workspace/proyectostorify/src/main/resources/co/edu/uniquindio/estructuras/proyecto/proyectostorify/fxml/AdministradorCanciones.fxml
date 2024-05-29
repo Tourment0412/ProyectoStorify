@@ -53,7 +53,7 @@
       <Label fx:id="lblDuracionCancion" layoutX="540.0" layoutY="407.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Duracion:" />
       <Label fx:id="lblUrlCancion" layoutX="568.0" layoutY="445.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Url:" />
       <Label fx:id="lblGeneroCancion" layoutX="544.0" layoutY="474.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Genero:" />
-      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="535.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="546.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="txtBuscarNombre" layoutX="133.0" layoutY="68.0" stylesheets="@../styles/trystyles.css" />
       <Button fx:id="btnSeleccionarCaratula" layoutX="573.0" layoutY="255.0" mnemonicParsing="false" onAction="#seleccionarCaratula" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Seleccionar Caratula" />
       <TextField fx:id="txtCancion" layoutX="607.0" layoutY="296.0" prefHeight="31.0" prefWidth="150.0" stylesheets="@../styles/trystyles.css" />

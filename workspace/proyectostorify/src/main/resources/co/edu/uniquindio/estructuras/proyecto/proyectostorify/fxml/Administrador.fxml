@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="838.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="838.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorController">
    <children>
-      <AnchorPane fx:id="panel" layoutX="29.0" layoutY="52.0" prefHeight="536.0" prefWidth="780.0" />
+      <AnchorPane fx:id="panel" layoutX="29.0" layoutY="52.0" prefHeight="571.0" prefWidth="780.0" />
       <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#gestionArtistas" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Gestion de artistas" />
       <Button layoutX="159.0" layoutY="14.0" mnemonicParsing="false" onAction="#gestionCanciones" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Gestion de canciones" />
       <Button layoutX="737.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Cerrar sesion" />

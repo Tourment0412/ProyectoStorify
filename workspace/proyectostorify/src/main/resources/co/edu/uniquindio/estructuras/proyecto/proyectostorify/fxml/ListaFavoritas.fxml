@@ -94,7 +94,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="565.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="564.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnRefrescar" layoutX="381.0" layoutY="504.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar">
          <graphic>
             <Group>

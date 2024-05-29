@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
    <children>
       <TableView fx:id="tableCanciones" layoutX="74.0" layoutY="299.0" onMouseClicked="#mostrarDetallesCanciones" prefHeight="147.0" prefWidth="430.0">
         <columns>
@@ -47,7 +47,7 @@
       <Label fx:id="lblDuracion" layoutX="656.0" layoutY="381.0" stylesheets="@../styles/trystyles.css" text=" " />
       <Label fx:id="lblUrl" layoutX="656.0" layoutY="405.0" stylesheets="@../styles/trystyles.css" text=" " />
       <Label fx:id="lblGenero" layoutX="656.0" layoutY="435.0" stylesheets="@../styles/trystyles.css" text=" " />
-      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageCaratula" fitHeight="150.0" fitWidth="200.0" layoutX="560.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnDeshacer" layoutX="69.0" layoutY="458.0" mnemonicParsing="false" onAction="#deshacerSeleccion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Deshacer">
          <graphic>
             <Group>
@@ -64,7 +64,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <Button fx:id="btnGuardarPlaylist" layoutX="70.0" layoutY="494.0" mnemonicParsing="false" onAction="#guardarPlaylist" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en PlayList">
+      <Button fx:id="btnGuardarPlaylist" layoutX="70.0" layoutY="504.0" mnemonicParsing="false" onAction="#guardarPlaylist" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en PlayList">
          <graphic>
             <Group>
                <children>
@@ -72,7 +72,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <Button fx:id="btnGuardarFavoritos" layoutX="358.0" layoutY="495.0" mnemonicParsing="false" onAction="#guardarFavoritos" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en Favoritos">
+      <Button fx:id="btnGuardarFavoritos" layoutX="358.0" layoutY="502.0" mnemonicParsing="false" onAction="#guardarFavoritos" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Guardar en Favoritos">
          <graphic>
             <Group>
                <children>
@@ -146,7 +146,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <Button fx:id="btnRefrescar" layoutX="242.0" layoutY="491.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar">
+      <Button fx:id="btnRefrescar" layoutX="242.0" layoutY="501.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar">
          <graphic>
             <Group>
                <children>
