@@ -21,7 +21,6 @@ El Proyecto Storify es una aplicación moderna para la tienda de música Storify
 ## Requisitos
 - JavaFX SDK
 - Maven
-- [Otros requisitos específicos, como una base de datos particular o librerías adicionales]
 
 ## Instalación
 
