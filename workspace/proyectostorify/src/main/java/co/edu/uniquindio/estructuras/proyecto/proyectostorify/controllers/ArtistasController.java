@@ -262,9 +262,9 @@ public class ArtistasController {
 				guardadas.add(c);
 				mfm.guardarAccion(c, "ADDplaylist");
 				mfm.guardarDatos();
-				InterfazFXUtil.mostrarMensaje("Cancion ya guardada", "Cancion Guardada En playlist");
+				InterfazFXUtil.mostrarMensaje("Cancion Guardada", "Cancion Guardada En playlist");
 			} else {
-				InterfazFXUtil.mostrarMensaje("Cancion Guardada",
+				InterfazFXUtil.mostrarMensaje("Cancion ya guardada",
 						"La cancion ya se encuentra en su lista de playlist");
 			}
 		} else {
