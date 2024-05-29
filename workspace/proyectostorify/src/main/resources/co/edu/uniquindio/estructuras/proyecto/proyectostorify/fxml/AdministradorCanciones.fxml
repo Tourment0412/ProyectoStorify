@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.AdministradorCancionesController">
    <children>
       <Label fx:id="lblNombreArtista" layoutX="78.0" layoutY="72.0" styleClass="subtitle" stylesheets="@../styles/trystyles.css" text="Nombre" />
-      <Button fx:id="btnBuscarNombre" layoutX="320.0" layoutY="69.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Buscar">
+      <Button fx:id="btnBuscarNombre" layoutX="320.0" layoutY="69.0" mnemonicParsing="false" onAction="#buscarNombreArtista" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Buscar">
          <graphic>
             <Group>
                <children>
@@ -85,7 +85,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <Button fx:id="btnEliminar" layoutX="243.0" layoutY="504.0" mnemonicParsing="false" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar">
+      <Button fx:id="btnEliminar" layoutX="243.0" layoutY="504.0" mnemonicParsing="false" onAction="#eliminarEvent" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Eliminar">
          <graphic>
             <Group>
                <children>
