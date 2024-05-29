@@ -1,8 +1,9 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class ComparadoresCancion {
+public class ComparadoresCancion implements Serializable {
 	
 	public static final Comparator<Cancion> POR_NOMBRE = Comparator.comparing(Cancion::getNombreCancion, String::compareToIgnoreCase);
     public static final Comparator<Cancion> POR_ALBUM = Comparator.comparing(Cancion::getNombreAlbum, String::compareToIgnoreCase);

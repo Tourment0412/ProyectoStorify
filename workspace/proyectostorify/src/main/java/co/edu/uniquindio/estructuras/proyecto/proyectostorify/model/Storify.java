@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class Storify {
+public class Storify implements Serializable {
 
 	@NonNull
 	private String nombre;

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -13,7 +14,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CircularList<E> implements Iterable<E>,Collection<E>{
+public class CircularList<E> implements Iterable<E>,Collection<E>,Serializable{
 	
 	private Node<E> head; 
 	private Node<E> endNode;

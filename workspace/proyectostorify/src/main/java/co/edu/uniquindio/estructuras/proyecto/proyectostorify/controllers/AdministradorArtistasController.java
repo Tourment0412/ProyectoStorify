@@ -195,6 +195,7 @@ public class AdministradorArtistasController {
 				} else {
 					artistaElejido.setEsGrupo(true);
 				}
+				mfm.guardarDatos();
 			}
 		} else {
 			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a actualizar");
@@ -230,6 +231,7 @@ public class AdministradorArtistasController {
 			newArtista.setNombre(txtNombre.getText());
 			newArtista.setNacionalidad(txtNacionalidad.getText());
 			mfm.agregarArtista(newArtista);
+			mfm.guardarDatos();
 			actualizarTablaArtistas();
 		}
 	}
@@ -264,6 +266,7 @@ public class AdministradorArtistasController {
 			Artista artistaElejido = tableArtistas.getSelectionModel().getSelectedItem();
 			tableArtistas.getItems().remove(artistaElejido);
 			mfm.eliminarArtista(artistaElejido);
+			mfm.guardarDatos();
 		} else {
 			InterfazFXUtil.mostrarMensaje("Artista no seleccionado", "No ha seleccionado nigun artista a eliminar");
 		}
@@ -282,6 +285,7 @@ public class AdministradorArtistasController {
         if (archivoArtistas != null) {
         	mfm.importarArtistas(archivoArtistas);
         	actualizarTablaArtistas();
+        	mfm.guardarDatos();
             InterfazFXUtil.mostrarMensaje("Importacion existosa", "Las canciones y artistas fueron cargados correctamente");
         }
 	}

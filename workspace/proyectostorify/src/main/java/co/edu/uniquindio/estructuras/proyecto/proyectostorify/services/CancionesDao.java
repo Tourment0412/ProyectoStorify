@@ -27,7 +27,7 @@ public class CancionesDao {
 	 * 
 	 * @return instance
 	 */
-	public CancionesDao getInstance() {
+	public static CancionesDao getInstance() {
 		if (instance == null) {
 			instance = new CancionesDao();
 		}

@@ -11,6 +11,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree.BinaryT
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.*;
+import co.edu.uniquindio.estructuras.proyecto.proyectostorify.services.*;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.stack.Stack;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.PersistenciaTexto;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.utils.TiendaUtil;
@@ -63,8 +64,11 @@ public class ModelFactoryController {
 	 * cuenta y los datos.
 	 */
 	public ModelFactoryController() {
-		inicializarDatosCuenta();
-		inicializarDatos();
+		cargarDatos();
+		if (tiendaMusica.getLstCanciones().size()==0 && tiendaMusica.getLstCuentas().size()==0) {
+			inicializarDatosCuenta();
+			inicializarDatos();
+		}
 	}
 
 	/**
@@ -510,14 +514,19 @@ public class ModelFactoryController {
 	 * Carga los datos desde el almacenamiento.
 	 */
 	public void cargarDatos() {
-
+		
 	}
 
 	/**
 	 * Guarda los datos en el almacenamiento.
 	 */
 	public void guardarDatos() {
-
+		ArtistasDao artistasGuardar=new ArtistasDao();
+		CancionesDao cancionesGuardar=new CancionesDao();
+		CuentasDao cuentasGuardar=new CuentasDao();
+		artistasGuardar.saveData(tiendaMusica.getLstArtistas());
+		cancionesGuardar.saveData(tiendaMusica.getLstCanciones());
+		cuentasGuardar.saveData(tiendaMusica.getLstCuentas());
 	}
 
 }

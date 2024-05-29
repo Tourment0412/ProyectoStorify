@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class Cuenta {
+public class Cuenta implements Serializable {
 	@EqualsAndHashCode.Include
 	@NonNull
 	private String username;

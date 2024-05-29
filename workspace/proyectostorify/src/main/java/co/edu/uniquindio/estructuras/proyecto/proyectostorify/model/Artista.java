@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Artista implements Comparable<Artista>{
+public class Artista implements Comparable<Artista>,Serializable{
 	
 	private String codigo;
 	private String nombre;

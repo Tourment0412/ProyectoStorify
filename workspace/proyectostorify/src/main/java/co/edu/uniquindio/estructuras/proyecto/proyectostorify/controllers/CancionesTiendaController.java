@@ -242,7 +242,7 @@ public class CancionesTiendaController {
 	 */
 	@FXML
 	void deshacerSeleccion(ActionEvent event) {
-
+		mfm.deshacer();
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class CancionesTiendaController {
 	 */
 	@FXML
 	void rehacerSeleccion(ActionEvent event) {
-
+		mfm.rehacer();
 	}
 
 	/**

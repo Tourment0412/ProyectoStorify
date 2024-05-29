@@ -1,11 +1,13 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-public enum Genero {
+public enum Genero implements Serializable {
 	
 	ROCK ("Rock"), POP ("Pop"), PUNK ("Punk"), REGGAETON ("Reggaeton"), ELECTRONICA ("Electronica");
 	

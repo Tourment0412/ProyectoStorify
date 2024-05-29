@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,7 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Administrador extends Cuenta {
+public class Administrador extends Cuenta implements Serializable {
 	@EqualsAndHashCode.Include
 	@NonNull
 	private String idAdministrador;

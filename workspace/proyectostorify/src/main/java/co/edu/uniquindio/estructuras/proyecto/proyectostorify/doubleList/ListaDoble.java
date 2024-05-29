@@ -1,5 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -14,7 +15,7 @@ import co.edu.uniquindio.estructuras.proyecto.proyectostorify.model.Cancion;
  *
  **/
 
-public class ListaDoble<E> implements Iterable<E>,Collection<E> {
+public class ListaDoble<E> implements Iterable<E>,Collection<E>,Serializable {
 
 	private NodoDoble<E> nodoPrimero;
 	private NodoDoble<E> nodoUltimo;

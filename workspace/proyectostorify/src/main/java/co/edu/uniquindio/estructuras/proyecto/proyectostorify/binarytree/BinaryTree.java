@@ -1,10 +1,11 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.binarytree;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 
-public class BinaryTree<E extends Comparable<E>> {
+public class BinaryTree<E extends Comparable<E>>  implements Serializable {
 
 	private TreeNode<E> root;
 	// Talvez llegar a poner el size o algo asi

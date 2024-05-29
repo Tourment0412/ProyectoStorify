@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList.ListaDoble;
 import lombok.AllArgsConstructor;
@@ -16,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Getter
 //@ToString
-public class Cancion {
+public class Cancion implements Serializable {
 	@EqualsAndHashCode.Include
 	@NonNull
 	private String codigo;

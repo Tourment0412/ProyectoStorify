@@ -1,6 +1,6 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList;
 
-
+import java.io.Serializable;
 
 /**
  * Clase nodo aplicando Generics
@@ -10,7 +10,7 @@ package co.edu.uniquindio.estructuras.proyecto.proyectostorify.doubleList;
  * **/
 
 
-public class NodoDoble<T> {
+public class NodoDoble<T> implements Serializable {
 
 	private NodoDoble<T> siguienteNodo;
 	private NodoDoble<T> anteriorNodo;

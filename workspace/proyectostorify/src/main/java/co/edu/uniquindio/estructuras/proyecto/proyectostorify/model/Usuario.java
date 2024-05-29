@@ -1,5 +1,7 @@
 package co.edu.uniquindio.estructuras.proyecto.proyectostorify.model;
 
+import java.io.Serializable;
+
 import co.edu.uniquindio.estructuras.proyecto.proyectostorify.circularList.CircularList;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +13,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Usuario extends Cuenta {
+public class Usuario extends Cuenta implements Serializable {
 
 	@EqualsAndHashCode.Include
 	@NonNull
