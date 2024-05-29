@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="780.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.estructuras.proyecto.proyectostorify.controllers.CancionesTiendaController">
    <children>
       <TableView fx:id="tableCanciones" layoutX="74.0" layoutY="299.0" onMouseClicked="#mostrarDetallesCanciones" prefHeight="147.0" prefWidth="430.0">
         <columns>
@@ -80,7 +80,7 @@
                </children>
             </Group>
          </graphic></Button>
-      <Button layoutX="255.0" layoutY="457.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir">
+      <Button layoutX="243.0" layoutY="457.0" mnemonicParsing="false" onAction="#reproducirCancion" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Reproducir">
          <graphic>
             <Group>
                <children>
@@ -146,5 +146,14 @@
                </children>
             </Group>
          </graphic></Button>
+      <Button fx:id="btnRefrescar" layoutX="242.0" layoutY="491.0" mnemonicParsing="false" onAction="#refrescarTabla" styleClass="boton-gris" stylesheets="@../styles/trystyles.css" text="Refrescar">
+         <graphic>
+            <Group>
+               <children>
+                  <SVGPath content="M12 21C7.02944 21 3 16.9706 3 12C3 9.69494 3.86656 7.59227 5.29168 6L8 3M12 3C16.9706 3 21 7.02944 21 12C21 14.3051 20.1334 16.4077 18.7083 18L16 21M3 3H8M8 3V8M21 21H16M16 21V16" fill="TRANSPARENT" stroke="WHITE" strokeWidth="1.5" />
+               </children>
+            </Group>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

@@ -24,6 +24,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class CancionesTiendaController {
+	
+	@FXML
+    private Button btnRefrescar;
 
 	@FXML
 	private Button brnOrdenarAlbum;
@@ -218,6 +221,17 @@ public class CancionesTiendaController {
 					AlertType.ERROR);
 			;
 		}
+	}
+	
+	/**
+	 * Refresca la tabla de canciones.
+	 * Actualiza la lista de canciones guardadas del usuario y muestra las canciones en la tabla.
+	 *
+	 * @param event el evento de acción que dispara la acción de refrescar la tabla
+	 */
+	@FXML
+	void refrescarTabla(ActionEvent event) {
+		actualizarTablaCanciones(listaCanciones);
 	}
 
 	/**
