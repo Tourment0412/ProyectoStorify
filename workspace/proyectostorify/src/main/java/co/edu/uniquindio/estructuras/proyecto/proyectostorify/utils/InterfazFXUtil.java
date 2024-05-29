@@ -156,7 +156,7 @@ public class InterfazFXUtil {
 	    alert.setTitle(titulo);
 	    alert.setHeaderText(titulo);
 	    alert.setContentText(texto);
-
+	    applyAlertStyle(alert);
 	    Optional<ButtonType> resultado = alert.showAndWait();
 
 	    return resultado.isPresent() && resultado.get() == ButtonType.OK;
