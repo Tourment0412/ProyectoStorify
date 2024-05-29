@@ -169,6 +169,8 @@ public class AdministradorCancionesController {
 	private CircularList<Cancion> listaCanciones = new CircularList<Cancion>();
 	private CircularList<Artista> listaArtistasSeleccionados = new CircularList<Artista>();
 
+	private CircularList<Artista> listaArtista = mfm.obtenerArtistas();
+
 	/**
 	 * Método llamado al inicializar el controlador. Configura la lista de géneros
 	 * musicales y actualiza las tablas de artistas y canciones.
@@ -258,9 +260,11 @@ public class AdministradorCancionesController {
 					ex.printStackTrace();
 				}
 				cancion.setUrl(audio);
+				actualizarTablaCanciones();
 			} else {
 				InterfazFXUtil.mostrarMensaje("Cancion no seleccionada", "Cancion no seleccionada para actualizar");
 			}
+
 		}
 	}
 
@@ -527,108 +531,163 @@ public class AdministradorCancionesController {
 //        alert.showAndWait();
 //    }
 	/**
-	 * Muestra una ventana de diálogo con información sobre los géneros musicales más populares.
+	 * Muestra una ventana de diálogo con información sobre los géneros musicales
+	 * más populares.
 	 */
 	@FXML
 	void generosPopulares() {
-	    CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
-	    StringBuilder msj = new StringBuilder();
+		CircularList<Genero> generosPopulares = mfm.obtenerGenerosPopulares();
+		StringBuilder msj = new StringBuilder();
 
-	    Alert alert = new Alert(AlertType.INFORMATION);
-	    alert.setTitle("Popularidad de los Géneros");
-	    alert.setHeaderText("Información sobre los géneros musicales más populares");
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Popularidad de los Géneros");
+		alert.setHeaderText("Información sobre los géneros musicales más populares");
 
-	    if (generosPopulares.isEmpty()) {
-	        msj.append("No hay géneros populares disponibles.");
-	    } else {
-	        msj.append("Los géneros más populares son:\n");
-	        VBox genreBox = new VBox(); // Contenedor vertical para los géneros
-	        genreBox.setAlignment(Pos.CENTER_LEFT);
-	        for (Genero genero : generosPopulares) {
-	            HBox genreRow = new HBox(); // Contenedor horizontal para cada género
-	            genreRow.setAlignment(Pos.CENTER_LEFT);
-	            // Crear un ícono o color para representar el nivel de popularidad del género
-	            ImageView popularityIcon = new ImageView(getPopularityIcon(genero, generosPopulares));
-	            popularityIcon.setFitWidth(110);
-	            popularityIcon.setFitHeight(40);
-	            // Crear una etiqueta para mostrar el nombre del género
-	            Label genreLabel = new Label("  "+genero.toString());
-	            genreLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #ffffff; -fx-font-weight: bold;");
-	            // Estilo de la etiqueta
-	            // Agregar el ícono y la etiqueta al contenedor horizontal
-	            genreRow.getChildren().addAll(popularityIcon, genreLabel);
-	            // Agregar el contenedor horizontal al contenedor vertical
-	            genreBox.getChildren().add(genreRow);
-	        }
-	        // Establecer el contenido de la alerta como el contenedor vertical con los
-	        // géneros
-	        alert.getDialogPane().setContent(genreBox);
-	    }
+		if (generosPopulares.isEmpty()) {
+			msj.append("No hay géneros populares disponibles.");
+		} else {
+			msj.append("Los géneros más populares son:\n");
+			VBox genreBox = new VBox(); // Contenedor vertical para los géneros
+			genreBox.setAlignment(Pos.CENTER_LEFT);
+			for (Genero genero : generosPopulares) {
+				HBox genreRow = new HBox(); // Contenedor horizontal para cada género
+				genreRow.setAlignment(Pos.CENTER_LEFT);
+				// Crear un ícono o color para representar el nivel de popularidad del género
+				ImageView popularityIcon = new ImageView(getPopularityIcon(genero, generosPopulares));
+				popularityIcon.setFitWidth(110);
+				popularityIcon.setFitHeight(40);
+				// Crear una etiqueta para mostrar el nombre del género
+				Label genreLabel = new Label("  " + genero.toString());
+				genreLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #ffffff; -fx-font-weight: bold;");
+				// Estilo de la etiqueta
+				// Agregar el ícono y la etiqueta al contenedor horizontal
+				genreRow.getChildren().addAll(popularityIcon, genreLabel);
+				// Agregar el contenedor horizontal al contenedor vertical
+				genreBox.getChildren().add(genreRow);
+			}
+			// Establecer el contenido de la alerta como el contenedor vertical con los
+			// géneros
+			alert.getDialogPane().setContent(genreBox);
+		}
 
-	    alert.setContentText(msj.toString());
+		alert.setContentText(msj.toString());
 
-	    Image image = new Image(getClass()
-	            .getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
-	    ImageView imageView = new ImageView(image);
-	    imageView.setFitWidth(100);
-	    imageView.setFitHeight(100);
-	    alert.setGraphic(imageView);
+		Image image = new Image(getClass()
+				.getResourceAsStream("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/logo.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setFitWidth(100);
+		imageView.setFitHeight(100);
+		alert.setGraphic(imageView);
 
-	    alert.getDialogPane().getStylesheets()
-	            .add(getClass()
-	                    .getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css")
-	                    .toExternalForm());
+		alert.getDialogPane().getStylesheets()
+				.add(getClass()
+						.getResource("/co/edu/uniquindio/estructuras/proyecto/proyectostorify/styles/tryalert.css")
+						.toExternalForm());
 
-	    alert.showAndWait();
+		alert.showAndWait();
 	}
 
 	/**
 	 * Obtiene el ícono que representa el nivel de popularidad del género.
 	 *
-	 * @param genero El género del cual se obtiene la popularidad.
+	 * @param genero           El género del cual se obtiene la popularidad.
 	 * @param generosPopulares La lista de géneros populares.
 	 * @return El ícono que representa el nivel de popularidad del género.
 	 */
 	private Image getPopularityIcon(Genero genero, CircularList<Genero> generosPopulares) {
-	    // Obtener el nivel de popularidad del género
-	    int popularityLevel = getPopularityLevel(genero, generosPopulares);
+		// Obtener el nivel de popularidad del género
+		int popularityLevel = getPopularityLevel(genero, generosPopulares);
 
-	    // Asignar el ícono en función del nivel de popularidad
-	    switch (popularityLevel) {
-	        case 0:
-	            return new Image(getClass().getResourceAsStream(
-	                    "/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/high_popularity.png"));
-	        case 1:
-	            return new Image(getClass().getResourceAsStream(
-	                    "/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/medium_popularity.png"));
-	        default:
-	            return new Image(getClass().getResourceAsStream(
-	                    "/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/low_popularity.png"));
-	    }
+		// Asignar el ícono en función del nivel de popularidad
+		switch (popularityLevel) {
+		case 0:
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/high_popularity.png"));
+		case 1:
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/medium_popularity.png"));
+		default:
+			return new Image(getClass().getResourceAsStream(
+					"/co/edu/uniquindio/estructuras/proyecto/proyectostorify/images/low_popularity.png"));
+		}
 	}
 
 	/**
 	 * Obtiene el nivel de popularidad de un género.
 	 *
-	 * @param genero El género del cual se obtiene la popularidad.
+	 * @param genero           El género del cual se obtiene la popularidad.
 	 * @param generosPopulares La lista de géneros populares.
 	 * @return El nivel de popularidad del género.
 	 */
 	private int getPopularityLevel(Genero genero, CircularList<Genero> generosPopulares) {
-	    // Obtener la popularidad del género
-	    int popularity = mfm.obtenerPopularidadGenero(genero);
+		// Obtener la popularidad del género
+		int popularity = mfm.obtenerPopularidadGenero(genero);
 
-	    // Contar cuántos géneros tienen la misma popularidad
-	    int count = 0;
-	    for (Genero g : generosPopulares) {
-	        if (mfm.obtenerPopularidadGenero(g) == popularity) {
-	            count++;
-	        }
-	    }
+		// Contar cuántos géneros tienen la misma popularidad
+		int count = 0;
+		for (Genero g : generosPopulares) {
+			if (mfm.obtenerPopularidadGenero(g) == popularity) {
+				count++;
+			}
+		}
 
-	    // Devolver el nivel de popularidad basado en la cantidad de géneros con la misma popularidad
-	    return count <= 3 ? count - 1 : 2;
+		// Devolver el nivel de popularidad basado en la cantidad de géneros con la
+		// misma popularidad
+		return count <= 3 ? count - 1 : 2;
 	}
 
+	@FXML
+	void buscarNombreArtista(ActionEvent event) {
+		if (!(txtBuscarNombre.getText().trim().isEmpty())) {
+			CircularList<Artista> listTemp = new CircularList<Artista>();
+			for (Artista artista : listaArtista) {
+				if (artista.getNombre().equalsIgnoreCase(txtBuscarNombre.getText().trim())) {
+					listTemp.add(artista);
+				}
+			}
+			actualizarTablaBusqueda(listTemp);
+			listTemp.clear();
+		} else {
+			actualizarTablaArtistas();
+		}
+	}
+
+	public void actualizarTablaBusqueda(CircularList<Artista> listaArtista) {
+		ObservableList<Artista> listaArtistasProperty = FXCollections.observableArrayList();
+		for (Artista artista : listaArtista) {
+			listaArtistasProperty.add(artista);
+		}
+
+		tableArtistas.setItems(listaArtistasProperty);
+		columnNombreArtista
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNombre()));
+		columnCodigo.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getCodigo()));
+		columnGrupo.setCellValueFactory(cellData -> {
+			if (cellData.getValue().isEsGrupo()) {
+				return new SimpleStringProperty("Grupo");
+			} else {
+				return new SimpleStringProperty("No grupo");
+			}
+		});
+		columnNacionalidad
+				.setCellValueFactory(cellData -> new SimpleStringProperty("" + cellData.getValue().getNacionalidad()));
+		tableArtistas.refresh();
+	}
+
+	@FXML
+	void eliminarEvent(ActionEvent event) {
+		Cancion cancion = tableCanciones.getSelectionModel().getSelectedItem();
+		if (cancion != null) {
+			CircularList<Artista> lstArtistas = mfm.obtenerArtistas();
+			for (Artista artistaRef : lstArtistas) {
+				if (artistaRef.getLstCanciones().toCircularList().contains(cancion)) {
+					mfm.getTiendaMusica().eliminarCancion(cancion);
+					//artistaRef.getLstCanciones().eliminar(cancion);
+					System.out.println("Se ha eliminado la cancion");
+					actualizarTablaCanciones();
+				}
+			}
+		}
+	}
 
 }
